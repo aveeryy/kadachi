@@ -158,9 +158,9 @@
     extraConfig = ''
       submap = Fondo de pantalla
 
-      bind = , H, exec, change_wallpaper.sh previous
-      bind = , L, exec, change_wallpaper.sh next
-      bind = , M, exec, change_wallpaper.sh open-menu
+      bind = , H, exec, change-wallpaper previous
+      bind = , L, exec, change-wallpaper next
+      bind = , M, exec, change-wallpaper open-menu
       bindl = , escape, submap, reset
       bindl = MOD3, w, submap, reset
 

@@ -39,6 +39,7 @@
       wl-clipboard
       (import ./scripts/colorpicker.nix { inherit pkgs; })
       (import ./scripts/currently-playing.nix { inherit pkgs; })
+      (import ./scripts/change-wallpaper.nix { inherit pkgs; })
       (pkgs.buildEnv {
         name = "desktop-scripts";
         paths = [ ./scripts_legacy ];
