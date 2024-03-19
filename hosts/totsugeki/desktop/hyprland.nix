@@ -82,8 +82,8 @@
         "SUPER SHIFT, 9, movetoworkspace, 9"
         "SUPER SHIFT, 0, movetoworkspace, 10"
 
-        "SUPER, S, exec, screenshot.sh full"
-        "SUPER + SHIFT, S, exec, screenshot.sh section"
+        "SUPER, S, exec, screenshot full"
+        "SUPER + SHIFT, S, exec, screenshot section"
 
         "MOD3, C, exec, colorpicker"
 
