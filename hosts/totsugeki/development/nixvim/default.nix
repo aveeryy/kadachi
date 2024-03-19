@@ -2,6 +2,7 @@
   imports = [
     ./completion.nix
     ./lsp.nix
+    ./lualine.nix
     ./neo-tree.nix
     ./none-ls.nix
     ./treesitter.nix
