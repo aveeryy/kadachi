@@ -18,7 +18,7 @@
       totsugeki = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # ./common/nixos.nix
+          ./common/nixos.nix
           ./hosts/totsugeki/nixos.nix
           home-manager.nixosModules.home-manager
           {
@@ -38,8 +38,9 @@
       greatyamada = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # ./common/nixos.nix
+          ./common/nixos.nix
           ./hosts/greatyamada/nixos.nix
+          ./hosts/greatyamada/services
         ];
       };
     };
