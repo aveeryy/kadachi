@@ -92,6 +92,8 @@
         "MOD3, 2, exec, play_to_soundboard.sh $HOME/soundboard/turret.webm"
         "MOD3, 3, exec, play_to_soundboard.sh $HOME/soundboard/elhormiguero.webm --volume=70"
         "MOD3, 4, exec, play_to_soundboard.sh $HOME/soundboard/america.webm --volume=70"
+        "MOD3, 5, exec, play_to_soundboard.sh $HOME/soundboard/bazinga.webm"
+        "MOD3, 6, exec, play_to_soundboard.sh $HOME/soundboard/zasentodalaboca.m4a"
         "MOD3 SHIFT, P, exec, pkill mpv"
       ];
 
