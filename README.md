@@ -16,6 +16,8 @@ Launcher | rofi
 Wallpaper daemon | swww
 Text editor | Neovim (Nixvim)
 Web browser | Firefox
+File browser | Dolphin
+Torrent client | qBittorrent
 
 
 ## 🐳 Great Yamada

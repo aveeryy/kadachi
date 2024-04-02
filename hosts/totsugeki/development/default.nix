@@ -1,6 +1,14 @@
 { inputs, pkgs, ... }: {
   imports = [ ./nixvim ];
-  home = { packages = with pkgs; [ git-credential-manager gnupg pass ]; };
+  home = {
+    packages = with pkgs; [
+      git-credential-manager
+      gnupg
+      pass
+      dotnet-sdk_7
+      unityhub
+    ];
+  };
   programs = {
     git = {
       enable = true;

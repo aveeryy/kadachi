@@ -51,6 +51,7 @@
       size = 32;
     };
   };
+  nixpkgs.config.allowUnfree = true;
   services.easyeffects.enable = true;
   xdg.enable = true;
 }
