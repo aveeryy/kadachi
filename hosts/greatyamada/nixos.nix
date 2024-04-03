@@ -40,5 +40,11 @@
     useDHCP = lib.mkDefault false;
   };
 
+  sops = {
+    defaultSopsFile = "/etc/nixos/secrets/greatyamada.yaml";
+    # TODO: change key path
+    age.keyFile = "/home/avery/.config/sops/age/keys.txt";
+  };
+
   time.timeZone = "UTC";
 }

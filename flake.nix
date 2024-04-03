@@ -24,7 +24,6 @@
         modules = [
           ./common/nixos.nix
           ./hosts/totsugeki/nixos.nix
-          ./hosts/greatyamada/services/forgejo.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           {

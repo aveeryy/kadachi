@@ -23,6 +23,10 @@ in {
           LFS_JWT_SECRET = "";
           LFS_JWT_SECRET_URI = "file://${forgejoConfigPath}/lfs_jwt_secret";
         };
+        database = {
+          type = "postgres";
+          passwordFile = "${forgejoConfigPath}/database_password";
+        };
         security = {
           INSTALL_LOCK = true;
           INTERNAL_TOKEN = lib.mkForce "";
@@ -49,6 +53,7 @@ in {
     ${pkgs.forgejo}/bin/gitea migrate
   '';
   sops.secrets = arrayToSecrets [
+    "database_password"
     "internal_token"
     "lfs_jwt_secret"
     "oauth2_jwt_secret"
