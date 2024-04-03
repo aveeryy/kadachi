@@ -99,8 +99,12 @@
     };
     udisks2.enable = true;
   };
-
   systemd = { services = { NetworkManager-wait-online.enable = false; }; };
+
+  sops = {
+    defaultSopsFile = "/etc/nixos/secrets/hosts/totsugeki.yaml";
+    age.keyFile = "/home/avery/.config/sops/age/keys.txt";
+  };
 
   system.stateVersion = "24.05";
 }

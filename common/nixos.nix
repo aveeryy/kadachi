@@ -19,12 +19,13 @@
     users.avery = {
       extraGroups = [ "wheel" ];
       isNormalUser = true;
+      hashedPasswordFile = config.sops.secrets.avery_password.path;
     };
   };
 
   environment = {
     shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [ git htop neovim ];
+    systemPackages = with pkgs; [ git htop neovim sops ];
   };
 
   programs.zsh.enable = true;
@@ -43,4 +44,12 @@
   };
 
   services.openssh.enable = true;
+
+  sops = {
+    secrets.avery_password = {
+      sopsFile = "/etc/nixos/secrets/hosts/common.yaml";
+      neededForUsers = true;
+    };
+    validateSopsFiles = false;
+  };
 }
