@@ -47,7 +47,7 @@
 
   sops = {
     secrets.avery_password = {
-      sopsFile = "/etc/nixos/secrets/hosts/common.yaml";
+      sopsFile = "/etc/nixos/secrets/common.yaml";
       neededForUsers = true;
     };
     validateSopsFiles = false;

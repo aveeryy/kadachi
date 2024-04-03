@@ -102,7 +102,7 @@
   systemd = { services = { NetworkManager-wait-online.enable = false; }; };
 
   sops = {
-    defaultSopsFile = "/etc/nixos/secrets/hosts/totsugeki.yaml";
+    defaultSopsFile = "/etc/nixos/secrets/totsugeki.yaml";
     age.keyFile = "/home/avery/.config/sops/age/keys.txt";
   };
 
