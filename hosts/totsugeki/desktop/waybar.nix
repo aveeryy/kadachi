@@ -21,11 +21,11 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
-            "1" = " ";
+            "1" = "󰈹 ";
             "2" = " ";
             "3" = " ";
             "8" = " ";
-            "9" = " ";
+            "9" = " ";
             "10" = " ";
             default = " ";
           };
@@ -110,7 +110,7 @@
       }
 
       window#waybar {
-        background: rgba(30, 30, 46, 0.8);
+        background: rgba(30, 30, 46, 0.9);
         color: #cdd6f4;
         margin: 4px;
       }

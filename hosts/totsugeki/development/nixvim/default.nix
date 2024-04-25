@@ -12,17 +12,19 @@
 
     colorschemes.catppuccin = {
       enable = true;
-      flavour = "mocha";
-      disableItalic = true;
-      integrations = {
-        cmp = true;
-        neotree = true;
+      settings = {
+        flavour = "mocha";
+        no_italic = true;
+        integrations = {
+          cmp = true;
+          neotree = true;
+        };
       };
     };
 
     globals.mapleader = " ";
 
-    options = {
+    opts = {
       number = true;
       cursorline = true;
       tabstop = 4;

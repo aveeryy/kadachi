@@ -35,6 +35,8 @@
       r2modman
       swww
       wl-clipboard
+      element-desktop
+      vesktop
       (import ./scripts/colorpicker.nix { inherit pkgs; })
       (import ./scripts/currently-playing.nix { inherit pkgs; })
       (import ./scripts/change-wallpaper.nix { inherit pkgs; })
@@ -47,8 +49,8 @@
     pointerCursor = {
       gtk.enable = true;
       package = pkgs.phinger-cursors;
-      name = "phinger-cursors";
-      size = 32;
+      name = "phinger-cursors-dark";
+      size = 24;
     };
   };
   nixpkgs.config.allowUnfree = true;

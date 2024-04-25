@@ -17,7 +17,7 @@
       "ctrl+alt+9" = "goto_tab 9";
     };
     settings = {
-      "background_opacity" = "0.75";
+      "background_opacity" = "0.90";
       "dynamic_background_opacity" = true;
       "force_ltr" = "yes";
       "disable_ligatures" = "never";
@@ -29,7 +29,8 @@
       "tab_bar_edge" = "bottom";
       "tab_bar_style" = "powerline";
       "tab_powerline_style" = "round";
-      "tab_title_template" = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
+      "tab_title_template" =
+        "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
       "background" = "#1E1E2F";
     };
     theme = "Catppuccin-Mocha";

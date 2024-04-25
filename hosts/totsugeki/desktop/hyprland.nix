@@ -5,10 +5,11 @@
     settings = {
       monitor = "DP-1, 2560x1440@165, 0x0, 1";
 
-      env = [ "XCURSOR_SIZE, 32" "QT_QPA_PLATFORMTHEME, qt5ct" ];
+      env = [ "XCURSOR_SIZE, 24" "QT_QPA_PLATFORMTHEME, qt5ct" ];
 
       exec-once = [
         "hyprlock"
+        "hyprctl setcursor phinger-cursors-dark 24"
         "waybar"
         "swww init; swww img ~/.local/share/wallpapers/.current_image"
         "[workspace 1 silent] firefox"
@@ -24,12 +25,12 @@
       decoration = {
         rounding = 0;
         dim_inactive = true;
-        dim_strength = 0.3;
+        dim_strength = 0.5;
         drop_shadow = false;
         blur = {
           enabled = true;
           size = 3;
-          passes = 3;
+          passes = 2;
           noise = 5.0e-2;
           vibrancy = 0.25;
           vibrancy_darkness = 0.3;
@@ -141,7 +142,8 @@
         "minsize 1 1, title:^()$,class:^(steam)$"
       ];
 
-      layerrule = [ "blur, waybar" "blur, rofi" "ignorezero, rofi" ];
+      layerrule =
+        [ "blur, waybar" "blur, rofi" "ignorezero, rofi" "noanim, rofi" ];
 
       input = {
         kb_layout = "es";
