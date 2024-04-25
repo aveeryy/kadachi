@@ -6,7 +6,14 @@
     initrd.availableKernelModules =
       [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     loader = {
-      systemd-boot = { enable = true; };
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        gfxmodeEfi = "2560x1440";
+        useOSProber = true;
+      };
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
   };
@@ -47,7 +54,10 @@
     useDHCP = lib.mkDefault true;
   };
 
-  time.timeZone = "Europe/Madrid";
+  time = {
+    hardwareClockInLocalTime = true;
+    timeZone = "Europe/Madrid";
+  };
 
   i18n.defaultLocale = "es_ES.UTF-8";
 
