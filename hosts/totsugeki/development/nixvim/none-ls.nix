@@ -19,6 +19,12 @@
       formatting = {
         black.enable = true;
         nixfmt.enable = true;
+        prettier = {
+          enable = true;
+          withArgs = ''
+            {extra_filetypes = {"svelte"}}
+          '';
+        };
       };
     };
   };
