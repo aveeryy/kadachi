@@ -3,7 +3,7 @@
     enable = true;
     font = {
       name = "Iosevka Nerd Font";
-      size = 14;
+      size = 12;
     };
     keybindings = {
       "ctrl+alt+1" = "goto_tab 1";

@@ -6,7 +6,7 @@
     packages = with pkgs; [ python3 rclone xdg-utils ];
     sessionVariables = {
       EDITOR = "nvim";
-      DOTNET_ROOT = "${pkgs.dotnet-sdk_7}";
+      DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
     };
     sessionPath = [ "$HOME/.dotnet/tools" ];
   };

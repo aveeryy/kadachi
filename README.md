@@ -1,36 +1,42 @@
 # NixOS system configurations
 
-## 🐬 Totsugeki
+## Installation (WIP)
+
+## Hosts
+
+### 🐬 Totsugeki
 
 Configuration files for my desktop
 
-### Programs
+#### Programs
 
-Name  | Type
-:-: | :-:
-Hyprland | Wayland compositor
-Hyprlock | Screen locker
-Waybar | Statusbar
-dunst | Notification daemon
-rofi | Launcher
-swww | Wallpaper daemon
-Neovim | Text editor
-Firefox | Web browser
-Dolphin | File browser
-qBittorrent | Torrent client
+|     Name     |        Type         |
+| :----------: | :-----------------: |
+| KDE Plasma 6 | Desktop environment |
+|  Krohnkite   | Auto-tiling plugin  |
+|    Neovim    |     Text editor     |
+|   Firefox    |     Web browser     |
+|   Dolphin    |    File browser     |
+| qBittorrent  |   Torrent client    |
 
+#### Games
 
-## 🐳 Great Yamada
+- Steam
+- Minecraft (Prism Launcher)
+- osu! (Lazer client)
+- r2modman (Mod manager)
+- ProtonUp-Qt
+
+### 🐳 Great Yamada
 
 Configuration for my home server
 
-### Services
+#### Services
 
 **Still a WIP**
 
-Name | Type | Public-facing
-:-: | :-: | :-:
-Nginx | Web server and reverse proxy | x
-PostgreSQL | Database engine
-Forgejo | Git repository | x
-
+|    Name    |             Type             | Public-facing |
+| :--------: | :--------------------------: | :-----------: |
+|   Nginx    | Web server and reverse proxy |       x       |
+| PostgreSQL |       Database engine        |
+|  Forgejo   |        Git repository        |       x       |

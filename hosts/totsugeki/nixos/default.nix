@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }: {
+
+  imports = [ ./filesystems.nix ./plasma.nix ./steam.nix ];
+
   boot = {
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
@@ -18,35 +21,10 @@
     };
   };
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/144857c7-877b-46c7-94d9-30a6d6d27cf0";
-      fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/8084-F762";
-      fsType = "vfat";
-    };
-
-    "/home" = {
-      device = "/dev/disk/by-uuid/4bbd6139-7caa-4617-a94f-b185c5f6ca45";
-      fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
-    };
-
-    "/mnt/Datos" = {
-      device = "/dev/disk/by-uuid/994ef2bd-a9fb-4414-9a0a-19b150ffa452";
-      fsType = "btrfs";
-      options = [ "compress=zstd:15" "user" "x-systemd.automount" "exec" ];
-    };
-  };
-
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 1111 42595 ];
+      allowedTCPPorts = [ 8000 42595 ];
       allowedUDPPorts = [ 24642 ];
     };
     hostName = "totsugeki";
@@ -79,25 +57,19 @@
   };
 
   programs = {
-    hyprland.enable = true;
-    steam.enable = true;
+    corectrl = {
+      enable = true;
+      gpuOverclock.enable = true;
+    };
+    nix-ld.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  };
+  xdg.portal.enable = true;
 
   services = {
-    greetd = {
+    jellyfin = {
       enable = true;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
-          user = "avery";
-        };
-        default_session = initial_session;
-      };
+      openFirewall = true;
     };
     pipewire = {
       enable = true;
@@ -108,6 +80,16 @@
       pulse.enable = true;
     };
     udisks2.enable = true;
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
+    '';
+    displayManager = {
+      defaultSession = "plasma";
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+    };
   };
   systemd = { services = { NetworkManager-wait-online.enable = false; }; };
 
@@ -117,4 +99,6 @@
   };
 
   system.stateVersion = "24.05";
+
+  users.users.avery.extraGroups = [ "corectrl" ];
 }

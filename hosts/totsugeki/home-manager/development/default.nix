@@ -5,7 +5,8 @@
       git-credential-manager
       gnupg
       pass
-      dotnet-sdk_7
+      # dotnet-sdk_7
+      dotnet-sdk_8 # tModLoader
       unityhub
     ];
   };
