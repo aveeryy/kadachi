@@ -1,4 +1,4 @@
-{ config, lib, pkgs }: {
+{ ... }: {
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/61050e8d-41c6-4c37-98a9-d8b0cdce6903";
@@ -36,18 +36,4 @@
     };
   };
 
-  networking = {
-    firewall.enable = true;
-    hostName = "greatyamada";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault false;
-  };
-
-  sops = {
-    defaultSopsFile = "/etc/nixos/secrets/greatyamada.yaml";
-    # TODO: change key path
-    age.keyFile = "/home/avery/.config/sops/age/keys.txt";
-  };
-
-  time.timeZone = "UTC";
 }

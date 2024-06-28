@@ -1,12 +1,17 @@
+---
+gitea: none
+include_toc: true
+---
+
 # NixOS system configurations
+
+[toc]
 
 ## Installation (WIP)
 
 ## Hosts
 
-### 🐬 Totsugeki
-
-Configuration files for my desktop
+### 🐬 Totsugeki | Desktop
 
 #### Programs
 
@@ -27,16 +32,23 @@ Configuration files for my desktop
 - r2modman (Mod manager)
 - ProtonUp-Qt
 
-### 🐳 Great Yamada
-
-Configuration for my home server
+### 🐳 Great Yamada | Home server
 
 #### Services
 
 **Still a WIP**
 
-|    Name    |             Type             | Public-facing |
-| :--------: | :--------------------------: | :-----------: |
-|   Nginx    | Web server and reverse proxy |       x       |
-| PostgreSQL |       Database engine        |
-|  Forgejo   |        Git repository        |       x       |
+|       Name        |              Type              | Public-facing |
+| :---------------: | :----------------------------: | :-----------: |
+|       Nginx       |  Web server and reverse proxy  |       x       |
+|    PostgreSQL     |        Database engine         |
+|      Forgejo      |         Git repository         |       x       |
+|      Synapse      |         Matrix server          |       x       |
+|      coturn       |          TURN server           |       x       |
+| Synapse (bridges) |         Matrix server          |               |
+| mautrix-whatsapp  |   WhatsApp bridge for Matrix   |               |
+|      PaperMC      |        Minecraft server        |       x       |
+|   AdGuard Home    | DNS server and content blocker |               |
+|     Invidious     |         YouTube proxy          |               |
+|      SearXNG      |       Metasearch engine        |               |
+|     Radicale      |    CalDAV / CardDAV server     |               |
