@@ -25,10 +25,26 @@ in {
       turn_uris = [ "turn:rcia.dev:3478" "turn:rcia.dev:3479" ];
     };
   };
+  nginx.virtualHosts."matrix.rcia.dev" = {
+    locations = {
+      "/" = { proxyPass = "http://127.0.0.1:8008/_matrix/static"; };
+      "/_matrix" = {
+        proxyPass = "http://127.0.0.1:8008";
+        recommendedProxySettings = true;
+        clientMaxBodySize = "200M";
+      };
+    };
+    # Federation
+    listen = [{
+      port = 8448;
+      ssl = true;
+      extraParameters = [ "default_server" ];
+    }];
+  };
   sops.secrets = {
     "matrix/secrets" = {
-        path = "/var/lib/matrix-synapse/secrets";
-        owner = "matrix-synapse";
-    }
-  }
+      path = "/var/lib/matrix-synapse/secrets";
+      owner = "matrix-synapse";
+    };
+  };
 }
