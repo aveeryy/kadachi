@@ -1,5 +1,6 @@
 { ... }: {
-  imports = [ ./input.nix ./hotkeys.nix ./krohnkite.nix ./theme.nix ];
+  imports =
+    [ ./input.nix ./hotkeys.nix ./krohnkite.nix ./nobaloo.nix ./theme.nix ];
   programs.plasma = {
     enable = true;
     overrideConfig = true;
