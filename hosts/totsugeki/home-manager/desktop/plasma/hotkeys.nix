@@ -23,5 +23,6 @@
       "Window to Desktop 10" = "Meta+=";
     };
     "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
+    "org.kde.krunner.desktop"."_launch" = "Meta+Space";
   };
 }
