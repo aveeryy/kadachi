@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./completion.nix
     ./lsp.nix
@@ -10,14 +10,14 @@
   programs.nixvim = {
     enable = true;
 
-    colorschemes.catppuccin = {
+    colorschemes.tokyonight = {
       enable = true;
       settings = {
-        flavour = "mocha";
-        no_italic = true;
-        integrations = {
-          cmp = true;
-          neotree = true;
+        style = "night";
+        transparent = true;
+        styles = {
+          comments.italic = false;
+          keywords.italic = false;
         };
       };
     };

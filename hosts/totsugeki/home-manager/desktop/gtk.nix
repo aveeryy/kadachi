@@ -6,8 +6,8 @@
       name = "kora";
     };
     font = {
-      package = pkgs.inter;
-      name = "Inter";
+      package = pkgs.ubuntu-sans;
+      name = "Ubuntu Sans";
       size = 10;
     };
     theme = {

@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }: {
+{ lib, pkgs, ... }: {
 
-  imports = [ ./filesystems.nix ./plasma.nix ./steam.nix ];
+  imports = [ ./filesystems.nix ./steam.nix ];
 
   boot = {
     kernelModules = [ "kvm-amd" ];
@@ -20,6 +20,10 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [ amf-headers ffmpeg-full ];
+
+  hardware.i2c.enable = true;
 
   networking = {
     firewall = {
@@ -61,12 +65,32 @@
       enable = true;
       gpuOverclock.enable = true;
     };
+    dconf.enable = true;
     nix-ld.enable = true;
   };
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+    };
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          output_name = "DP-1";
+          max_fps = 165;
+          chooser_type = "simple";
+          chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+        };
+      };
+    };
+  };
 
   services = {
+    gvfs.enable = true;
     jellyfin = {
       enable = true;
       openFirewall = true;
@@ -83,13 +107,6 @@
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
     '';
-    displayManager = {
-      defaultSession = "plasma";
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-    };
   };
   systemd = { services = { NetworkManager-wait-online.enable = false; }; };
 

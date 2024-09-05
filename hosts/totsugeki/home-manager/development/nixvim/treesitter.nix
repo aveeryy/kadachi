@@ -1,7 +1,10 @@
 { ... }: {
-    programs.nixvim.plugins.treesitter = {
-        enable = true;
-        indent = true;
-        nixvimInjections = true;
+  programs.nixvim.plugins.treesitter = {
+    enable = true;
+    settings = {
+      indent.enable = true;
+      highlight.enable = true;
     };
+    nixvimInjections = true;
+  };
 }

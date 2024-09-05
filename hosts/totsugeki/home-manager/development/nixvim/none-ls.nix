@@ -21,9 +21,7 @@
         nixfmt.enable = true;
         prettier = {
           enable = true;
-          withArgs = ''
-            {extra_filetypes = {"svelte"}}
-          '';
+          settings = { extra_filetypes = [ "svelte" ]; };
         };
       };
     };

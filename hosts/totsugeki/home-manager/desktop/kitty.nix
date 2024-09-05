@@ -3,7 +3,7 @@
     enable = true;
     font = {
       name = "Iosevka Nerd Font";
-      size = 12;
+      size = 14;
     };
     keybindings = {
       "ctrl+alt+1" = "goto_tab 1";
@@ -17,7 +17,7 @@
       "ctrl+alt+9" = "goto_tab 9";
     };
     settings = {
-      "background_opacity" = "0.90";
+      "background_opacity" = "0.6";
       "dynamic_background_opacity" = true;
       "force_ltr" = "yes";
       "disable_ligatures" = "never";
@@ -31,8 +31,7 @@
       "tab_powerline_style" = "round";
       "tab_title_template" =
         "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
-      "background" = "#1E1E2F";
     };
-    theme = "Catppuccin-Mocha";
+    theme = "Tokyo Night";
   };
 }

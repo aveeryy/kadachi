@@ -39,6 +39,7 @@
         persist = true;
       }];
     };
+    polkit.enable = true;
     rtkit.enable = true;
     sudo.enable = false;
   };

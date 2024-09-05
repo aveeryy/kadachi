@@ -1,0 +1,185 @@
+@define-color bg rgba(26, 27, 38, 0.4);
+@define-color normal rgba(26, 27, 38, 0.6);
+@define-color hover rgba(76, 77, 88, 0.8);
+@define-color press rgba(76, 77, 88, 0.2);
+@define-color bg-noa rgb(26, 27, 38);
+
+window {
+  background-color: transparent;
+}
+
+.bar {
+  background-color: @bg;
+  border-radius: 8px;
+  margin: 4px 0px 4px 4px;
+  padding: 4px 4px;
+  min-width: 32px;
+}
+
+.volume-widget {
+  margin: 4px;
+}
+
+.volume-box {
+  border-radius: 8px;
+  margin: 4px;
+  min-height: 4px;
+}
+
+.clock {
+  border-radius: 8px;
+  background-color: @bg;
+  font-weight: bold;
+  font-family: "Iosevka Nerd Font";
+  font-size: 1.2em;
+  padding: 4px 0;
+}
+
+.clock-hours {
+  color: white;
+}
+
+.clock-minutes {
+  color: #ddd;
+}
+
+.clock-seconds {
+  color: #bbb;
+}
+
+.music-indicator {
+  background-color: @bg;
+  border-radius: 8px;
+}
+
+.profile-picture,
+.album-art {
+  border-radius: 8px;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.playback-status {
+  margin: 3px 0;
+}
+
+.system-stats {
+  background-color: @bg;
+  border-radius: 8px;
+  color: white;
+  font-family: "Iosevka Nerd Font";
+  font-weight: bold;
+  font-size: 0.95em;
+  padding: 4px 0;
+}
+
+.workspace-button {
+  background-color: @bg;
+  border-radius: 8px;
+  color: #c0caf5;
+  font-family: "Iosevka Nerd Font";
+  font-weight: bold;
+  font-size: 1em;
+  min-height: 20px;
+  min-width: 20px;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    min-width 0.2s;
+}
+
+.occupied {
+  border-radius: 8px;
+  min-width: 24px;
+}
+
+.active {
+  color: @bg-noa;
+  border-radius: 8px;
+  min-width: 32px;
+}
+
+.active:nth-child(1) {
+  background-color: #f7768e;
+}
+
+.active:nth-child(2) {
+  background-color: #ff9e64;
+}
+
+.active:nth-child(3) {
+  background-color: #e0af68;
+}
+
+.active:nth-child(4) {
+  background-color: #9ece6a;
+}
+
+.active:nth-child(5) {
+  background-color: #73daca;
+}
+
+.active:nth-child(6) {
+  background-color: #7dcfff;
+}
+
+.active:nth-child(7) {
+  background-color: #2ac3de;
+}
+
+.active:nth-child(8) {
+  background-color: #7aa2f7;
+}
+
+.active:nth-child(9) {
+  background-color: #bb9af7;
+}
+
+.active:nth-child(10) {
+  background-color: #c0caf5;
+}
+
+.launcher {
+  background-color: @bg;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.launcher-search {
+  background-color: @normal;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  caret-color: white;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.launcher-search:focus {
+  border: 2px solid white;
+
+  outline: none;
+}
+
+.application {
+  all: unset;
+  background-color: @normal;
+  border-radius: 8px;
+  color: white;
+  padding: 8px;
+}
+
+.application:hover,
+.application:focus {
+  background-color: @hover;
+}
+
+.application:active {
+  background-color: @press;
+}
+
+.application_name {
+  font-size: 1.4em;
+  font-weight: 500;
+}

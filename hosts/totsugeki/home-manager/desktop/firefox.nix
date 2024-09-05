@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ ... }: {
   programs.firefox = {
     enable = true;
     profiles.Avery = {
@@ -21,6 +21,7 @@
           Bing.metaData.hidden = true;
           DuckDuckGo.metaData.hidden = true;
           "Wikipedia (en)".metaData.hidden = true;
+          Qwant.metaData.hidden = true;
         };
         force = true;
         order = [ "SearXNG" ];
@@ -89,7 +90,7 @@
         "extensions.shield-recipe-client.api_url" = "";
         "extensions.shield-recipe-client.enabled" = false;
         "extensions.webservice.discoverURL" = "";
-        "font.name.serif.x-western" = "Inter";
+        "font.name.serif.x-western" = "Ubuntu";
         "media.autoplay.default" = 2;
         "media.eme.enabled" = false;
         "media.gmp-widevinecdm.enabled" = false;

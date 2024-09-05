@@ -8,7 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url =
+        "github:nix-community/nixvim/849c2da9d78eb6e6a258b3961df0f2ea1cb1e994";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -17,6 +18,11 @@
     };
     plasma-manager = {
       url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ags = {
+      # url = "github:Aylur/ags";
+      url = "github:ozwaldorf/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,6 +42,7 @@
               useUserPackages = true;
               users.avery = {
                 imports = [
+                  inputs.ags.homeManagerModules.default
                   inputs.nixvim.homeManagerModules.nixvim
                   inputs.plasma-manager.homeManagerModules.plasma-manager
                   ./common/home.nix

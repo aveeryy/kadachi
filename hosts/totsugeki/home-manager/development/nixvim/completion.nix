@@ -1,4 +1,4 @@
-{ inputs, lib, ... }: {
+{ lib, ... }: {
   programs.nixvim = {
     extraConfigLua = ''
       function has_words_before()

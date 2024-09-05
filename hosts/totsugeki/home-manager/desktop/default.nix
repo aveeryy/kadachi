@@ -1,22 +1,24 @@
-{ config, pkgs, ... }: {
-  imports = [ ./plasma ./firefox.nix ./gtk.nix ./kitty.nix ];
+{ pkgs, ... }: {
+  imports = [
+    ./ags
+    ./cursor.nix
+    ./dunst.nix
+    ./firefox.nix
+    ./lf.nix
+    ./gtk.nix
+    ./kitty.nix
+    ./sway.nix
+  ];
   home = {
     packages = with pkgs; [
       gimp
       fastfetch
       inkscape
+      kdePackages.ark
       libreoffice-qt
       obs-studio
       picard
       protonup-qt
-      kdePackages.ark
-      kdePackages.dolphin
-      kdePackages.dolphin-plugins
-      kdePackages.kio
-      kdePackages.kio-extras
-      kdePackages.kimageformats
-      kdePackages.qtimageformats
-      kdePackages.sddm-kcm
       mpv
       noto-fonts-cjk-sans
       nsxiv
@@ -26,8 +28,10 @@
       qbittorrent
       r2modman
       wl-clipboard
+      wineWowPackages.stagingFull
       element-desktop
       vesktop
+      swww
     ];
   };
   nixpkgs.config.allowUnfree = true;
