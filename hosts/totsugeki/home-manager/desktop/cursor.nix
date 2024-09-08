@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   home.pointerCursor = {
     gtk.enable = true;
-    package = pkgs.catppuccin-cursors.mochaMauve;
-    name = "catppuccin-mocha-mauve-cursors";
+    package = pkgs.phinger-cursors;
+    name = "phinger-cursors-dark";
     size = 32;
   };
 }

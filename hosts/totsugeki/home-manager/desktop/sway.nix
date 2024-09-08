@@ -32,6 +32,8 @@ in {
       in {
         "Ctrl+Alt+T" = "exec ${cfg.terminal}";
         "${Super}+Space" = "exec ags -t launcher";
+        "${Super}+C" = "exec ags -t bar_extended";
+        "${Hyper}+C" = "exec ags -t popup_clock";
         # Workspace management
         "${Super}+1" = "workspace number 1";
         "${Super}+2" = "workspace number 2";
@@ -102,7 +104,7 @@ in {
         };
       };
       output.DP-1.resolution = "2560x1440@165Hz";
-      seat."*".xcursor_theme = "catppuccin-mocha-mauve-cursors 32";
+      seat."*".xcursor_theme = "phinger-cursors-dark 32";
       startup = [
         { command = "swww-daemon"; }
         { command = "autotiling"; }
@@ -119,7 +121,9 @@ in {
       default_dim_inactive 0.4
       default_border none
       layer_effects bar blur enable; blur_ignore_transparent enable
-      layer_effects launcher blur enable; corner_radius 8 
+      layer_effects bar_extended blur enable; blur_ignore_transparent enable
+      layer_effects bar_extended blur enable; blur_ignore_transparent enable
+      layer_effects launcher blur enable; blur_ignore_transparent enable
     '';
   };
 }

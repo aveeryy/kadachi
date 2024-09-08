@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "Iosevka Nerd Font";
+      name = "UbuntuMono Nerd Font";
       size = 14;
     };
     keybindings = {

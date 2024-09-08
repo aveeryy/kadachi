@@ -48,14 +48,15 @@
   fonts = {
     packages = with pkgs; [
       inter
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      ubuntu-sans
+      (nerdfonts.override { fonts = [ "Iosevka" "UbuntuMono" ]; })
     ];
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Inter" ];
-        sansSerif = [ "Inter" ];
-        monospace = [ "Iosevka Nerd Font" ];
+        serif = [ "Ubuntu Sans" ];
+        sansSerif = [ "Ubuntu Sans" ];
+        monospace = [ "Ubuntu Mono Nerd Font" ];
       };
     };
   };
