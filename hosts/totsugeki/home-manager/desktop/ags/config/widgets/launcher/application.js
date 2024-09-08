@@ -10,7 +10,7 @@ export const Application = (application) =>
       children: [
         Widget.Icon({
           icon: application.icon_name || "",
-          size: 32,
+          size: 24,
         }),
         Widget.Label({
           class_name: "application_name",
@@ -20,6 +20,6 @@ export const Application = (application) =>
           truncate: "end",
         }),
       ],
-      spacing: 8,
+      spacing: 4,
     }),
   });

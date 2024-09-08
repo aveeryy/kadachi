@@ -17,6 +17,7 @@
   users = {
     defaultUserShell = pkgs.zsh;
     users.avery = {
+      description = "Avery";
       extraGroups = [ "wheel" ];
       isNormalUser = true;
       hashedPasswordFile = config.sops.secrets.avery_password.path;

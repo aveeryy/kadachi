@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="0 0 576 512"
+   viewBox="0 0 576 576"
    version="1.1"
    id="svg1"
-   sodipodi:docname="memory-symbolic.svg"
+   sodipodi:docname="ram-custom-symbolic.svg"
    inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   width="576"
+   height="576"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -13,25 +15,25 @@
      id="defs1" />
   <sodipodi:namedview
      id="namedview1"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#000000"
      borderopacity="0.25"
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.18793403"
-     inkscape:cx="-106.42032"
-     inkscape:cy="1069.5242"
-     inkscape:window-width="1254"
-     inkscape:window-height="714"
+     inkscape:zoom="1.5034722"
+     inkscape:cx="192.55427"
+     inkscape:cy="351.85219"
+     inkscape:window-width="2508"
+     inkscape:window-height="1432"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg1" />
   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
   <path
-     d="M64 64C28.7 64 0 92.7 0 128l0 7.4c0 6.8 4.4 12.6 10.1 16.3C23.3 160.3 32 175.1 32 192s-8.7 31.7-21.9 40.3C4.4 236 0 241.8 0 248.6L0 320l576 0 0-71.4c0-6.8-4.4-12.6-10.1-16.3C552.7 223.7 544 208.9 544 192s8.7-31.7 21.9-40.3c5.7-3.7 10.1-9.5 10.1-16.3l0-7.4c0-35.3-28.7-64-64-64L64 64zM576 352L0 352l0 64c0 17.7 14.3 32 32 32l48 0 0-32c0-8.8 7.2-16 16-16s16 7.2 16 16l0 32 96 0 0-32c0-8.8 7.2-16 16-16s16 7.2 16 16l0 32 96 0 0-32c0-8.8 7.2-16 16-16s16 7.2 16 16l0 32 96 0 0-32c0-8.8 7.2-16 16-16s16 7.2 16 16l0 32 48 0c17.7 0 32-14.3 32-32l0-64zM192 160l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32s32 14.3 32 32z"
+     d="M 64,96 C 28.7,96 0,124.7 0,160 v 7.4 c 0,6.8 4.4,12.6 10.1,16.3 13.2,8.6 21.9,23.4 21.9,40.3 0,16.9 -8.7,31.7 -21.9,40.3 C 4.4,268 0,273.8 0,280.6 V 352 H 576 V 280.6 C 576,273.8 571.6,268 565.9,264.3 552.7,255.7 544,240.9 544,224 c 0,-16.9 8.7,-31.7 21.9,-40.3 5.7,-3.7 10.1,-9.5 10.1,-16.3 V 160 C 576,124.7 547.3,96 512,96 Z M 576,384 H 0 v 64 c 0,17.7 14.3,32 32,32 h 48 v -32 c 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 v 32 h 96 v -32 c 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 v 32 h 96 v -32 c 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 v 32 h 96 v -32 c 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 v 32 h 48 c 17.7,0 32,-14.3 32,-32 z M 192,192 v 64 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 v -64 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 z m 128,0 v 64 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 v -64 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 z m 128,0 v 64 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 v -64 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 z"
      id="path1"
      style="fill:#ffffff" />
 </svg>

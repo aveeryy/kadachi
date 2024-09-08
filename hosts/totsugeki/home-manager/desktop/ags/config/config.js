@@ -1,13 +1,17 @@
-import cpu from "./services/cpu.js";
-import ram from "./services/ram.js";
+import { ProfilePicture } from "./widgets/bar/profile-picture.js";
+import {
+  ProcessorUsage,
+  MemoryUsage,
+  graphics_card_usage,
+  volume_widget,
+} from "./widgets/bar/system-stats.js";
+import { extended_bar } from "./widgets/bar-extended/extended-bar.js";
 import { launcher } from "./widgets/launcher/launcher.js";
-const { speaker } = await Service.import("audio");
+import { popup_clock } from "./widgets/popup-clock/popup-clock.js";
+import { date } from "./state.js";
 const mpris = await Service.import("mpris");
 const sway = await Service.import("sway");
 const players = mpris.bind("players");
-const date = Variable("", {
-  poll: [1000, 'date "+%H %M %S %b %e"'],
-});
 
 App.addIcons(`${App.configDir}/assets`);
 
@@ -39,67 +43,6 @@ function Workspaces() {
       });
     }),
     spacing: 4,
-    vertical: true,
-  });
-}
-
-function ProcessorUsage() {
-  return Widget.Box({
-    class_name: "system-stats",
-    css: cpu.bind("current-usage").as((usage) => {
-      let level = (usage * 100).toFixed(0);
-      return `
-        background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.6) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
-        )`;
-    }),
-    children: [
-      Widget.Icon({
-        class_names: ["system-stats-icon"],
-        icon: "microchip-symbolic",
-        size: 16,
-      }),
-      Widget.Label({
-        class_names: ["system-stats-text"],
-        hexpand: true,
-        label: cpu.bind("current-usage").as((usage) => {
-          return `${(usage * 100).toFixed(0)}%`;
-        }),
-      }),
-    ],
-    vertical: true,
-  });
-}
-
-function MemoryUsage() {
-  return Widget.Box({
-    class_name: "system-stats",
-    css: ram.bind("current-usage-percentage").as((usage) => {
-      let level = (usage * 100).toFixed(0);
-      return `
-        background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.6) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
-        )`;
-    }),
-    children: [
-      Widget.Icon({
-        class_names: ["system-stats-icon"],
-        icon: "ram-custom-symbolic",
-        size: 16,
-      }),
-      Widget.Label({
-        class_names: ["system-stats-text"],
-        hexpand: true,
-        label: ram.bind("current-usage-percentage").as((usage) => {
-          return `${(usage * 100).toFixed(0)}%`;
-        }),
-      }),
-    ],
-    tooltip_text: ram.bind("current-usage").as((usage) => {
-      let usageGb = (usage / 1024 ** 2).toFixed(2);
-      let totalGb = (ram.total_available / 1024 ** 2).toFixed(2);
-      return `${usageGb}/${totalGb}GB (${(ram.current_usage_percentage * 100).toFixed(2)}%)`;
-    }),
     vertical: true,
   });
 }
@@ -155,57 +98,6 @@ function CTest() {
   });
 }
 
-function ProfilePicture() {
-  return Widget.Box({
-    class_name: "profile-picture",
-    css: "background-image: url('/home/avery/.face.icon'); background-size: cover",
-  });
-}
-
-function VolumeWidget() {
-  return Widget.Box({
-    class_name: "volume-widget",
-    children: [
-      Widget.Icon({
-        icon: speaker.bind("volume").as((l) => {
-          let level = l.toFixed(2) * 100;
-          if (level == 0) {
-            return "audio-volume-muted";
-          } else if (level > 0 && level <= 30) {
-            return "audio-volume-low";
-          } else if (level > 30 && level <= 70) {
-            return "audio-volume-medium";
-          } else {
-            return "audio-volume-high";
-          }
-        }),
-        size: 10,
-      }),
-      Widget.Box({
-        class_name: "volume-box",
-        css: speaker.bind("volume").as((l) => {
-          let level = l.toFixed(2) * 100;
-          if (level >= 0 && level <= 100) {
-            return `
-            background: linear-gradient(
-                90deg, #7aa2f7 ${level}%, #24283b ${level}%
-            );
-        `;
-          } else if (level > 100 && level <= 200) {
-            return `
-            background: linear-gradient(
-                90deg, #f7768e ${level - 100}%, #7aa2f7 ${level - 100}%
-            );
-        `;
-          } else {
-            return "background: #f7768e";
-          }
-        }),
-        hpack: "fill",
-      }),
-    ],
-  });
-}
 function ClockWidget() {
   return Widget.Box({
     children: [
@@ -239,11 +131,14 @@ const barContainer = Widget.Box({
   spacing: 6,
   vertical: true,
   children: [
+    ProfilePicture(),
     Workspaces(),
     Widget.Box({ expand: true, vpack: "fill" }), // Separator
     CTest(),
     ProcessorUsage(),
     MemoryUsage(),
+    graphics_card_usage,
+    volume_widget,
     ClockWidget(),
   ],
 });
@@ -252,6 +147,7 @@ const bar = Widget.Window({
   name: "bar",
   anchor: ["left", "top", "bottom"],
   exclusivity: "exclusive",
+  margins: [4, 0, 4, 4],
   child: barContainer,
 });
 
@@ -266,5 +162,5 @@ Utils.monitorFile(
 
 App.config({
   style: "./style.css",
-  windows: [bar, launcher],
+  windows: [bar, extended_bar, launcher, popup_clock],
 });

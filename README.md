@@ -13,7 +13,7 @@ include_toc: true
 
 #### Programs
 
-# TODO: add a file manager
+# TODO: add a file manager and desktop manager
 
 |               Name | Type                |
 | -----------------: | :------------------ |
@@ -23,6 +23,7 @@ include_toc: true
 |             Neovim | Text editor         |
 |            Firefox | Web browser         |
 |        qBittorrent | Torrent client      |
+|                mpv | Video player        |
 |        LibreOffice | Office suite        |
 |               GIMP | Photo editor        |
 |           Inkscape | Vector image editor |

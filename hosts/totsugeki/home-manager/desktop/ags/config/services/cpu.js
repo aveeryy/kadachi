@@ -1,14 +1,23 @@
 class CPUService extends Service {
   static {
-    Service.register(this, {}, { "current-usage": ["float", "r"] });
+    Service.register(
+      this,
+      {},
+      { "current-usage": ["float", "r"], temperature: ["float", "r"] },
+    );
   }
 
   #previousIdle = 0.0;
   #previousTotal = 0.0;
   #currentUsage = 0.0;
+  #temperature = 0.0;
 
   get current_usage() {
     return this.#currentUsage;
+  }
+
+  get temperature() {
+    return this.#temperature;
   }
 
   constructor() {
@@ -20,6 +29,10 @@ class CPUService extends Service {
   }
 
   #update() {
+    this.#temperature =
+      Utils.exec(
+        "sh -c 'cat /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input'",
+      ) / 1000;
     const currentValues = Utils.exec(
       "sh -c 'cat /proc/stat | grep cpu | head -n 1 | tr -s \" \"'",
     )
@@ -33,6 +46,7 @@ class CPUService extends Service {
     this.#previousIdle = idle;
     this.#previousTotal = total;
     this.changed("current-usage");
+    this.changed("temperature");
   }
 }
 

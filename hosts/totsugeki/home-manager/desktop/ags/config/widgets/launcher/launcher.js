@@ -1,13 +1,14 @@
 import { Application } from "./application.js";
+import { on_window_event } from "../../state.js";
 const { query } = await Service.import("applications");
 
-const Launcher = ({ width = 500, height = 600, spacing = 4 }) => {
+const Launcher = () => {
   let applications = query("").map(Application);
 
   const list = Widget.Box({
     css: "background-color: transparent",
     vertical: true,
-    spacing,
+    spacing: 4,
     children: applications,
   });
 
@@ -54,20 +55,20 @@ const Launcher = ({ width = 500, height = 600, spacing = 4 }) => {
   return Widget.Box({
     class_name: "launcher",
     vertical: true,
-    spacing,
+    spacing: 4,
     children: [
       searchBox,
       Widget.Scrollable({
         hscroll: "never",
-        css: `min-width: ${width}px; min-height: ${height}px;`,
         child: list,
         vexpand: true,
       }),
     ],
     setup: (self) =>
-      self.hook(App, (_, windowName, visible) => {
-        if (windowName == "launcher" && visible) {
+      self.hook(App, (_, window_name, visible) => {
+        if (window_name == "launcher" && visible) {
           repopulate();
+          applications[0].grab_focus(); // Scrolls application list to top
           searchBox.text = "";
           searchBox.grab_focus();
         }
@@ -77,11 +78,20 @@ const Launcher = ({ width = 500, height = 600, spacing = 4 }) => {
 
 export const launcher = Widget.Window({
   name: "launcher",
-  setup: (self) =>
+  anchor: ["left", "top", "bottom"],
+  setup: (self) => {
+    self.hook(App, (_, window_name, visible) => {
+      if (window_name == self.name) {
+        on_window_event(_, window_name, visible);
+      }
+    });
     self.keybind("Escape", () => {
       App.closeWindow("launcher");
-    }),
+    });
+  },
   visible: false,
+  margins: [4, 0, 4, 4],
+  exclusivity: "ignore",
   keymode: "exclusive",
   child: Launcher({}),
 });
