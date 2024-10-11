@@ -22,6 +22,7 @@
   };
 
   environment.systemPackages = with pkgs; [ amf-headers ffmpeg-full ];
+  environment.systemPackages = with pkgs; [ ffmpeg-full gparted ];
 
   hardware.i2c.enable = true;
 
@@ -70,6 +71,7 @@
     nix-ld.enable = true;
   };
 
+  security.polkit = { enable = true; };
   xdg.portal = {
     config.common = {
       default = "gtk";
@@ -91,6 +93,11 @@
   };
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     gvfs.enable = true;
     jellyfin = {
       enable = true;
@@ -104,6 +111,10 @@
       };
       pulse.enable = true;
     };
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ brlaser ];
+    };
     udisks2.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
@@ -113,9 +124,11 @@
 
   sops = {
     defaultSopsFile = "/etc/nixos/secrets/totsugeki.yaml";
+    defaultSopsFile = "/etc/nixos/secrets/greatyamada.yaml";
     age.keyFile = "/home/avery/.config/sops/age/keys.txt";
   };
 
+  virtualisation.virtualbox.host.enable = true;
   system.stateVersion = "24.05";
 
   users.users.avery.extraGroups = [ "corectrl" ];
