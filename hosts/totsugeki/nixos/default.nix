@@ -21,7 +21,6 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ amf-headers ffmpeg-full ];
   environment.systemPackages = with pkgs; [ ffmpeg-full gparted ];
 
   hardware.i2c.enable = true;
@@ -42,7 +41,6 @@
     timeZone = "Europe/Madrid";
   };
 
-  i18n.defaultLocale = "es_ES.UTF-8";
   i18n = {
     defaultLocale = "es_ES.UTF-8";
     supportedLocales = [
@@ -82,6 +80,7 @@
   };
 
   security.polkit = { enable = true; };
+
   xdg.portal = {
     config.common = {
       default = "gtk";
@@ -133,12 +132,12 @@
   systemd = { services = { NetworkManager-wait-online.enable = false; }; };
 
   sops = {
-    defaultSopsFile = "/etc/nixos/secrets/totsugeki.yaml";
     defaultSopsFile = "/etc/nixos/secrets/greatyamada.yaml";
     age.keyFile = "/home/avery/.config/sops/age/keys.txt";
   };
 
   virtualisation.virtualbox.host.enable = true;
+
   system.stateVersion = "24.05";
 
   users.users.avery.extraGroups = [ "corectrl" ];
