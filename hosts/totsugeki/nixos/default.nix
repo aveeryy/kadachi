@@ -59,6 +59,7 @@
     packages = with pkgs; [
       inter
       ubuntu-sans
+      twitter-color-emoji
       (nerdfonts.override { fonts = [ "Iosevka" "UbuntuMono" ]; })
     ];
 
