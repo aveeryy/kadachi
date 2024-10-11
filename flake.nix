@@ -8,8 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url =
-        "github:nix-community/nixvim/849c2da9d78eb6e6a258b3961df0f2ea1cb1e994";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
@@ -46,7 +45,7 @@
                   inputs.nixvim.homeManagerModules.nixvim
                   inputs.plasma-manager.homeManagerModules.plasma-manager
                   ./common/home.nix
-                  ./common/zsh
+                  ./common/zsh.nix
                   ./hosts/totsugeki/home-manager
                 ];
               };
