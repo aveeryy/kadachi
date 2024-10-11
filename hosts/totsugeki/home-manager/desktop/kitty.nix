@@ -17,7 +17,7 @@
       "ctrl+alt+9" = "goto_tab 9";
     };
     settings = {
-      "background_opacity" = "0.6";
+      "background_opacity" = "0.85";
       "dynamic_background_opacity" = true;
       "force_ltr" = "yes";
       "disable_ligatures" = "never";
@@ -32,6 +32,6 @@
       "tab_title_template" =
         "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
     };
-    theme = "Tokyo Night";
+    themeFile = "Catppuccin-Mocha";
   };
 }

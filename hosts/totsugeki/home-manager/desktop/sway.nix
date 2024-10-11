@@ -57,6 +57,7 @@ in {
         "${Super}+Shift+0" = "move container to workspace number 10";
         # Window management
         "${Super}+W" = "kill";
+        "${Super}+E" = "exec pcmanfm-qt";
         "${Super}+${cfg.left}" = "focus left";
         "${Super}+${cfg.right}" = "focus right";
         "${Super}+${cfg.up}" = "focus up";
@@ -109,6 +110,7 @@ in {
         { command = "swww-daemon"; }
         { command = "autotiling"; }
         { command = "ags"; }
+        { command = "lxqt-policykit-agent"; }
       ];
       terminal = "kitty";
     };

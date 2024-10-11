@@ -1,6 +1,6 @@
 import { Application } from "./application.js";
 import { on_window_event } from "../../state.js";
-const { query } = await Service.import("applications");
+const { query, reload } = await Service.import("applications");
 
 const Launcher = () => {
   let applications = query("").map(Application);
@@ -13,6 +13,7 @@ const Launcher = () => {
   });
 
   function repopulate() {
+    reload();
     applications = query("").map(Application);
     list.children = applications;
   }

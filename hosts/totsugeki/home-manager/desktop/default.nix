@@ -4,10 +4,10 @@
     ./cursor.nix
     ./dunst.nix
     ./firefox.nix
-    ./lf.nix
     ./gtk.nix
     ./kitty.nix
     ./sway.nix
+    ./qt.nix
   ];
   home = {
     packages = with pkgs; [
@@ -15,6 +15,7 @@
       fastfetch
       inkscape
       kdePackages.ark
+      kdePackages.qtwayland
       libreoffice-qt
       obs-studio
       picard
@@ -23,6 +24,7 @@
       noto-fonts-cjk-sans
       nsxiv
       osu-lazer-bin
+      pcmanfm-qt
       playerctl
       prismlauncher
       qbittorrent
@@ -32,6 +34,8 @@
       element-desktop
       vesktop
       swww
+      lxqt.lxqt-policykit
+      qdiskinfo
     ];
   };
   nixpkgs.config.allowUnfree = true;
