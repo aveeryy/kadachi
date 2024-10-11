@@ -43,6 +43,15 @@
   };
 
   i18n.defaultLocale = "es_ES.UTF-8";
+  i18n = {
+    defaultLocale = "es_ES.UTF-8";
+    supportedLocales = [
+      "C.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+      "es_ES.UTF-8/UTF-8"
+      "ja_JP.UTF-8/UTF-8" # Monster Hunter Frontier Z Zenith
+    ];
+  };
 
   nixpkgs.config.allowUnfree = true;
 
