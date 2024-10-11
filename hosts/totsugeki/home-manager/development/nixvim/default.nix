@@ -6,18 +6,20 @@
     ./neo-tree.nix
     ./none-ls.nix
     ./treesitter.nix
+    ./telescope.nix
   ];
   programs.nixvim = {
     enable = true;
 
-    colorschemes.tokyonight = {
+    colorschemes.catppuccin = {
       enable = true;
       settings = {
-        style = "night";
-        transparent = true;
-        styles = {
-          comments.italic = false;
-          keywords.italic = false;
+        flavour = "mocha";
+        no_italic = true;
+        transparent_background = true;
+        integrations = {
+          cmp = true;
+          neotree = true;
         };
       };
     };
@@ -36,7 +38,10 @@
       signcolumn = "yes";
     };
 
-    plugins.nvim-autopairs.enable = true;
+    plugins = {
+      web-devicons.enable = true;
+      nvim-autopairs.enable = true;
+    };
 
     extraPlugins = with pkgs.vimPlugins; [ nvim-web-devicons ];
   };

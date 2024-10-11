@@ -1,14 +1,16 @@
 { ... }: {
   programs.nixvim.plugins.lualine = {
     enable = true;
-    componentSeparators = {
-      left = "";
-      right = "";
+    settings.options = {
+      component_separators = {
+        left = "";
+        right = "";
+      };
+      section_separators = {
+        left = "";
+        right = "";
+      };
+      disabled_filetypes.statusline = [ "neo-tree" ];
     };
-    sectionSeparators = {
-      left = "";
-      right = "";
-    };
-    disabledFiletypes.statusline = [ "neo-tree" ];
   };
 }

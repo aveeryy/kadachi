@@ -3,9 +3,9 @@
     lsp = {
       enable = true;
       servers = {
-        nil-ls.enable = true;
+        nil_ls.enable = true;
         pyright.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
