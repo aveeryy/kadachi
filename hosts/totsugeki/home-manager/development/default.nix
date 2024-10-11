@@ -1,12 +1,12 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ./nixvim ];
   home = {
     packages = with pkgs; [
+      android-studio
       git-credential-manager
       gnupg
       pass
-      # dotnet-sdk_7
-      dotnet-sdk_8 # tModLoader
+      dotnet-sdk_8
       unityhub
     ];
   };
