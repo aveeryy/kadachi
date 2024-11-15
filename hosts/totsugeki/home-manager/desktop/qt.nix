@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  variant = "Mocha";
-  accent = "Mauve";
+  variant = "mocha";
+  accent = "mauve";
   catppuccin-kvantum =
     pkgs.catppuccin-kvantum.override { inherit variant accent; };
 in {
@@ -21,9 +21,9 @@ in {
   xdg.configFile = {
     "Kvantum/kvantum.kvconfig".text = ''
       [General]
-      theme=Catppuccin-${variant}-${accent}
+      theme=catppuccin-${variant}-${accent}
     '';
-    "Kvantum/Catppuccin-${variant}-${accent}".source =
-      "${catppuccin-kvantum}/share/Kvantum/Catppuccin-${variant}-${accent}";
+    "Kvantum/catppuccin-${variant}-${accent}".source =
+      "${catppuccin-kvantum}/share/Kvantum/catppuccin-${variant}-${accent}";
   };
 }

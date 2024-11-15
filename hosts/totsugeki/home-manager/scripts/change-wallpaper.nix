@@ -68,7 +68,6 @@ pkgs.writeShellApplication {
     echo "Setting wallpaper to $WALLPAPER"
     echo "$WALLPAPER" > "$WALLPAPER_PATH/.current_path"
     ln -sf "$WALLPAPER" "$WALLPAPER_PATH/.current_image"
-    dunstify -i "$WALLPAPER" -t 2800 "Cambiando fondo de pantalla" "Cambiando a $WALLPAPER_NAME"
     swww img\
         --transition-type wipe\
         --transition-angle $TRANSITION_ANGLE\
@@ -76,6 +75,6 @@ pkgs.writeShellApplication {
         --transition-duration 1\
         --transition-fps 165\
         "$WALLPAPER"
-
+    dunstify -i "$WALLPAPER" -t 2800 "Cambiando fondo de pantalla" "Cambiando a $WALLPAPER_NAME"
   '';
 }

@@ -36,6 +36,7 @@
       swww
       lxqt.lxqt-policykit
       qdiskinfo
+      mangohud
     ];
   };
   nixpkgs.config.allowUnfree = true;

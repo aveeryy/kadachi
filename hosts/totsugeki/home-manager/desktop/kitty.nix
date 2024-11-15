@@ -2,8 +2,8 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "UbuntuMono Nerd Font";
-      size = 14;
+      name = "Iosevka Nerd Font";
+      size = 12;
     };
     keybindings = {
       "ctrl+alt+1" = "goto_tab 1";

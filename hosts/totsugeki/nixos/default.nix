@@ -19,6 +19,7 @@
       systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
+    supportedFilesystems = [ "ntfs" ];
   };
 
   environment.systemPackages = with pkgs; [ ffmpeg-full gparted ];
@@ -28,7 +29,7 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8000 42595 ];
+      allowedTCPPorts = [ 8000 42595 1420 ];
       allowedUDPPorts = [ 24642 ];
     };
     hostName = "totsugeki";
@@ -63,9 +64,9 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Ubuntu Sans" ];
-        sansSerif = [ "Ubuntu Sans" ];
-        monospace = [ "Ubuntu Mono Nerd Font" ];
+        serif = [ "Inter" ];
+        sansSerif = [ "Inter" ];
+        monospace = [ "Iosevka Nerd Font" ];
       };
     };
   };
@@ -109,7 +110,7 @@
     };
     gvfs.enable = true;
     jellyfin = {
-      enable = true;
+      enable = false;
       openFirewall = true;
     };
     pipewire = {
