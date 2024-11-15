@@ -18,6 +18,7 @@
     sources = {
       formatting = {
         black.enable = true;
+        dart_format.enable = true;
         nixfmt.enable = true;
         prettier = {
           enable = true;
