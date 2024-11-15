@@ -21,6 +21,7 @@
         nixfmt.enable = true;
         prettier = {
           enable = true;
+          disableTsServerFormatter = true;
           settings = { extra_filetypes = [ "svelte" ]; };
         };
       };
