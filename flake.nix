@@ -21,7 +21,7 @@
     };
     ags = {
       # url = "github:Aylur/ags";
-      url = "github:ozwaldorf/ags";
+      url = "github:aveeryy/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

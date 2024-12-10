@@ -59,7 +59,8 @@
       inter
       ubuntu-sans
       twitter-color-emoji
-      (nerdfonts.override { fonts = [ "Iosevka" "UbuntuMono" ]; })
+      nerd-fonts.iosevka
+      nerd-fonts.ubuntu-mono
     ];
 
     fontconfig = {

@@ -8,15 +8,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1722047935,
-        "narHash": "sha256-ZgCY8wttXuGlpja4S5MzDJMM8jkaetAmUPplsAQL+NA=",
-        "owner": "ozwaldorf",
+        "lastModified": 1733861304,
+        "narHash": "sha256-UXjUam2xp8KUjD3iesb4Vyixk5DbLTYx02PCdBNaNNA=",
+        "owner": "aveeryy",
         "repo": "ags",
-        "rev": "ee5f76545831c3d1e5305988dd9d8a8ef9c5cea1",
+        "rev": "f79e61dab9fdeed7eb7bae03b7a46c8c61e635b0",
         "type": "github"
       },
       "original": {
-        "owner": "ozwaldorf",
+        "owner": "aveeryy",
         "repo": "ags",
         "type": "github"
       }
