@@ -13,8 +13,6 @@ include_toc: true
 
 #### Programs
 
-# TODO: add a file manager and desktop manager
-
 |               Name | Type                |
 | -----------------: | :------------------ |
 |             SwayFX | Wayland compositor  |
@@ -22,6 +20,7 @@ include_toc: true
 |              kitty | Terminal emulator   |
 |             Neovim | Text editor         |
 |            Firefox | Web browser         |
+|         PCManFM-Qt | File manager        |
 |        qBittorrent | Torrent client      |
 |                mpv | Video player        |
 |        LibreOffice | Office suite        |
@@ -34,13 +33,14 @@ include_toc: true
 
 #### Games and game-related stuff
 
-|           Name | Type                                 |
-| -------------: | :----------------------------------- |
-|          Steam | Game launcher                        |
-| Prism Launcher | Minecraft launcher                   |
-|      osu!lazer | Rhythm game, open source version     |
-|       r2modman | Mod manager                          |
-|    ProtonUp-Qt | Tool to update Proton-GE and similar |
+|           Name | Type                                    |
+| -------------: | :-------------------------------------- |
+|          Steam | Game launcher                           |
+|         Heroic | Games launcher for Epic, GOG and Amazon |
+| Prism Launcher | Minecraft launcher                      |
+|      osu!lazer | Rhythm game, open source version        |
+|       r2modman | Mod manager                             |
+|    ProtonUp-Qt | Tool to update Proton-GE and similar    |
 
 ### 🐳 Great Yamada | Home server
 
@@ -48,17 +48,13 @@ include_toc: true
 
 **Still a WIP**
 
-|              Name | Type                           | Public-facing |
-| ----------------: | :----------------------------- | :-----------: |
-|             Nginx | Web server and reverse proxy   |       x       |
-|        PostgreSQL | Database engine                |
-|           Forgejo | Git repository                 |       x       |
-|           Synapse | Matrix server                  |       x       |
-|            coturn | TURN server                    |       x       |
-| Synapse (bridges) | Matrix server                  |               |
-|  mautrix-whatsapp | WhatsApp bridge for Matrix     |               |
-|           PaperMC | Minecraft server               |       x       |
-|      AdGuard Home | DNS server and content blocker |               |
-|         Invidious | YouTube proxy                  |               |
-|           SearXNG | Metasearch engine              |               |
-|          Radicale | CalDAV / CardDAV server        |               |
+|         Name | Type                           | Public-facing |
+| -----------: | :----------------------------- | :-----------: |
+|        Nginx | Web server and reverse proxy   |       x       |
+|   PostgreSQL | Database engine                |
+|      Forgejo | Git repository                 |       x       |
+|      PaperMC | Minecraft server               |       x       |
+| AdGuard Home | DNS server and content blocker |               |
+|    Invidious | YouTube proxy                  |               |
+|      SearXNG | Metasearch engine              |               |
+|     Radicale | CalDAV / CardDAV server        |               |
