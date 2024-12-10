@@ -14,7 +14,7 @@ export const processor_usage = Widget.Box({
     let level = (usage * 100).toFixed(0);
     return `
         background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.8) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
+            90deg, rgba(0, 0, 0, 0.4) ${level}%, rgba(0, 0, 0, 0) ${level}%
         )`;
   }),
   spacing: 6,
@@ -45,7 +45,7 @@ export const memory_usage = Widget.Box({
     let level = (usage * 100).toFixed(0);
     return `
         background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.8) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
+            90deg, rgba(0, 0, 0, 0.4) ${level}%, rgba(0, 0, 0, 0) ${level}%
         )`;
   }),
   spacing: 6,
@@ -78,7 +78,7 @@ export const graphics_card_usage = Widget.Box({
     var level = Number(usage).toFixed(0);
     return `
         background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.8) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
+            90deg, rgba(0, 0, 0, 0.4) ${level}%, rgba(0, 0, 0, 0) ${level}%
         )`;
   }),
   spacing: 6,
@@ -110,12 +110,12 @@ export const volume_widget = Widget.Box({
     if (level >= 0 && level <= 100) {
       return `
         background: linear-gradient(
-            90deg, rgba(26, 27, 38, 0.8) ${level}%, rgba(26, 27, 38, 0.4) ${level}%
+            90deg, rgba(0, 0, 0, 0.4) ${level}%, rgba(0, 0, 0, 0) ${level}%
         );`;
     } else if (level > 100 && level <= 200) {
       return `
        background: linear-gradient(
-           90deg, rgba(226, 27, 38, 0.4) ${level - 100}%, rgba(26, 27, 38, 0.8) ${level - 100}%
+           90deg, rgba(226, 27, 38, 0.4) ${level - 100}%, rgba(0, 0, 0, 0.4) ${level - 100}%
        );`;
     } else {
       return "background: rgba(226, 27, 38, 0.4)";

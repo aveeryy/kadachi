@@ -23,7 +23,7 @@ export const extended_bar = Widget.Window({
       ProfileBlock(),
       workspaces,
       Widget.Box({ expand: true, vpack: "fill" }), // Separator
-      currently_playing_controller,
+      // currently_playing_controller,
       processor_usage,
       memory_usage,
       graphics_card_usage,

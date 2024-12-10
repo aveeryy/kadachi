@@ -37,6 +37,7 @@
       lxqt.lxqt-policykit
       qdiskinfo
       mangohud
+      heroic
     ];
   };
   nixpkgs.config.allowUnfree = true;

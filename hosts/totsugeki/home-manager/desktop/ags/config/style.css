@@ -1,17 +1,18 @@
-@define-color bg rgba(26, 27, 38, 0.4);
-@define-color normal rgba(26, 27, 38, 0.6);
-@define-color hover rgba(76, 77, 88, 0.8);
-@define-color press rgba(76, 77, 88, 0.2);
-@define-color bg-noa rgb(26, 27, 38);
+@define-color bg-bar rgba(0, 0, 0, 0.1);
+@define-color bg rgba(0, 0, 0, 0.0);
+@define-color normal rgba(0, 0, 0, 0.6);
+@define-color hover rgba(0, 0, 0, 0.4);
+@define-color press rgba(0, 0, 0, 0.2);
+@define-color bg-noa rgb(0, 0, 0);
 
 window {
   background-color: transparent;
 }
 
 .bar {
-  background-color: @bg;
+  background-color: @bg-bar;
   border-radius: 8px;
-  padding: 4px 4px;
+  padding: 8px 4px;
   min-width: 32px;
 }
 
@@ -36,7 +37,7 @@ window {
   font-weight: bold;
   font-family: monospace;
   font-size: 1.2em;
-  padding: 4px 0;
+  padding: 4px 0 0 0;
 }
 
 .clock-hours {
@@ -44,11 +45,11 @@ window {
 }
 
 .clock-minutes {
-  color: #ddd;
+  color: #eee;
 }
 
 .clock-seconds {
-  color: #bbb;
+  color: #ddd;
 }
 
 .music-indicator {
@@ -80,12 +81,10 @@ window {
 .workspace-button {
   background-color: @bg;
   border-radius: 8px;
-  color: #c0caf5;
+  color: white;
   font-family: monospace;
   font-weight: bold;
-  font-size: 1em;
   min-height: 20px;
-  min-width: 20px;
   transition:
     background-color 0.3s,
     color 0.3s,
@@ -93,12 +92,16 @@ window {
 }
 
 .occupied {
+  /*
   min-width: 24px;
+  */
 }
 
 .active {
   color: @bg-noa;
+  /*
   min-width: 32px;
+  */
 }
 
 .active:nth-child(1) {
@@ -142,13 +145,13 @@ window {
 }
 
 .launcher {
-  background-color: @bg;
+  background-color: @bg-bar;
   border-radius: 8px;
   padding: 8px;
 }
 
 .launcher-search {
-  background-color: @normal;
+  background-color: @bg-bar;
   border: 2px solid transparent;
   border-radius: 8px;
   box-shadow: none;
@@ -165,7 +168,7 @@ window {
 
 .application {
   all: unset;
-  background-color: @normal;
+  background-color: transparent;
   border-radius: 8px;
   color: white;
   padding: 8px;

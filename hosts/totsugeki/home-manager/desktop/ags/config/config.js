@@ -19,10 +19,9 @@ function Workspaces() {
   return Widget.Box({
     children: Array.from({ length: 10 }, (_, i) => {
       i += 1;
-      return Widget.Box({
+      return Widget.Label({
         class_name: "workspace-button",
-        children: [Widget.Label({ hexpand: true, label: i.toString() })],
-        hpack: "center",
+        label: i.toString(),
         setup: (btn) => {
           btn.hook(
             sway,
@@ -131,10 +130,10 @@ const barContainer = Widget.Box({
   spacing: 6,
   vertical: true,
   children: [
-    ProfilePicture(),
+    // ProfilePicture(),
     Workspaces(),
     Widget.Box({ expand: true, vpack: "fill" }), // Separator
-    CTest(),
+    // CTest(),
     ProcessorUsage(),
     MemoryUsage(),
     graphics_card_usage,

@@ -17,7 +17,7 @@
       "ctrl+alt+9" = "goto_tab 9";
     };
     settings = {
-      "background_opacity" = "0.85";
+      "background_opacity" = "0.65";
       "dynamic_background_opacity" = true;
       "force_ltr" = "yes";
       "disable_ligatures" = "never";
