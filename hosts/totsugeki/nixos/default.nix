@@ -29,7 +29,7 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8000 42595 1420 ];
+      allowedTCPPorts = [ 8000 42595 1420 7777 ];
       allowedUDPPorts = [ 24642 ];
     };
     hostName = "totsugeki";
@@ -110,7 +110,7 @@
     };
     gvfs.enable = true;
     jellyfin = {
-      enable = false;
+      enable = true;
       openFirewall = true;
     };
     pipewire = {

@@ -20,6 +20,7 @@
           "https://codeberg.org".provider = "generic";
           "https://git.rcia.dev".provider = "generic";
         };
+        init.defaultBranch = "main";
         merge.tool = "nvim -d";
       };
       signing = {
