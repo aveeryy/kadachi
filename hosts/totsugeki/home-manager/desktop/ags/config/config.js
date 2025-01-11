@@ -5,12 +5,13 @@ import {
   graphics_card_usage,
   volume_widget,
 } from "./widgets/bar/system-stats.js";
-import { extended_bar } from "./widgets/bar-extended/extended-bar.js";
+// import { extended_bar } from "./widgets/bar-extended/extended-bar.js";
 import { launcher } from "./widgets/launcher/launcher.js";
 import { popup_clock } from "./widgets/popup-clock/popup-clock.js";
 import { date } from "./state.js";
 const mpris = await Service.import("mpris");
-const sway = await Service.import("sway");
+// const sway = await Service.import("sway");
+const hyprland = await Service.import("hyprland");
 const players = mpris.bind("players");
 
 App.addIcons(`${App.configDir}/assets`);
@@ -23,20 +24,8 @@ function Workspaces() {
         class_name: "workspace-button",
         label: i.toString(),
         setup: (btn) => {
-          btn.hook(
-            sway,
-            (btn) => {
-              const ws = sway.getWorkspace(`${i}`);
-              btn.toggleClassName(
-                "occupied",
-                ws?.nodes.length + ws?.floating_nodes.length > 0,
-              );
-            },
-            "notify::workspaces",
-          );
-
-          btn.hook(sway.active.workspace, (btn) => {
-            btn.toggleClassName("active", sway.active.workspace.name == i);
+          btn.bind("prop", hyprland.active.workspace, "id", (id) => {
+            btn.toggleClassName("active", id == i);
           });
         },
       });
@@ -161,5 +150,5 @@ Utils.monitorFile(
 
 App.config({
   style: "./style.css",
-  windows: [bar, extended_bar, launcher, popup_clock],
+  windows: [bar, launcher, popup_clock],
 });

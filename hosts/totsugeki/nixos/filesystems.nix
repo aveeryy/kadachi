@@ -6,7 +6,7 @@
       options = [ "compress=zstd:15" ];
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/8084-F762";
+      device = "/dev/disk/by-uuid/590B-73B7";
       fsType = "vfat";
     };
     "/home" = {

@@ -5,6 +5,7 @@
     ./dunst.nix
     ./firefox.nix
     ./gtk.nix
+    ./hypr
     ./kitty.nix
     ./sway.nix
     ./qt.nix
@@ -38,6 +39,10 @@
       qdiskinfo
       mangohud
       heroic
+      ungoogled-chromium
+      mediainfo-gui
+      android-tools
+      mitmproxy
     ];
   };
   nixpkgs.config.allowUnfree = true;
