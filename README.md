@@ -11,11 +11,14 @@ include_toc: true
 
 ### 🐬 Totsugeki | Desktop
 
+Desktop with NixOS as a primary system and Windows 11 N as secondary. Has secure boot support.
+
 #### Programs
 
 |               Name | Type                |
 | -----------------: | :------------------ |
-|             SwayFX | Wayland compositor  |
+|           Hyprland | Wayland compositor  |
+|           Hyprlock | Session locking     |
 |  Aylur's GTK Shell | Bar and launcher    |
 |              kitty | Terminal emulator   |
 |             Neovim | Text editor         |
