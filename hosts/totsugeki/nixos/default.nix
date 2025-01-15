@@ -86,6 +86,7 @@
     dconf.enable = true;
     nix-ld.enable = true;
     hyprland.enable = true;
+    virt-manager.enable = true;
   };
 
   security.polkit = { enable = true; };
@@ -227,8 +228,12 @@
     age.keyFile = "/home/avery/.config/sops/age/keys.txt";
   };
 
-  virtualisation.virtualbox.host.enable = true;
   system.stateVersion = "24.05";
 
-  users.users.avery.extraGroups = [ "corectrl" ];
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection = true;
+  };
+
+  users.users.avery.extraGroups = [ "corectrl" "libvirt" ];
 }
