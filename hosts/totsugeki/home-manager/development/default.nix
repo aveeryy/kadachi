@@ -3,11 +3,13 @@
   home = {
     packages = with pkgs; [
       android-studio
+      android-tools
       git-credential-manager
       gnupg
       pass
       dotnet-sdk_8
       unityhub
+      mitmproxy
     ];
   };
   programs = {

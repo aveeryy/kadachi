@@ -47,8 +47,6 @@
       heroic
       ungoogled-chromium
       mediainfo-gui
-      android-tools
-      mitmproxy
     ];
   };
   nixpkgs.config.allowUnfree = true;
