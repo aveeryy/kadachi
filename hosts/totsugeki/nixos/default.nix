@@ -232,7 +232,7 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    spiceUSBRedirection = true;
+    spiceUSBRedirection.enable = true;
   };
 
   users.users.avery.extraGroups = [ "corectrl" "libvirt" ];
