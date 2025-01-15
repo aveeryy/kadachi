@@ -13,8 +13,13 @@
         accel_profile = "flat";
       };
 
-      exec-once =
-        [ "hyprlock" "ags" "swww-daemon" "[workspace 10 silent] qbittorrent" ];
+      exec-once = [
+        "hyprlock"
+        "ags"
+        "swww-daemon"
+        "lxqt-policykit-agent"
+        "[workspace 10 silent] qbittorrent"
+      ];
 
       env = [
         "XDG_CURRENT_DESKTOP,Hyprland"
