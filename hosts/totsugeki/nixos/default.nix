@@ -8,21 +8,27 @@
     kernelParams = [ "video=DP-1:2560x1440@165" ];
     initrd.availableKernelModules =
       [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        gfxmodeEfi = "2560x1440";
-        useOSProber = true;
+      systemd-boot = {
+        enable = lib.mkForce false;
+        configurationLimit = 10;
+        consoleMode = "max";
+        editor = false;
+        windows."11" = {
+          title = "Windows 11 Pro N";
+          efiDeviceHandle = "HD2d";
+        };
       };
-      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "ntfs" ];
   };
 
-  environment.systemPackages = with pkgs; [ ffmpeg-full gparted ];
+  environment.systemPackages = with pkgs; [ ffmpeg-full gparted sbctl ];
 
   hardware.i2c.enable = true;
 
@@ -125,8 +131,8 @@
     };
     udisks2.enable = true;
     udev.extraRules = ''
-            SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
-            # Atmel DFU
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
+      # Atmel DFU
       ### ATmega16U2
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2fef", TAG+="uaccess"
       ### ATmega32U2

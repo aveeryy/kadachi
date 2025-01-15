@@ -15,13 +15,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     ags = {
       # url = "github:Aylur/ags";
       url = "github:aveeryy/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -35,6 +35,7 @@
           ./hosts/totsugeki/nixos
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
+          inputs.lanzaboote.nixosModules.lanzaboote
           {
             home-manager = {
               backupFileExtension = "bak";
@@ -43,7 +44,6 @@
                 imports = [
                   inputs.ags.homeManagerModules.default
                   inputs.nixvim.homeManagerModules.nixvim
-                  inputs.plasma-manager.homeManagerModules.plasma-manager
                   ./common/home.nix
                   ./common/zsh.nix
                   ./hosts/totsugeki/home-manager
