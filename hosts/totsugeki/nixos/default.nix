@@ -34,8 +34,8 @@
 
   networking = {
     firewall = {
-      enable = true;
-      allowedTCPPorts = [ 8000 42595 1420 7777 8080 ];
+      enable = false;
+      allowedTCPPorts = [ 8000 42595 1420 7777 8080 9501 ];
       allowedUDPPorts = [ 24642 ];
     };
     hostName = "totsugeki";
@@ -79,6 +79,7 @@
   };
 
   programs = {
+    adb.enable = true;
     corectrl = {
       enable = true;
       gpuOverclock.enable = true;
@@ -235,5 +236,5 @@
     spiceUSBRedirection.enable = true;
   };
 
-  users.users.avery.extraGroups = [ "corectrl" "libvirt" ];
+  users.users.avery.extraGroups = [ "corectrl" "libvirt" "kvm" "adbusers" ];
 }
