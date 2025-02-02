@@ -25,6 +25,7 @@
           disableTsServerFormatter = true;
           settings = { extra_filetypes = [ "svelte" ]; };
         };
+        xmllint.enable = true;
       };
     };
   };

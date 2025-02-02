@@ -4,6 +4,7 @@
       enable = true;
       servers = {
         dartls.enable = true;
+        jdtls.enable = true;
         nil_ls.enable = true;
         pyright.enable = true;
         ts_ls.enable = true;
@@ -14,6 +15,10 @@
         };
         svelte.enable = true;
       };
+    };
+    nvim-jdtls = {
+      enable = true;
+      data = "~/.cache/jdtls/workspace";
     };
   };
 }
