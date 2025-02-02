@@ -21,6 +21,65 @@
         "type": "github"
       }
     },
+    "autofirma-nix": {
+      "inputs": {
+        "autofirma-src": "autofirma-src",
+        "clienteafirma-external-src": "clienteafirma-external-src",
+        "flake-parts": "flake-parts",
+        "home-manager": "home-manager",
+        "jmulticard-src": "jmulticard-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737306342,
+        "narHash": "sha256-ZImO7Mz90IRYb6KIg3gZexSWiuUoLU1T7X7eulUzl/Y=",
+        "owner": "nix-community",
+        "repo": "autofirma-nix",
+        "rev": "d9fad78a9683af93b036f652eeafa7547d6b93a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "autofirma-nix",
+        "type": "github"
+      }
+    },
+    "autofirma-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716805628,
+        "narHash": "sha256-GQyj3QuWIHTkYwdJ4oKVsG923YG9mCUXfhqdIvEWNMA=",
+        "owner": "ctt-gob-es",
+        "repo": "clienteafirma",
+        "rev": "f8888062394a4ca41c5802beb2524597a5ce465a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ctt-gob-es",
+        "ref": "v1.8.3",
+        "repo": "clienteafirma",
+        "type": "github"
+      }
+    },
+    "clienteafirma-external-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712248159,
+        "narHash": "sha256-iS3I6zIxuKG133s/FqDlXZzOZ2ZOJcqZK9X6Tv3+3lc=",
+        "owner": "ctt-gob-es",
+        "repo": "clienteafirma-external",
+        "rev": "f450ac76094ffe387f6590b9ac61b5ada5a501e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ctt-gob-es",
+        "ref": "OT_14395",
+        "repo": "clienteafirma-external",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -95,6 +154,24 @@
     },
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1736143030,
+        "narHash": "sha256-+hu54pAoLDEZT9pjHlqL9DNzWz0NbUn8NEAHP7PQPzU=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "b905f6fc23a9051a6e1b741e1438dbfc0634c6de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": [
           "lanzaboote",
           "nixpkgs"
@@ -114,7 +191,7 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "nixvim",
@@ -243,6 +320,24 @@
     },
     "home-manager": {
       "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1737221749,
+        "narHash": "sha256-igllW0yG+UbetvhT11jnt9RppSHXYgMykYhZJeqfHs0=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "97d7946b5e107dd03cc82f21165251d4e0159655",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -261,7 +356,7 @@
         "type": "github"
       }
     },
-    "home-manager_2": {
+    "home-manager_3": {
       "inputs": {
         "nixpkgs": [
           "nixvim",
@@ -310,11 +405,28 @@
         "type": "github"
       }
     },
+    "jmulticard-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686816513,
+        "narHash": "sha256-sCqMK4FvwRHsGIB6iQVyqrx0+EDiUfQSAsPqmDq2Giw=",
+        "owner": "ctt-gob-es",
+        "repo": "jmulticard",
+        "rev": "9983fc690f3b68dc2c8fde19db269766cf0fb387",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ctt-gob-es",
+        "ref": "v1.8",
+        "repo": "jmulticard",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
         "flake-compat": "flake-compat",
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
@@ -360,18 +472,30 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1736344531,
-        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
-        "owner": "nixos",
+        "lastModified": 1736012469,
+        "narHash": "sha256-/qlNWm/IEVVH7GfgAIyP6EsVZI6zjAx1cV5zNyrs+rI=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+        "rev": "8f3e1f807051e32d8c95cd12b9b421623850a34d",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1735774519,
+        "narHash": "sha256-CewEm1o2eVAnoqb6Ml+Qi9Gg/EfNAxbRx1lANGVyoLI=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
       }
     },
     "nixpkgs-stable": {
@@ -390,13 +514,29 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1736344531,
+        "narHash": "sha256-8YVQ9ZbSfuUk2bUf2KRj60NRraLPKPS0Q4QFTbc+c2c=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
         "flake-compat": "flake-compat_2",
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts_3",
         "git-hooks": "git-hooks",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager_3",
         "nix-darwin": "nix-darwin",
         "nixpkgs": [
           "nixpkgs"
@@ -471,9 +611,10 @@
     "root": {
       "inputs": {
         "ags": "ags",
-        "home-manager": "home-manager",
+        "autofirma-nix": "autofirma-nix",
+        "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "sops-nix": "sops-nix"
       }

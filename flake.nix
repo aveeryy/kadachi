@@ -24,6 +24,17 @@
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    autofirma-nix = {
+      url = "github:nix-community/autofirma-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  nixConfig = {
+    extra-substituters = [ "https://autofirma-nix.cachix.org" ];
+    extra-trusted-public-keys = [
+      "autofirma-nix.cachix.org-1:cDC9Dtee+HJ7QZcM8s36836scXyRToqNX/T+yvjiI0E="
+    ];
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -43,6 +54,7 @@
               users.avery = {
                 imports = [
                   inputs.ags.homeManagerModules.default
+                  inputs.autofirma-nix.homeManagerModules.default
                   inputs.nixvim.homeManagerModules.nixvim
                   ./common/home.nix
                   ./common/zsh.nix
