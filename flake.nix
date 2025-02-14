@@ -69,7 +69,7 @@
         system = "x86_64-linux";
         modules = [
           ./common/nixos.nix
-          ./hosts/greatyamada/nixos.nix
+          ./hosts/greatyamada/nixos
           ./hosts/greatyamada/services
           inputs.sops-nix.nixosModules.sops
         ];
