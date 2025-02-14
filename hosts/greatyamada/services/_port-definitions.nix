@@ -8,6 +8,7 @@
   forgejo-http = 3000;
   inv-sig-helper = 12999;
   invidious-http = 3002;
+  jellyfin-http = 8096;
   matrix-http = 8008;
   matrix-https = 8448;
   matrix-bridges-http = 8088;

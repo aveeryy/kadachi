@@ -11,7 +11,8 @@ in {
     };
     nginx.virtualHosts."jellyfin.rcia.dev" = {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:${portDefinitions.jellyfin-http}";
+        proxyPass =
+          "http://127.0.0.1:${toString portDefinitions.jellyfin-http}";
       };
       extraConfig = nginxLocalServiceConfig;
     };
