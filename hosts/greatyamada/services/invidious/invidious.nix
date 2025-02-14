@@ -1,6 +1,6 @@
 { ... }:
 let
-  nginxLocalServiceConfig = import ./nginx-local-config.nix;
+  nginxLocalServiceConfig = import ../nginx-local-config.nix;
   ports = import ../_port-definitions.nix;
 in {
   services = {
