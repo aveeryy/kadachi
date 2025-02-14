@@ -28,18 +28,14 @@ let
   serverIcon = ./server-icon.png;
 
 in {
-  imports = [ ./plugins ];
   services.minecraft-server = {
-    enable = true;
-    package = pkgs.papermc.override {
-      mcVersion = "1.20.6";
-      buildNum = "147";
-    };
+    enable = false;
+    package = pkgs.papermc;
     declarative = true;
     eula = true;
     openFirewall = true;
     jvmOpts =
-      "-Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+      "-Xms6G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
     serverProperties = {
       difficulty = "hard";
       enable-rcon = false;
@@ -48,12 +44,12 @@ in {
       hide-online-players = true;
       motd = "NixOS server";
       online-mode = true;
-      pvp = false;
+      pvp = true;
       server-port = 13914;
       spawn-protection = 0;
       white-list = true;
     };
-    dataDir = import ./data-directory.nix;
+    dataDir = "/minecraft";
   };
   # Overriden to have a non-declarative whitelist
   systemd.services.minecraft-server.preStart = lib.mkForce ''

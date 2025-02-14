@@ -1,11 +1,12 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   forgejoConfigPath = "/var/lib/forgejo/custom/conf";
+  portDefinitions = import ./_port-definitions.nix;
   arrayToSecrets = elements:
-    builtins.listToAttrs (map (x: {
-      name = "forgejo/" + x;
+    builtins.listToAttrs (map (key: {
+      name = "forgejo/${key}";
       value = {
-        path = "${forgejoConfigPath}/" + x;
+        path = "${forgejoConfigPath}/${key}";
         owner = "forgejo";
       };
     }) elements);
@@ -13,36 +14,34 @@ in {
   services = {
     forgejo = {
       enable = true;
+      package = pkgs.forgejo;
+      database = {
+        type = "postgres";
+        port = portDefinitions.postgresql;
+        passwordFile = "${forgejoConfigPath}/database_password";
+      };
+      secrets = {
+        server.LFS_JWT_SECRET = "${forgejoConfigPath}/lfs_jwt_secret";
+        security = {
+          INTERNAL_TOKEN = "${forgejoConfigPath}/internal_token";
+          SECRET_KEY = "${forgejoConfigPath}/secret_key";
+        };
+        oauth2.JWT_SECRET = "${forgejoConfigPath}/oauth2_jwt_secret";
+      };
       settings = {
         server = {
           DOMAIN = "git.rcia.dev";
           ROOT_URL = "https://git.rcia.dev";
-          HTTP_PORT = 3000;
+          HTTP_PORT = portDefinitions.forgejo-http;
           DISABLE_SSH = true;
           LFS_START_SERVER = true;
-          LFS_JWT_SECRET = "";
-          LFS_JWT_SECRET_URI = "file://${forgejoConfigPath}/lfs_jwt_secret";
         };
-        database = {
-          type = "postgres";
-          passwordFile = "${forgejoConfigPath}/database_password";
-        };
-        security = {
-          INSTALL_LOCK = true;
-          INTERNAL_TOKEN = lib.mkForce "";
-          INTERNAL_TOKEN_URI = "file://${forgejoConfigPath}/internal_token";
-          SECRET_KEY = lib.mkForce "";
-          SECRET_KEY_URI = "file://${forgejoConfigPath}/secret_key";
-        };
-        oauth2 = {
-          JWT_SECRET = lib.mkForce "";
-          JWT_SECRET_URI = "file://${forgejoConfigPath}/oauth2_jwt_secret";
-        };
+        security = { INSTALL_LOCK = true; };
       };
     };
     nginx.virtualHosts."git.rcia.dev" = {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
+        proxyPass = "http://127.0.0.1:${toString portDefinitions.forgejo-http}";
         clientMaxBodySize = "200M";
       };
     };

@@ -1,17 +1,17 @@
-{ pkgs, ... }:
+{ ... }:
 let
-  jellyfinPath = "/mnt/Datos/jellyfin/";
+  jellyfinPath = "/mnt/Datos/jellyfin";
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
+  portDefinitions = import ./_port-definitions.nix;
 in {
   services = {
     jellyfin = {
       enable = true;
-      configDir = jellyfinPath + "config/";
-      dataDir = jellyfinPath + "data/";
+      dataDir = "${jellyfinPath}/data/";
     };
     nginx.virtualHosts."jellyfin.rcia.dev" = {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8096";
+        proxyPass = "http://127.0.0.1:${portDefinitions.jellyfin-http}";
         clientMaxBodySize = "10M";
       };
       extraConfig = nginxLocalServiceConfig;

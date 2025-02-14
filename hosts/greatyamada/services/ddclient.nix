@@ -6,6 +6,10 @@
     protocol = "cloudflare";
     zone = "rcia.dev";
     passwordFile = "/run/secrets/cloudflare_api_token";
-    domains = [ "@" "*" ];"
+    domains = [ "@" "*" ];
+  };
+  sops.secrets."cloudflare/api_token" = {
+    path = "/run/secrets/cloudflare_api_token";
+    owner = "root";
   };
 }

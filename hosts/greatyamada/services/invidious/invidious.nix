@@ -1,9 +1,13 @@
 { ... }:
-let nginxLocalServiceConfig = import ./nginx-local-config.nix;
+let
+  nginxLocalServiceConfig = import ./nginx-local-config.nix;
+  ports = import ../_port-definitions.nix;
 in {
   services = {
     invidious = {
       enable = true;
+      port = ports.invidious-http;
+      extraSettingsFile = "/var/lib/invidious/extra_configuration";
       settings = {
         check_tables = true;
         db.user = "invidious";
@@ -15,6 +19,7 @@ in {
           quality = "dash";
           volume = 20;
         };
+        signature_server = "localhost:${toString ports.inv-sig-helper}";
       };
       database = {
         createLocally = false;
@@ -23,7 +28,9 @@ in {
       hmacKeyFile = "/var/lib/invidious/hmac_key";
     };
     nginx.virtualHosts."iv.rcia.dev" = {
-      locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString ports.invidious-http}";
+      };
       extraConfig = nginxLocalServiceConfig;
     };
   };
@@ -34,6 +41,10 @@ in {
     };
     "invidious/hmac" = {
       path = "/var/lib/invidious/hmac_key";
+      owner = "invidious";
+    };
+    "invidious/extra_secrets" = {
+      path = "/var/lib/invidious/extra_configuration";
       owner = "invidious";
     };
   };

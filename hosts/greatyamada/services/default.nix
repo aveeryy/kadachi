@@ -1,12 +1,15 @@
 { ... }: {
   imports = [
-    ./nginx.nix
+    ./acme.nix
+    ./ddclient.nix
     ./forgejo.nix
-    ./invidious.nix
+    ./invidious
     ./jellyfin.nix
+    ./minecraft
+    ./nginx.nix
     ./postgresql.nix
     ./radicale.nix
+    ./wireguard.nix
   ];
-  # TODO: adguardhome matrix matrix-second minecraft terraria factorio coturn mautrix-whatsapp wireguard
   # paperlessngx
 }
