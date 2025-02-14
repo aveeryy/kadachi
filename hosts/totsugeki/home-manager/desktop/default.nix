@@ -45,7 +45,6 @@
       qdiskinfo
       mangohud
       heroic
-      ungoogled-chromium
       mediainfo-gui
     ];
   };
