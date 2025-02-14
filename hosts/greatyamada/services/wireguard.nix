@@ -24,11 +24,11 @@ in {
   sops.secrets = {
     "wireguard/private_key" = {
       path = "/run/secrets/wg_private_key";
-      user = "root";
+      owner = "root";
     };
     "wireguard/preshared_keys/note9" = {
       path = "/run/secrets/preshared_keys_note9";
-      user = "root";
+      owner = "root";
     };
   };
 }
