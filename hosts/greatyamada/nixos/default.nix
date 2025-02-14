@@ -1,5 +1,8 @@
 { lib, ... }: {
   imports = [ ./filesystems.nix ];
+
+  boot.loader.systemd-boot.enable = true;
+
   networking = {
     firewall.enable = true;
     hostName = "greatyamada";
