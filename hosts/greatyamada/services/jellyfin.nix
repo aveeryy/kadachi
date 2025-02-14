@@ -12,7 +12,6 @@ in {
     nginx.virtualHosts."jellyfin.rcia.dev" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${portDefinitions.jellyfin-http}";
-        clientMaxBodySize = "10M";
       };
       extraConfig = nginxLocalServiceConfig;
     };

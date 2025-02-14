@@ -42,7 +42,6 @@ in {
     nginx.virtualHosts."git.rcia.dev" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString portDefinitions.forgejo-http}";
-        clientMaxBodySize = "200M";
       };
     };
   };
