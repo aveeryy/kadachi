@@ -1,4 +1,4 @@
-{ config, lib, pkgs }: {
+{ lib, ... }: {
   imports = [ ./filesystems.nix ];
   networking = {
     firewall.enable = true;
