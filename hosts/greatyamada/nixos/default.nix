@@ -12,5 +12,7 @@
     age.keyFile = "/etc/nixos/keys.txt";
   };
 
+  system.stateVersion = "25.05";
+
   time.timeZone = "UTC";
 }
