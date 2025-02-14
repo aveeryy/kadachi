@@ -1,11 +1,8 @@
-{ pkgs, ... }: {
+{ ... }: {
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "rcia.dev" = {
-        forceSSL = true;
-        locations."/" = { root = /var/www/public; };
-      };
+      "rcia.dev" = { locations."/" = { root = /var/www/public; }; };
     };
   };
 }
