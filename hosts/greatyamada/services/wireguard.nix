@@ -6,9 +6,9 @@ in {
     wireguard = {
       enable = true;
       interfaces.wg0 = {
-        ips = [ 10.10.0.1/24 ];
+        ips = [ "10.10.0.1/24" ];
         peers = [{
-          allowedIPs = [ 10.10.0.2/32 ];
+          allowedIPs = [ "10.10.0.2/32" ];
           name = "Note9";
           publicKey = "Y5A5iv0ukg1TQMcIdtXd+bmDxtrqHCuoEhYRmBqwkFY=";
           presharedKeyFile = "/run/secrets/preshared_keys_note9";

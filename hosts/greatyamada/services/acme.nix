@@ -9,6 +9,7 @@
         "/run/secrets/cloudflare_api_token";
       dnsProvider = "cloudflare";
       group = "nginx";
+      webroot = null;
     };
   };
   sops.secrets."cloudflare/api_token" = {
