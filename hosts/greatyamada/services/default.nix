@@ -3,7 +3,6 @@
     ./acme.nix
     ./ddclient.nix
     ./forgejo.nix
-    ./invidious
     ./jellyfin.nix
     ./minecraft
     ./nginx.nix

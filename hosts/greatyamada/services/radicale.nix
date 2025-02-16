@@ -24,6 +24,7 @@ in {
           "http://127.0.0.1:${toString portDefinitions.radicale-http}";
       };
       extraConfig = nginxLocalServiceConfig;
+      useACMEHost = "rcia.dev";
     };
   };
   sops.secrets."radicale/users" = {

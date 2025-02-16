@@ -44,6 +44,7 @@ in {
       locations."/".proxyPass =
         "http://127.0.0.1:${toString portDefinitions.adguardhome-http}";
       extraConfig = nginxLocalServiceConfig;
+      useACMEHost = "rcia.dev";
     };
   };
 }

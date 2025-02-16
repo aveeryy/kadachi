@@ -15,6 +15,7 @@ in {
           "http://127.0.0.1:${toString portDefinitions.jellyfin-http}";
       };
       extraConfig = nginxLocalServiceConfig;
+      useACMEHost = "rcia.dev";
     };
   };
 }
