@@ -1,12 +1,12 @@
 { pkgs, ... }:
 let
-  forgejoConfigPath = "/var/lib/forgejo/custom/conf";
+  forgejoSecretsPath = "/run/secrets/forgejo_";
   portDefinitions = import ./_port-definitions.nix;
   arrayToSecrets = elements:
     builtins.listToAttrs (map (key: {
       name = "forgejo/${key}";
       value = {
-        path = "${forgejoConfigPath}/${key}";
+        path = "${forgejoSecretsPath}${key}";
         owner = "forgejo";
       };
     }) elements);
@@ -18,15 +18,15 @@ in {
       database = {
         type = "postgres";
         port = portDefinitions.postgresql;
-        passwordFile = "${forgejoConfigPath}/database_password";
+        passwordFile = "${forgejoSecretsPath}database_password";
       };
       secrets = {
-        server.LFS_JWT_SECRET = "${forgejoConfigPath}/lfs_jwt_secret";
+        server.LFS_JWT_SECRET = "${forgejoSecretsPath}lfs_jwt_secret";
         security = {
-          INTERNAL_TOKEN = "${forgejoConfigPath}/internal_token";
-          SECRET_KEY = "${forgejoConfigPath}/secret_key";
+          INTERNAL_TOKEN = "${forgejoSecretsPath}internal_token";
+          SECRET_KEY = "${forgejoSecretsPath}secret_key";
         };
-        oauth2.JWT_SECRET = "${forgejoConfigPath}/oauth2_jwt_secret";
+        oauth2.JWT_SECRET = "${forgejoSecretsPath}oauth2_jwt_secret";
       };
       settings = {
         server = {
