@@ -1,7 +1,9 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   imports = [ ./filesystems.nix ];
 
   boot.loader.systemd-boot.enable = true;
+
+  environment.systemPackages = with pkgs; [ iptables ];
 
   networking = {
     firewall.enable = true;
