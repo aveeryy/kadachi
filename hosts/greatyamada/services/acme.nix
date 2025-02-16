@@ -14,6 +14,6 @@
   };
   sops.secrets."cloudflare/api_token" = {
     path = "/run/secrets/cloudflare_api_token";
-    group = "root";
+    group = "acme";
   };
 }

@@ -1,8 +1,8 @@
 { ... }: {
   imports = [
     ./acme.nix
-    ./ddclient.nix
     ./forgejo.nix
+    ./inadyn.nix
     ./jellyfin.nix
     ./minecraft
     ./nginx.nix
