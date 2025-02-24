@@ -61,3 +61,9 @@ Desktop with NixOS as a primary system and Windows 11 N as secondary. Has secure
 |    Invidious | YouTube proxy                  |               |
 |      SearXNG | Metasearch engine              |               |
 |     Radicale | CalDAV / CardDAV server        |               |
+
+### 🎀 Mizuki | WSL development setup
+
+An experimental configuration for software development inside Windows Subsystem for Linux.
+
+Inherits the Nixvim configuration from totsugeki

@@ -28,6 +28,10 @@
       url = "github:nix-community/autofirma-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -39,6 +43,7 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
+      # Desktop computer
       totsugeki = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -65,6 +70,7 @@
           }
         ];
       };
+      # Home server
       greatyamada = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -72,6 +78,28 @@
           ./hosts/greatyamada/nixos
           ./hosts/greatyamada/services
           inputs.sops-nix.nixosModules.sops
+        ];
+      };
+      # WSL development system
+      mizuki = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/mizuki/nixos.nix
+          inputs.nixos-wsl.nixosModules.default
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "bak";
+              useUserPackages = true;
+              users.avery = {
+                imports = [
+                  inputs.nixvim.homeManagerModules.nixvim
+                  ./hosts/totsugeki/home-manager/development/nixvim
+                  ./hosts/mizuki/development.nix
+                ];
+              };
+            };
+          }
         ];
       };
     };

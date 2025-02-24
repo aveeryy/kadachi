@@ -29,8 +29,6 @@
     systemPackages = with pkgs; [ git htop neovim sops ];
   };
 
-  programs.zsh.enable = true;
-
   security = {
     doas = {
       enable = true;
