@@ -84,8 +84,8 @@
       mizuki = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/mizuki/nixos.nix
           inputs.nixos-wsl.nixosModules.default
+          ./hosts/mizuki/nixos.nix
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
