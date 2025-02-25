@@ -92,14 +92,9 @@
               backupFileExtension = "bak";
               useUserPackages = true;
               users.avery = {
-                programs.home-manager.enable = true;
-                home = {
-                  homeDirectory = "/home/avery";
-                  sessionVariables.EDITOR = "nvim";
-                  stateVersion = "24.11";
-                };
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
+                  ./common/home.nix
                   ./common/zsh.nix
                   ./hosts/totsugeki/home-manager/development/nixvim
                   ./hosts/mizuki/development.nix
