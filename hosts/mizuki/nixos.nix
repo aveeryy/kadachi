@@ -6,6 +6,8 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  programs.zsh.enable = true;
+
   security.sudo.enable = true;
 
   users = {
