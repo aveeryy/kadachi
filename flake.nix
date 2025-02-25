@@ -100,6 +100,7 @@
                 };
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
+                  ./common/zsh.nix
                   ./hosts/totsugeki/home-manager/development/nixvim
                   ./hosts/mizuki/development.nix
                 ];
