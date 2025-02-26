@@ -9,13 +9,14 @@
 
   programs.zsh.enable = true;
 
-  security.sudo.enable = true;
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = true;
+  };
 
-  services = {
-    mongodb = {
-      enable = true;
-      package = pkgs.mongodb-ce;
-    };
+  services.mysql = {
+    enable = true;
+    package = pkgs.mysql84;
   };
 
   users = {
