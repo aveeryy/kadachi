@@ -11,7 +11,12 @@
 
   security.sudo.enable = true;
 
-  services = { mongodb.enable = true; };
+  services = {
+    mongodb = {
+      enable = true;
+      package = pkgs.mongodb-ce;
+    };
+  };
 
   users = {
     defaultUserShell = pkgs.zsh;
