@@ -10,6 +10,7 @@
       dotnet-sdk_8
       unityhub
       mitmproxy
+      xh
     ];
   };
   programs = {
