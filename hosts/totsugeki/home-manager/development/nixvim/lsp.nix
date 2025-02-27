@@ -3,6 +3,7 @@
     lsp = {
       enable = true;
       servers = {
+        cssls.enable = true;
         dartls.enable = true;
         jdtls.enable = true;
         nil_ls.enable = true;
