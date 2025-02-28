@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.nixvim.plugins = {
     lsp = {
       enable = true;
@@ -15,6 +15,11 @@
           installRustc = false;
         };
         svelte.enable = true;
+        volar = {
+          enable = true;
+          extraOptions.init_options.typescript.tsdk =
+            "${pkgs.typescript}/lib/node_modules/typescript/lib";
+        };
       };
     };
     nvim-jdtls = {
