@@ -2,6 +2,17 @@
 
   environment.shells = with pkgs; [ zsh ];
 
+  fonts = {
+    packages = with pkgs; [ inter notonoto ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Inter" ];
+        sansSerif = [ "Inter" ];
+        monospace = [ "notonoto" ];
+      };
+    };
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
