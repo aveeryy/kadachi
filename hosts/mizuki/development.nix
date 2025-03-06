@@ -1,11 +1,20 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ xh ];
+  home.packages = with pkgs; [ xh gnupg git-credential-manager pass wslu ];
   programs = {
     git = {
       enable = true;
       extraConfig = {
         init.defaultBranch = "main";
         merge.tool = "nvim -d";
+        credential = {
+          credentialStore = "gpg";
+          helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+          "https://git.rcia.dev".provider = "generic";
+        };
+      };
+      signing = {
+        key = "B684FD451B692E04";
+        signByDefault = true;
       };
       userEmail = "aveeryy@protonmail.com";
       userName = "Avery";
@@ -28,4 +37,14 @@
       };
     };
   };
+  services = {
+    gpg-agent = {
+      defaultCacheTtl = 3600;
+      enable = true;
+      enableSshSupport = true;
+      enableZshIntegration = true;
+      pinentryPackage = pkgs.pinentry-qt;
+    };
+  };
+
 }

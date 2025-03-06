@@ -94,7 +94,7 @@
               users.avery = {
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
-                  ./common/home.nix
+                  ./hosts/mizuki/home.nix
                   ./common/zsh.nix
                   ./hosts/totsugeki/home-manager/development/nixvim
                   ./hosts/mizuki/development.nix

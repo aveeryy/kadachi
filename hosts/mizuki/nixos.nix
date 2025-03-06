@@ -1,6 +1,7 @@
 { lib, pkgs, ... }: {
 
   environment.shells = with pkgs; [ zsh ];
+  environment.systemPackages = with pkgs; [ xorg.setxkbmap ];
 
   fonts = {
     packages = with pkgs; [ inter notonoto ];
