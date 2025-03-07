@@ -8,7 +8,7 @@
         jdtls.enable = true;
         nil_ls.enable = true;
         pyright.enable = true;
-        ts_ls.enable = true;
+        # ts_ls.enable = true;
         rust_analyzer = {
           enable = true;
           installCargo = false;
@@ -17,8 +17,14 @@
         svelte.enable = true;
         volar = {
           enable = true;
-          extraOptions.init_options.typescript.tsdk =
-            "${pkgs.typescript}/lib/node_modules/typescript/lib";
+          filetypes = [
+            "typescript"
+            "javascript"
+            "javascriptreact"
+            "typescriptreact"
+            "vue"
+          ];
+          extraOptions.init_options.vue.hybridMode = false;
         };
       };
     };
