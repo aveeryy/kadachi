@@ -23,5 +23,9 @@
       fsType = "ntfs";
       options = [ "nofail" ];
     };
+    "/mnt/MHWildsTemp" = {
+      device = "/dev/disk/by-uuid/674312a5-9d19-4e06-99ce-1481f3b45acd";
+      fsType = "ext4";
+    };
   };
 }
