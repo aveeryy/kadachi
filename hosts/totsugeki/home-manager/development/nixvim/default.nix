@@ -7,6 +7,7 @@
     ./none-ls.nix
     ./treesitter.nix
     ./telescope.nix
+    ./trouble.nix
   ];
   programs.nixvim = {
     enable = true;
