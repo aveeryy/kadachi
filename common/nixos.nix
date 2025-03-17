@@ -29,18 +29,15 @@
     systemPackages = with pkgs; [ git htop neovim sops ];
   };
 
+  programs.zsh.enable = true;
+
   security = {
-    doas = {
-      enable = true;
-      extraRules = [{
-        users = [ "avery" ];
-        keepEnv = true;
-        persist = true;
-      }];
-    };
     polkit.enable = true;
     rtkit.enable = true;
-    sudo.enable = false;
+    sudo-rs = {
+      enable = true;
+      wheelNeedsPassword = true;
+    };
   };
 
   services.openssh.enable = true;
