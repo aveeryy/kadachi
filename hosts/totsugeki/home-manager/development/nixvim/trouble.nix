@@ -17,9 +17,15 @@
         };
       };
     };
-    keymaps = [{
-      action = "<cmd>Trouble diagnostics toggle<cr>";
-      key = "<leader>dg";
-    }];
+    keymaps = [
+      {
+        action = "<cmd>Trouble diagnostics toggle<cr>";
+        key = "<leader>dg";
+      }
+      {
+        action = "<cmd>Trouble symbols toggle auto_close=true focus=true<cr>";
+        key = "<leader>sy";
+      }
+    ];
   };
 }

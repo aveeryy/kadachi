@@ -22,7 +22,7 @@
         jdtls.enable = true;
         nil_ls.enable = true;
         pyright.enable = true;
-        # ts_ls.enable = true;
+        ts_ls.enable = true;
         rust_analyzer = {
           enable = true;
           installCargo = false;
@@ -31,14 +31,8 @@
         svelte.enable = true;
         volar = {
           enable = true;
-          filetypes = [
-            "typescript"
-            "javascript"
-            "javascriptreact"
-            "typescriptreact"
-            "vue"
-          ];
-          extraOptions.init_options.vue.hybridMode = false;
+          tslsIntegration = true;
+          # extraOptions.init_options.vue.hybridMode = false;
         };
       };
     };
