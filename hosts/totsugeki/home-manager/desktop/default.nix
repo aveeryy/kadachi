@@ -38,7 +38,6 @@
       r2modman
       wl-clipboard
       wineWowPackages.stagingFull
-      element-desktop
       vesktop
       swww
       lxqt.lxqt-policykit
@@ -46,6 +45,10 @@
       mangohud
       heroic
       mediainfo-gui
+      sound-juicer
+      filen-desktop
+      p7zip
+      scrcpy
     ];
   };
   nixpkgs.config.allowUnfree = true;

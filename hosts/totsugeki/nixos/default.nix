@@ -67,6 +67,7 @@
       twitter-color-emoji
       nerd-fonts.iosevka
       nerd-fonts.ubuntu-mono
+      vista-fonts
     ];
 
     fontconfig = {
