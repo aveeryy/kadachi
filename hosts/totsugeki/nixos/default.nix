@@ -34,7 +34,7 @@
 
   networking = {
     firewall = {
-      enable = false;
+      enable = true;
       allowedTCPPorts = [ 8000 42595 1420 7777 8080 9501 ];
       allowedUDPPorts = [ 24642 ];
     };
@@ -120,6 +120,10 @@
       enable = true;
       openFirewall = true;
     };
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
     pipewire = {
       enable = true;
       alsa = {
@@ -132,6 +136,7 @@
       enable = true;
       drivers = with pkgs; [ brlaser ];
     };
+    resolved.enable = true;
     udisks2.enable = true;
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
