@@ -1,5 +1,12 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ xh gnupg git-credential-manager pass wslu ];
+  home.packages = with pkgs; [
+    xh
+    gnupg
+    git-credential-manager
+    pass
+    wslu
+    python3
+  ];
   programs = {
     git = {
       enable = true;
