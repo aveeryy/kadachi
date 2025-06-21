@@ -17,11 +17,11 @@
                 "https://searxng.rcia.dev/static/themes/simple/img/favicon.png";
             }];
           };
-          Google.metaData.hidden = true;
-          Bing.metaData.hidden = true;
-          DuckDuckGo.metaData.hidden = true;
-          "Wikipedia (en)".metaData.hidden = true;
-          Qwant.metaData.hidden = true;
+          google.metaData.hidden = true;
+          bing.metaData.hidden = true;
+          ddg.metaData.hidden = true;
+          wikipedia.metaData.hidden = true;
+          qwant.metaData.hidden = true;
         };
         force = true;
         order = [ "SearXNG" ];

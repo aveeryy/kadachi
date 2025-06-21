@@ -18,7 +18,7 @@
         "ags"
         "swww-daemon"
         "lxqt-policykit-agent"
-        "[workspace 10 silent] qbittorrent"
+        "[workspace 10 silent] sleep 20s && mullvad-exclude qbittorrent"
       ];
 
       env = [
@@ -150,6 +150,10 @@
         disable_splash_rendering = true;
         vrr = 2;
       };
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
     };
     extraConfig = ''
       submap = Fondo de pantalla
@@ -170,6 +174,7 @@
       bindl = MOD3, m, submap, reset
 
       submap = reset
+
     '';
 
   };

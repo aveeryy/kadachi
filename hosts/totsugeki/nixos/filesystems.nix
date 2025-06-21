@@ -18,14 +18,10 @@
       fsType = "btrfs";
       options = [ "user" "x-systemd.automount" "exec" ];
     };
-    "/mnt/Windows" = {
-      device = "/dev/disk/by-uuid/491E4ED690A84DBB";
-      fsType = "ntfs";
+    "/mnt/Juegos" = {
+      device = "/dev/disk/by-uuid/2a474d7c-0a0f-423a-b892-98be45903073";
+      fsType = "btrfs";
       options = [ "nofail" ];
-    };
-    "/mnt/MHWildsTemp" = {
-      device = "/dev/disk/by-uuid/674312a5-9d19-4e06-99ce-1481f3b45acd";
-      fsType = "ext4";
     };
   };
 }

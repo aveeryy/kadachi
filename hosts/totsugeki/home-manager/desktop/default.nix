@@ -52,9 +52,6 @@
     ];
   };
   nixpkgs.config.allowUnfree = true;
-  services = {
-    easyeffects.enable = true;
-    arrpc.enable = true;
-  };
+  services = { easyeffects.enable = true; };
   xdg.enable = true;
 }
