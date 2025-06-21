@@ -61,8 +61,7 @@
                   inputs.ags.homeManagerModules.default
                   inputs.autofirma-nix.homeManagerModules.default
                   inputs.nixvim.homeManagerModules.nixvim
-                  ./common/home.nix
-                  ./common/zsh.nix
+                  ./common/home-manager
                   ./hosts/totsugeki/home-manager
                 ];
               };
@@ -86,9 +85,7 @@
               users.avery = {
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
-                  ./common/home.nix
-                  ./common/zsh.nix
-                  ./hosts/totsugeki/home-manager/development/nixvim
+                  ./common/home-manager
                 ];
               };
             };
@@ -99,8 +96,8 @@
       mizuki = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          inputs.nixos-wsl.nixosModules.default
           ./hosts/mizuki/nixos.nix
+          inputs.nixos-wsl.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -110,9 +107,7 @@
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
                   ./hosts/mizuki/home.nix
-                  ./common/zsh.nix
-                  ./hosts/totsugeki/home-manager/development/nixvim
-                  ./hosts/mizuki/development.nix
+                  ./common/home-manager
                 ];
               };
             };

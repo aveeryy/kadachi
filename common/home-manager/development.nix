@@ -1,18 +1,6 @@
 { pkgs, ... }: {
   imports = [ ./nixvim ];
-  home = {
-    packages = with pkgs; [
-      android-studio
-      android-tools
-      git-credential-manager
-      gnupg
-      pass
-      dotnet-sdk_8
-      unityhub
-      mitmproxy
-      xh
-    ];
-  };
+  home = { packages = with pkgs; [ git-credential-manager gnupg pass ]; };
   programs = {
     git = {
       enable = true;
@@ -24,7 +12,7 @@
           "https://git.rcia.dev".provider = "generic";
         };
         init.defaultBranch = "main";
-        merge.tool = "nvim -d";
+        merge.tool = "nvimdiff";
       };
       signing = {
         key = "B684FD451B692E04";

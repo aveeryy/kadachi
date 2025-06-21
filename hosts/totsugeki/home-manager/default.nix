@@ -1,1 +1,3 @@
-{ ... }: { imports = [ ./desktop ./development ./scripts ./autofirma.nix ]; }
+{ ... }: {
+  imports = [ ./desktop ./development.nix ./scripts ./autofirma.nix ];
+}
