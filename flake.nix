@@ -86,6 +86,7 @@
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
                   ./common/home-manager
+                  ./hosts/greatyamada/home-manager
                 ];
               };
             };
@@ -106,8 +107,8 @@
               users.avery = {
                 imports = [
                   inputs.nixvim.homeManagerModules.nixvim
-                  ./hosts/mizuki/home.nix
                   ./common/home-manager
+                  ./hosts/mizuki/home.nix
                 ];
               };
             };
