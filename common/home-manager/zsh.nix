@@ -29,6 +29,7 @@
           if [ -x "$(command -v fastfetch)" ]; then
               fastfetch
           fi
+          export GPG_TTY=$(tty)
         '';
       in lib.mkMerge [ earlyInit postInit ];
       history.path = "${config.xdg.dataHome}/zhistory";
