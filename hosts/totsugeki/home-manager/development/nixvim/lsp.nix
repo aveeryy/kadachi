@@ -36,9 +36,9 @@
         };
       };
     };
-    nvim-jdtls = {
-      enable = true;
-      data = "~/.cache/jdtls/workspace";
-    };
+    # nvim-jdtls = {
+    #   enable = true;
+    #   data = "~/.cache/jdtls/workspace";
+    # };
   };
 }
