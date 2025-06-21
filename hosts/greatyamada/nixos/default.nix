@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   imports = [ ./filesystems.nix ];
 
   boot = {
@@ -14,7 +14,18 @@
   environment.systemPackages = with pkgs; [ arion docker-client ];
 
   networking = {
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      interfaces = let
+        matchAll =
+          if !config.networking.nftables.enable then "podman+" else "podman*";
+      in {
+        "${matchAll}" = {
+          allowedTCPPorts = [ 5432 ];
+          allowedUDPPorts = [ 53 ];
+        };
+      };
+    };
     hostName = "greatyamada";
     networkmanager.enable = true;
     useDHCP = lib.mkDefault false;
@@ -43,10 +54,14 @@
     users.avery.extraGroups = [ "media" ];
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerSocket.enable = true;
-    defaultNetwork.settings.dns_enabled = true;
+  virtualisation = {
+    oci-containers.backend = "podman";
+    podman = {
+      enable = true;
+      autoPrune.enable = true;
+      dockerSocket.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   time.timeZone = "UTC";

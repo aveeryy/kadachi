@@ -4,6 +4,7 @@
   adguardhome-dhcp-udp = 67;
   forgejo-http = 3000;
   jellyfin-http = 8096;
+  koito = 4110;
   minecraft = 13914;
   navidrome-https = 4533;
   nginx-https = 443;

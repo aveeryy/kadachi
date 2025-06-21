@@ -5,6 +5,7 @@
     ./forgejo.nix
     ./inadyn.nix
     ./jellyfin.nix
+    ./koito.nix
     # ./minecraft
     ./nginx.nix
     ./pgadmin.nix

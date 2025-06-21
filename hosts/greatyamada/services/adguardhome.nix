@@ -20,7 +20,7 @@ in {
           session_ttl = "720h";
         };
         dns = {
-          bind_hosts = [ "0.0.0.0" ];
+          bind_hosts = [ "10.0.0.1" ];
           port = portDefinitions.adguardhome-dns;
           anonymize_client_ip = false;
           ratelimit = 0;
