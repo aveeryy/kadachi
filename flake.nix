@@ -78,6 +78,21 @@
           ./hosts/greatyamada/nixos
           ./hosts/greatyamada/services
           inputs.sops-nix.nixosModules.sops
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "bak";
+              useUserPackages = true;
+              users.avery = {
+                imports = [
+                  inputs.nixvim.homeManagerModules.nixvim
+                  ./common/home.nix
+                  ./common/zsh.nix
+                  ./hosts/totsugeki/home-manager/development/nixvim
+                ];
+              };
+            };
+          }
         ];
       };
       # WSL development system

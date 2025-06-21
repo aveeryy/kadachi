@@ -1,20 +1,17 @@
 {
   adguardhome-dns = 53;
   adguardhome-http = 3001;
-  coturn-turn = 3478;
-  coturn-turn-alt = 3479;
-  coturn-minimum = 49192;
-  coturn-maximum = 49200;
+  adguardhome-dhcp-udp = 67;
   forgejo-http = 3000;
   jellyfin-http = 8096;
-  matrix-http = 8008;
-  matrix-https = 8448;
-  matrix-bridges-http = 8088;
-  mautrix-whatsapp = 29318;
   minecraft = 13914;
+  navidrome-https = 4533;
   nginx-https = 443;
   ntfy-http = 2586;
+  pgadmin = 5050;
   postgresql = 5432;
   radicale-http = 5232;
+  searxng = 8888;
   wireguard = 51820;
+  vaultwarden = 8222;
 }

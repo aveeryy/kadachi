@@ -40,7 +40,13 @@
     };
   };
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   sops = {
     secrets.avery_password = {

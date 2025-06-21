@@ -1,21 +1,14 @@
 { ... }:
-let
-  jellyfinPath = "/mnt/Datos/jellyfin";
-  nginxLocalServiceConfig = import ./nginx-local-config.nix;
-  portDefinitions = import ./_port-definitions.nix;
+let portDefinitions = import ./_port-definitions.nix;
 in {
   services = {
-    jellyfin = {
-      enable = true;
-      dataDir = "${jellyfinPath}/data/";
-    };
+    jellyfin.enable = true;
     nginx.virtualHosts."jellyfin.rcia.dev" = {
-      locations."/" = {
-        proxyPass =
-          "http://127.0.0.1:${toString portDefinitions.jellyfin-http}";
-      };
-      extraConfig = nginxLocalServiceConfig;
+      locations."/".proxyPass =
+        "http://127.0.0.1:${toString portDefinitions.jellyfin-http}";
+      forceSSL = true;
       useACMEHost = "rcia.dev";
     };
   };
+  users.users.jellyfin.extraGroups = [ "media" ];
 }

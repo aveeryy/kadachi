@@ -2,27 +2,27 @@
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXROOT";
-      fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
+      fsType = "ext4";
     };
     "/boot" = {
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
-    "/mnt/Datos" = {
-      device = "/dev/disk/by-label/Datos";
-      fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
+    "/mnt/ssd-01" = {
+      device = "/dev/disk/by-label/ssd-01";
+      fsType = "ext4";
     };
-    "/mnt/Datos/minecraft" = {
-      device = "/dev/disk/by-label/Datos";
-      fsType = "btrfs";
-      options = [ "compress=zstd:4" "subvol=/minecraft" ];
+    "/mnt/hdd-01" = {
+      device = "/dev/disk/by-label/hdd-01";
+      fsType = "ext4";
     };
-    "/mnt/Datos/music" = {
-      device = "/dev/disk/by-label/Datos";
-      fsType = "btrfs";
-      options = [ "subvol=/music" ];
+    "/mnt/hdd-02" = {
+      device = "/dev/disk/by-label/hdd-02";
+      fsType = "ext4";
     };
   };
+  swapDevices = [{
+    device = "/.swapfile";
+    size = 4 * 1024;
+  }];
 }

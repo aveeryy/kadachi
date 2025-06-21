@@ -1,14 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
-  forgejoSecretsPath = "/run/secrets/forgejo_";
   portDefinitions = import ./_port-definitions.nix;
   arrayToSecrets = elements:
     builtins.listToAttrs (map (key: {
       name = "forgejo/${key}";
-      value = {
-        path = "${forgejoSecretsPath}${key}";
-        owner = "forgejo";
-      };
+      value.owner = "forgejo";
     }) elements);
 in {
   services = {
@@ -18,15 +14,17 @@ in {
       database = {
         type = "postgres";
         port = portDefinitions.postgresql;
-        passwordFile = "${forgejoSecretsPath}database_password";
+        passwordFile = "/run/secrets/forgejo/database_password";
       };
       secrets = {
-        server.LFS_JWT_SECRET = "${forgejoSecretsPath}lfs_jwt_secret";
+        server.LFS_JWT_SECRET =
+          lib.mkForce "/run/secrets/forgejo/lfs_jwt_secret";
         security = {
-          INTERNAL_TOKEN = "${forgejoSecretsPath}internal_token";
-          SECRET_KEY = "${forgejoSecretsPath}secret_key";
+          INTERNAL_TOKEN = lib.mkForce "/run/secrets/forgejo/internal_token";
+          SECRET_KEY = lib.mkForce "/run/secrets/forgejo/secret_key";
         };
-        oauth2.JWT_SECRET = "${forgejoSecretsPath}oauth2_jwt_secret";
+        oauth2.JWT_SECRET =
+          lib.mkForce "/run/secrets/forgejo/oauth2_jwt_secret";
       };
       settings = {
         server = {
@@ -43,12 +41,13 @@ in {
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString portDefinitions.forgejo-http}";
       };
+      forceSSL = true;
       useACMEHost = "rcia.dev";
     };
   };
-  systemd.services.forgejo.preStart = ''
-    ${pkgs.forgejo}/bin/gitea migrate
-  '';
+  # systemd.services.forgejo.preStart = ''
+  #   ${pkgs.forgejo}/bin/gitea migrate
+  # '';
   sops.secrets = arrayToSecrets [
     "database_password"
     "internal_token"

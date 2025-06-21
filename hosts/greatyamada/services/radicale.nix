@@ -2,7 +2,6 @@
 let
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
   portDefinitions = import ./_port-definitions.nix;
-  radicalePath = "/mnt/Datos/radicale";
 in {
   services = {
     radicale = {
@@ -12,10 +11,9 @@ in {
           [ "127.0.0.1:${toString portDefinitions.radicale-http}" ];
         auth = {
           type = "htpasswd";
-          htpasswd_filename = "/etc/radicale/users";
+          htpasswd_filename = "/var/lib/radicale/users";
           htpasswd_encryption = "bcrypt";
         };
-        storage.filesystem_folder = radicalePath;
       };
     };
     nginx.virtualHosts."radicale.rcia.dev" = {
@@ -23,12 +21,13 @@ in {
         proxyPass =
           "http://127.0.0.1:${toString portDefinitions.radicale-http}";
       };
-      extraConfig = nginxLocalServiceConfig;
+      forceSSL = true;
       useACMEHost = "rcia.dev";
+      extraConfig = nginxLocalServiceConfig;
     };
   };
   sops.secrets."radicale/users" = {
-    path = "/etc/radicale/users";
+    path = "/var/lib/radicale/users";
     owner = "radicale";
   };
 }

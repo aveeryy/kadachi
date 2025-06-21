@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
 
   environment.shells = with pkgs; [ zsh ];
-  environment.systemPackages = with pkgs; [ xorg.setxkbmap android-tools ];
+  environment.systemPackages = with pkgs; [ xorg.setxkbmap ];
 
   fonts = {
     packages = with pkgs; [ inter notonoto ];
@@ -26,15 +26,19 @@
     wheelNeedsPassword = true;
   };
 
+  services.mysql = {
+    enable = true;
+    package = pkgs.mysql84;
+  };
+
   users = {
     defaultUserShell = pkgs.zsh;
-    users.avery.extraGroups = [ "wheel" "adbusers" ];
+    users.avery.extraGroups = [ "wheel" ];
   };
 
   wsl = {
     enable = true;
     defaultUser = "avery";
-    usbip.enable = true;
   };
 
   virtualisation.docker.enable = true;
