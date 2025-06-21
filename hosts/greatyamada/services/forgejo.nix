@@ -34,6 +34,10 @@ in {
           DISABLE_SSH = true;
           LFS_START_SERVER = true;
         };
+        service = {
+          DISABLE_REGISTRATION = true;
+          REGISTER_MANUAL_CONFIRM = true;
+        };
         security = { INSTALL_LOCK = true; };
       };
     };
