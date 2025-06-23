@@ -1,5 +1,7 @@
 { lib, pkgs, ... }: {
 
+  boot.kernel.sysctl."vm.overcommit_memory" = 1;
+
   environment.shells = with pkgs; [ zsh ];
   environment.systemPackages = with pkgs; [ xorg.setxkbmap ];
 
@@ -24,11 +26,6 @@
   security.sudo = {
     enable = true;
     wheelNeedsPassword = true;
-  };
-
-  services.mysql = {
-    enable = true;
-    package = pkgs.mysql84;
   };
 
   users = {

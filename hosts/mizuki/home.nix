@@ -1,14 +1,11 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
+  imports = [ ./development.nix ];
   home = {
-    username = "avery";
-    homeDirectory = "/home/avery";
-    stateVersion = "24.11";
+    stateVersion = lib.mkForce "24.11";
     packages = with pkgs; [ python3 ];
-    sessionVariables.EDITOR = "nvim";
   };
-  programs.home-manager.enable = true;
-  programs.zsh.initExtra = ''
-    setxkbmap -layout es -variant dvorak
+  programs.zsh.initContent = lib.mkAfter ''
+    setxkbmap -layout es -variant dvorak > /dev/null
     WAYLAND_DISPLAY="wayland-1"
   '';
 }
