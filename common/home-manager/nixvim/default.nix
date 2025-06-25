@@ -1,13 +1,12 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
     ./completion.nix
+    ./fzf-lua.nix
     ./lsp.nix
     ./lualine.nix
     ./neo-tree.nix
     ./none-ls.nix
     ./treesitter.nix
-    ./telescope.nix
-    ./trouble.nix
   ];
   programs.nixvim = {
     enable = true;
@@ -43,7 +42,5 @@
       web-devicons.enable = true;
       nvim-autopairs.enable = true;
     };
-
-    extraPlugins = with pkgs.vimPlugins; [ nvim-web-devicons ];
   };
 }
