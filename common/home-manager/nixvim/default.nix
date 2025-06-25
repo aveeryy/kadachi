@@ -6,6 +6,7 @@
     ./lualine.nix
     ./neo-tree.nix
     ./none-ls.nix
+    ./spider.nix
     ./treesitter.nix
   ];
   programs.nixvim = {
