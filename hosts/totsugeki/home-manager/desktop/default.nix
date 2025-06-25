@@ -7,7 +7,6 @@
     ./gtk.nix
     ./hypr
     ./kitty.nix
-    ./sway.nix
     ./qt.nix
   ];
   dconf.settings = {
