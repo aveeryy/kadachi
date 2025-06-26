@@ -7,16 +7,14 @@ in {
   services.minecraft-servers = {
     enable = true;
     eula = true;
-    # dataDir = "/mnt/ssd-01/minecraft";
-    # dataDir = "/mnt/Datos/minecraft";
     environmentFile = config.sops.templates."minecraft.env".path;
     managementSystem = {
       tmux.enable = false;
       systemd-socket.enable = true;
     };
-    servers.main = {
+    servers.fabric_prod = {
       enable = true;
-      package = pkgs.paperServers.paper-1_21_6;
+      package = pkgs.fabricServers.fabric-1_21_6;
       enableReload = true;
       autoStart = false;
       jvmOpts =
@@ -29,30 +27,48 @@ in {
         enforce-whitelist = true;
         hide-online-players = true;
         max-players = 10;
-        motd = "NixOS server";
+        motd = "NixOS Server";
         online-mode = true;
+        pause-when-empty-seconds = 60;
         pvp = true;
         "rcon.password" = "@MINECRAFT_RCON_PASSWORD@";
         server-port = 13914;
+        simulation-distance = 10;
         spawn-protection = 0;
+        view-distance = 10;
         white-list = true;
       };
       symlinks = {
         "server-icon.png" = serverIcon;
-        "plugins/EssentialsX.jar" = pkgs.fetchurl {
+        "mods/Fabric-API.jar" = pkgs.fetchurl {
           url =
-            "https://github.com/EssentialsX/Essentials/releases/download/2.21.1/EssentialsX-2.21.1.jar";
-          hash = "sha256-Fd1/hxPmE6Hd6tp5LbZgqIyL9pAVvBPxqfnjf21Ez1o=";
+            "https://cdn.modrinth.com/data/P7dR8mSH/versions/b2dnY6PN/fabric-api-0.128.0%2B1.21.6.jar";
+          sha512 =
+            "c668402e1a877c2d572d16e31e6d2783be27a80993fa83bf040ea2007994518786bd3140dcea15334f8ee1630836292b8ae4d41444e47cba0ac43d05f1eb1e78";
         };
-        "plugins/EssentialsX-Chat.jar" = pkgs.fetchurl {
+        "mods/Ferrite-Core.jar" = pkgs.fetchurl {
           url =
-            "https://github.com/EssentialsX/Essentials/releases/download/2.21.1/EssentialsXChat-2.21.1.jar";
-          hash = "sha256-M3ThA5j5DI1qTdNw8OvLIprxRCD5q5ya/AfO5jGyU6Y=";
+            "https://cdn.modrinth.com/data/uXXizFIs/versions/CtMpt7Jr/ferritecore-8.0.0-fabric.jar";
+          sha512 =
+            "131b82d1d366f0966435bfcb38c362d604d68ecf30c106d31a6261bfc868ca3a82425bb3faebaa2e5ea17d8eed5c92843810eb2df4790f2f8b1e6c1bdc9b7745";
         };
-        "plugins/TabTPS.jar" = pkgs.fetchurl {
+        "mods/Lithium.jar" = pkgs.fetchurl {
           url =
-            "https://cdn.modrinth.com/data/cUhi3iB2/versions/DlhrDe98/tabtps-spigot-1.3.27.jar";
-          hash = "sha256-pWmcNKB0iAlVK4Ki5/vBOv8npOMyrUdxJ/7TbPXlpcI=";
+            "https://cdn.modrinth.com/data/gvQqBUqZ/versions/XWGBHYcB/lithium-fabric-0.17.0%2Bmc1.21.6.jar";
+          sha512 =
+            "a8d6a8b69ae2b10dd0cf8f8149260d5bdbd2583147462bad03380014edd857852972b967d97df69728333d8836b1e9db8997712ea26365ddb8a05b8c845c6534";
+        };
+        "mods/Krypton.jar" = pkgs.fetchurl {
+          url =
+            "https://cdn.modrinth.com/data/fQEb0iXm/versions/neW85eWt/krypton-0.2.9.jar";
+          sha512 =
+            "2e2304b1b17ecf95783aee92e26e54c9bfad325c7dfcd14deebf9891266eb2933db00ff77885caa083faa96f09c551eb56f93cf73b357789cb31edad4939ffeb";
+        };
+        "mods/spark.jar" = pkgs.fetchurl {
+          url =
+            "https://cdn.modrinth.com/data/l6YH9Als/versions/qW2mPW6y/spark-1.10.139-fabric.jar";
+          sha512 =
+            "cd991acee93c074912f2934b5a9c3967be2f1e9157ca5a7254fd3fce8d280c5aa9a3ab06d3ee19f06c5111181853cf12048d000bf8b9f722c902c080fe258a97";
         };
       };
       files = {
@@ -66,28 +82,6 @@ in {
           name = "engullejamones";
           uuid = "b65a1bc3-c6a0-4e8c-99b8-3538cfec0cfc";
         }];
-        "plugins/TabTPS/display-configs/default.conf" = pkgs.writeTextFile {
-          name = "tabtps-display-config.conf";
-          text = ''
-            action-bar-settings {
-                allow=false
-                enable-on-login=false
-            }
-            boss-bar-settings {
-                allow=false
-                enable-on-login=false
-            }
-            permission=""
-            tab-settings {
-                allow=true
-                enable-on-login=true
-                footer-modules="ping,tps,mspt,cpu,memory"
-                header-modules=""
-                separator="<br>"
-                theme=default
-            }
-          '';
-        };
       };
     };
   };
