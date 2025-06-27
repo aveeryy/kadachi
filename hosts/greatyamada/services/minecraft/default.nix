@@ -1,8 +1,18 @@
 { config, pkgs, inputs, ... }:
-let serverIcon = ./server-icon.png;
+let
+  serverIcon = ./server-icon.png;
+  players = import ./players.nix;
+  ports = import ../_port-definitions.nix;
+  playersToOps = players:
+    map (player: {
+      name = player.name;
+      uuid = player.uuid;
+      level = 4;
+      bypassesPlayerLimit = true;
+    }) players;
 in {
   environment.systemPackages = with pkgs; [ mcrcon ];
-  networking.firewall.allowedTCPPorts = [ 13914 ];
+  networking.firewall.allowedTCPPorts = with ports.tcp; [ minecraft ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
   services.minecraft-servers = {
     enable = true;
@@ -27,12 +37,13 @@ in {
         enforce-whitelist = true;
         hide-online-players = true;
         max-players = 10;
-        motd = "NixOS Server";
+        motd =
+          "NixOS Server (${config.services.minecraft-servers.servers.fabric_prod.package.name})";
         online-mode = true;
         pause-when-empty-seconds = 60;
         pvp = true;
         "rcon.password" = "@MINECRAFT_RCON_PASSWORD@";
-        server-port = 13914;
+        server-port = ports.tcp.minecraft;
         simulation-distance = 10;
         spawn-protection = 0;
         view-distance = 10;
@@ -72,16 +83,8 @@ in {
         };
       };
       files = {
-        "ops.json".value = [{
-          name = "engullejamones";
-          uuid = "b65a1bc3-c6a0-4e8c-99b8-3538cfec0cfc";
-          level = 4;
-          bypassesPlayerLimit = true;
-        }];
-        "whitelist.json".value = [{
-          name = "engullejamones";
-          uuid = "b65a1bc3-c6a0-4e8c-99b8-3538cfec0cfc";
-        }];
+        "ops.json".value = playersToOps (with players; [ engullejamones ]);
+        "whitelist.json".value = with players; [ engullejamones ];
       };
     };
   };
