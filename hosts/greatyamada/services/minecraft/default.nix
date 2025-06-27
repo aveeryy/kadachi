@@ -1,4 +1,3 @@
-{ config, pkgs, inputs, ... }:
 { config, lib, pkgs, inputs, ... }:
 let
   serverIcon = ./server-icon.png;
