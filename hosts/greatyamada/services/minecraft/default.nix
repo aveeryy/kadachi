@@ -1,8 +1,21 @@
 { config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   serverIcon = ./server-icon.png;
   players = import ./players.nix;
   ports = import ../_port-definitions.nix;
+  packageNameToHumanString = packageName:
+    (let
+      getSections = packageName:
+        builtins.match
+        "^minecraft-server-([0-9a-zA-Z.]*)-([a-zA-Z-]*)-([0-9a-zA-Z.]*)$"
+        packageName;
+      sections = (getSections packageName);
+      getSection = idx:
+        if sections == null then "Unknown" else builtins.elemAt sections idx;
+    in "Minecraft Server ${getSection 0} with ${
+      lib.strings.toSentenceCase (getSection 1)
+    } ${getSection 2}");
   playersToOps = players:
     map (player: {
       name = player.name;
@@ -37,8 +50,10 @@ in {
         enforce-whitelist = true;
         hide-online-players = true;
         max-players = 10;
-        motd =
-          "NixOS Server (${config.services.minecraft-servers.servers.fabric_prod.package.name})";
+        motd = "${
+            packageNameToHumanString
+            config.services.minecraft-servers.servers.fabric_prod.package.name
+          } on ${config.networking.hostName}";
         online-mode = true;
         pause-when-empty-seconds = 60;
         pvp = true;
