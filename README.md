@@ -1,4 +1,4 @@
----
+- [${packageName}]--
 gitea: none
 include_toc: true
 ---
@@ -11,7 +11,7 @@ include_toc: true
 
 ### 🐬 Totsugeki | Desktop
 
-Desktop with NixOS as a primary system and Windows 11 N as secondary. Has secure boot support.
+Main desktop configuration
 
 #### Programs
 
@@ -49,21 +49,24 @@ Desktop with NixOS as a primary system and Windows 11 N as secondary. Has secure
 
 #### Services
 
-**Still a WIP**
-
 |         Name | Type                           | Public-facing |
 | -----------: | :----------------------------- | :-----------: |
 |        Nginx | Web server and reverse proxy   |       x       |
-|   PostgreSQL | Database engine                |
+|         ACME | Automatic SSL cert renew       |               |
+|       Inadyn | Automatic DDNS updates         |               |
+|   PostgreSQL | Database engine                |               |
+|     PgAdmin4 | PostgreSQL management tool     |               |
 |      Forgejo | Git repository                 |       x       |
-|      PaperMC | Minecraft server               |       x       |
+|       Fabric | Minecraft server               |       x       |
 | AdGuard Home | DNS server and content blocker |               |
-|    Invidious | YouTube proxy                  |               |
 |      SearXNG | Metasearch engine              |               |
 |     Radicale | CalDAV / CardDAV server        |               |
+|     Jellyfin | Media server                   |       x       |
+|        Koito | Scrobbler                      |       x       |
+|  Vaultwarden | Password manager               |               |
 
-### 🎀 Mizuki | WSL development setup
+### 🎀 Mizuki | Development on WSL
 
-An experimental configuration for software development inside Windows Subsystem for Linux.
+Windows Subsystem for Linux configuration
 
-Inherits the Nixvim configuration from totsugeki
+Uses the common Neovim and zsh config
