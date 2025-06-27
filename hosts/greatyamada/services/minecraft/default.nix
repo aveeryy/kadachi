@@ -6,13 +6,14 @@ let
   packageNameToHumanString = packageName:
     (let
       getSections = packageName:
+        # Probably only matches Fabric servers, change as needed
         builtins.match
         "^minecraft-server-([0-9a-zA-Z.]*)-([a-zA-Z-]*)-([0-9a-zA-Z.]*)$"
         packageName;
       sections = (getSections packageName);
       getSection = idx:
         if sections == null then "Unknown" else builtins.elemAt sections idx;
-    in "Minecraft Server ${getSection 0} with ${
+    in "Minecraft ${getSection 0} with ${
       lib.strings.toSentenceCase (getSection 1)
     } ${getSection 2}");
   playersToOps = players:
@@ -98,7 +99,7 @@ in {
       };
       files = {
         "ops.json".value = playersToOps (with players; [ engullejamones ]);
-        "whitelist.json".value = with players; [ engullejamones ];
+        "whitelist.json".value = with players; [ engullejamones dankoszz ];
       };
     };
   };
