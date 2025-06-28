@@ -30,6 +30,7 @@ in {
   services.minecraft-servers = {
     enable = true;
     eula = true;
+    dataDir = "/mnt/ssd-01/minecraft";
     environmentFile = config.sops.templates."minecraft.env".path;
     managementSystem = {
       tmux.enable = false;
