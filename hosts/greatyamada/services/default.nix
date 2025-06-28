@@ -6,7 +6,7 @@
     ./inadyn.nix
     ./jellyfin.nix
     ./koito.nix
-    # ./minecraft
+    ./minecraft
     ./nginx.nix
     ./pgadmin.nix
     ./postgresql.nix
