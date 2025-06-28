@@ -58,8 +58,6 @@
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   fonts = {
     packages = with pkgs; [
       inter
