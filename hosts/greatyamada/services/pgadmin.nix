@@ -6,8 +6,9 @@ in {
   services = {
     pgadmin = {
       enable = true;
-      initialEmail = "avery@rcia.dev";
-      initialPasswordFile = "/etc/nixos/a.txt";
+      initialEmail = "avery@localhost";
+      initialPasswordFile = "/dev/null";
+      minimumPasswordLength = 0;
       port = _portDefinitions.pgadmin;
     };
     nginx.virtualHosts."pgadmin.rcia.dev" = {
