@@ -1,6 +1,6 @@
 { lib, pkgs, ... }: {
 
-  imports = [ ./filesystems.nix ./steam.nix ];
+  imports = [ ./filesystems.nix ];
 
   boot = {
     kernelModules = [ "kvm-amd" ];
@@ -18,10 +18,6 @@
         configurationLimit = 10;
         consoleMode = "max";
         editor = false;
-        windows."11" = {
-          title = "Windows 11 Pro N";
-          efiDeviceHandle = "HD2d";
-        };
       };
       efi.canTouchEfiVariables = true;
     };
@@ -35,8 +31,13 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 8000 42595 1420 7777 8080 9501 ];
-      allowedUDPPorts = [ 24642 ];
+      allowedTCPPorts = [
+        42595 # qBitTorrent
+        7777 # Terraria
+      ];
+      allowedUDPPorts = [
+        24642 # Stardew Valley
+      ];
     };
     hostName = "totsugeki";
     networkmanager.enable = true;
@@ -84,15 +85,18 @@
       gpuOverclock.enable = true;
     };
     dconf.enable = true;
-    nix-ld.enable = true;
     hyprland.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+    };
     virt-manager.enable = true;
   };
 
   security.polkit = { enable = true; };
 
   xdg.portal = {
-    config.common = { default = "gtk"; };
+    config.common.default = "gtk";
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
@@ -114,10 +118,6 @@
       };
     };
     gvfs.enable = true;
-    jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;
