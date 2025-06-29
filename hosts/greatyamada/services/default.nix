@@ -11,6 +11,7 @@
     ./pgadmin.nix
     ./postgresql.nix
     ./radicale.nix
+    ./samba.nix
     ./searxng.nix
     ./vaultwarden.nix
     ./wireguard.nix
