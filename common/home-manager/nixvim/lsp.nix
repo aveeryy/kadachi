@@ -3,16 +3,6 @@
     lsp = {
       enable = true;
       keymaps.lspBuf."<leader>ca" = "code_action";
-      luaConfig.post = ''
-        vim.diagnostic.config({ 
-          signs = {
-              Error = "",
-              Warn = "",
-              Hint = "",
-              Info = ""
-          }
-        });
-      '';
       servers = {
         cssls.enable = true;
         dartls.enable = true;
