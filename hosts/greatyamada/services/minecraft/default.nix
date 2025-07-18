@@ -116,12 +116,34 @@ in {
       };
     };
     nginx.virtualHosts."minecraft.rcia.dev" = {
-      locations."/".return = "307 https://minecraft.rcia.dev/fabric_prod/";
-      locations."/fabric_prod".return =
-        "308 https://minecraft.rcia.dev/fabric_prod/";
-      locations."~/fabric_prod/(.*)$".proxyPass = "http://127.0.0.1:${
-          toString ports.tcp.minecraft-fabric-prod-bluemap
-        }/$1";
+      extraConfig = "gzip_static always;";
+      locations = {
+        "/".return = "307 scheme://$host/fabric_prod/";
+        "/fabric_prod".return = "308 $scheme://$host/fabric_prod/";
+        "/fabric_prod/" = {
+          alias =
+            "${config.services.minecraft-servers.dataDir}/fabric_prod/bluemap/web/";
+          extraConfig = "error_page 404 = @no-content;";
+        };
+        "~* ^/fabric_prod/(maps/[^/\\s]*/live/.*)" = {
+          proxyPass = "http://127.0.0.1:${
+              toString ports.tcp.minecraft-fabric-prod-bluemap
+            }/$1";
+          extraConfig = ''
+            error_page 502 504 = @server-offline;
+          '';
+        };
+        "@no-content" = {
+          return = "204";
+          extraConfig = "internal;";
+        };
+        "@server-offline" = {
+          root =
+            "${config.services.minecraft-servers.dataDir}/fabric_prod/bluemap/web";
+          tryFiles = "$uri =410";
+          extraConfig = "internal;";
+        };
+      };
       forceSSL = true;
       useACMEHost = "rcia.dev";
     };
@@ -135,5 +157,5 @@ in {
       owner = "minecraft";
     };
   };
-  users.groups.minecraft.members = [ "avery" ];
+  users.groups.minecraft.members = [ "avery" "nginx" ];
 }
