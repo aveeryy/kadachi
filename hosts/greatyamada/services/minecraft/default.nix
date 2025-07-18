@@ -100,7 +100,11 @@ in {
       };
       files = {
         "ops.json".value = playersToOps (with players; [ engullejamones ]);
-        "whitelist.json".value = with players; [ engullejamones dankoszz ];
+        "whitelist.json".value = with players; [
+          engullejamones
+          dankoszz
+          Santos_H
+        ];
       };
     };
   };
