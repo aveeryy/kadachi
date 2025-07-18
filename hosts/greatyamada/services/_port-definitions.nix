@@ -1,7 +1,7 @@
 {
   tcp = {
     minecraft = 13914;
-
+    minecraft-fabric-prod-bluemap = 8100;
   };
   adguardhome-dns = 53;
   adguardhome-http = 3001;
