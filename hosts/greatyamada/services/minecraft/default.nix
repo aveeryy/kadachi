@@ -39,7 +39,7 @@ in {
       };
       servers.fabric_prod = {
         enable = true;
-        package = pkgs.fabricServers.fabric-1_21_6;
+        package = pkgs.fabricServers.fabric-1_21_8;
         enableReload = true;
         autoStart = false;
         jvmOpts =
@@ -70,9 +70,9 @@ in {
           "server-icon.png" = serverIcon;
           "mods/Fabric-API.jar" = pkgs.fetchurl {
             url =
-              "https://cdn.modrinth.com/data/P7dR8mSH/versions/b2dnY6PN/fabric-api-0.128.0%2B1.21.6.jar";
+              "https://cdn.modrinth.com/data/P7dR8mSH/versions/X2hTodix/fabric-api-0.129.0%2B1.21.8.jar";
             sha512 =
-              "c668402e1a877c2d572d16e31e6d2783be27a80993fa83bf040ea2007994518786bd3140dcea15334f8ee1630836292b8ae4d41444e47cba0ac43d05f1eb1e78";
+              "471babff84b36bd0f5051051bc192a97136ba733df6a49f222cb67a231d857eb4b1c5ec8dea605e146f49f75f800709f8836540a472fe8032f9fbd3f6690ec3d";
           };
           "mods/Ferrite-Core.jar" = pkgs.fetchurl {
             url =
@@ -82,9 +82,9 @@ in {
           };
           "mods/Lithium.jar" = pkgs.fetchurl {
             url =
-              "https://cdn.modrinth.com/data/gvQqBUqZ/versions/XWGBHYcB/lithium-fabric-0.17.0%2Bmc1.21.6.jar";
+              "https://cdn.modrinth.com/data/gvQqBUqZ/versions/pDfTqezk/lithium-fabric-0.18.0%2Bmc1.21.8.jar";
             sha512 =
-              "a8d6a8b69ae2b10dd0cf8f8149260d5bdbd2583147462bad03380014edd857852972b967d97df69728333d8836b1e9db8997712ea26365ddb8a05b8c845c6534";
+              "6c69950760f48ef88f0c5871e61029b59af03ab5ed9b002b6a470d7adfdf26f0b875dcd360b664e897291002530981c20e0b2890fb889f29ecdaa007f885100f";
           };
           "mods/Krypton.jar" = pkgs.fetchurl {
             url =
@@ -104,6 +104,12 @@ in {
             sha512 =
               "a76a2b1019efe35175f8df91f69ec7ec58e26f148ea9bba4f1eb9bb1b16ffa6f395b76c1362f452d33f94f0f1045403da3b04f25bc6d40feadbc58f64d34f1e4";
           };
+          "mods/TabTPS.jar" = pkgs.fetchurl {
+            url =
+              "https://cdn.modrinth.com/data/cUhi3iB2/versions/w0oIAEFo/tabtps-fabric-mc1.21.8-1.3.28.jar";
+            sha512 =
+              "b29e19114efdadeadf5fedbf5b743aa35f36ab6fa8c32a1cbaa6591106677a3163801ba8010142899822298fefebb9621aa5db54db49ecc58719b7ef5dcbde85";
+          };
         };
         files = {
           "ops.json".value = playersToOps (with players; [ engullejamones ]);
@@ -112,6 +118,28 @@ in {
             dankoszz
             Santos_H
           ];
+          "config/TabTPS/display-configs/default.conf" = pkgs.writeTextFile {
+            name = "tabtps-display-config.conf";
+            text = ''
+              action-bar-settings {
+                  allow=false
+                  enable-on-login=false
+              }
+              boss-bar-settings {
+                  allow=false
+                  enable-on-login=false
+              }
+              permission=""
+              tab-settings {
+                  allow=true
+                  enable-on-login=true
+                  footer-modules="ping,mspt"
+                  header-modules=""
+                  separator="<br>"
+                  theme=default
+              }
+            '';
+          };
         };
       };
     };

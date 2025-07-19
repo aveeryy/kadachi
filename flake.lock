@@ -403,11 +403,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750823009,
-        "narHash": "sha256-cawpGKdtw+2ai/fqvz+B8ge/iaX2CzbcDb39GiW5gt4=",
+        "lastModified": 1752902428,
+        "narHash": "sha256-lX1D0TPT4xPXLCoNIssdEmPtAwDrpDyZVU/+J/L86Xo=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "67cc1a9c77957e6749f38851c04ffbee6e0d4a4d",
+        "rev": "0004c25356ce4f89b311b9f26ac22fa13c64ebf2",
         "type": "github"
       },
       "original": {
