@@ -150,9 +150,9 @@ in {
             general = {
               botToken = "@MINECRAFT_DISCORD_BOT@";
               botChannel = "1320828973499809893";
-              botStatusName = "%online% jugadores conectados";
-              botStatusNameSingular = "1 jugador conectado";
-              botStatusNameEmpty = "Nadie conectado";
+              botStatusName = "%online% personas en línea";
+              botStatusNameSingular = "1 persona en línea";
+              botStatusNameEmpty = "0 personas en línea";
             };
             votifier.enabled = false;
             webhook = {
