@@ -166,7 +166,7 @@ in {
     nginx.virtualHosts."minecraft.rcia.dev" = {
       extraConfig = "gzip_static always;";
       locations = {
-        "/".return = "307 scheme://$host/fabric_prod/";
+        "/".return = "307 $scheme://$host/fabric_prod/";
         "/fabric_prod".return = "308 $scheme://$host/fabric_prod/";
         "/fabric_prod/" = {
           alias =
