@@ -110,6 +110,12 @@ in {
             sha512 =
               "b29e19114efdadeadf5fedbf5b743aa35f36ab6fa8c32a1cbaa6591106677a3163801ba8010142899822298fefebb9621aa5db54db49ecc58719b7ef5dcbde85";
           };
+          "mods/DiscordIntegration.jar" = pkgs.fetchurl {
+            url =
+              "https://cdn.modrinth.com/data/rbJ7eS5V/versions/JOLMTAVo/dcintegration-fabric-MC1.21.6-3.1.0.1.jar";
+            sha512 =
+              "fbb6bdf5b6461db1018d1b7a6c5eb8ba42cd09035c304aad389f1a1877514b71fd9c87344ef05ad92efe342b4288292fc10b234bf53f5168f3943b3c0cae2504";
+          };
         };
         files = {
           "ops.json".value = playersToOps (with players; [ engullejamones ]);
@@ -139,6 +145,20 @@ in {
                   theme=default
               }
             '';
+          };
+          "config/Discord-Integration.toml".value = {
+            general = {
+              botToken = "@MINECRAFT_DISCORD_BOT@";
+              botChannel = "1320828973499809893";
+              botStatusName = "%online% jugadores conectados";
+              botStatusNameSingular = "1 jugador conectado";
+              botStatusNameEmpty = "Nadie conectado";
+            };
+            votifier.enabled = false;
+            webhook = {
+              enable = true;
+              serverName = "Servidor de Minecraft";
+            };
           };
         };
       };
@@ -177,10 +197,12 @@ in {
     };
   };
   sops = {
-    secrets."minecraft_rcon".owner = "minecraft";
+    secrets."minecraft/rcon".owner = "minecraft";
+    secrets."minecraft/discord_bot".owner = "minecraft";
     templates."minecraft.env" = {
       content = ''
-        MINECRAFT_RCON_PASSWORD=${config.sops.placeholder."minecraft_rcon"}
+        MINECRAFT_RCON_PASSWORD=${config.sops.placeholder."minecraft/rcon"}
+        MINECRAFT_DISCORD_BOT=${config.sops.placeholder."minecraft/discord_bot"}
       '';
       owner = "minecraft";
     };
