@@ -123,6 +123,7 @@ in {
             engullejamones
             dankoszz
             Santos_H
+            PableteOmg12
           ];
           "config/TabTPS/display-configs/default.conf" = pkgs.writeTextFile {
             name = "tabtps-display-config.conf";
