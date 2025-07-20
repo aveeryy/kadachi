@@ -43,11 +43,14 @@
       qdiskinfo
       mangohud
       heroic
-      mediainfo-gui
-      sound-juicer
       filen-desktop
       p7zip
       scrcpy
+      # Media management tools
+      mediainfo-gui
+      sound-juicer
+      mkvtoolnix
+      handbrake
     ];
   };
   nixpkgs.config.allowUnfree = true;
