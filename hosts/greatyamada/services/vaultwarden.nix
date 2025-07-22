@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  portDefinitions = import ./_port-definitions.nix;
+  ports = import ./_port-definitions.nix;
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
 in {
   services = {
@@ -10,7 +10,7 @@ in {
       config = {
         domain = "https://vaultwarden.rcia.dev";
         rocketAddress = "127.0.0.1";
-        rocketPort = portDefinitions.vaultwarden;
+        rocketPort = ports.tcp.vaultwarden;
         showPasswordHint = false;
         signupsAllowed = false;
       };
@@ -18,7 +18,7 @@ in {
     };
     nginx.virtualHosts."vaultwarden.rcia.dev" = {
       locations."/".proxyPass =
-        "http://localhost:${toString portDefinitions.vaultwarden}";
+        "http://localhost:${toString ports.tcp.vaultwarden}";
       forceSSL = true;
       useACMEHost = "rcia.dev";
       extraConfig = nginxLocalServiceConfig;

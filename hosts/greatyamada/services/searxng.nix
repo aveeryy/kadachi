@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  portDefinitions = import ./_port-definitions.nix;
+  ports = import ./_port-definitions.nix;
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
 in {
   services = {
@@ -12,13 +12,13 @@ in {
       # runInUwsgi = true;
       # uwsgiConfig = {
       #   socket = "/run/searx/searxng.sock";
-      #   http = ":${toString portDefinitions.searxng}";
+      #   http = ":${toString ports.searxng}";
       #   chmod-socket = "660";
       # };
       settings = {
         base_url = "https://searxng.rcia.dev";
         bind_address = "127.0.0.1";
-        port = portDefinitions.searxng;
+        port = ports.tcp.searxng;
         public_instance = false;
         limiter = false;
       };
@@ -26,7 +26,7 @@ in {
     };
     nginx.virtualHosts."searxng.rcia.dev" = {
       locations."/".proxyPass =
-        "http://127.0.0.1:${toString portDefinitions.searxng}";
+        "http://127.0.0.1:${toString ports.tcp.searxng}";
       extraConfig = nginxLocalServiceConfig;
       forceSSL = true;
       useACMEHost = "rcia.dev";

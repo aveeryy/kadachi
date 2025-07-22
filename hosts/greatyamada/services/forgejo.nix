@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  portDefinitions = import ./_port-definitions.nix;
+  ports = import ./_port-definitions.nix;
   arrayToSecrets = elements:
     builtins.listToAttrs (map (key: {
       name = "forgejo/${key}";
@@ -13,7 +13,7 @@ in {
       package = pkgs.forgejo;
       database = {
         type = "postgres";
-        port = portDefinitions.postgresql;
+        port = ports.tcp.postgresql;
         passwordFile = "/run/secrets/forgejo/database_password";
       };
       secrets = {
@@ -30,7 +30,7 @@ in {
         server = {
           DOMAIN = "git.rcia.dev";
           ROOT_URL = "https://git.rcia.dev";
-          HTTP_PORT = portDefinitions.forgejo-http;
+          HTTP_PORT = ports.tcp.forgejo;
           DISABLE_SSH = true;
           LFS_START_SERVER = true;
         };
@@ -43,7 +43,7 @@ in {
     };
     nginx.virtualHosts."git.rcia.dev" = {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:${toString portDefinitions.forgejo-http}";
+        proxyPass = "http://127.0.0.1:${toString ports.tcp.forgejo}";
       };
       forceSSL = true;
       useACMEHost = "rcia.dev";

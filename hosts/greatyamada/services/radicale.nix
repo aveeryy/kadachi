@@ -1,14 +1,13 @@
 { ... }:
 let
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
-  portDefinitions = import ./_port-definitions.nix;
+  ports = import ./_port-definitions.nix;
 in {
   services = {
     radicale = {
       enable = true;
       settings = {
-        server.hosts =
-          [ "127.0.0.1:${toString portDefinitions.radicale-http}" ];
+        server.hosts = [ "127.0.0.1:${toString ports.tcp.radicale}" ];
         auth = {
           type = "htpasswd";
           htpasswd_filename = "/var/lib/radicale/users";
@@ -18,8 +17,7 @@ in {
     };
     nginx.virtualHosts."radicale.rcia.dev" = {
       locations."/" = {
-        proxyPass =
-          "http://127.0.0.1:${toString portDefinitions.radicale-http}";
+        proxyPass = "http://127.0.0.1:${toString ports.tcp.radicale}";
       };
       forceSSL = true;
       useACMEHost = "rcia.dev";

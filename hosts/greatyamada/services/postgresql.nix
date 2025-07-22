@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let portDefinitions = import ./_port-definitions.nix;
+let ports = import ./_port-definitions.nix;
 in {
   services.postgresql = {
     enable = true;
@@ -7,7 +7,7 @@ in {
     enableTCPIP = true;
     dataDir =
       "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
-    settings.port = portDefinitions.postgresql;
+    settings.port = ports.tcp.postgresql;
     authentication = pkgs.lib.mkOverride 10 ''
       local all all trust
       host all all 127.0.0.1/32 trust

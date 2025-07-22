@@ -1,6 +1,6 @@
 { ... }:
 let
-  _portDefinitions = import ./_port-definitions.nix;
+  ports = import ./_port-definitions.nix;
   nginxLocalConfig = import ./nginx-local-config.nix;
 in {
   services = {
@@ -9,11 +9,11 @@ in {
       initialEmail = "avery@localhost";
       initialPasswordFile = "/dev/null";
       minimumPasswordLength = 0;
-      port = _portDefinitions.pgadmin;
+      port = ports.tcp.pgadmin;
     };
     nginx.virtualHosts."pgadmin.rcia.dev" = {
       locations."/".proxyPass =
-        "http://localhost:${toString _portDefinitions.pgadmin}";
+        "http://localhost:${toString ports.tcp.pgadmin}";
       forceSSL = true;
       useACMEHost = "rcia.dev";
       extraConfig = nginxLocalConfig;

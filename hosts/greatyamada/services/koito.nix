@@ -1,7 +1,5 @@
 { pkgs, lib, config, ... }:
-let
-  portDefinitions = import ./_port-definitions.nix;
-  nginxLocalConfig = import ./nginx-local-config.nix;
+let ports = import ./_port-definitions.nix;
 in {
   virtualisation.oci-containers.containers."koito" = {
     image = "gabehf/koito:latest";
@@ -12,7 +10,7 @@ in {
     };
     environmentFiles = [ config.sops.templates."koito.env".path ];
     volumes = [ "/mnt/hdd-01/koito:/etc/koito:rw" ];
-    ports = [ "${toString portDefinitions.koito}:4110/tcp" ];
+    ports = [ "${toString ports.tcp.koito}:4110/tcp" ];
     log-driver = "journald";
     extraOptions = [ "--network-alias=koito" "--network=koito_default" ];
   };
@@ -25,8 +23,7 @@ in {
   };
 
   services.nginx.virtualHosts."koito.rcia.dev" = {
-    locations."/".proxyPass =
-      "http://localhost:${toString portDefinitions.koito}";
+    locations."/".proxyPass = "http://localhost:${toString ports.tcp.koito}";
     forceSSL = true;
     useACMEHost = "rcia.dev";
   };

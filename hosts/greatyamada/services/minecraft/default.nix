@@ -25,7 +25,8 @@ let
     }) players;
 in {
   environment.systemPackages = with pkgs; [ mcrcon ];
-  networking.firewall.allowedTCPPorts = with ports.tcp; [ minecraft ];
+  networking.firewall.allowedTCPPorts = with ports.tcp.minecraft;
+    [ fabric_prod.server ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
   services = {
     minecraft-servers = {
@@ -60,7 +61,7 @@ in {
           pause-when-empty-seconds = 60;
           pvp = true;
           "rcon.password" = "@MINECRAFT_RCON_PASSWORD@";
-          server-port = ports.tcp.minecraft;
+          server-port = ports.tcp.minecraft.fabric_prod.server;
           simulation-distance = 10;
           spawn-protection = 0;
           view-distance = 10;
@@ -176,7 +177,7 @@ in {
         };
         "~* ^/fabric_prod/(maps/[^/\\s]*/live/.*)" = {
           proxyPass = "http://127.0.0.1:${
-              toString ports.tcp.minecraft-fabric-prod-bluemap
+              toString ports.tcp.minecraft.fabric-prod.bluemap
             }/$1";
           extraConfig = ''
             error_page 502 504 = @server-offline;

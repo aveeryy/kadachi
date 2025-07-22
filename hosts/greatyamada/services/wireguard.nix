@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let portDefinitions = import ./_port-definitions.nix;
+let ports = import ./_port-definitions.nix;
 in {
   networking = {
     nat = {
@@ -7,12 +7,12 @@ in {
       externalInterface = "enp5s0";
       internalInterfaces = [ "wg0" ];
     };
-    firewall.allowedUDPPorts = [ portDefinitions.wireguard ];
+    firewall.allowedUDPPorts = with ports.udp; [ wireguard ];
     wireguard = {
       enable = true;
       interfaces.wg0 = {
         ips = [ "10.10.0.1/24" ];
-        listenPort = portDefinitions.wireguard;
+        listenPort = ports.udp.wireguard;
         peers = [{
           allowedIPs = [ "10.10.0.2/32" ];
           name = "Pixel9a";
