@@ -19,7 +19,10 @@
   networking.hostName = "mizuki";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs = {
+    config.allowUnfree = true;
+    hostPlatform = lib.mkDefault "x86_64-linux";
+  };
 
   programs.zsh.enable = true;
 
