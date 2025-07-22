@@ -23,10 +23,12 @@ let
       level = 4;
       bypassesPlayerLimit = true;
     }) players;
+  portsToOpen = map (server: server.serverProperties.server-port)
+    (lib.attrValues (lib.filterAttrs (_: server: server.enable)
+      config.services.minecraft-servers.servers));
 in {
   environment.systemPackages = with pkgs; [ mcrcon ];
-  networking.firewall.allowedTCPPorts = with ports.tcp.minecraft;
-    [ fabric_prod.server ];
+  networking.firewall.allowedTCPPorts = portsToOpen;
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
   services = {
     minecraft-servers = {
