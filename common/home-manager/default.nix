@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./development.nix ./zsh.nix ];
+  imports = [ ./development.nix ./scripts ./zsh.nix ];
   home = {
     username = "avery";
     homeDirectory = "/home/avery";
