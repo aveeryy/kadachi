@@ -4,8 +4,8 @@ let
   nginxLocalServiceConfig = import ./nginx-local-config.nix;
 in {
   networking.firewall = {
-    allowedTCPPorts = with ports.tcp.adguardhome; [ dns ];
-    allowedUDPPorts = with ports.udp.adguardhome; [ dns dhcp ];
+    allowedTCPPorts = with ports.tcp.adguardhome; [ dns dns_over_tls ];
+    allowedUDPPorts = with ports.udp.adguardhome; [ dns dhcp dns_over_quic ];
   };
   services = {
     adguardhome = {
@@ -26,6 +26,15 @@ in {
           upstream_dns = [ "https://dns10.quad9.net/dns-query" ];
           bootstrap_dns =
             [ "9.9.9.10" "149.112.112.10" "2620:fe::10" "2620:fe::fe:10" ];
+        };
+        tls = {
+          enabled = true;
+          server_name = "dns.rcia.dev";
+          port_https = ports.tcp.adguardhome.https;
+          port_dns_over_tls = ports.tcp.adguardhome.dns_over_tls;
+          port_dns_over_quic = ports.udp.adguardhome.dns_over_quic;
+          certificate_path = "/var/lib/acme/rcia.dev/fullchain.pem";
+          private_key_path = "/var/lib/acme/rcia.dev/key.pem";
         };
         dhcp = {
           enabled = true;
@@ -266,9 +275,10 @@ in {
     nginx.virtualHosts."dns.rcia.dev" = {
       forceSSL = true;
       locations."/".proxyPass =
-        "http://127.0.0.1:${toString ports.tcp.adguardhome.http}";
+        "https://127.0.0.1:${toString ports.tcp.adguardhome.https}";
       extraConfig = nginxLocalServiceConfig;
       useACMEHost = "rcia.dev";
     };
   };
+  users.groups.nginx.members = [ "adguardhome" ];
 }

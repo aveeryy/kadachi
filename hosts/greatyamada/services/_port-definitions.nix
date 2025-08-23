@@ -3,6 +3,8 @@
     adguardhome = {
       dns = 53;
       http = 3001;
+      https = 4430;
+      dns_over_tls = 853;
     };
     forgejo = 3000;
     jellyfin = 8096;
@@ -24,6 +26,7 @@
     adguardhome = {
       dns = 53;
       dhcp = 67;
+      dns_over_quic = 853;
     };
     wireguard = 51820;
   };
