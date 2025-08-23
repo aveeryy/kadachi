@@ -179,7 +179,7 @@ in {
         };
         "~* ^/fabric_prod/(maps/[^/\\s]*/live/.*)" = {
           proxyPass = "http://127.0.0.1:${
-              toString ports.tcp.minecraft.fabric-prod.bluemap
+              toString ports.tcp.minecraft.fabric_prod.bluemap
             }/$1";
           extraConfig = ''
             error_page 502 504 = @server-offline;
