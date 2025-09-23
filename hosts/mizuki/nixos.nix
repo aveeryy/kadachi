@@ -16,7 +16,10 @@
     };
   };
 
-  networking.hostName = "mizuki";
+  networking = {
+    hostName = "mizuki";
+    nameservers = [ "9.9.9.9" ];
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs = {
@@ -39,6 +42,7 @@
   wsl = {
     enable = true;
     defaultUser = "avery";
+    wslConf.network.generateResolvConf = false;
   };
 
   virtualisation.docker.enable = true;
