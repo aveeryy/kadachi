@@ -18,7 +18,7 @@
 
   networking = {
     hostName = "mizuki";
-    nameservers = [ "9.9.9.9" ];
+    nameservers = [ "1.1.1.1" ];
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
