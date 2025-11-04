@@ -1,13 +1,22 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+let
+  patched_edid = pkgs.runCommand "patched_edid" { } ''
+    mkdir -p $out/lib/firmware/edid
+    cp ${./patched_edid.bin} $out/lib/firmware/edid/patched_edid.bin
+  '';
+in
+{
 
   imports = [ ./filesystems.nix ];
 
   hardware = {
+    firmware = [ patched_edid ];
     amdgpu.overdrive.enable = true;
   };
   boot = {
     kernelModules = [ "kvm-amd" ];
     kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelParams = [ "drm.edid_firmware=DP-1:edid/patched_edid.bin" ];
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
@@ -160,6 +169,10 @@
     resolved.enable = true;
     udisks2.enable = true;
     udev.extraRules = ''
+      # Fix for https://gitlab.freedesktop.org/drm/amd/-/issues/1500
+      KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
+
+
       SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
       # Atmel DFU
       ### ATmega16U2
