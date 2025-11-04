@@ -51,9 +51,9 @@
       sound-juicer
       mkvtoolnix
       handbrake
+      (discord.override { withVencord = true; })
     ];
   };
   nixpkgs.config.allowUnfree = true;
-  services = { easyeffects.enable = true; };
   xdg.enable = true;
 }

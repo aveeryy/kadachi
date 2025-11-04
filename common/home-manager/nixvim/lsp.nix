@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.nixvim.plugins = {
     lsp = {
       enable = true;
@@ -22,7 +23,10 @@
           enable = true;
           installCargo = false;
           installRustc = false;
-          settings.rustfmt.extraArgs = [ "--edition" "2024" ];
+          settings.rustfmt.extraArgs = [
+            "--edition"
+            "2024"
+          ];
         };
         svelte.enable = true;
         volar = {
@@ -67,7 +71,11 @@
             client.server_capabilities.documentRangeFormattingProvider = false
           end
         '';
-        filetypes = [ "javascript" "typescript" "vue" ];
+        filetypes = [
+          "javascript"
+          "typescript"
+          "vue"
+        ];
         settings = {
           single_file_support = false;
           tsserver_plugins = [ "@vue/typescript-plugin" ];

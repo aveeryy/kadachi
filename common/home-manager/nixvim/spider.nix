@@ -1,7 +1,7 @@
 { ... }: {
   programs.nixvim.plugins.spider = {
     enable = true;
-    extraOptions = { subwordMovement = true; };
+    settings = { subwordMovement = true; };
     keymaps.motions = {
       b = "b";
       e = "e";

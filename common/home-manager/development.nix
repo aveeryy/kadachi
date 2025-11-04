@@ -4,7 +4,7 @@
   programs = {
     git = {
       enable = true;
-      extraConfig = {
+      settings = {
         credential = {
           credentialStore = "gpg";
           helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
@@ -13,13 +13,13 @@
         };
         init.defaultBranch = "main";
         merge.tool = "nvimdiff";
+        user.name = "Avery";
+        user.email = "aveeryy@protonmail.com";
       };
       signing = {
         key = "B684FD451B692E04";
         signByDefault = true;
       };
-      userEmail = "aveeryy@protonmail.com";
-      userName = "Avery";
     };
     lazygit = {
       enable = true;

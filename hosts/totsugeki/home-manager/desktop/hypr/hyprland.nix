@@ -34,13 +34,14 @@
       };
 
       decoration = {
-        rounding = 8;
+        rounding = 12;
         dim_inactive = true;
         dim_strength = 0.4;
         blur = {
           enabled = true;
-          size = 4;
-          passes = 3;
+          size = 8;
+          passes = 2;
+          xray = true;
         };
         shadow.enabled = false;
       };

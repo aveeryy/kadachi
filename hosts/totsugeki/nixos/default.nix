@@ -2,12 +2,20 @@
 
   imports = [ ./filesystems.nix ];
 
+  hardware = {
+    amdgpu.overdrive.enable = true;
+  };
   boot = {
     kernelModules = [ "kvm-amd" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    kernelParams = [ "video=DP-1:2560x1440@165" ];
-    initrd.availableKernelModules =
-      [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+    kernelPackages = pkgs.linuxPackages_cachyos;
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
     lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
@@ -24,7 +32,11 @@
     supportedFilesystems = [ "ntfs" ];
   };
 
-  environment.systemPackages = with pkgs; [ ffmpeg-full gparted sbctl ];
+  environment.systemPackages = with pkgs; [
+    ffmpeg-full
+    gparted
+    sbctl
+  ];
 
   hardware.i2c.enable = true;
 
@@ -80,10 +92,7 @@
 
   programs = {
     adb.enable = true;
-    corectrl = {
-      enable = true;
-      gpuOverclock.enable = true;
-    };
+    corectrl.enable = true;
     dconf.enable = true;
     hyprland.enable = true;
     steam = {
@@ -93,7 +102,9 @@
     virt-manager.enable = true;
   };
 
-  security.polkit = { enable = true; };
+  security.polkit = {
+    enable = true;
+  };
 
   xdg.portal = {
     config.common.default = "gtk";
@@ -129,6 +140,18 @@
         support32Bit = true;
       };
       pulse.enable = true;
+      extraConfig.pipewire = {
+        "10-quantum" = {
+          "default.clock.allowed-rates" = [
+            44100
+            48000
+            96000
+          ];
+          "default.clock.quantum" = 32;
+          "default.clock.min-quantum" = 32;
+          "default.clock.max-quantum" = 1024;
+        };
+      };
     };
     printing = {
       enable = true;
@@ -226,7 +249,11 @@
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="342d", ATTRS{idProduct}=="dfa0", TAG+="uaccess"
     '';
   };
-  systemd = { services = { NetworkManager-wait-online.enable = false; }; };
+  systemd = {
+    services = {
+      NetworkManager-wait-online.enable = false;
+    };
+  };
 
   sops = {
     defaultSopsFile = "/etc/nixos/secrets/greatyamada.yaml";
@@ -240,5 +267,10 @@
     spiceUSBRedirection.enable = true;
   };
 
-  users.users.avery.extraGroups = [ "corectrl" "libvirt" "kvm" "adbusers" ];
+  users.users.avery.extraGroups = [
+    "corectrl"
+    "libvirt"
+    "kvm"
+    "adbusers"
+  ];
 }

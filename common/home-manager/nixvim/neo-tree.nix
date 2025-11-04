@@ -6,169 +6,97 @@
     }];
     plugins.neo-tree = {
       enable = true;
-      closeIfLastWindow = true;
-      enableGitStatus = true;
-      enableDiagnostics = true;
-      sourceSelector = {
-        winbar = true;
-        statusline = false;
-        tabsLayout = "equal";
-        sources = [{
-          source = "filesystem";
-          displayName = " 󰉓  Archivos ";
-        }];
-      };
-      defaultComponentConfigs = {
-        container = { enableCharacterFade = true; };
-        indent = {
-          indentSize = 2;
-          padding = 1;
-          withMarkers = true;
-          indentMarker = "│";
-          lastIndentMarker = "└";
-          highlight = "NeoTreeIndentMarker";
-          withExpanders = true;
-          expanderCollapsed = "";
-          expanderExpanded = "";
-          expanderHighlight = "NeoTreeExpander";
+      settings = {
+        close_if_last_window = true;
+        enable_git_status = true;
+        enable_diagnostics = true;
+        source_selector = {
+          winbar = true;
+          statusline = false;
+          tabs_layout = "equal";
+          sources = [{
+            source = "filesystem";
+            display_name = " 󰉓  Archivos ";
+          }];
         };
-        icon = {
-          folderClosed = "";
-          folderOpen = "";
-          folderEmpty = "";
-          default = " ";
-          highlight = "NeoTreeFileIcon";
-        };
-        modified = {
-          symbol = "[+]";
-          highlight = "NeoTreeModified";
-        };
-        name = {
-          trailingSlash = false;
-          useGitStatusColors = true;
-          highlight = "NeoTreeFileName";
-        };
-        gitStatus = {
-          symbols = {
-            added = "";
-            modified = "";
-            deleted = "";
-            renamed = "";
-            untracked = "";
-            ignored = "";
-            unstaged = "";
-            staged = "";
-            conflict = "";
+        default_component_configs = {
+          container = { enable_character_fade = true; };
+          indent = {
+            indent_size = 2;
+            padding = 1;
+            with_markers = true;
+            indent_marker = "│";
+            last_indent_marker = "└";
+            highlight = "NeoTreeIndentMarker";
+            with_expanders = true;
+            expander_collapsed = "";
+            expander_expanded = "";
+            expander_highlight = "NeoTreeExpander";
+          };
+          icon = {
+            folder_closed = "";
+            folder_open = "";
+            folder_empty = "";
+            default = " ";
+            highlight = "NeoTreeFileIcon";
+          };
+          modified = {
+            symbol = "[+]";
+            highlight = "NeoTreeModified";
+          };
+          name = {
+            trailing_slash = false;
+            use_git_status_colors = true;
+            highlight = "NeoTreeFileName";
+          };
+          git_status = {
+            symbols = {
+              added = "";
+              modified = "";
+              deleted = "";
+              renamed = "";
+              untracked = "";
+              ignored = "";
+              unstaged = "";
+              staged = "";
+              conflict = "";
+            };
+          };
+          diagnostics = {
+            symbols = {
+              error = "";
+              warn = "";
+              hint = "";
+              info = "";
+            };
+            highlights = {
+              hint = "diagnostic_sign_hint";
+              info = "diagnostic_sign_info";
+              warn = "diagnostic_sign_warn";
+              error = "diagnostic_sign_error";
+            };
           };
         };
-        diagnostics = {
-          symbols = {
-            error = "";
-            warn = "";
-            hint = "";
-            info = "";
-          };
-          highlights = {
-            hint = "DiagnosticSignHint";
-            info = "DiagnosticSignInfo";
-            warn = "DiagnosticSignWarn";
-            error = "DiagnosticSignError";
+        window = {
+          position = "left";
+          width = 40;
+          mapping_options = {
+            noremap = true;
+            nowait = true;
           };
         };
-      };
-      window = {
-        position = "left";
-        width = 40;
-        mappingOptions = {
-          noremap = true;
-          nowait = true;
+        filesystem = {
+          bind_to_cwd = true;
+          filtered_items = {
+            visible = false;
+            hide_dotfiles = false;
+            hide_gitignored = false;
+            hide_by_name = [ "node_modules" ];
+          };
+          group_empty_dirs = false;
+          use_libuv_file_watcher = true;
         };
-      };
-      filesystem = {
-        bindToCwd = true;
-        filteredItems = {
-          visible = false;
-          hideDotfiles = false;
-          hideGitignored = false;
-          hideByName = [ "nodeModules" ];
-        };
-        groupEmptyDirs = false;
-        useLibuvFileWatcher = true;
-      };
-      buffers = { groupEmptyDirs = true; };
-      renderers = {
-        directory = [
-          "indent"
-          "icon"
-          "current_filter"
-          {
-            name = "container";
-            content = [
-              {
-                name = "name";
-                zindex = 10;
-              }
-              {
-                name = "symlink_target";
-                zindex = 10;
-                highlight = "NeoTreeSymbolicLinkTarget";
-              }
-              {
-                name = "clipboard";
-                zindex = 10;
-              }
-              {
-                name = "diagnostics";
-                errorsOnly = true;
-                zindex = 20;
-                align = "right";
-                hideWhenExpanded = false;
-              }
-              {
-                name = "git_status";
-                zindex = 10;
-                align = "right";
-                hideWhenExpanded = true;
-              }
-            ];
-          }
-        ];
-        file = [
-          "indent"
-          "icon"
-          {
-            name = "container";
-            content = [
-              {
-                name = "name";
-                zindex = 10;
-              }
-              {
-                name = "clipboard";
-                zindex = 10;
-              }
-              {
-                name = "bufnr";
-                zindex = 10;
-              }
-              {
-                name = "modified";
-                zindex = 20;
-                align = "right";
-              }
-              {
-                name = "diagnostics";
-                zindex = 20;
-                align = "right";
-              }
-              {
-                name = "git_status";
-                zindex = 15;
-                align = "right";
-              }
-            ];
-          }
-        ];
+        buffers = { group_empty_dirs = true; };
       };
     };
   };
