@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
 
   boot.kernel.sysctl."vm.overcommit_memory" = 1;
 
@@ -6,7 +7,10 @@
   environment.systemPackages = with pkgs; [ xorg.setxkbmap ];
 
   fonts = {
-    packages = with pkgs; [ inter notonoto ];
+    packages = with pkgs; [
+      inter
+      notonoto
+    ];
     fontconfig = {
       defaultFonts = {
         serif = [ "Inter" ];
@@ -16,11 +20,11 @@
     };
   };
 
-  networking = {
-    hostName = "mizuki";
-    nameservers = [ "1.1.1.1" ];
-  };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  networking.hostName = "mizuki";
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -42,7 +46,6 @@
   wsl = {
     enable = true;
     defaultUser = "avery";
-    wslConf.network.generateResolvConf = false;
   };
 
   virtualisation.docker.enable = true;
