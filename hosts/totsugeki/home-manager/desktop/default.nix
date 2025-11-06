@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./ags
     ./cursor.nix
@@ -52,6 +53,7 @@
       mkvtoolnix
       handbrake
       (discord.override { withVencord = true; })
+      feishin
     ];
   };
   nixpkgs.config.allowUnfree = true;
