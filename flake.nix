@@ -34,6 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   nixConfig = {
@@ -91,6 +92,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.nix-minecraft.nixosModules.minecraft-servers
+            inputs.catppuccin.nixosModules.catppuccin
             {
               home-manager = {
                 backupFileExtension = "bak";

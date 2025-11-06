@@ -1,12 +1,16 @@
 { pkgs, lib, ... }:
 let
   ports = import ./_port-definitions.nix;
-  arrayToSecrets = elements:
-    builtins.listToAttrs (map (key: {
-      name = "forgejo/${key}";
-      value.owner = "forgejo";
-    }) elements);
-in {
+  arrayToSecrets =
+    elements:
+    builtins.listToAttrs (
+      map (key: {
+        name = "forgejo/${key}";
+        value.owner = "forgejo";
+      }) elements
+    );
+in
+{
   services = {
     forgejo = {
       enable = true;
@@ -17,14 +21,12 @@ in {
         passwordFile = "/run/secrets/forgejo/database_password";
       };
       secrets = {
-        server.LFS_JWT_SECRET =
-          lib.mkForce "/run/secrets/forgejo/lfs_jwt_secret";
+        server.LFS_JWT_SECRET = lib.mkForce "/run/secrets/forgejo/lfs_jwt_secret";
         security = {
           INTERNAL_TOKEN = lib.mkForce "/run/secrets/forgejo/internal_token";
           SECRET_KEY = lib.mkForce "/run/secrets/forgejo/secret_key";
         };
-        oauth2.JWT_SECRET =
-          lib.mkForce "/run/secrets/forgejo/oauth2_jwt_secret";
+        oauth2.JWT_SECRET = lib.mkForce "/run/secrets/forgejo/oauth2_jwt_secret";
       };
       settings = {
         server = {
@@ -38,7 +40,9 @@ in {
           DISABLE_REGISTRATION = true;
           REGISTER_MANUAL_CONFIRM = true;
         };
-        security = { INSTALL_LOCK = true; };
+        security = {
+          INSTALL_LOCK = true;
+        };
       };
     };
     nginx.virtualHosts."git.rcia.dev" = {
@@ -59,4 +63,9 @@ in {
     "oauth2_jwt_secret"
     "secret_key"
   ];
+  catppuccin.forgejo = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 }
