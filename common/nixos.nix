@@ -1,5 +1,14 @@
-{ config, lib, pkgs, ... }: {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   console = {
     keyMap = lib.mkForce "dvorak-es";
@@ -8,8 +17,7 @@
 
   hardware = {
     enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
   nixpkgs = {
@@ -29,7 +37,13 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [ git htop neovim sops ];
+    systemPackages = with pkgs; [
+      git
+      htop
+      neovim
+      sops
+      ncdu
+    ];
   };
 
   programs.zsh.enable = true;
