@@ -1,6 +1,7 @@
 { config, ... }: {
   services.inadyn = {
     enable = true;
+    settings.allow-ipv6 = false;
     settings.provider."cloudflare.com" = {
       hostname = [ "rcia.dev" "*.rcia.dev" ];
       username = "rcia.dev";
