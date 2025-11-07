@@ -29,56 +29,10 @@
           ];
         };
         svelte.enable = true;
-        volar = {
+        ts_ls.enable = true;
+        vue_ls = {
           enable = true;
-          extraOptions.on_init.__raw = ''
-            function(client)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-              client.handlers['tsserver/request'] = function(_, result, context)
-                local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
-                if #clients == 0 then
-                  vim.notify('Could not found `vtsls` lsp client, vue_lsp would not work without it.', vim.log.levels.ERROR)
-                  return
-                end
-                local ts_client = clients[1]
-
-                local param = unpack(result)
-                local id, command, payload = unpack(param)
-                ts_client:exec_cmd({
-                  command = 'typescript.tsserverRequest',
-                  arguments = {
-                    command,
-                    payload,
-                  },
-                }, { bufnr = context.bufnr }, function(_, r)
-                    local response_data = { { id, r.body } }
-                    ---@diagnostic disable-next-line: param-type-mismatch
-                    client:notify('tsserver/response', response_data)
-                  end)
-              end
-            end,
-          '';
-        };
-      };
-    };
-    typescript-tools = {
-      enable = true;
-      settings = {
-        on_attach.__raw = ''
-          function(client)
-            client.server_capabilities.documentFormattingProvider = false
-            client.server_capabilities.documentRangeFormattingProvider = false
-          end
-        '';
-        filetypes = [
-          "javascript"
-          "typescript"
-          "vue"
-        ];
-        settings = {
-          single_file_support = false;
-          tsserver_plugins = [ "@vue/typescript-plugin" ];
+          tslsIntegration = true;
         };
       };
     };
