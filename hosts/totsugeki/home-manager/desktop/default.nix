@@ -5,10 +5,8 @@
     ./cursor.nix
     ./dunst.nix
     ./firefox.nix
-    ./gtk.nix
     ./hypr
     ./kitty.nix
-    ./qt.nix
   ];
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -38,7 +36,6 @@
       r2modman
       wl-clipboard
       wineWowPackages.stagingFull
-      vesktop
       swww
       lxqt.lxqt-policykit
       qdiskinfo

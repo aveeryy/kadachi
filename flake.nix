@@ -35,6 +35,10 @@
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     catppuccin.url = "github:catppuccin/nix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -59,24 +63,31 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./common/nixos.nix
+            ./common/nixos/theme.nix
             ./hosts/totsugeki/nixos
             inputs.chaotic.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.stylix.nixosModules.stylix
             {
               home-manager = {
                 backupFileExtension = "bak";
                 useUserPackages = true;
-                users.avery = {
-                  imports = [
+                users = {
+                  avery.imports = [
                     inputs.ags.homeManagerModules.default
                     inputs.autofirma-nix.homeManagerModules.default
                     inputs.nixvim.homeModules.nixvim
                     ./common/home-manager
                     ./hosts/totsugeki/home-manager
                   ];
+                  root.imports = [
+                    ./common/home-manager/theme.nix
+                    { home.stateVersion = "25.11"; }
+                  ];
                 };
+
               };
             }
           ];
