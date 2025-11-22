@@ -6,6 +6,10 @@
       https = 4430;
       dns_over_tls = 853;
     };
+    flippydrive = {
+      server = 7031;
+      ftp = 7021;
+    };
     forgejo = 3000;
     jellyfin = 8096;
     koito = 4110;

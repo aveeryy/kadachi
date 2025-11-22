@@ -1,7 +1,9 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./acme.nix
     ./adguardhome.nix
+    ./flippydrive-server.nix
     ./forgejo.nix
     ./inadyn.nix
     ./jellyfin.nix
