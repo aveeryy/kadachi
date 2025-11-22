@@ -80,6 +80,7 @@
                     inputs.autofirma-nix.homeManagerModules.default
                     inputs.nixvim.homeModules.nixvim
                     ./common/home-manager
+                    ./common/home-manager/theme.nix
                     ./hosts/totsugeki/home-manager
                   ];
                   root.imports = [

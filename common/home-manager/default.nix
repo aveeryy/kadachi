@@ -3,7 +3,6 @@
   imports = [
     ./development.nix
     ./scripts
-    ./theme.nix
     ./zsh.nix
   ];
   home = {
