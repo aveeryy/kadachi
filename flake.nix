@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,17 +38,18 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   nixConfig = {
     download-buffer-size = 524288000; # 500 MB
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://chaotic-nyx.cachix.org/"
+      "https://attic.xuyh0120.win/lantian"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
     ];
   };
 
@@ -65,11 +65,24 @@
             ./common/nixos.nix
             ./common/nixos/theme.nix
             ./hosts/totsugeki/nixos
-            inputs.chaotic.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.lanzaboote.nixosModules.lanzaboote
             inputs.stylix.nixosModules.stylix
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+                nix.settings.extra-substituters = [
+                  "https://nix-community.cachix.org"
+                  "https://attic.xuyh0120.win/lantian"
+                ];
+                nix.settings.extra-trusted-public-keys = [
+                  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                  "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+                ];
+              }
+            )
             {
               home-manager = {
                 backupFileExtension = "bak";

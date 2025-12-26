@@ -15,7 +15,7 @@ in
   };
   boot = {
     kernelModules = [ "kvm-amd" ];
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
     kernelParams = [ "drm.edid_firmware=DP-1:edid/patched_edid.bin" ];
     initrd.availableKernelModules = [
       "nvme"
