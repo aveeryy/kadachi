@@ -276,6 +276,7 @@ in
   system.stateVersion = "24.05";
 
   virtualisation = {
+    docker.enable = true;
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
   };

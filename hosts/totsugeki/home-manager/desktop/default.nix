@@ -50,6 +50,7 @@
       mkvtoolnix
       handbrake
       (discord.override { withVencord = true; })
+      (bottles.override { removeWarningPopup = true; })
       feishin
     ];
   };
