@@ -1,72 +1,79 @@
----
-gitea: none
-include_toc: true
----
+# Kadachi: my personal NixOS configuration
 
-# NixOS system configurations
+**README is a WIP**
 
-<!-- ## Installation (WIP) -->
+This is my personal NixOS configuration, it's largely inspired by the [Dendritic pattern](https://github.com/mightyiam/dendritic).
+
+## Namespaces
+
+### ⚙️ Adachi
+
+Shared namespace containing generic configuration for aspects.
+
+Can be used from outside the flake using [den](https://github.com/vic/den) with `den.ful.adachi.<aspect>`
+
+### 🥖 Kasane
+
+Private namespace, contains my personal configuration for various programs and services
 
 ## Hosts
 
-### 🐬 Totsugeki | Desktop
+### 🐬 Totsugeki
 
-Main desktop configuration
+My main desktop computer
+
+#### Desktop
+
+| Name      | Description                        |
+| --------- | ---------------------------------- |
+| Hyprland  | Wayland compositor                 |
+| Hyprlock  | Session lock                       |
+| Caelestia | Shell (Launcher, notifications...) |
+| awww      | Wallpaper                          |
 
 #### Programs
 
-|               Name | Type                |
-| -----------------: | :------------------ |
-|           Hyprland | Wayland compositor  |
-|           Hyprlock | Session locking     |
-|  Aylur's GTK Shell | Bar and launcher    |
-|              kitty | Terminal emulator   |
-|             Neovim | Text editor         |
-|            Firefox | Web browser         |
-|         PCManFM-Qt | File manager        |
-|        qBittorrent | Torrent client      |
-|                mpv | Video player        |
-|        LibreOffice | Office suite        |
-|               GIMP | Photo editor        |
-|           Inkscape | Vector image editor |
-|        EasyEffects | Audio equalizer     |
-| MusicBrainz Picard | Music tagging       |
-|            Element | Matrix client       |
-|            Vesktop | Discord client      |
+| Name        | Description      |
+| ----------- | ---------------- |
+| Firefox     | Web browser      |
+| kitty       | Desktop terminal |
+| qBitTorrent | Torrent client   |
 
-#### Games and game-related stuff
+### 🐳 Great Yamada
 
-|           Name | Type                                    |
-| -------------: | :-------------------------------------- |
-|          Steam | Game launcher                           |
-|         Heroic | Games launcher for Epic, GOG and Amazon |
-| Prism Launcher | Minecraft launcher                      |
-|      osu!lazer | Rhythm game, open source version        |
-|       r2modman | Mod manager                             |
-|    ProtonUp-Qt | Tool to update Proton-GE and similar    |
-
-### 🐳 Great Yamada | Home server
+Home server
 
 #### Services
 
-|         Name | Type                           | Public-facing |
-| -----------: | :----------------------------- | :-----------: |
-|        Nginx | Web server and reverse proxy   |       x       |
-|         ACME | Automatic SSL cert renew       |               |
-|       Inadyn | Automatic DDNS updates         |               |
-|   PostgreSQL | Database engine                |               |
-|     PgAdmin4 | PostgreSQL management tool     |               |
-|      Forgejo | Git repository                 |       x       |
-|       Fabric | Minecraft server               |       x       |
-| AdGuard Home | DNS server and content blocker |               |
-|      SearXNG | Metasearch engine              |               |
-|     Radicale | CalDAV / CardDAV server        |               |
-|     Jellyfin | Media server                   |       x       |
-|        Koito | Scrobbler                      |       x       |
-|  Vaultwarden | Password manager               |               |
+| Name         | Description                  | Local only |
+| ------------ | ---------------------------- | :--------: |
+| ACME         | Automatic SSL cert renewal   |            |
+| AdGuard Home | DNS/DHCP server              |     X      |
+| Forgejo      | Git server                   |            |
+| Inadyn       | Automatic DDNS updates       |            |
+| Jellyfin     | Media server                 |            |
+| Koito        | Music scrobbler              |            |
+| nginx        | Web server and reverse proxy |            |
+| PostgreSQL   | Database                     |     X      |
+| PgAdmin4     | PostgreSQL management tool   |     X      |
+| Radicale     | CalDAV and CardDAV server    |     X      |
+| Samba        | File sharing                 |     X      |
+| SearXNG      | Metasearch engine            |     X      |
+| Vaultwarden  | Password manager             |     X      |
+| Wireguard    | VPN                          |            |
 
-### 🎀 Mizuki | Development on WSL
+### 🎀 Mizuki
 
-Windows Subsystem for Linux configuration
+A very simple WSL configuration I use at work for Python and Typescript+Vue development
 
-Uses the common Neovim and zsh config
+### 🦉 Malfestio (WIP)
+
+Steam Deck
+
+## References, name sources and special thanks
+
+<!-- TODO -->
+
+### Special thanks
+
+- [Victor Borja](https://github.com/vic) for making [den](https://github.com/vic/den) and all of his Nix utilities

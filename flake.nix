@@ -1,161 +1,74 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  description = "System configurations";
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    autofirma-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "git+https://git.rcia.dev/Avery/autofirma-nix-fork";
+    };
+    caelestia-shell = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:caelestia-dots/shell/1b4b90a3ad9532f7002ef2593d8efb68443f21f3";
+    };
+    catppuccin = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:catppuccin/nix";
+    };
+    den.url = "github:vic/den";
+    flake-aspects.url = "github:vic/flake-aspects";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+      url = "github:hercules-ci/flake-parts";
+    };
     home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = "github:nix-community/nixvim";
-    ags.url = "github:ozwaldorf/ags";
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    import-tree.url = "github:vic/import-tree";
+    jovian-nixos = {
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Jovian-Experiments/Jovian-NixOS";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
-    autofirma-nix = {
-      url = "github:nix-community/autofirma-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    catppuccin.url = "github:catppuccin/nix";
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/lanzaboote/v1.0.0";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-  };
-
-  nixConfig = {
-    download-buffer-size = 524288000; # 500 MB
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://attic.xuyh0120.win/lantian"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-    ];
-  };
-
-  outputs =
-    { self, nixpkgs, ... }@inputs:
-    {
-      nixosConfigurations = {
-        # Desktop computer
-        totsugeki = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./common/nixos.nix
-            ./common/nixos/theme.nix
-            ./hosts/totsugeki/nixos
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.stylix.nixosModules.stylix
-            (
-              { pkgs, ... }:
-              {
-                nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-                nix.settings.extra-substituters = [
-                  "https://nix-community.cachix.org"
-                  "https://attic.xuyh0120.win/lantian"
-                ];
-                nix.settings.extra-trusted-public-keys = [
-                  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-                  "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-                ];
-              }
-            )
-            {
-              home-manager = {
-                backupFileExtension = "bak";
-                useUserPackages = true;
-                users = {
-                  avery.imports = [
-                    inputs.ags.homeManagerModules.default
-                    inputs.autofirma-nix.homeManagerModules.default
-                    inputs.nixvim.homeModules.nixvim
-                    ./common/home-manager
-                    ./common/home-manager/theme.nix
-                    ./hosts/totsugeki/home-manager
-                  ];
-                  root.imports = [
-                    ./common/home-manager/theme.nix
-                    { home.stateVersion = "25.11"; }
-                  ];
-                };
-
-              };
-            }
-          ];
-        };
-        # Home server
-        greatyamada = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./common/nixos.nix
-            ./hosts/greatyamada/nixos
-            ./hosts/greatyamada/services
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nix-minecraft.nixosModules.minecraft-servers
-            inputs.catppuccin.nixosModules.catppuccin
-            {
-              home-manager = {
-                backupFileExtension = "bak";
-                useUserPackages = true;
-                users.avery = {
-                  imports = [
-                    inputs.nixvim.homeModules.nixvim
-                    ./common/home-manager
-                    ./hosts/greatyamada/home-manager
-                  ];
-                };
-              };
-            }
-          ];
-        };
-        # WSL development system
-        mizuki = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/mizuki/nixos.nix
-            inputs.nixos-wsl.nixosModules.default
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                backupFileExtension = "bak";
-                useUserPackages = true;
-                users.avery = {
-                  imports = [
-                    inputs.nixvim.homeModules.nixvim
-                    ./common/home-manager
-                    ./hosts/mizuki/home.nix
-                  ];
-                };
-              };
-            }
-          ];
-        };
-      };
+    nixos-wsl = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixos-wsl";
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-lib.follows = "nixpkgs";
+    nixvim = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+      url = "github:nix-community/nixvim";
+    };
+    sops-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Mic92/sops-nix";
+    };
+    stylix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+      url = "github:nix-community/stylix";
+    };
+    systems.url = "github:nix-systems/default";
+  };
+
 }

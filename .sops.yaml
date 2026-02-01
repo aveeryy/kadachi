@@ -1,7 +1,30 @@
 keys:
   - &avery age1rxn337tx2qxa8t5dxrxnnctza8g2awm24pq84nt2w2u72m8yx9lqus0qq9
+  - &host_totsugeki age1umxzyedtgn28gvp39ka7j8w9snuaqslsv5may0phv45wsptd2d8q3sxm2x
+  - &host_greatyamada age1jqv7se39ases20lz2lj369xypj5zc57v4khh2ptdsd54s2vyfpysmrnw2w
+  - &host_mizuki age1pl6rq26mhfqll3q7erl04jyvtkrp045t03cg8caskavkmf0ww9as26h47l
+  - &host_malfestio age1h7dwyc4wyfsyyncge8pl42nem6ddyel9c8z5e2ccuaqn79g5mq4q3ty2rv
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/common\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *avery
+      - *host_totsugeki
+      - *host_greatyamada
+      - *host_mizuki
+      - *host_malfestio
+  - path_regex: secrets/totsugeki\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *avery
+      - *host_totsugeki
+  - path_regex: secrets/greatyamada\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *avery
+      - *host_greatyamada
+  - path_regex: secrets/mizuki\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *avery
+      - *host_mizuki
