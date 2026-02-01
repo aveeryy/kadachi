@@ -52,6 +52,7 @@ Home server
 | Forgejo      | Git server                   |            |
 | Inadyn       | Automatic DDNS updates       |            |
 | Jellyfin     | Media server                 |            |
+| Karakeep     | Bookmarks                    |     X      |
 | Koito        | Music scrobbler              |            |
 | nginx        | Web server and reverse proxy |            |
 | PostgreSQL   | Database                     |     X      |

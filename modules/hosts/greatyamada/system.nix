@@ -26,6 +26,7 @@
         <kasane/services/forgejo>
         <kasane/services/koito>
         <kasane/services/jellyfin>
+        <kasane/services/karakeep>
         <kasane/services/nginx>
         <kasane/services/pgadmin>
         <kasane/services/radicale>
@@ -101,6 +102,7 @@
         includes = [
           <kasane/base-user>
 
+          <adachi/nixvim/extras/format-on-save>
           (<adachi/services/gpg-agent> false)
 
           media_group_member
