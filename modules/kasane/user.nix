@@ -16,6 +16,7 @@
           hashedPasswordFile = config.sops.secrets.avery_password.path;
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKtRRFXoFER38RXhmvzUsckxd+eqcWO7B6oHW6oDbZf0 avery@totsugeki"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILGxbFhJuLDn1nGytao5RhBOyckMEQtpxrLJZR6G7Aax avery@mizuki"
           ];
         };
       };

@@ -89,8 +89,12 @@ in
           openssh = {
             enable = true;
             settings = {
-              X11Forwarding = false;
+              AllowUsers = [
+                "avery"
+              ];
+              PasswordAuthentication = false;
               PermitRootLogin = "no";
+              X11Forwarding = false;
             };
           };
         };
