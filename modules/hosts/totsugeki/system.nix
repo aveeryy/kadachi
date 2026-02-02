@@ -93,6 +93,7 @@
         <kasane/gaming/bottles>
         <kasane/gaming/discord>
         <kasane/gaming/heroic>
+        <kasane/gaming/ludusavi>
         <kasane/gaming/mangohud>
         <kasane/gaming/minecraft>
         <kasane/gaming/steam>
@@ -111,6 +112,19 @@
         <kasane/tools/qbittorrent>
         <kasane/web-browsers/firefox>
       ];
+
+      homeManager = {
+        services.ludusavi.settings.roots = [
+          {
+            path = "/mnt/Datos/SteamLibrary";
+            store = "steam";
+          }
+          {
+            path = "/mnt/Juegos/steamapps";
+            store = "steam";
+          }
+        ];
+      };
     };
   };
 }
