@@ -19,6 +19,21 @@
             sops.secrets."acme/cloudflare/${hostName}".owner = "acme";
           };
       };
+      hetzner = hostName: email: {
+        nixos =
+          { config, ... }:
+          {
+            security.acme.certs."${hostName}" = {
+              credentialFiles.HETZNER_API_TOKEN = config.sops.secrets."acme/hetzner/${hostName}".path;
+              email = email;
+              extraDomainNames = [ "*.${hostName}" ];
+              dnsProvider = "hetzner";
+              group = "nginx";
+              webroot = null;
+            };
+            sops.secrets."acme/hetzner/${hostName}".owner = "acme";
+          };
+      };
     };
   };
 }
