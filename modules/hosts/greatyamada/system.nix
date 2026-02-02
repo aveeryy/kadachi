@@ -1,4 +1,4 @@
-{ __findFile, den, ... }:
+{ __findFile, ... }:
 {
   den.hosts.x86_64-linux.greatyamada = {
     services = {
@@ -23,6 +23,7 @@
         <kasane/services/adguardhome>
         <kasane/services/database>
         <kasane/services/ddns/cloudflare>
+        <kasane/services/fail2ban>
         <kasane/services/forgejo>
         <kasane/services/koito>
         <kasane/services/jellyfin>
