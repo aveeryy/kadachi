@@ -824,6 +824,7 @@
           "nixpkgs"
         ],
         "nixvim": "nixvim",
+        "secrets": "secrets",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems"
@@ -848,6 +849,22 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769028982,
+        "narHash": "sha256-sZPGt5+aoMfQ7/p0JG0X5+tyW2ea5hS6DpetGLbfnYo=",
+        "ref": "refs/heads/main",
+        "rev": "c2939d33d0e95c77f7ae4912b1f933b596690ed7",
+        "revCount": 7,
+        "type": "git",
+        "url": "ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git"
       }
     },
     "sops-nix": {
@@ -1030,4 +1047,3 @@
   "root": "root",
   "version": 7
 }
-

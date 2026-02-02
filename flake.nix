@@ -56,6 +56,10 @@
       };
       url = "github:nix-community/nixvim";
     };
+    secrets = {
+      flake = false;
+      url = "git+ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git";
+    };
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";

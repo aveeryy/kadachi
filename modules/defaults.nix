@@ -8,9 +8,15 @@ let
   stateVersion = "25.11";
 in
 {
-  flake-file.inputs.sops-nix = {
-    url = "github:Mic92/sops-nix";
-    inputs.nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    secrets = {
+      url = "git+ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git";
+      flake = false;
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   den.default = {
@@ -65,14 +71,15 @@ in
           };
           overlays = [ self.overlays.default ];
         };
+        programs.ssh.startAgent = true;
         sops = {
           defaultSopsFile =
-            if (builtins.pathExists "${self}/secrets/${config.networking.hostName}.yaml") then
-              "${self}/secrets/${config.networking.hostName}.yaml"
+            if (builtins.pathExists "${inputs.secrets}/${config.networking.hostName}.yaml") then
+              "${inputs.secrets}/${config.networking.hostName}.yaml"
             else
-              "${self}/secrets/common.yaml";
+              "${inputs.secrets}/common.yaml";
           secrets.avery_password = {
-            sopsFile = "${self}/secrets/common.yaml";
+            sopsFile = "${inputs.secrets}/common.yaml";
             owner = "root";
             neededForUsers = true;
           };
@@ -109,7 +116,6 @@ in
         };
         overlays = [ self.overlays.default ];
       };
-      services.ssh-agent.enable = true;
       xdg.mimeApps.enable = true;
     };
   };
