@@ -9,6 +9,7 @@
           enable = true;
           settings = {
             credential = {
+              cacheOptions = "--timeout 7200";
               credentialStore = "gpg";
               helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
               "https://codeberg.org".provider = "generic";
