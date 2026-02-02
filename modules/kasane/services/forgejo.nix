@@ -44,7 +44,8 @@ in
                   DOMAIN = "git.${host.services.baseHost}";
                   ROOT_URL = "https://git.${host.services.baseHost}";
                   HTTP_PORT = 3000;
-                  DISABLE_SSH = true;
+                  DISABLE_SSH = false;
+                  START_SSH_SERVER = false;
                   LFS_START_SERVER = true;
                 };
                 service = {
@@ -63,6 +64,11 @@ in
               forceSSL = true;
               useACMEHost = host.services.baseHost;
             };
+            openssh.settings.AllowUsers =
+              lib.lists.optionals (!config.services.forgejo.settings.server.DISABLE_SSH)
+                [
+                  "forgejo"
+                ];
           };
           sops.secrets = arrayToSecrets [
             "database_password"
