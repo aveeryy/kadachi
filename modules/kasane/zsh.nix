@@ -47,7 +47,7 @@
               "nx" = "cd /etc/nixos && nvim";
               "print-nix-store-gc-roots" =
                 ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"'';
-              "rbd" = ''sudo nixos-rebuild --flake "path:/etc/nixos#$(hostname)"'';
+              "rbd" = ''nixos-rebuild --flake "path:/etc/nixos#$(hostname)" --sudo'';
             };
             syntaxHighlighting.enable = true;
             dotDir = "${config.xdg.configHome}/zsh";
