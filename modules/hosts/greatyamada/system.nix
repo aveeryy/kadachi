@@ -76,6 +76,7 @@
           };
 
           services = {
+            forgejo.settings.server.SSH_PORT = 2222;
             postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
             samba.settings = {
               "PS2" = {
