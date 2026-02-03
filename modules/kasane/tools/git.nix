@@ -28,6 +28,10 @@
         lazygit = {
           enable = true;
           enableZshIntegration = false;
+          settings = {
+            gui.nerdFontsVersion = "3";
+            git.autoFetch = false;
+          };
         };
         zsh.shellAliases."lg" = "lazygit";
       };
