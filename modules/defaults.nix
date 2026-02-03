@@ -71,7 +71,9 @@ in
           };
           overlays = [ self.overlays.default ];
         };
-        programs.ssh.startAgent = true;
+        programs.ssh.extraConfig = ''
+          AddKeysToAgent yes
+        '';
         sops = {
           defaultSopsFile =
             if (builtins.pathExists "${inputs.secrets}/${config.networking.hostName}.yaml") then
@@ -116,6 +118,7 @@ in
         };
         overlays = [ self.overlays.default ];
       };
+      services.ssh-agent.enable = true;
       xdg.mimeApps.enable = true;
     };
   };
