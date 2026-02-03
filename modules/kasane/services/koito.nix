@@ -15,7 +15,7 @@
         }:
         {
           virtualisation.oci-containers.containers."koito" = {
-            image = "gabehf/koito:v0.1.4";
+            image = "gabehf/koito:v0.1.6";
             environment = {
               "KOITO_ALLOWED_HOSTS" = "koito.${host.services.baseHost}";
               "KOITO_ENABLE_LBZ_RELAY" = "true";
