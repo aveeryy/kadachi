@@ -2,40 +2,40 @@
 {
   kasane.gaming._.ludusavi = {
     homeManager =
-      { config, ... }:
+      { config, lib, ... }:
       {
-        services = {
-          ludusavi = {
-            enable = true;
-            backupNotification = true;
-            settings = {
-              backup = {
-                filter = {
-                  excludeStoreScreenshots = true;
-                  ignoredPaths = [
-                    # Balatro mods
-                    "~/.local/share/Steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods"
-                    # Shader cache
-                    "**/shader_cache/*"
-                    "**/vulkan/pipelines.cache"
-                    "**/*.ushaderprecache"
-                    "**/*.upipelinecache"
-                    # Log files
-                    "**/*.log"
-                  ];
-                };
-                format = {
-                  chosen = "zip";
-                  compression.zstd.level = 10;
-                  zip.compression = "zstd";
-                };
-                path = "~/.local/state/backups/ludusavi";
+        services.ludusavi = {
+          enable = true;
+          backupNotification = true;
+          settings = {
+            backup = {
+              filter = {
+                excludeStoreScreenshots = true;
+                ignoredPaths = [
+                  # Balatro mods
+                  "**/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/Mods"
+                  # Shader cache
+                  "**/shader_cache/*"
+                  "**/vulkan/pipelines.cache"
+                  "**/*.ushaderprecache"
+                  "**/*.upipelinecache"
+                  # Log files
+                  "**/*.log"
+                ];
               };
-              restore.path = "~/.local/state/backups/ludusavi";
-              theme = "dark";
+              format = {
+                chosen = "zip";
+                compression.zstd.level = 10;
+                zip.compression = "zstd";
+              };
+              path = lib.mkDefault "${config.home.homeDirectory}/.local/state/backups/ludusavi";
             };
+            restore.path = lib.mkDefault "${config.home.homeDirectory}/.local/state/backups/ludusavi";
+            theme = "dark";
           };
         };
+        # Backups are automatically managed by Borgmatic, disable the home-manager timer
+        systemd.user.timers.ludusavi = lib.mkForce { };
       };
     provides.automatic-backup =
       { user, host, ... }:
@@ -47,15 +47,7 @@
           {
             services.borgmatic.configurations."ludusavi-${user.userName}" = {
               source_directories = [
-                (builtins.replaceStrings
-                  [
-                    "~"
-                  ]
-                  [
-                    "/home/${user.userName}"
-                  ]
-                  config.home-manager.users."${user.userName}".services.ludusavi.settings.backup.path
-                )
+                config.home-manager.users."${user.userName}".services.ludusavi.settings.backup.path
               ];
               repositories = host.services.backups.repositories "ludusavi-${user.userName}";
               commands = [
@@ -72,7 +64,7 @@
               keep_daily = 7;
             };
             sops.secrets."backups/password/ludusavi-${user.userName}".owner = "root";
-            # Configuration requires sudo
+            # Configuration requires su permissions
             systemd.services.borgmatic.serviceConfig = {
               NoNewPrivileges = false;
               CapabilityBoundingSet = "CAP_DAC_READ_SEARCH CAP_NET_RAW CAP_SETUID CAP_SETGID";
