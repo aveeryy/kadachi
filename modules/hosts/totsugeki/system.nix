@@ -5,6 +5,12 @@
       displays."DP-1".resolution = "2560x1440@165";
       lockSessionAtStart = true;
     };
+    services.backups.repositories = jobName: [
+      {
+        path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic-${jobName}/";
+        label = "remote";
+      }
+    ];
     users.avery.aspect = "avery_totsugeki";
   };
 
@@ -20,6 +26,7 @@
         <adachi/system/auto-hostname>
         <adachi/system/cachyos-kernel>
         <adachi/system/secure-boot>
+        <kasane/services/backups>
       ];
 
       nixos =
@@ -94,6 +101,7 @@
         <kasane/gaming/discord>
         <kasane/gaming/heroic>
         <kasane/gaming/ludusavi>
+        <kasane/gaming/ludusavi/automatic-backup>
         <kasane/gaming/mangohud>
         <kasane/gaming/minecraft>
         <kasane/gaming/steam>
