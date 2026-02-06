@@ -3,18 +3,14 @@
   kasane.tools._.android =
     { user, ... }:
     {
-      nixos = {
-        users.groups.adbusers.members = [ user.userName ];
-      };
-
-      homeManager =
+      nixos =
         { pkgs, ... }:
         {
-          home.packages = with pkgs; [
+          environment.systemPackages = with pkgs; [
             android-tools
             scrcpy
           ];
+          users.groups.adbusers.members = [ user.userName ];
         };
-
     };
 }
