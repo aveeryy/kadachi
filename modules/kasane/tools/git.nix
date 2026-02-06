@@ -1,7 +1,7 @@
 { ... }:
 {
   kasane.tools._.git.homeManager =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       home.packages = with pkgs; [ git-credential-manager ];
       programs = {
@@ -17,13 +17,8 @@
             };
             init.defaultBranch = "main";
             merge.tool = "nvimdiff";
-            user.name = "Avery";
-            user.email = "aveeryy@protonmail.com";
           };
-          signing = {
-            key = "B684FD451B692E04";
-            signByDefault = true;
-          };
+          signing.signByDefault = config.programs.git.signing.key != null;
         };
         lazygit = {
           enable = true;

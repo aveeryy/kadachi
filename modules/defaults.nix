@@ -66,9 +66,7 @@ in
           };
         };
         nixpkgs = {
-          config = {
-            allowUnfree = true;
-          };
+          config.allowUnfree = true;
           overlays = [ self.overlays.default ];
         };
         programs.ssh.extraConfig = ''
@@ -80,11 +78,6 @@ in
               "${inputs.secrets}/${config.networking.hostName}.yaml"
             else
               "${inputs.secrets}/common.yaml";
-          secrets.avery_password = {
-            sopsFile = "${inputs.secrets}/common.yaml";
-            owner = "root";
-            neededForUsers = true;
-          };
           validateSopsFiles = false;
         };
         security = {
@@ -98,9 +91,6 @@ in
           openssh = {
             enable = true;
             settings = {
-              AllowUsers = [
-                "avery"
-              ];
               PasswordAuthentication = false;
               PermitRootLogin = "no";
               X11Forwarding = false;
