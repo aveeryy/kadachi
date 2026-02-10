@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.spider.homeManager.programs.nixvim.plugins.spider = {
+  kasane.neovim._.plugins._.spider.homeManager.programs.nixvim.plugins.spider = {
     enable = true;
     settings = {
       subwordMovement = true;

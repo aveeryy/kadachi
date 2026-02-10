@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.cmp.homeManager.programs.nixvim = {
+  kasane.neovim._.plugins._.cmp.homeManager.programs.nixvim = {
     opts.completeopt = "menuone,noselect,fuzzy,nosort";
     extraConfigLua = ''
       local cmp = require("cmp")

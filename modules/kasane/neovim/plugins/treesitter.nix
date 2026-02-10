@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.treesitter.homeManager.programs.nixvim.plugins.treesitter = {
+  kasane.neovim._.plugins._.treesitter.homeManager.programs.nixvim.plugins.treesitter = {
     enable = true;
     settings = {
       indent.enable = true;

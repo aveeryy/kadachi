@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.neo-tree.homeManager.programs.nixvim = {
+  kasane.neovim._.plugins._.neo-tree.homeManager.programs.nixvim = {
     keymaps = [
       {
         action = "<cmd>Neotree toggle<CR>";

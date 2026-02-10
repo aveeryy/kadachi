@@ -4,10 +4,10 @@
     includes = [
       <kasane/base-user>
 
-      <adachi/nixvim/extras/format-on-save>
-      <adachi/nixvim/languages/markdown>
-      <adachi/nixvim/languages/python>
-      <adachi/nixvim/languages/vue>
+      <adachi/neovim/extras/format-on-save>
+      <adachi/neovim/languages/markdown>
+      <adachi/neovim/languages/python>
+      <adachi/neovim/languages/vue>
       (<adachi/services/gpg-agent> true)
 
       <kasane/tools/xh>

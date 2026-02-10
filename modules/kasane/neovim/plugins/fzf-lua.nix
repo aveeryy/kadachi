@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.fzf-lua.homeManager =
+  kasane.neovim._.plugins._.fzf-lua.homeManager =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ ripgrep ];

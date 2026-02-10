@@ -1,18 +1,18 @@
 { __findFile, ... }:
 {
-  kasane.nixvim = {
-    description = "Base nixvim configuration";
+  kasane.neovim = {
+    description = "Base Neovim configuration";
     includes = [
-      <adachi/nixvim>
-      <adachi/nixvim/languages/nix>
-      <kasane/nixvim/plugins/cmp>
-      <kasane/nixvim/plugins/fzf-lua>
-      <kasane/nixvim/plugins/lsp>
-      <kasane/nixvim/plugins/lualine>
-      <kasane/nixvim/plugins/neo-tree>
-      <kasane/nixvim/plugins/none-ls>
-      <kasane/nixvim/plugins/spider>
-      <kasane/nixvim/plugins/treesitter>
+      <adachi/neovim>
+      <adachi/neovim/languages/nix>
+      <kasane/neovim/plugins/cmp>
+      <kasane/neovim/plugins/fzf-lua>
+      <kasane/neovim/plugins/lsp>
+      <kasane/neovim/plugins/lualine>
+      <kasane/neovim/plugins/neo-tree>
+      <kasane/neovim/plugins/none-ls>
+      <kasane/neovim/plugins/spider>
+      <kasane/neovim/plugins/treesitter>
     ];
     homeManager = {
       programs.nixvim = {

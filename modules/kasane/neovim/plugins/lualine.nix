@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.nixvim._.plugins._.lualine.homeManager.programs.nixvim.plugins.lualine = {
+  kasane.neovim._.plugins._.lualine.homeManager.programs.nixvim.plugins.lualine = {
     enable = true;
     settings.options = {
       component_separators = {

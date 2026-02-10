@@ -7,7 +7,7 @@ in
   kasane.base-user = <den.lib.parametric> {
     includes = [
       <den/primary-user>
-      <kasane/nixvim>
+      <kasane/neovim>
       <kasane/tools/git>
       <kasane/zsh>
     ];

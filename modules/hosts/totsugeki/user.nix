@@ -5,11 +5,11 @@
       <kasane/base-user>
 
       <adachi/hardware/i2c>
-      <adachi/nixvim/extras/format-on-save>
-      <adachi/nixvim/languages/markdown>
-      <adachi/nixvim/languages/python>
-      <adachi/nixvim/languages/rust>
-      <adachi/nixvim/languages/vue>
+      <adachi/neovim/extras/format-on-save>
+      <adachi/neovim/languages/markdown>
+      <adachi/neovim/languages/python>
+      <adachi/neovim/languages/rust>
+      <adachi/neovim/languages/vue>
       (<adachi/services/gpg-agent> true)
       (<adachi/system/greetd-autologin> "uwsm start default")
       (<adachi/tools/autofirma> "Avery")
