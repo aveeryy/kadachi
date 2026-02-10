@@ -10,8 +10,8 @@ let
         };
         resolution = lib.mkOption { type = lib.types.str; };
         refreshRate = lib.mkOption {
-          type = lib.types.str;
-          default = "60";
+          type = lib.types.ints.unsigned;
+          default = 60;
         };
         position = lib.mkOption {
           type = lib.types.str;

@@ -4,7 +4,7 @@
     desktop = {
       displays."DP-1" = {
         resolution = "2560x1440";
-        refreshRate = "165";
+        refreshRate = 165;
       };
       lockSessionAtStart = true;
     };

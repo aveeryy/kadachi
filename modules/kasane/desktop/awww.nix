@@ -1,28 +1,36 @@
 { ... }:
 {
   # TODO: rename to awww
-  kasane.desktop._.awww.homeManager =
-    { pkgs, lib, ... }:
+  kasane.desktop._.awww =
+    { HM-OS-USER }:
     {
-      home.packages = with pkgs; [
-        swww
-        wallpaperctl
-      ];
-      wayland.windowManager.hyprland = {
-        settings = {
-          exec-once = lib.mkOrder 20 [ "swww-daemon" ];
-          bindl = [ "MOD3, w, submap, Fondo de pantalla" ];
+      homeManager =
+        { pkgs, lib, ... }:
+        {
+          home.packages = with pkgs; [
+            swww
+            (wallpaperctl.override {
+              refreshRate = builtins.elemAt (lib.lists.sort (a: b: a > b) (
+                lib.mapAttrsToList (_: display: display.refreshRate) HM-OS-USER.host.desktop.displays
+              )) 0;
+            })
+          ];
+          wayland.windowManager.hyprland = {
+            settings = {
+              exec-once = lib.mkOrder 20 [ "swww-daemon" ];
+              bindl = [ "MOD3, w, submap, Fondo de pantalla" ];
+            };
+            extraConfig = ''
+              submap = Fondo de pantalla
+
+              bind = , H, exec, wallpaperctl previous
+              bind = , L, exec, wallpaperctl next
+              bindl = , escape, submap, reset
+              bindl = MOD3, w, submap, reset
+
+              submap = reset
+            '';
+          };
         };
-        extraConfig = ''
-          submap = Fondo de pantalla
-
-          bind = , H, exec, wallpaperctl previous
-          bind = , L, exec, wallpaperctl next
-          bindl = , escape, submap, reset
-          bindl = MOD3, w, submap, reset
-
-          submap = reset
-        '';
-      };
     };
 }

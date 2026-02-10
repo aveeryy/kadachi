@@ -13,12 +13,12 @@ let
 
   getDisplayRotation = rotation: toString (lib.lists.findFirstIndex (x: x == rotation) 0 rotations);
 
-  displayToHyprland =
+  displayToHyprlandConfig =
     display:
-    "${display.name}, ${display.resolution}@${display.refreshRate}, ${display.position}, ${display.scaling}, transform, ${getDisplayRotation display.rotation}";
+    "${display.name}, ${display.resolution}@${toString display.refreshRate}, ${display.position}, ${display.scaling}, transform, ${getDisplayRotation display.rotation}";
 
-  displaysToHyprland =
-    displays: map (display: displayToHyprland display) (lib.attrsets.attrValues displays);
+  displaysToHyprlandConfig =
+    displays: map (display: displayToHyprlandConfig display) (lib.attrsets.attrValues displays);
 in
 {
   kasane.desktop._.hyprland =
@@ -30,7 +30,7 @@ in
           wayland.windowManager.hyprland = {
             enable = true;
             settings = {
-              monitor = displaysToHyprland HM-OS-USER.host.desktop.displays;
+              monitor = displaysToHyprlandConfig HM-OS-USER.host.desktop.displays;
               input = {
                 # Keyboard
                 kb_layout = "es";

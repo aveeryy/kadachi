@@ -5,7 +5,7 @@
     {
       packages.wallpaperctl = pkgs.callPackage (
         {
-          refreshRate ? "60",
+          refreshRate ? 60,
         }:
         pkgs.writeShellApplication {
           name = "wallpaperctl";
@@ -71,7 +71,7 @@
                 --transition-angle $TRANSITION_ANGLE\
                 --transition-step 90\
                 --transition-duration 1\
-                --transition-fps ${refreshRate}\
+                --transition-fps ${toString refreshRate}\
                 "$WALLPAPER" &
 
             # Extract the first frame of animated wallpapers for programs that do
