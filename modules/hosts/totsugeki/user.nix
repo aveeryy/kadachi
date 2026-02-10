@@ -12,7 +12,8 @@
       <adachi/neovim/languages/vue>
       (<adachi/services/gpg-agent> true)
       (<adachi/system/greetd-autologin> "uwsm start default")
-      (<adachi/tools/autofirma> "Avery")
+      <adachi/tools/autofirma>
+      (<adachi/tools/autofirma/firefox-integration> "Avery")
       <adachi/tools/virtualisation>
 
       <kasane/desktop/awww>
