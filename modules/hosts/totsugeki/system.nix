@@ -2,7 +2,10 @@
 {
   den.hosts.x86_64-linux.totsugeki = {
     desktop = {
-      displays."DP-1".resolution = "2560x1440@165";
+      displays."DP-1" = {
+        resolution = "2560x1440";
+        refreshRate = "165";
+      };
       lockSessionAtStart = true;
     };
     services.backups.repositories = jobName: [

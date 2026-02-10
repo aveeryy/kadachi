@@ -3,7 +3,7 @@
   den.hosts.x86_64-linux.malfestio = {
     desktop = {
       displays."eDP-1" = {
-        resolution = "800x1280@60";
+        resolution = "800x1280";
         rotation = "270";
       };
       system = {

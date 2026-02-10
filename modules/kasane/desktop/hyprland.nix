@@ -15,7 +15,7 @@ let
 
   displayToHyprland =
     display:
-    "${display.name}, ${display.resolution}, ${display.position}, ${display.scaling}, transform, ${getDisplayRotation display.rotation}";
+    "${display.name}, ${display.resolution}@${display.refreshRate}, ${display.position}, ${display.scaling}, transform, ${getDisplayRotation display.rotation}";
 
   displaysToHyprland =
     displays: map (display: displayToHyprland display) (lib.attrsets.attrValues displays);

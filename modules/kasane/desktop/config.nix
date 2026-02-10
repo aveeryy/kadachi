@@ -9,6 +9,10 @@ let
           default = name;
         };
         resolution = lib.mkOption { type = lib.types.str; };
+        refreshRate = lib.mkOption {
+          type = lib.types.str;
+          default = "60";
+        };
         position = lib.mkOption {
           type = lib.types.str;
           default = "0x0";
