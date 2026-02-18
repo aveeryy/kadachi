@@ -9,6 +9,11 @@
       };
     };
     neo-tree.settings.filesystem.filtered_items.hide_by_name = [ "node_modules" ];
+    none-ls.sources.formatting.prettier = {
+      enable = true;
+      disableTsServerFormatter = true;
+      settings.extra_filetypes = [ "vue" ];
+    };
   };
 
 }
