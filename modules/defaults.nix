@@ -23,6 +23,8 @@ in
     includes = [
       <den/define-user>
       <den/home-manager>
+
+      <adachi/system/auto-hostname>
     ];
 
     nixos =

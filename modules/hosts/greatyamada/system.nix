@@ -12,11 +12,12 @@
     description = "Home server";
 
     includes = [
-      <adachi/hardware/amd-cpu>
-      <adachi/hardware/amd-cpu/kvm>
+      <megurine/has/amd-cpu>
+      <megurine/has/amd-cpu/kvm>
+      <megurine/is/server>
+      <megurine/requires/secure-boot>
+
       <adachi/services/podman>
-      <adachi/system/auto-hostname>
-      <adachi/system/secure-boot>
 
       <kasane/services/acme/cloudflare>
       <kasane/services/adguardhome>

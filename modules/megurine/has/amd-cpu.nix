@@ -1,6 +1,6 @@
 { ... }:
 {
-  adachi.hardware._.amd-cpu = {
+  megurine.has._.amd-cpu = {
     nixos =
       { lib, config, ... }:
       {

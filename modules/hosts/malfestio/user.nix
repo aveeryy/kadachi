@@ -2,29 +2,20 @@
 {
   den.aspects.avery_malfestio = {
 
-    includes =
-      let
-        steam_user =
-          { user, ... }:
-          {
-            nixos.jovian.steam.user = user.userName;
-          };
-      in
-      [
-        <kasane/base-user>
+    includes = [
+      <kasane/base-user>
+      <kasane/base-user/jovian>
 
-        <kasane/desktop/awww>
-        <kasane/desktop/caelestia-shell>
-        <kasane/desktop/hyprland>
-        <kasane/gaming/discord>
-        <kasane/theme>
-        <kasane/tools/compressed-file-tools>
-        <kasane/tools/kitty>
-        <kasane/tools/pcmanfm-qt>
-        <kasane/web-browsers/firefox>
-
-        steam_user
-      ];
+      <kasane/desktop/awww>
+      <kasane/desktop/caelestia-shell>
+      <kasane/desktop/hyprland>
+      <kasane/gaming/discord>
+      <kasane/theme>
+      <kasane/tools/compressed-file-tools>
+      <kasane/tools/kitty>
+      <kasane/tools/pcmanfm-qt>
+      <kasane/web-browsers/firefox>
+    ];
 
     homeManager =
       { lib, ... }:

@@ -21,13 +21,14 @@
     description = "Main computer";
 
     includes = [
+      <megurine/has/amd-cpu>
+      <megurine/has/amd-cpu/kvm>
+      <megurine/requires/secure-boot>
+
       <adachi/desktop>
       <adachi/desktop/hyprland>
-      <adachi/hardware/amd-cpu>
-      <adachi/hardware/amd-cpu/kvm>
-      <adachi/system/auto-hostname>
       <adachi/system/cachyos-kernel>
-      <adachi/system/secure-boot>
+
       <kasane/services/backups>
     ];
 

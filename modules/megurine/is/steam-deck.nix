@@ -5,7 +5,18 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  adachi.system._.steam-deck = {
+  megurine.is._.steam-deck = {
+    description = ''
+      Aspect for the Steam Deck that uses Jovian-NixOS to provide a SteamOS-like experience.
+
+      Already includes all of the required <megurine/has/...> aspects
+    '';
+
+    includes = [
+      <megurine/has/amd-cpu>
+      <megurine/requires/efi-boot>
+    ];
+
     nixos =
       { lib, ... }:
       {

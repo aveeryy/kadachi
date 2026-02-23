@@ -17,12 +17,11 @@
 
   den.aspects.malfestio = {
     includes = [
+      <megurine/is/steam-deck>
+      <megurine/is/steam-deck/cachyos-kernel>
+
       <adachi/desktop>
       <adachi/desktop/hyprland>
-      <adachi/hardware/amd-cpu>
-      <adachi/system/auto-hostname>
-      <adachi/system/steam-deck>
-      <adachi/system/steam-deck/cachyos-kernel>
     ];
 
     nixos = {

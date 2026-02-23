@@ -5,7 +5,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  adachi.system._.secure-boot = {
+  megurine.requires._.secure-boot = {
     nixos =
       { pkgs, lib, ... }:
       {
@@ -15,10 +15,10 @@
           lanzaboote = {
             enable = true;
             pkiBundle = "/var/lib/sbctl";
-            autoGenerateKeys.enable = true;
+            autoGenerateKeys.enable = lib.mkDefault true;
             autoEnrollKeys = {
-              enable = true;
-              autoReboot = true;
+              enable = lib.mkDefault true;
+              autoReboot = lib.mkDefault true;
             };
           };
           loader.systemd-boot.enable = lib.mkForce false;

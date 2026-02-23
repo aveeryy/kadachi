@@ -5,7 +5,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  adachi.system._.wsl = {
+  megurine.is._.wsl = {
     nixos = {
       imports = [ inputs.nixos-wsl.nixosModules.default ];
 

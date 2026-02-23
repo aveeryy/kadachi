@@ -1,4 +1,8 @@
-{ __findFile, inputs, ... }:
+{
+  __findFile,
+  inputs,
+  ...
+}:
 let
   username = "avery";
   name = "Avery";
@@ -42,5 +46,10 @@ in
           signing.key = "B684FD451B692E04";
         };
       };
+
+    provides = {
+      jovian.nixos.jovian.steam.user = username;
+      wsl.nixos.wsl.defaultUser = username;
+    };
   };
 }

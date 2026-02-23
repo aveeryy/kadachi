@@ -16,6 +16,10 @@ Can be used from outside the flake using [den](https://github.com/vic/den) with 
 
 Private namespace, contains my personal configuration for various programs and services
 
+### 🐟 Megurine
+
+Shared aspects based on the host's hardware / purpose
+
 ## Hosts
 
 ### 🐬 Totsugeki

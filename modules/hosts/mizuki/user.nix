@@ -3,15 +3,17 @@
   den.aspects.avery_mizuki = {
     includes = [
       <kasane/base-user>
+      <kasane/base-user/wsl>
 
       <adachi/neovim/extras/format-on-save>
       <adachi/neovim/languages/markdown>
+      <adachi/neovim/languages/rust>
       <adachi/neovim/languages/python>
       <adachi/neovim/languages/vue>
       (<adachi/services/gpg-agent> true)
 
-      <kasane/tools/xh>
       <kasane/theme>
+      <kasane/tools/xh>
     ];
 
     homeManager =

@@ -22,6 +22,7 @@
     # Namespaces
     (inputs.den.namespace "adachi" true)
     (inputs.den.namespace "kasane" false)
+    (inputs.den.namespace "megurine" true)
   ];
 
   _module.args.__findFile = den.lib.__findFile;
