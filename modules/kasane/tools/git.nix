@@ -25,7 +25,10 @@
           enableZshIntegration = false;
           settings = {
             gui.nerdFontsVersion = "3";
-            git.autoFetch = false;
+            git = {
+              autoFetch = false;
+              overrideGpg = true;
+            };
           };
         };
         zsh.shellAliases."lg" = "lazygit";
