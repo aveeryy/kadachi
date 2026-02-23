@@ -17,17 +17,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1769958483,
-        "narHash": "sha256-/9ipqL+9fx4GAtzlAZDJKyG5D5oP+DLB2Frgivwq71s=",
-        "ref": "refs/heads/main",
-        "rev": "a036aff4547618fa135971dd5360f889919160d1",
-        "revCount": 460,
-        "type": "git",
-        "url": "https://git.rcia.dev/Avery/autofirma-nix-fork"
+        "lastModified": 1770980818,
+        "narHash": "sha256-OCEBzLsApyjbJklpFkO6KxE1EmvbNlnci4t/DpT/xJg=",
+        "owner": "nix-community",
+        "repo": "autofirma-nix",
+        "rev": "07a50e70df407610b42177a36bb00ca2202755b2",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.rcia.dev/Avery/autofirma-nix-fork"
+        "owner": "nix-community",
+        "repo": "autofirma-nix",
+        "type": "github"
       }
     },
     "autofirma-src": {

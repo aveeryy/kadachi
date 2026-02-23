@@ -11,7 +11,7 @@
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
-      url = "git+https://git.rcia.dev/Avery/autofirma-nix-fork";
+      url = "github:nix-community/autofirma-nix";
     };
     caelestia-shell = {
       inputs.nixpkgs.follows = "nixpkgs";
