@@ -10,7 +10,7 @@
     };
     services.backups.repositories = jobName: [
       {
-        path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic-${jobName}/";
+        path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/totsugeki-${jobName}/";
         label = "remote";
       }
     ];

@@ -4,6 +4,12 @@
     services = {
       baseHost = "rcia.dev";
       email = "aveeryy@protonmail.com";
+      backups.repositories = jobName: [
+        {
+          path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/greatyamada-${jobName}/";
+          label = "remote";
+        }
+      ];
     };
     users.avery.aspect = "avery_greatyamada";
   };
@@ -21,6 +27,7 @@
 
       <kasane/services/acme/cloudflare>
       <kasane/services/adguardhome>
+      <kasane/services/backups>
       <kasane/services/database>
       <kasane/services/ddns/cloudflare>
       <kasane/services/fail2ban>
