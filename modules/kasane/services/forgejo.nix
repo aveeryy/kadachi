@@ -1,27 +1,17 @@
 {
-
   lib,
   inputs,
+  den,
   ...
 }:
-let
-  arrayToSecrets =
-    secretNames:
-    builtins.listToAttrs (
-      map (key: {
-        name = "forgejo/${key}";
-        value.owner = "forgejo";
-      }) secretNames
-    );
-in
 {
   flake-file.inputs.catppuccin = {
     url = "github:catppuccin/nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  kasane.services._.forgejo =
-    { host, ... }:
+  kasane.services._.forgejo = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { pkgs, config, ... }:
@@ -57,6 +47,7 @@ in
                 };
               };
             };
+
             nginx.virtualHosts."git.${host.services.baseHost}" = {
               locations."/" = {
                 proxyPass = "http://127.0.0.1:${toString config.services.forgejo.settings.server.HTTP_PORT}";
@@ -64,24 +55,36 @@ in
               forceSSL = true;
               useACMEHost = host.services.baseHost;
             };
-            openssh.settings.AllowUsers =
-              lib.lists.optionals (!config.services.forgejo.settings.server.DISABLE_SSH)
-                [
-                  "forgejo"
-                ];
+
+            openssh.settings.AllowUsers = lib.lists.optional (
+              !config.services.forgejo.settings.server.DISABLE_SSH
+            ) "forgejo";
+
+            borgmatic.configurations."forgejo" = {
+              source_directories = [ config.services.forgejo.stateDir ];
+              repositories = host.services.backups.repositories "forgejo";
+              encryption_passcommand = "cat /run/secrets/backups/password/forgejo";
+              ssh_command = "ssh -p 23 -i ${config.sops.templates."backups_ssh_private_key".path}";
+              keep_daily = 7;
+              keep_weekly = 4;
+            };
           };
-          sops.secrets = arrayToSecrets [
-            "database_password"
-            "internal_token"
-            "lfs_jwt_secret"
-            "oauth2_jwt_secret"
-            "secret_key"
-          ];
+
+          sops.secrets = {
+            "forgejo/database_password".owner = "forgejo";
+            "forgejo/internal_token".owner = "forgejo";
+            "forgejo/lfs_jwt_secret".owner = "forgejo";
+            "forgejo/oauth2_jwt_secret".owner = "forgejo";
+            "forgejo/secret_key".owner = "forgejo";
+            "backups/password/forgejo".owner = "root";
+          };
+
           catppuccin.forgejo = {
             enable = true;
             flavor = "mocha";
             accent = "mauve";
           };
         };
-    };
+    }
+  );
 }
