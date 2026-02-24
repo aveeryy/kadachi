@@ -3,7 +3,6 @@
   den.aspects.avery_mizuki = {
     includes = [
       <kasane/base-user>
-      <kasane/base-user/wsl>
 
       <adachi/neovim/extras/format-on-save>
       <adachi/neovim/languages/markdown>

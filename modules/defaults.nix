@@ -2,10 +2,34 @@
   __findFile,
   inputs,
   self,
+  lib,
+  den,
   ...
 }:
 let
   stateVersion = "25.11";
+
+  jovianClass =
+    { class, aspect-chain }:
+    den._.forward {
+      each = lib.singleton class;
+      fromClass = _: "jovian";
+      intoClass = _: "nixos";
+      intoPath = _: [ "jovian" ];
+      fromAspect = _: lib.last aspect-chain;
+      guard = { options, ... }: options ? jovian;
+    };
+
+  wslClass =
+    { class, aspect-chain }:
+    den._.forward {
+      each = lib.singleton class;
+      fromClass = _: "wsl";
+      intoClass = _: "nixos";
+      intoPath = _: [ "wsl" ];
+      fromAspect = _: lib.last aspect-chain;
+      guard = { options, ... }: options ? wsl;
+    };
 in
 {
   flake-file.inputs = {
@@ -25,6 +49,9 @@ in
       <den/home-manager>
 
       <adachi/system/auto-hostname>
+
+      jovianClass
+      wslClass
     ];
 
     nixos =

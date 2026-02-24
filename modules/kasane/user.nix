@@ -34,6 +34,7 @@ in
           ];
         };
       };
+
     homeManager =
       { pkgs, ... }:
       {
@@ -47,9 +48,8 @@ in
         };
       };
 
-    provides = {
-      jovian.nixos.jovian.steam.user = username;
-      wsl.nixos.wsl.defaultUser = username;
-    };
+    jovian.steam.user = username;
+
+    wsl.defaultUser = username;
   };
 }

@@ -4,7 +4,6 @@
 
     includes = [
       <kasane/base-user>
-      <kasane/base-user/jovian>
 
       <kasane/desktop/awww>
       <kasane/desktop/caelestia-shell>

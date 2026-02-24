@@ -2,7 +2,7 @@
 {
   # TODO: rename to awww
   kasane.desktop._.awww =
-    { HM-OS-USER }:
+    { host, user }:
     {
       homeManager =
         { pkgs, lib, ... }:
@@ -11,7 +11,7 @@
             swww
             (wallpaperctl.override {
               refreshRate = builtins.elemAt (lib.lists.sort (a: b: a > b) (
-                lib.mapAttrsToList (_: display: display.refreshRate) HM-OS-USER.host.desktop.displays
+                lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
               )) 0;
             })
           ];

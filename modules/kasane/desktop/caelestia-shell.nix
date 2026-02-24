@@ -8,7 +8,7 @@
   };
 
   kasane.desktop._.caelestia-shell =
-    { HM-OS-USER }:
+    { host, user }:
     {
       homeManager =
         { config, lib, ... }:
@@ -77,9 +77,9 @@
                 status = {
                   showAudio = true;
                   showMicrophone = true;
-                  showNetwork = HM-OS-USER.host.desktop.system.hasWiFi;
-                  showBluetooth = HM-OS-USER.host.desktop.system.hasBluetooth;
-                  showBattery = HM-OS-USER.host.desktop.system.hasBattery;
+                  showNetwork = host.desktop.system.hasWiFi;
+                  showBluetooth = host.desktop.system.hasBluetooth;
+                  showBattery = host.desktop.system.hasBattery;
                 };
                 tray = {
                   background = true;

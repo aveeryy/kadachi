@@ -22,7 +22,7 @@ let
 in
 {
   kasane.desktop._.hyprland =
-    { HM-OS-USER }:
+    { host, user }:
     {
       homeManager =
         { pkgs, ... }:
@@ -30,7 +30,7 @@ in
           wayland.windowManager.hyprland = {
             enable = true;
             settings = {
-              monitor = displaysToHyprlandConfig HM-OS-USER.host.desktop.displays;
+              monitor = displaysToHyprlandConfig host.desktop.displays;
               input = {
                 # Keyboard
                 kb_layout = "es";
