@@ -87,10 +87,15 @@
           nginx.virtualHosts."rcia.dev".locations."/".return = "301 https://git.rcia.dev/Avery";
           postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
           samba.settings = {
+            global = {
+              "map to guest" = "Bad User";
+              "ntlm auth" = "yes"; # Required for PS2
+              "server min protocol" = "NT1"; # Required for PS2
+              "lanman auth" = "yes"; # Required for POPSLoader
+            };
             "PS2" = {
               path = "/mnt/hdd-01/PS2";
               browseable = "yes";
-              "read only" = "yes";
               "guest ok" = "yes";
               comment = "PS2 game share";
             };
