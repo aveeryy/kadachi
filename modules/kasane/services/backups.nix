@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, den, ... }:
 let
   repositoryType =
     with lib.types;
@@ -36,8 +36,8 @@ in
         };
       };
     };
-  kasane.services._.backups =
-    { host, ... }:
+  kasane.services._.backups = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { config, ... }:
@@ -53,5 +53,6 @@ in
             };
           };
         };
-    };
+    }
+  );
 }

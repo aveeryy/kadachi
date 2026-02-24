@@ -1,7 +1,7 @@
-{ ... }:
+{ den, ... }:
 {
-  kasane.services._.vaultwarden =
-    { host, ... }:
+  kasane.services._.vaultwarden = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { config, ... }:
@@ -37,5 +37,6 @@
           };
 
         };
-    };
+    }
+  );
 }

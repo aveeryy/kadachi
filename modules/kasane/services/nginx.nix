@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, den, ... }:
 {
   den.base.host =
     { host, ... }:
@@ -16,8 +16,8 @@
       };
     };
 
-  kasane.services._.nginx =
-    { host, ... }:
+  kasane.services._.nginx = den.lib.take.exactly (
+    { host }:
     {
       nixos = {
         networking.firewall.allowedTCPPorts = [ 443 ];
@@ -36,5 +36,6 @@
           };
         };
       };
-    };
+    }
+  );
 }

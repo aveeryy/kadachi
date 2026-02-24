@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, den, ... }:
 {
-  kasane.services._.searxng =
-    { host, ... }:
+  kasane.services._.searxng = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { pkgs, config, ... }:
@@ -42,5 +42,6 @@
           systemd.services.nginx.serviceConfig.ProtectHome = false;
           users.groups.searx.members = lib.optionals (config.services.nginx.enable) [ "nginx" ];
         };
-    };
+    }
+  );
 }

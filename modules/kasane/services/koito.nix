@@ -1,7 +1,7 @@
-{ ... }:
+{ den, ... }:
 {
-  kasane.services._.koito =
-    { host, ... }:
+  kasane.services._.koito = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         let
@@ -84,5 +84,6 @@
             '';
           };
         };
-    };
+    }
+  );
 }

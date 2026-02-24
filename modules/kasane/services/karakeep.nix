@@ -1,7 +1,7 @@
-{ ... }:
+{ den, ... }:
 {
-  kasane.services._.karakeep =
-    { host, ... }:
+  kasane.services._.karakeep = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { config, ... }:
@@ -24,5 +24,6 @@
             };
           };
         };
-    };
+    }
+  );
 }

@@ -1,7 +1,7 @@
-{ ... }:
+{ den, ... }:
 {
-  kasane.services._.pgadmin =
-    { host, ... }:
+  kasane.services._.pgadmin = den.lib.take.exactly (
+    { host }:
     {
       nixos =
         { config, lib, ... }:
@@ -22,5 +22,6 @@
           };
           sops.secrets."pgadmin/initial_password".owner = "pgadmin";
         };
-    };
+    }
+  );
 }

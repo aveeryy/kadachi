@@ -38,7 +38,7 @@
         systemd.user.timers.ludusavi = lib.mkForce { };
       };
     provides.automatic-backup =
-      { user, host, ... }:
+      { user, host }:
       {
         description = "Provides automatic backups of ludusavi's using the system backup tool";
 
