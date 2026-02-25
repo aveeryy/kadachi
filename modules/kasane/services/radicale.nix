@@ -1,4 +1,4 @@
-{ den, ... }:
+{ den, kadachi-lib, ... }:
 {
   kasane.services._.radicale =
     let
@@ -10,6 +10,12 @@
         nixos =
           { config, lib, ... }:
           {
+            imports = [
+              (kadachi-lib.createBackupConfiguration "radicale" host {
+                source_directories = [ config.services.radicale.settings.storage.filesystem_folder ];
+                keep_daily = 14;
+              })
+            ];
             services = {
               radicale = {
                 enable = true;
@@ -17,9 +23,10 @@
                   server.hosts = [ "127.0.0.1:${toString radicalePort}" ];
                   auth = {
                     type = "htpasswd";
-                    htpasswd_filename = "/var/lib/radicale/users";
+                    htpasswd_filename = config.sops.secrets."radicale/users".path;
                     htpasswd_encryption = "bcrypt";
                   };
+                  storage.filesystem_folder = "/var/lib/radicale/collections";
                 };
               };
               nginx.virtualHosts."radicale.${host.services.baseHost}" = {
