@@ -25,7 +25,6 @@
       <kasane/gaming/discord>
       <kasane/gaming/heroic>
       <kasane/gaming/ludusavi>
-      <kasane/gaming/ludusavi/automatic-backup>
       <kasane/gaming/mangohud>
       <kasane/gaming/minecraft>
       <kasane/gaming/steam>
