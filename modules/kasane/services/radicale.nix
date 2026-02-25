@@ -14,6 +14,7 @@
               (kadachi-lib.createBackupConfiguration "radicale" host {
                 source_directories = [ config.services.radicale.settings.storage.filesystem_folder ];
                 keep_daily = 14;
+                keep_monthly = 3;
               })
             ];
             services = {
