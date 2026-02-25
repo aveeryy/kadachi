@@ -1,6 +1,6 @@
 { ... }:
 {
-  adachi.neovim._.extras._.format-on-save.homeManager.programs.nixvim = {
+  adachi.neovim._.extras._.format-on-save.neovim = {
     globals.rustfmt_autosave = 1;
     plugins.lsp.luaConfig.post = ''
       vim.api.nvim_create_augroup("FormatOnSave", {})

@@ -1,6 +1,6 @@
 { ... }:
 {
-  adachi.neovim._.languages._.rust.homeManager.programs.nixvim.plugins = {
+  adachi.neovim._.languages._.rust.neovim.plugins = {
     lsp.servers.rust_analyzer = {
       enable = true;
       installCargo = false;

@@ -1,6 +1,6 @@
 { ... }:
 {
-  adachi.neovim._.languages._.vue.homeManager.programs.nixvim.plugins = {
+  adachi.neovim._.languages._.vue.neovim.plugins = {
     lsp.servers = {
       ts_ls.enable = true;
       vue_ls = {
