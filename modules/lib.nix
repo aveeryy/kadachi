@@ -24,21 +24,10 @@ let
         topic = "backups";
         access_token = "{credential file /run/secrets/backups/ntfy_token}";
 
-        start = {
-          title = "Backup job started";
-          message = "Backup job ${host.hostName}/${backupName} started";
-          priority = "min";
-          tags =
-            if host.services.backups.identifyingIcon != "" then
-              "${host.services.backups.identifyingIcon},arrow_forward"
-            else
-              "arrow_forward";
-        };
-
         finish = {
           title = "Backup job finished";
           message = "Backup job ${host.hostName}/${backupName} finished";
-          priority = "min";
+          priority = "low";
           tags =
             if host.services.backups.identifyingIcon != "" then
               "${host.services.backups.identifyingIcon},white_check_mark"
@@ -52,13 +41,12 @@ let
           priority = "max";
           tags =
             if host.services.backups.identifyingIcon != "" then
-              "${host.services.backups.identifyingIcon},stop_sign"
+              "${host.services.backups.identifyingIcon},skull"
             else
-              "stop_sign";
+              "skull";
         };
 
         states = [
-          "start"
           "finish"
           "fail"
         ];
