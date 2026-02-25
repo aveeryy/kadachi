@@ -6,8 +6,8 @@
       email = "aveeryy@protonmail.com";
       backups.repositories = jobName: [
         {
-          path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/greatyamada-${jobName}/";
-          label = "remote";
+          path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/${jobName}/";
+          label = "${jobName}@hetzner-de";
         }
       ];
     };
