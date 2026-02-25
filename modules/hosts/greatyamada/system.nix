@@ -36,6 +36,7 @@
       <kasane/services/jellyfin>
       <kasane/services/karakeep>
       <kasane/services/nginx>
+      <kasane/services/ntfy-sh>
       <kasane/services/pgadmin>
       <kasane/services/radicale>
       <kasane/services/samba>
