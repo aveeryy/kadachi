@@ -2,6 +2,7 @@
   lib,
   inputs,
   den,
+  kadachi-lib,
   ...
 }:
 {
@@ -16,7 +17,15 @@
       nixos =
         { pkgs, config, ... }:
         {
-          imports = [ inputs.catppuccin.nixosModules.catppuccin ];
+          imports = [
+            inputs.catppuccin.nixosModules.catppuccin
+
+            (kadachi-lib.createBackupConfiguration "forgejo" host {
+              source_directories = [ config.services.forgejo.stateDir ];
+              keep_daily = 7;
+              keep_weekly = 4;
+            })
+          ];
           services = {
             forgejo = {
               enable = true;
@@ -59,15 +68,6 @@
             openssh.settings.AllowUsers = lib.lists.optional (
               !config.services.forgejo.settings.server.DISABLE_SSH
             ) "forgejo";
-
-            borgmatic.configurations."forgejo" = {
-              source_directories = [ config.services.forgejo.stateDir ];
-              repositories = host.services.backups.repositories "forgejo";
-              encryption_passcommand = "cat /run/secrets/backups/password/forgejo";
-              ssh_command = "ssh -p 23 -i ${config.sops.templates."backups_ssh_private_key".path}";
-              keep_daily = 7;
-              keep_weekly = 4;
-            };
           };
 
           sops.secrets = {
@@ -76,7 +76,6 @@
             "forgejo/lfs_jwt_secret".owner = "forgejo";
             "forgejo/oauth2_jwt_secret".owner = "forgejo";
             "forgejo/secret_key".owner = "forgejo";
-            "backups/password/forgejo".owner = "root";
           };
 
           catppuccin.forgejo = {

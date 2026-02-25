@@ -1,4 +1,4 @@
-{ ... }:
+{ kadachi-lib, ... }:
 {
   kasane.gaming._.ludusavi =
     { user, host }:
@@ -6,25 +6,23 @@
       nixos =
         { config, pkgs, ... }:
         {
-          services.borgmatic.configurations."ludusavi-${user.userName}" = {
-            source_directories = [
-              config.home-manager.users."${user.userName}".services.ludusavi.settings.backup.path
-            ];
-            repositories = host.services.backups.repositories "ludusavi-${user.userName}";
-            commands = [
-              {
-                before = "everything";
-                when = [ "check" ];
-                run = [
-                  ''/run/wrappers/bin/su -c "${pkgs.ludusavi}/bin/ludusavi backup --force" -- ${user.userName}''
-                ];
-              }
-            ];
-            encryption_passcommand = "cat /run/secrets/backups/password/ludusavi-${user.userName}";
-            ssh_command = "ssh -p 23 -i ${config.sops.templates."backups_ssh_private_key".path}";
-            keep_daily = 7;
-          };
-          sops.secrets."backups/password/ludusavi-${user.userName}".owner = "root";
+          imports = [
+            (kadachi-lib.createBackupConfiguration "ludusavi-${user.userName}" host {
+              source_directories = [
+                config.home-manager.users."${user.userName}".services.ludusavi.settings.backup.path
+              ];
+              commands = [
+                {
+                  before = "everything";
+                  when = [ "check" ];
+                  run = [
+                    ''/run/wrappers/bin/su -c "${pkgs.ludusavi}/bin/ludusavi backup --force" -- ${user.userName}''
+                  ];
+                }
+              ];
+              keep_daily = 7;
+            })
+          ];
           # Configuration requires su permissions
           systemd.services.borgmatic.serviceConfig = {
             NoNewPrivileges = false;
@@ -65,7 +63,7 @@
               theme = "dark";
             };
           };
-          # Backups are automatically managed by Borgmatic, disable the home-manager timer
+          # Backups are automatically managed by Borgmatic, disable the systemd timer
           systemd.user.timers.ludusavi = lib.mkForce { };
         };
     };
