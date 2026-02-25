@@ -1,4 +1,4 @@
-{ ... }:
+{ kadachi-lib, ... }:
 {
   adachi.neovim._.languages._.nix.homeManager =
     { pkgs, ... }:
@@ -11,16 +11,7 @@
             package = pkgs.nixfmt;
           };
         };
-        # TODO: modularize this for use in other languages
-        extraConfigLuaPost = ''
-          vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-            pattern = "*.nix";
-            callback = function()
-              vim.opt_local.shiftwidth = 2
-              vim.opt_local.tabstop = 2
-            end
-          });
-        '';
+        extraConfigLuaPost = kadachi-lib.neovim.setLanguageIndentation "*.nix" 2;
       };
     };
 }
