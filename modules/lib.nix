@@ -18,6 +18,51 @@ let
       ssh_command = "ssh -p 23 -i ${
         self.nixosConfigurations.${host.hostName}.config.sops.templates."backups_ssh_private_key".path
       }";
+
+      ntfy = {
+        server = "https://ntfy.rcia.dev";
+        topic = "backups";
+        access_token = "{credential file /run/secrets/backups/ntfy_token}";
+
+        start = {
+          title = "Backup job started";
+          message = "Backup job ${host.hostName}/${backupName} started";
+          priority = "min";
+          tags =
+            if host.services.backups.identifyingIcon != "" then
+              "${host.services.backups.identifyingIcon},arrow_forward"
+            else
+              "arrow_forward";
+        };
+
+        finish = {
+          title = "Backup job finished";
+          message = "Backup job ${host.hostName}/${backupName} finished";
+          priority = "min";
+          tags =
+            if host.services.backups.identifyingIcon != "" then
+              "${host.services.backups.identifyingIcon},white_check_mark"
+            else
+              "white_check_mark";
+        };
+
+        fail = {
+          title = "Backup job failed";
+          message = "Backup job ${host.hostName}/${backupName} failed";
+          priority = "max";
+          tags =
+            if host.services.backups.identifyingIcon != "" then
+              "${host.services.backups.identifyingIcon},stop_sign"
+            else
+              "stop_sign";
+        };
+
+        states = [
+          "start"
+          "finish"
+          "fail"
+        ];
+      };
     }
     // borgmaticConfiguration;
 

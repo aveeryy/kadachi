@@ -4,12 +4,15 @@
     services = {
       baseHost = "rcia.dev";
       email = "aveeryy@protonmail.com";
-      backups.repositories = jobName: [
-        {
-          path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/${jobName}/";
-          label = "${jobName}@hetzner-de";
-        }
-      ];
+      backups = {
+        identifyingIcon = "whale";
+        repositories = jobName: [
+          {
+            path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/${jobName}/";
+            label = "${jobName}@hetzner-de";
+          }
+        ];
+      };
     };
     users.avery.aspect = "avery_greatyamada";
   };

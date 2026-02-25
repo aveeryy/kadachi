@@ -1,4 +1,9 @@
-{ lib, den, ... }:
+{
+  lib,
+  den,
+  inputs,
+  ...
+}:
 let
   repositoryType =
     with lib.types;
@@ -20,6 +25,11 @@ in
     { host, ... }:
     {
       options.services.backups = with lib.types; {
+        identifyingIcon = lib.mkOption {
+          type = str;
+          default = "";
+          example = "cat";
+        };
         repositories = lib.mkOption {
           type = functionTo (listOf repositoryType);
           default = name: [ ];
@@ -44,7 +54,13 @@ in
         {
           services.borgmatic.enable = true;
           sops = {
-            secrets."backups/ssh_private_key".owner = "root";
+            secrets = {
+              "backups/ssh_private_key".owner = "root";
+              "backups/ntfy_token" = {
+                owner = "root";
+                sopsFile = "${inputs.secrets}/common.yaml";
+              };
+            };
             templates."backups_ssh_private_key" = {
               content = ''
                 ${config.sops.placeholder."backups/ssh_private_key"}

@@ -854,11 +854,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1772046902,
-        "narHash": "sha256-PlKBHNVqaDthdskcvfl6M4FItsS3idr/23LIOaKl7QQ=",
+        "lastModified": 1772051820,
+        "narHash": "sha256-MQfh8ydL6+mklZZ6dBosOHgL+N8+j04F5PdE5Zo+4uc=",
         "ref": "refs/heads/main",
-        "rev": "725acca6dd42ff53d8d179ec67ac2b747bba2ce4",
-        "revCount": 16,
+        "rev": "cc0d5c0d41c3bdbc6a553fd3d1ca7b8952a2e758",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git"
       },
