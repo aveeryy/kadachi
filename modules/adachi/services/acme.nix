@@ -1,7 +1,10 @@
 { ... }:
 {
   adachi.services._.acme = {
-    nixos.security.acme.acceptTerms = true;
+    nixos.security.acme = {
+      acceptTerms = true;
+      defaults.profile = "shortlived";
+    };
     provides = {
       cloudflare = hostName: email: {
         nixos =
