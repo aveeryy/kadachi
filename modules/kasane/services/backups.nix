@@ -68,6 +68,7 @@ in
               owner = "root";
             };
           };
+          systemd.timers.borgmatic.timerConfig.RandomizedDelaySec = "0";
         };
     }
   );
