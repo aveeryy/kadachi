@@ -1,5 +1,6 @@
 {
   inputs,
+  self,
   lib,
   den,
   ...
@@ -26,6 +27,8 @@
   ];
 
   _module.args.__findFile = den.lib.__findFile;
+
+  _module.args.kadachi-lib = self.lib;
 
   systems = [ "x86_64-linux" ];
 }
