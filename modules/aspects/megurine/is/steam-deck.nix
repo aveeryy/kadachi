@@ -47,6 +47,8 @@
         };
 
         networking.networkmanager.enable = true;
+
+        services.displayManager.sddm.wayland.enable = true;
       };
     provides = {
       cachyos-kernel = {
