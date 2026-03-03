@@ -94,6 +94,7 @@ in
             ];
           };
         };
+        networking.dhcpcd.wait = "background";
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [ self.overlays.default ];
