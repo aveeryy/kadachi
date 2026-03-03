@@ -1,4 +1,17 @@
 { __findFile, ... }:
+let
+  getDiagnosticJumpAction = count: /* lua */ ''
+    function()
+      vim.diagnostic.jump({
+        count = ${count},
+        severity = {
+          min = vim.diagnostic.severity.WARN
+        },
+        wrap = true,
+      })
+    end
+  '';
+in
 {
   kasane.neovim = {
     description = "Base Neovim configuration";
@@ -46,6 +59,27 @@
       };
 
       globals.mapleader = " ";
+
+      keymaps = [
+        {
+          action = "<C-]>";
+          key = "<leader>gd";
+          mode = [ "n" ];
+          options.desc = "Go to definition under cursor";
+        }
+        {
+          action.__raw = getDiagnosticJumpAction "1";
+          key = "<leader>dn";
+          mode = [ "n" ];
+          options.desc = "Go to next diagnostic";
+        }
+        {
+          action.__raw = getDiagnosticJumpAction "-1";
+          key = "<leader>dp";
+          mode = [ "n" ];
+          options.desc = "Go to previous diagnostic";
+        }
+      ];
 
       opts = {
         number = true;
