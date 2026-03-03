@@ -83,6 +83,7 @@ in
 
       opts = {
         number = true;
+        relativenumber = true;
         cursorline = true;
         tabstop = 4;
         shiftwidth = 4;
