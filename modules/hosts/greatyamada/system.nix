@@ -28,11 +28,11 @@
 
       <adachi/services/podman>
 
-      <kasane/services/acme/cloudflare>
+      <kasane/services/acme/desec>
       <kasane/services/adguardhome>
       <kasane/services/backups>
       <kasane/services/database>
-      <kasane/services/ddns/cloudflare>
+      <kasane/services/ddns/desec>
       <kasane/services/fail2ban>
       <kasane/services/forgejo>
       <kasane/services/koito>
