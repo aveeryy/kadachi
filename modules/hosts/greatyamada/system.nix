@@ -55,16 +55,13 @@
         ...
       }:
       {
-        boot = {
-          initrd.availableKernelModules = [
-            "xhci_pci"
-            "ahci"
-            "usbhid"
-            "usb_storage"
-            "sd_mod"
-          ];
-          kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-        };
+        boot.initrd.availableKernelModules = [
+          "xhci_pci"
+          "ahci"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+        ];
 
         networking = {
           useDHCP = lib.mkForce false;
