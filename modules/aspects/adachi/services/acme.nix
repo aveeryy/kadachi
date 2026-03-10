@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  adachi.services._.acme = email: {
+  adachi.services._.acme = {
     nixos.security.acme = {
       acceptTerms = true;
       defaults = {
@@ -9,6 +9,7 @@
         webroot = lib.mkDefault null;
       };
     };
+
     provides = {
       cloudflare = hostName: {
         nixos =
@@ -29,7 +30,7 @@
           { config, ... }:
           {
             security.acme.certs."${hostName}" = {
-              credentialFiles.HETZNER_API_TOKEN =
+              credentialFiles.HETZNER_API_TOKEN_FILE =
                 lib.mkDefault
                   config.sops.secrets."acme/hetzner/${hostName}".path;
               extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
@@ -43,7 +44,7 @@
           { config, ... }:
           {
             security.acme.certs."${hostName}" = {
-              credentialFiles.DESEC_TOKEN = lib.mkDefault config.sops.secrets."acme/desec/${hostName}".path;
+              credentialFiles.DESEC_TOKEN_FILE = lib.mkDefault config.sops.secrets."acme/desec/${hostName}".path;
               extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
               dnsProvider = "desec";
             };
