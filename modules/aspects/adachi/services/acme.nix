@@ -1,40 +1,53 @@
-{ ... }:
+{ lib, ... }:
 {
-  adachi.services._.acme = {
+  adachi.services._.acme = email: {
     nixos.security.acme = {
       acceptTerms = true;
-      defaults.profile = "shortlived";
+      defaults = {
+        profile = lib.mkDefault "shortlived";
+        group = lib.mkDefault "nginx";
+        webroot = lib.mkDefault null;
+      };
     };
     provides = {
-      cloudflare = hostName: email: {
+      cloudflare = hostName: {
         nixos =
           { config, ... }:
           {
             security.acme.certs."${hostName}" = {
               credentialFiles.CLOUDFLARE_DNS_API_TOKEN_FILE =
-                config.sops.secrets."acme/cloudflare/${hostName}".path;
-              email = email;
-              extraDomainNames = [ "*.${hostName}" ];
+                lib.mkDefault
+                  config.sops.secrets."acme/cloudflare/${hostName}".path;
+              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
               dnsProvider = "cloudflare";
-              group = "nginx";
-              webroot = null;
             };
             sops.secrets."acme/cloudflare/${hostName}".owner = "acme";
           };
       };
-      hetzner = hostName: email: {
+      hetzner = hostName: {
         nixos =
           { config, ... }:
           {
             security.acme.certs."${hostName}" = {
-              credentialFiles.HETZNER_API_TOKEN = config.sops.secrets."acme/hetzner/${hostName}".path;
-              email = email;
-              extraDomainNames = [ "*.${hostName}" ];
+              credentialFiles.HETZNER_API_TOKEN =
+                lib.mkDefault
+                  config.sops.secrets."acme/hetzner/${hostName}".path;
+              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
               dnsProvider = "hetzner";
-              group = "nginx";
-              webroot = null;
             };
             sops.secrets."acme/hetzner/${hostName}".owner = "acme";
+          };
+      };
+      desec = hostName: {
+        nixos =
+          { config, ... }:
+          {
+            security.acme.certs."${hostName}" = {
+              credentialFiles.DESEC_TOKEN = lib.mkDefault config.sops.secrets."acme/desec/${hostName}".path;
+              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
+              dnsProvider = "desec";
+            };
+            sops.secrets."acme/desec/${hostName}".owner = "acme";
           };
       };
     };

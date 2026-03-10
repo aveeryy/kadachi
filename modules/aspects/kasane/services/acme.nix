@@ -7,8 +7,17 @@
         { host }:
         {
           includes = [
-            <adachi/services/acme>
-            (<adachi/services/acme/cloudflare> host.services.baseHost host.services.email)
+            (<adachi/services/acme> host.services.email)
+            (<adachi/services/acme/cloudflare> host.services.baseHost)
+          ];
+        }
+      );
+      desec = den.lib.take.exactly (
+        { host }:
+        {
+          includes = [
+            (<adachi/services/acme> host.services.email)
+            (<adachi/services/acme/desec> host.services.baseHost)
           ];
         }
       );
