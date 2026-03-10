@@ -35,6 +35,30 @@
 
           };
       };
+      desec = hostName: {
+        nixos =
+          { config, ... }:
+          {
+            services.inadyn.settings.provider."desec.io" = {
+              hostname = [
+                hostName
+                "*.${hostName}"
+              ];
+              username = hostName;
+              include = config.sops.templates."ddns-desec-${hostName}.conf".path;
+            };
+            sops = {
+              secrets."ddns/desec/${hostName}" = { };
+              templates."ddns-desec-${hostName}.conf" = {
+                content = ''
+                  password = ${config.sops.placeholder."ddns/desec/${hostName}"}
+                '';
+                owner = "inadyn";
+              };
+            };
+
+          };
+      };
     };
   };
 }

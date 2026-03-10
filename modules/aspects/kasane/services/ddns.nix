@@ -12,6 +12,15 @@
           ];
         }
       );
+      desec = den.lib.take.exactly (
+        { host }:
+        {
+          includes = [
+            <adachi/services/ddns>
+            (<adachi/services/ddns/desec> host.services.baseHost)
+          ];
+        }
+      );
     };
   };
 }
