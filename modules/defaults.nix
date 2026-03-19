@@ -43,10 +43,11 @@ in
     };
   };
 
+  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
+
   den.default = {
     includes = [
       <den/define-user>
-      <den/home-manager>
 
       <adachi/system/auto-hostname>
 

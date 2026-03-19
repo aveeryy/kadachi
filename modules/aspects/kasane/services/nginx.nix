@@ -1,6 +1,6 @@
 { lib, den, ... }:
 {
-  den.base.host =
+  den.schema.host =
     { host, ... }:
     {
       options.services.nginx = {

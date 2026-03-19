@@ -39,7 +39,7 @@ let
   );
 in
 {
-  den.base.host =
+  den.schema.host =
     { host, ... }:
     {
       options = {

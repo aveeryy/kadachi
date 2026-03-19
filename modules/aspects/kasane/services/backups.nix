@@ -21,7 +21,7 @@ let
     };
 in
 {
-  den.base.host =
+  den.schema.host =
     { host, ... }:
     {
       options.services.backups = with lib.types; {
