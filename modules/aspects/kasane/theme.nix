@@ -105,19 +105,15 @@
             searchingActiveBorderColor = [ "#f9e2af" ];
           };
         };
+        stylix.autoEnable = false;
         stylix.targets = {
-          lazygit.enable = false;
-          firefox.enable = false;
-          kitty.enable = false;
-          hyprlock.enable = false;
-          hyprland.colors.enable = false;
-          neovim.enable = false;
-          nixvim.enable = false;
+          gtk.enable = true;
           gtk.extraCss = ''
             .dialog-action-area > .text-button {
               color: @dialog_fg_color;
             }
           '';
+          qt.enable = true;
         };
         wayland.windowManager.hyprland.settings.exec-once = lib.mkOrder 20 [
           "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"

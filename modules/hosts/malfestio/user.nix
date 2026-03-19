@@ -6,7 +6,6 @@
       <kasane/base-user>
 
       <kasane/desktop/awww>
-      <kasane/desktop/caelestia-shell>
       <kasane/desktop/hyprland>
       <kasane/gaming/discord>
       <kasane/theme>
@@ -19,8 +18,6 @@
     homeManager =
       { lib, ... }:
       {
-        # Avoid launching caelestia on Steam gamescope session
-        programs.caelestia.systemd.target = lib.mkForce "wayland-session@hyprland.desktop.target";
         wayland.windowManager.hyprland.settings = {
           exec-once = lib.mkOrder 10 [
             "[workspace 10 silent] steam"

@@ -12,10 +12,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell/1b4b90a3ad9532f7002ef2593d8efb68443f21f3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +49,10 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+    noctalia-shell = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
       url = "git+ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git";

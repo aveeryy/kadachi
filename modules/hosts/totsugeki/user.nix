@@ -17,9 +17,9 @@
       <adachi/tools/virtualisation>
 
       <kasane/desktop/awww>
-      <kasane/desktop/caelestia-shell>
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
+      <kasane/desktop/noctalia-shell>
       <kasane/desktop/screenshot>
       <kasane/gaming/bottles>
       <kasane/gaming/discord>
