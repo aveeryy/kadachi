@@ -115,6 +115,7 @@ in
           sudo.enable = false;
           sudo-rs = {
             enable = true;
+            extraConfig = "Defaults !pwfeedback";
             wheelNeedsPassword = true;
           };
         };
