@@ -19,6 +19,7 @@ in
     includes = [
       <adachi/neovim>
       <adachi/neovim/languages/nix>
+      <kasane/neovim/plugins/autopairs>
       <kasane/neovim/plugins/cmp>
       <kasane/neovim/plugins/fzf-lua>
       <kasane/neovim/plugins/lsp>
@@ -94,10 +95,7 @@ in
         signcolumn = "yes";
       };
 
-      plugins = {
-        web-devicons.enable = true;
-        nvim-autopairs.enable = true;
-      };
+      plugins.web-devicons.enable = true;
     };
   };
 }

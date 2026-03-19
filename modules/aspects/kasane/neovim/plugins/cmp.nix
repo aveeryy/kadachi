@@ -2,14 +2,6 @@
 {
   kasane.neovim._.plugins._.cmp.neovim = {
     opts.completeopt = "menuone,noselect,fuzzy,nosort";
-    extraConfigLua = ''
-      local cmp = require("cmp")
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      cmp.event:on(
-      'confirm_done',
-      cmp_autopairs.on_confirm_done()
-      )
-    '';
     plugins = {
       cmp = {
         enable = true;
@@ -69,12 +61,24 @@
           ];
         };
       };
+
       lspkind.enable = true;
+
       luasnip = {
         enable = true;
         fromVscode = [ { } ];
       };
       friendly-snippets.enable = true;
+
+      nvim-autopairs.luaConfig.post = ''
+        local cmp = require("cmp")
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+        cmp.event:on(
+          "confirm_done",
+          cmp_autopairs.on_confirm_done()
+        )
+      '';
     };
   };
 }
