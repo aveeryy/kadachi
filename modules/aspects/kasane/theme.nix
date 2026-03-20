@@ -89,6 +89,15 @@
             settings.background_opacity = "0.85";
             themeFile = "Catppuccin-Mocha";
           };
+          lazydocker.settings.gui.theme = {
+            activeBorderColor = [
+              "#89b4fa"
+              "bold"
+            ];
+            inactiveBorderColor = [ "#a6adc8" ];
+            optionsTextColor = [ "#89b4fa" ];
+            selectedLineBgColor = [ "#313244" ];
+          };
           lazygit.settings.gui.theme = {
             activeBorderColor = [
               "#89b4fa"
