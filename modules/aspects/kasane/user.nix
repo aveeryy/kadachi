@@ -11,6 +11,7 @@ in
   kasane.base-user = <den.lib.parametric> {
     includes = [
       <den/primary-user>
+
       <kasane/neovim>
       <kasane/tools/git>
       <kasane/zsh>
@@ -39,6 +40,7 @@ in
       { pkgs, ... }:
       {
         home.packages = with pkgs; [ python3 ];
+        programs.fzf.enable = true;
         programs.git = {
           settings.user = {
             name = name;
