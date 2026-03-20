@@ -139,6 +139,13 @@ in
                 disable_splash_rendering = true;
                 vrr = 2;
               };
+
+              workspace =
+                let
+                  workspaces = lib.map (w: "${toString w}, persistent:true") (lib.range 1 10);
+                in
+                workspaces;
+
               ecosystem = {
                 no_update_news = true;
                 no_donation_nag = true;

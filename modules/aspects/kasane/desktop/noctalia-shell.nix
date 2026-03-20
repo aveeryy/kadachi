@@ -43,6 +43,7 @@
                 id = "Workspace";
                 hideUnoccupied = false;
                 occupiedColor = "tertiary";
+                emptyColor = "tertiary";
               }
             ];
             center = [ ];
