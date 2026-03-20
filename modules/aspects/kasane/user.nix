@@ -49,7 +49,5 @@ in
       };
 
     jovian.steam.user = username;
-
-    wsl.defaultUser = username;
   };
 }
