@@ -201,11 +201,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1773922822,
-        "narHash": "sha256-1mgL8P5XYVQeYMwZ7QRn2vFQYu7iNGTLaYAgllZaef8=",
+        "lastModified": 1773972223,
+        "narHash": "sha256-VVTTAHsnP2BHWzfYNdJ9ptj6Zcbl14kWsA+RrsGeg5g=",
         "owner": "vic",
         "repo": "den",
-        "rev": "35542c55f36f53203864f6449862d8d9e0bcda10",
+        "rev": "cfa2d158dc33d585264086691becccfdaccce184",
         "type": "github"
       },
       "original": {
