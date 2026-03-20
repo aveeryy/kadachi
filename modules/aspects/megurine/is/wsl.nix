@@ -11,11 +11,5 @@
 
       wsl.enable = true;
     };
-
-    homeManager =
-      { pkgs, ... }:
-      {
-        home.packages = with pkgs; [ wslu ];
-      };
   };
 }
