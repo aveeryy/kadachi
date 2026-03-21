@@ -1,4 +1,4 @@
-{ ... }:
+{ kadachi-lib, ... }:
 {
   # TODO: rename to awww
   kasane.desktop._.awww =
@@ -10,9 +10,7 @@
           home.packages = with pkgs; [
             swww
             (wallpaperctl.override {
-              refreshRate = builtins.elemAt (lib.lists.sort (a: b: a > b) (
-                lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
-              )) 0;
+              refreshRate = kadachi-lib.getFastestRefreshRate host;
             })
           ];
           wayland.windowManager.hyprland = {

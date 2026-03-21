@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, lib, ... }:
 let
   createBackupConfiguration = backupName: host: borgmaticConfiguration: {
     services.borgmatic.configurations.${backupName} = {
@@ -46,11 +46,18 @@ let
 
     sops.secrets."backups/password/${backupName}".owner = "root";
   };
+
+  getFastestRefreshRate =
+    host:
+    builtins.elemAt (lib.lists.sort (a: b: a > b) (
+      lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
+    )) 0;
 in
 {
   flake.lib = {
     inherit
       createBackupConfiguration
+      getFastestRefreshRate
       ;
   };
 }
