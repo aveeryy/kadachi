@@ -52,9 +52,8 @@ in
 
   den.default = {
     includes = [
+      <den/hostname>
       <den/define-user>
-
-      <adachi/system/auto-hostname>
 
       jovianClass
       wslClass
