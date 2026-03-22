@@ -1,5 +1,8 @@
 { self, lib, ... }:
 let
+  inherit (lib) map filter;
+  inherit (lib.attrsets) hasAttr;
+
   createBackupConfiguration = backupName: host: borgmaticConfiguration: {
     services.borgmatic.configurations.${backupName} = {
       archive_name_format = "{hostname}-${backupName}-{now:%Y-%m-%dT%H:%M:%S.%f}";
@@ -52,12 +55,19 @@ let
     builtins.elemAt (lib.lists.sort (a: b: a > b) (
       lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
     )) 0;
+
+  includeToUsersFromChildren =
+    includedAspects:
+    (map (aspect: aspect.provides.to-users) (
+      filter (aspect: (hasAttr "provides" aspect) && (hasAttr "to-users" aspect.provides)) includedAspects
+    ));
 in
 {
   flake.lib = {
     inherit
       createBackupConfiguration
       getFastestRefreshRate
+      includeToUsersFromChildren
       ;
   };
 }

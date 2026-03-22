@@ -18,22 +18,25 @@
         };
       };
 
-    homeManager =
-      { home, pkgs, ... }:
-      {
-        home.packages = with pkgs; [ lxqt.lxqt-policykit ];
-        wayland.windowManager.hyprland = {
-          enable = true;
-          settings = {
-            env = [
-              "XDG_CURRENT_DESKTOP,Hyprland"
-              "XDG_SESSION_TYPE,wayland"
-              "XDG_SESSION_DESKTOP,Hyprland"
-            ];
-            exec-once = [ "lxqt-policykit-agent" ];
+    provides.to-users = {
+      description = "User configuration for Hyprland";
+      homeManager =
+        { home, pkgs, ... }:
+        {
+          home.packages = with pkgs; [ lxqt.lxqt-policykit ];
+          wayland.windowManager.hyprland = {
+            enable = true;
+            settings = {
+              env = [
+                "XDG_CURRENT_DESKTOP,Hyprland"
+                "XDG_SESSION_TYPE,wayland"
+                "XDG_SESSION_DESKTOP,Hyprland"
+              ];
+              exec-once = [ "lxqt-policykit-agent" ];
+            };
+            systemd.enable = false;
           };
-          systemd.enable = false;
         };
-      };
+    };
   };
 }

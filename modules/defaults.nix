@@ -54,6 +54,7 @@ in
     includes = [
       <den/hostname>
       <den/define-user>
+      <den/mutual-provider>
 
       jovianClass
       wslClass
