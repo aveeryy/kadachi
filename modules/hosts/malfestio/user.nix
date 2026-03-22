@@ -1,7 +1,6 @@
 { __findFile, ... }:
 {
-  den.aspects.avery_malfestio = {
-
+  den.aspects."avery@malfestio" = {
     includes = [
       <kasane/base-user>
 

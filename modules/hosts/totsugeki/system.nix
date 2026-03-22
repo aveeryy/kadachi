@@ -17,7 +17,7 @@
         }
       ];
     };
-    users.avery.aspect = "avery_totsugeki";
+    users.avery = { };
   };
 
   den.aspects.totsugeki = {

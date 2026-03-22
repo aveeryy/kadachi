@@ -1,6 +1,6 @@
 { __findFile, ... }:
 {
-  den.hosts.x86_64-linux.mizuki.users.avery.aspect = "avery_mizuki";
+  den.hosts.x86_64-linux.mizuki.users.avery = { };
 
   den.aspects.mizuki = {
     includes = [ <megurine/is/wsl> ];

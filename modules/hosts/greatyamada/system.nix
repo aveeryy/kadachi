@@ -14,7 +14,7 @@
         ];
       };
     };
-    users.avery.aspect = "avery_greatyamada";
+    users.avery = { };
   };
 
   den.aspects.greatyamada = {

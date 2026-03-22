@@ -43,7 +43,12 @@ in
     };
   };
 
-  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
+  den.schema.user =
+    { user, ... }:
+    {
+      classes = lib.mkDefault [ "homeManager" ];
+      aspect = lib.mkDefault "${user.userName}@${user.host.hostName}";
+    };
 
   den.default = {
     includes = [

@@ -12,7 +12,7 @@
         hasWiFi = true;
       };
     };
-    users.avery.aspect = "avery_malfestio";
+    users.avery = { };
   };
 
   den.aspects.malfestio = {
