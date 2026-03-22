@@ -70,6 +70,7 @@
         "browser.urlbar.speculativeConnect.enabled" = false;
         "browser.urlbar.trimURLs" = false;
         "browser.uidensity" = 1;
+        "clipboard.autocopy" = false;
         "datareporting.healthreport.service.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
@@ -99,6 +100,7 @@
         "media.gmp-widevinecdm.enabled" = false;
         "media.navigator.enabled" = false;
         "media.video_stats.enabled" = false;
+        "middlemouse.paste" = false;
         "network.allow-experiments" = false;
         "network.captive-portal-service.enabled" = false;
         "network.cookie.cookieBehavior" = 1;

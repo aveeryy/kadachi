@@ -137,6 +137,7 @@ in
               misc = {
                 disable_hyprland_logo = true;
                 disable_splash_rendering = true;
+                middle_click_paste = false;
                 vrr = 2;
               };
 
