@@ -8,7 +8,7 @@
         zsh.shellAliases = {
           "lazydocker" =
             "CONFIG_DIR=${config.home.homeDirectory}/.config/lazydocker sudo --preserve-env=CONFIG_DIR lazydocker";
-          "ld" = "lazydocker";
+          "lad" = "lazydocker";
         };
       };
     };
