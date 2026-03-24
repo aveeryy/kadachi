@@ -34,7 +34,13 @@
       description = "User configuration for desktop systems";
 
       homeManager = {
-        xdg.enable = lib.mkDefault true;
+        xdg = {
+          enable = lib.mkDefault true;
+          userDirs = {
+            enable = lib.mkDefault true;
+            createDirectories = lib.mkDefault true;
+          };
+        };
       };
     };
   };
