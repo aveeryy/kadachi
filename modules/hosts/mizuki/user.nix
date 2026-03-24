@@ -12,6 +12,7 @@
       (<adachi/services/gpg-agent> true)
 
       <kasane/theme>
+      <kasane/tools/lazydocker>
       <kasane/tools/xh>
     ];
 
