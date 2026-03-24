@@ -14,6 +14,7 @@
       includes = [
         <den/primary-user>
 
+        <adachi/system/spanish-xdg-user-dirs>
         <kasane/neovim>
         <kasane/tools/git>
         <kasane/zsh>
@@ -39,7 +40,7 @@
         };
 
       homeManager =
-        { pkgs, ... }:
+        { pkgs, config, ... }:
         {
           home.packages = with pkgs; [ python3 ];
           programs.fzf.enable = true;
@@ -49,6 +50,11 @@
               email = lib.mkDefault "aveeryy@protonmail.com";
             };
             signing.key = lib.mkDefault "B684FD451B692E04";
+          };
+          xdg.userDirs = {
+            desktop = config.home.homeDirectory;
+            publicShare = config.home.homeDirectory;
+            templates = config.home.homeDirectory;
           };
         };
 
