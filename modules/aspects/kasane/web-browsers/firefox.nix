@@ -5,30 +5,36 @@
     profiles.Avery = {
       isDefault = true;
       search = {
-        default = "SearXNG";
+        default = "Kagi";
         engines = {
-          SearXNG = {
+          Kagi = {
             urls = [
               {
-                template = "https://searxng.rcia.dev/search";
+                template = "https://kagi.com/search";
                 params = [
                   {
                     name = "q";
                     value = "{searchTerms}";
                   }
                 ];
-                icon = "https://searxng.rcia.dev/static/themes/simple/img/favicon.png";
               }
             ];
+            iconMapObj = {
+              "16" = "https://kagi.com/favicon-16x16.png?v=2";
+              "32" = "https://kagi.com/favicon-32x32.png?v=2";
+            };
           };
           google.metaData.hidden = true;
           bing.metaData.hidden = true;
           ddg.metaData.hidden = true;
           wikipedia.metaData.hidden = true;
           qwant.metaData.hidden = true;
+          ecosia.metaData.hidden = true;
+          perplexity.metaData.hidden = true;
+
         };
         force = true;
-        order = [ "SearXNG" ];
+        order = [ "Kagi" ];
       };
       settings = {
         "app.normandy.api_url" = "";
