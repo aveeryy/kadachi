@@ -20,6 +20,20 @@ let
       guard = { options, ... }: options ? jovian;
     };
 
+  noctaliaShellClass =
+    { class, aspect-chain }:
+    den._.forward {
+      each = lib.singleton class;
+      fromClass = _: "noctaliaShell";
+      intoClass = _: "homeManager";
+      intoPath = _: [
+        "programs"
+        "noctalia-shell"
+      ];
+      fromAspect = _: lib.last aspect-chain;
+      guard = { options, ... }: options ? programs.noctalia-shell;
+    };
+
   wslClass =
     { class, aspect-chain }:
     den._.forward {
@@ -57,6 +71,7 @@ in
       <den/mutual-provider>
 
       jovianClass
+      noctaliaShellClass
       wslClass
     ];
 

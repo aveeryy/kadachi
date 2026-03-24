@@ -1,4 +1,19 @@
 { inputs, ... }:
+let
+  blur = {
+    size = 2;
+    passes = 3;
+  };
+
+  inactiveWindowDim = 0.4;
+
+  windowGaps = {
+    inner = 4;
+    outer = 8;
+  };
+
+  windowRounding = 12;
+in
 {
   flake-file.inputs.stylix = {
     url = "github:nix-community/stylix";
@@ -9,30 +24,27 @@
   };
 
   kasane.theme = {
+    description = "System-wide theme configuration, this only configures common properties, not everything that is customizable";
+
     nixos =
-      { pkgs, ... }:
+      { pkgs, config, ... }:
       {
         imports = [ inputs.stylix.nixosModules.stylix ];
         fonts = {
           packages = with pkgs; [
-            inter
             mplus-outline-fonts.githubRelease
-            nerd-fonts.iosevka
             noto-fonts-cjk-sans
             vista-fonts
           ];
           fontconfig = {
             defaultFonts = {
               serif = [
-                "Inter"
                 "Mplus1"
               ];
               sansSerif = [
-                "Inter"
                 "Mplus1"
               ];
               monospace = [
-                "Iosevka Nerd Font"
                 "Mplus1Code"
               ];
             };
@@ -42,6 +54,11 @@
           enable = true;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
           polarity = "dark";
+          cursor = {
+            package = pkgs.phinger-cursors;
+            name = "phinger-cursors-dark";
+            size = 32;
+          };
           icons = {
             enable = true;
             package = pkgs.kora-icon-theme;
@@ -49,22 +66,24 @@
             dark = "kora";
           };
           fonts = {
-            serif = {
-              package = pkgs.inter;
-              name = "Inter";
-            };
+            serif = config.stylix.fonts.sansSerif;
             sansSerif = {
-              package = pkgs.inter;
               name = "Inter";
+              package = pkgs.inter;
             };
             monospace = {
-              package = pkgs.nerd-fonts.iosevka;
               name = "Iosevka Nerd Font";
+              package = pkgs.nerd-fonts.iosevka;
             };
-            sizes.applications = 10;
+            sizes = {
+              applications = 10;
+              terminal = 12;
+            };
           };
+          opacity.terminal = 0.85;
         };
       };
+
     homeManager =
       {
         pkgs,
@@ -73,60 +92,86 @@
         ...
       }:
       {
-        home.pointerCursor = {
-          gtk.enable = true;
-          hyprcursor.enable = true;
-          package = pkgs.phinger-cursors;
-          name = "phinger-cursors-dark";
-          size = 32;
-        };
         programs = {
-          kitty = {
-            font = {
-              name = "Iosevka Nerd Font";
-              size = 12;
+          kitty.themeFile = "Catppuccin-Mocha";
+
+          lazydocker.settings.gui.theme = with config.lib.stylix.colors.withHashtag; {
+            activeBorderColor = [
+              blue
+              "bold"
+            ];
+            inactiveBorderColor = [ base04 ];
+            optionsTextColor = [ bright-blue ];
+            selectedLineBgColor = [ base01 ];
+          };
+
+          lazygit.settings.gui.theme = with config.lib.stylix.colors.withHashtag; {
+            activeBorderColor = [
+              blue
+              "bold"
+            ];
+            inactiveBorderColor = [ base04 ];
+            optionsTextColor = [ bright-blue ];
+            selectedLineBgColor = [ base01 ];
+            selectedRangeBgColor = [ base01 ];
+            cherryPickedCommitBgColor = [ base02 ];
+            cherryPickedCommitFgColor = [ bright-blue ];
+            unstagedChangesColor = [ red ];
+            defaultFgColor = [ base05 ];
+            searchingActiveBorderColor = [ yellow ];
+          };
+        };
+
+        stylix = {
+          autoEnable = false;
+          targets = {
+            fontconfig.enable = true;
+            kitty = {
+              enable = true;
+              colors.enable = false;
+              fonts.enable = true;
+              opacity.enable = true;
             };
-            settings.background_opacity = "0.85";
-            themeFile = "Catppuccin-Mocha";
-          };
-          lazydocker.settings.gui.theme = {
-            activeBorderColor = [
-              "#89b4fa"
-              "bold"
-            ];
-            inactiveBorderColor = [ "#a6adc8" ];
-            optionsTextColor = [ "#89b4fa" ];
-            selectedLineBgColor = [ "#313244" ];
-          };
-          lazygit.settings.gui.theme = {
-            activeBorderColor = [
-              "#89b4fa"
-              "bold"
-            ];
-            inactiveBorderColor = [ "#a6adc8" ];
-            optionsTextColor = [ "#89b4fa" ];
-            selectedLineBgColor = [ "#313244" ];
-            selectedRangeBgColor = [ "#313244" ];
-            cherryPickedCommitBgColor = [ "#45475a" ];
-            cherryPickedCommitFgColor = [ "#89b4fa" ];
-            unstagedChangesColor = [ "#f38ba8" ];
-            defaultFgColor = [ "#cdd6f4" ];
-            searchingActiveBorderColor = [ "#f9e2af" ];
+            gtk.enable = true;
+            qt.enable = true;
           };
         };
-        stylix.autoEnable = false;
-        stylix.targets = {
-          gtk.enable = true;
-          gtk.extraCss = ''
-            .dialog-action-area > .text-button {
-              color: @dialog_fg_color;
-            }
-          '';
-          qt.enable = true;
+
+        wayland.windowManager.hyprland.settings = {
+          exec-once = lib.mkOrder 20 [
+            "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
+          ];
+
+          general = {
+            gaps_in = windowGaps.inner;
+            gaps_out = windowGaps.outer;
+          };
+
+          decoration = {
+            blur = {
+              enabled = blur.size > 0;
+              inherit (blur) size passes;
+            };
+            dim_inactive = inactiveWindowDim > 0;
+            dim_strength = inactiveWindowDim;
+            rounding = windowRounding;
+            shadow.enabled = false;
+          };
         };
-        wayland.windowManager.hyprland.settings.exec-once = lib.mkOrder 20 [
-          "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
-        ];
+      };
+
+    noctaliaShell =
+      { osConfig, ... }:
+      {
+        settings = {
+          bar = {
+            marginHorizontal = windowGaps.outer;
+            marginVertical = windowGaps.outer;
+          };
+          colorSchemes.predefinedScheme = "Catppuccin";
+          general.enableShadows = false;
+          ui.panelBackgroundOpacity = osConfig.stylix.opacity.terminal;
+        };
       };
   };
 }

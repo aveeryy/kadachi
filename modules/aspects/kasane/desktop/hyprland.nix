@@ -41,23 +41,7 @@ in
                 accel_profile = "flat";
               };
 
-              general = {
-                border_size = 0;
-                gaps_in = 4;
-                gaps_out = 8;
-              };
-
-              decoration = {
-                rounding = 12;
-                dim_inactive = true;
-                dim_strength = 0.4;
-                blur = {
-                  enabled = true;
-                  size = 8;
-                  passes = 2;
-                };
-                shadow.enabled = false;
-              };
+              general.border_size = 0;
 
               animations = {
                 animation = [

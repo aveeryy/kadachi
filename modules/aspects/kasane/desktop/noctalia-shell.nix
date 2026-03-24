@@ -32,6 +32,7 @@
               volumeStep = 5;
             };
             bar = {
+              barType = "floating";
               contentPadding = 8;
               density = "default";
               fontScale = 1.1;
@@ -108,11 +109,12 @@
                 }
               ];
             };
-            colorSchemes.predefinedScheme = "Catppuccin";
             dock.enabled = false;
             general = {
+              dimmerOpacity = 0.75;
               enableShadows = false;
-              iRadiusRatio = 0.7;
+              radiusRatio = 0.65;
+              iRadiusRatio = 0.65;
               telemetryEnabled = false;
             };
             location.weatherEnabled = false;
@@ -151,6 +153,10 @@
                   keybind = "5";
                 }
               ];
+            };
+            ui = {
+              scrollbarAlwaysVisible = false;
+              translucentWidgets = true;
             };
             wallpaper.enabled = false;
           };
