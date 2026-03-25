@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   kasane.tools._.git.homeManager =
     { config, pkgs, ... }:
@@ -20,6 +20,15 @@
           };
           signing.signByDefault = config.programs.git.signing.key != null;
         };
+
+        difftastic = {
+          enable = true;
+          git = {
+            enable = true;
+            diffToolMode = true;
+          };
+        };
+
         lazygit = {
           enable = true;
           enableZshIntegration = false;
@@ -28,9 +37,13 @@
             git = {
               autoFetch = false;
               overrideGpg = true;
+              pagers = [
+                { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
+              ];
             };
           };
         };
+
         zsh.shellAliases."lg" = "lazygit";
       };
     };
