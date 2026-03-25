@@ -43,7 +43,6 @@
       <kasane/services/pgadmin>
       <kasane/services/radicale>
       <kasane/services/samba>
-      <kasane/services/searxng>
       <kasane/services/vaultwarden>
     ];
 
