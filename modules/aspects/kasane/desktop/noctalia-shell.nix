@@ -35,6 +35,7 @@
               barType = "floating";
               contentPadding = 8;
               density = "default";
+              floating = true;
               fontScale = 1.1;
               position = "left";
               showCapsule = false;
