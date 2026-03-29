@@ -27,7 +27,7 @@ let
     [
       baseWorldPath
       "${baseWorldPath}_nether"
-      "${baseWorldPath}_end"
+      "${baseWorldPath}_the_end"
       "${serverName}/banned-ips.json"
     ]
     ++ optionals (nonDeclarativeBannedPlayers) [
