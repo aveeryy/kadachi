@@ -26,7 +26,7 @@
       <kasane/gaming/heroic>
       <kasane/gaming/ludusavi>
       <kasane/gaming/mangohud>
-      <kasane/gaming/minecraft>
+      <kasane/gaming/minecraft/launcher>
       <kasane/gaming/steam>
       <kasane/services/mullvad-vpn>
       <kasane/services/printing>

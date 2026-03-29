@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.gaming._.minecraft.homeManager =
+  kasane.gaming._.minecraft._.launcher.homeManager =
     { config, pkgs, ... }:
     {
       home.packages = with pkgs; [ prismlauncher ];
