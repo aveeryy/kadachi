@@ -8,6 +8,7 @@
 {
   flake-file.inputs = {
     nixpkgs.url = lib.mkForce "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = lib.mkForce "github:nixos/nixpkgs/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

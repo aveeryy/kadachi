@@ -47,6 +47,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
