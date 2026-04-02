@@ -16,7 +16,7 @@ let
     {
       archive_name_format = "{hostname}-${backupName}-{now:%Y-%m-%dT%H:%M:%S.%f}";
       repositories = host.services.backups.repositories backupName;
-      encryption_passcommand = "cat /run/secrets/backups/password/${backupName}";
+      encryption_passphrase = "{credential file /run/secrets/backups/password/${backupName}}";
       ssh_command = "ssh -p 23 -i ${
         self.nixosConfigurations.${host.hostName}.config.sops.templates."backups_ssh_private_key".path
       }";
@@ -71,28 +71,6 @@ let
     (map (aspect: aspect.provides.to-users) (
       filter (aspect: (hasAttr "provides" aspect) && (hasAttr "to-users" aspect.provides)) includedAspects
     ));
-
-  # Slighly modified version of https://stackoverflow.com/a/54505212
-  # Under the CC BY-SA 4.0 license: https://creativecommons.org/licenses/by-sa/4.0/
-  recursiveMerge =
-    attrList:
-    let
-      f =
-        attrPath:
-        lib.zipAttrsWith (
-          n: values:
-          if lib.tail values == [ ] then
-            lib.head values
-          else if lib.all lib.isList values then
-            lib.unique (lib.concatLists values)
-          else if lib.all lib.isAttrs values then
-            f (attrPath ++ [ n ]) values
-          else
-            lib.last values
-        );
-    in
-    f [ ] attrList;
-
 in
 {
   flake.lib = {
@@ -103,7 +81,6 @@ in
       getFastestRefreshRate
       includeToUsersFromChildren
       isAttrSetEmpty
-      recursiveMerge
       ;
   };
 }
