@@ -13,7 +13,7 @@
               ];
               commands = [
                 {
-                  before = "everything";
+                  before = "configuration";
                   when = [ "check" ];
                   run = [
                     ''/run/wrappers/bin/su -c "${pkgs.ludusavi}/bin/ludusavi backup --force" -- ${user.userName}''
