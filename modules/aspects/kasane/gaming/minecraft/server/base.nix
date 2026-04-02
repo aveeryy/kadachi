@@ -5,12 +5,6 @@
   kadachi-lib,
   ...
 }:
-let
-  inherit (lib) nameValuePair;
-  inherit (lib.attrsets) mapAttrs';
-  inherit (kadachi-lib) createBackupConfiguration';
-  inherit (kadachi-lib.minecraft) getBackupPaths;
-in
 {
   flake-file.inputs.nix-minecraft = {
     url = "github:Infinidoge/nix-minecraft";
@@ -21,7 +15,51 @@ in
     { host }:
     {
       nixos =
-        { config, ... }:
+        { config, pkgs, ... }:
+        let
+          inherit (lib) getExe nameValuePair;
+          inherit (lib.attrsets) mapAttrs';
+          inherit (kadachi-lib) createBackupConfiguration';
+          inherit (kadachi-lib.minecraft) getBackupPaths;
+
+          backupHour = 04;
+
+          createBeforeBackupScript =
+            serverName:
+            getExe (
+              pkgs.writeShellApplication {
+                name = "minecraft-server-before-backup-${serverName}";
+                text = ''
+                  SERVICE_NAME="minecraft-server-${serverName}.service"
+                  if [[ ! "$(date "+%-H")" = "${toString backupHour}" ]]; then
+                    exit 75
+                  fi
+
+                  if [[ "$(systemctl is-active $SERVICE_NAME)" = "active" ]]; then
+                    touch "/tmp/${serverName}-$(date "+%Y-%m-%d").active"
+                    /run/wrappers/bin/su -c 'echo "say El servidor se apagará en 10 segundos para realizar copias de seguridad" > "/run/minecraft/${serverName}.stdin"'
+                    sleep 10
+                    systemctl stop "$SERVICE_NAME"
+                  fi
+                '';
+              }
+            );
+
+          createAfterBackupScript =
+            serverName:
+            getExe (
+              pkgs.writeShellApplication {
+                name = "minecraft-server-after-backup-${serverName}";
+                text = ''
+                  FILE_NAME="/tmp/${serverName}-$(date "+%Y-%m-%d").active";
+                  if [[ -f "$FILE_NAME" ]]; then
+                    rm -f "$FILE_NAME"
+                    systemctl start "minecraft-server-${serverName}.service"
+                  fi
+                '';
+              }
+            );
+        in
         {
           imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
 
@@ -44,10 +82,22 @@ in
               nameValuePair ("minecraft-${name}") (
                 createBackupConfiguration' "minecraft-${name}" host {
                   source_directories = paths;
-                  encryption_passcommand = "cat /run/secrets/backups/password/minecraft_common";
+                  encryption_passphrase = "{credential file /run/secrets/backups/password/minecraft_common}";
                   keep_daily = 3;
                   keep_weekly = 1;
                   keep_monthly = 1;
+                  commands = [
+                    {
+                      before = "configuration";
+                      when = [ "check" ];
+                      run = [ (createBeforeBackupScript name) ];
+                    }
+                    {
+                      after = "configuration";
+                      when = [ "create" ];
+                      run = [ (createAfterBackupScript name) ];
+                    }
+                  ];
                 }
               )
             ) (getBackupPaths config.services.minecraft-servers);
