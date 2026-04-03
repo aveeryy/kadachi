@@ -98,9 +98,6 @@
                       run = [ (createAfterBackupScript name) ];
                     }
                   ];
-                  # Borgmatic sends a failure notification even on soft-failures
-                  # https://projects.torsion.org/borgmatic-collective/borgmatic/issues/1110
-                  ntfy.fail.priority = "low";
                 }
               )
             ) (getBackupPaths config.services.minecraft-servers);
