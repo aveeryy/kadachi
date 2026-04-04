@@ -37,6 +37,7 @@
       <kasane/tools/fastfetch>
       <kasane/tools/filen-desktop>
       <kasane/tools/kitty>
+      <kasane/tools/lazydocker>
       <kasane/tools/libreoffice>
       <kasane/tools/multimedia>
       <kasane/tools/pcmanfm-qt>
