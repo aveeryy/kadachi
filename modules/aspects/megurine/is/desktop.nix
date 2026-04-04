@@ -33,15 +33,18 @@
     provides.to-users = {
       description = "User configuration for desktop systems";
 
-      homeManager = {
-        xdg = {
-          enable = lib.mkDefault true;
-          userDirs = {
+      homeManager =
+        { pkgs, ... }:
+        {
+          home.packages = with pkgs; [ wl-clipboard ];
+          xdg = {
             enable = lib.mkDefault true;
-            createDirectories = lib.mkDefault true;
+            userDirs = {
+              enable = lib.mkDefault true;
+              createDirectories = lib.mkDefault true;
+            };
           };
         };
-      };
     };
   };
 }
