@@ -1,4 +1,4 @@
-{ den, inputs, ... }:
+{ den, ... }:
 {
   kasane.services._.jellyfin = den.lib.take.exactly (
     { host }:
@@ -6,7 +6,6 @@
       nixos = {
         services = {
           jellyfin.enable = true;
-          jellyfin.package = inputs.nixpkgs-master.legacyPackages."${host.system}".jellyfin;
           nginx.virtualHosts."jellyfin.${host.services.baseHost}" = {
             locations."/".proxyPass = "http://127.0.0.1:8096";
             forceSSL = true;

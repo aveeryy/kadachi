@@ -11,7 +11,7 @@
           name = "wallpaperctl";
           runtimeInputs = with pkgs; [
             imagemagick
-            swww
+            awww
             xdg-user-dirs
           ];
           bashOptions = [
@@ -66,7 +66,7 @@
             echo "$WALLPAPER" > "$WALLPAPER_PATH/.current_path"
             ln -sf "$WALLPAPER" "$WALLPAPER_PATH/.current_image"
 
-            swww img\
+            awww img\
                 --transition-type wipe\
                 --transition-angle $TRANSITION_ANGLE\
                 --transition-step 90\

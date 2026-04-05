@@ -1,7 +1,7 @@
 { self, lib, ... }:
 let
   inherit (lib) map filter;
-  inherit (lib.attrsets) hasAttr;
+  inherit (lib.attrsets) hasAttr isAttrs;
 
   createBackupConfiguration = backupName: host: borgmaticConfiguration: {
     services.borgmatic.configurations.${backupName} = (
@@ -71,7 +71,9 @@ let
   includeToUsersFromChildren =
     includedAspects:
     (map (aspect: aspect.provides.to-users) (
-      filter (aspect: (hasAttr "provides" aspect) && (hasAttr "to-users" aspect.provides)) includedAspects
+      filter (
+        aspect: (isAttrs aspect) && (hasAttr "provides" aspect) && (hasAttr "to-users" aspect.provides)
+      ) includedAspects
     ));
 
   # Slighly modified version of https://stackoverflow.com/a/54505212
