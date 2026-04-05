@@ -43,7 +43,7 @@
                   ];
                 };
                 tls = {
-                  enabled = true;
+                  enabled = false;
                   server_name = "dns.${host.services.baseHost}";
                   port_https = 4430;
                   port_dns_over_tls = 853;
@@ -272,6 +272,7 @@
             };
             nginx.virtualHosts."dns.${host.services.baseHost}" =
               let
+                scheme = if config.services.adguardhome.settings.tls.enabled then "https" else "http";
                 port =
                   if config.services.adguardhome.settings.tls.enabled then
                     config.services.adguardhome.settings.tls.port_https
@@ -280,7 +281,7 @@
               in
               {
                 forceSSL = true;
-                locations."/".proxyPass = "https://127.0.0.1:${toString port}";
+                locations."/".proxyPass = "${scheme}://127.0.0.1:${toString port}";
                 extraConfig = host.services.nginx.localServiceConfig;
                 useACMEHost = host.services.baseHost;
               };
