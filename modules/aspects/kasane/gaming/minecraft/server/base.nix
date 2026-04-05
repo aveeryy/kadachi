@@ -37,8 +37,6 @@
 
                   if [[ "$(systemctl is-active $SERVICE_NAME)" = "active" ]]; then
                     touch "/tmp/${serverName}-$(date "+%Y-%m-%d").active"
-                    echo "say El servidor se apagará en 10 segundos para realizar copias de seguridad" > "/run/minecraft/${serverName}.stdin"
-                    sleep 10
                     systemctl stop "$SERVICE_NAME"
                   fi
                 '';
@@ -115,8 +113,6 @@
               owner = "minecraft";
             };
           };
-
-          users.groups.minecraft.members = [ "root" ];
         };
     }
   );
