@@ -139,6 +139,8 @@
             "browser.tabs.crashReporting.sendReport" = false;
             # New tab
             "browser.newtab.preload" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
             "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
             "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = false;
@@ -155,9 +157,11 @@
             "browser.disableResetPrompt" = true;
             "browser.download.always_ask_before_handling_new_types" = true;
             "browser.ml.chat.menu" = false;
+            "browser.ml.linkPreview.enabled" = false;
             "browser.safebrowsing.appRepURL" = "";
             "browser.safebrowsing.enabled" = false;
             "browser.safebrowsing.malware.enabled" = false;
+            "browser.sessionstore.resume_from_crash" = false;
             "browser.shell.checkDefaultBrowser" = false;
             "browser.startup.couldRestoreSession.count" = -1;
             "browser.startup.homepage_override.mstone" = "ignore";
