@@ -1,84 +1,46 @@
-# Kadachi: my personal NixOS configuration
+# Kadachi
 
-**README is a WIP**
+This is my personal NixOS configuration, it follows the [Dendritic pattern](https://github.com/mightyiam/dendritic)
+for organization
 
-This is my personal NixOS configuration, it's largely inspired by the [Dendritic pattern](https://github.com/mightyiam/dendritic).
+## Documentation
 
-## Namespaces
+Soon™
 
-### ⚙️ Adachi
+## Special thanks
 
-Shared namespace containing generic configuration for aspects.
+- [Victor Borja](https://github.com/vic) for making [den](https://github.com/vic/den)
+  and all his other Nix utilities
+- [vimjoyer](https://github.com/vimjoyer); his videos taught me how to use Nix when I
+  first started
 
-Can be used from outside the flake using [den](https://github.com/vic/den) with `den.ful.adachi.<aspect>`
+## Name sources
 
-### 🥖 Kasane
+Kadachi is the combination of the first two namespaces: **ka**sane + a**dachi**
+(and also a [monster from Monster Hunter!](https://monsterhunterwiki.org/wiki/Tobi-Kadachi))
 
-Private namespace, contains my personal configuration for various programs and services
+Namespaces are named after [virtual singers](https://en.wikipedia.org/wiki/Virtual_band)
+([VOCALOID](https://en.wikipedia.org/wiki/Vocaloid), [UTAU](https://en.wikipedia.org/wiki/Utau)...)
 
-### 🐟 Megurine
+- ⚙️ adachi: [Adachi Rei](https://mechanicalgirl.jp/adachi-rei/)
+- 🍊 kagamine: [Kagamine Rin and Len](https://ec.crypton.co.jp/pages/prod/virtualsinger/rinlennt)
+- 🥖 kasane: [Kasane Teto](https://kasaneteto.jp/)
+- 🐟 megurine: [Megurine Luka](https://ec.crypton.co.jp/pages/prod/virtualsinger/lukav4x)
 
-Shared aspects based on the host's hardware / purpose
+Hosts are named either by what I think suits the machine's purpose more
+(like malfestio for my ~Monster Hunter device~ Steam Deck) or in reference
+to any media I was into when I made the host configuration (the rest of them lol)
 
-## Hosts
+- 🐳 greatyamada: [May's overdrive](https://www.dustloop.com/w/GGST/May#Great_Yamada_Attack)
+- 🦉 malfestio: [Malfestio from MHGU](https://monsterhunterwiki.org/wiki/Malfestio)
+- 🎀 mizuki: [Akiyama Mizuki from Project Sekai](https://www.sekaipedia.org/wiki/Akiyama_Mizuki)
+- 🐬 totsugeki: [May's voiceline when using Mr. Dolphin](https://www.dustloop.com/w/GGST/May#Mr._Dolphin_Horizontal)
 
-### 🐬 Totsugeki
+## Repository mirrors
 
-My main desktop computer
+- [My personal Forgejo instance](https://git.rcia.dev/Avery/kadachi)
+- [GitHub [MIRROR]](https://github.com/aveeryy/kadachi)
 
-#### Desktop
+## License
 
-| Name      | Description                        |
-| --------- | ---------------------------------- |
-| Hyprland  | Wayland compositor                 |
-| Hyprlock  | Session lock                       |
-| Caelestia | Shell (Launcher, notifications...) |
-| awww      | Wallpaper                          |
-
-#### Programs
-
-| Name        | Description      |
-| ----------- | ---------------- |
-| Firefox     | Web browser      |
-| kitty       | Desktop terminal |
-| qBitTorrent | Torrent client   |
-
-### 🐳 Great Yamada
-
-Home server
-
-#### Services
-
-| Name         | Description                  | Local only |
-| ------------ | ---------------------------- | :--------: |
-| ACME         | Automatic SSL cert renewal   |            |
-| AdGuard Home | DNS/DHCP server              |     X      |
-| Forgejo      | Git server                   |            |
-| Inadyn       | Automatic DDNS updates       |            |
-| Jellyfin     | Media server                 |            |
-| Karakeep     | Bookmarks                    |     X      |
-| Koito        | Music scrobbler              |            |
-| nginx        | Web server and reverse proxy |            |
-| PostgreSQL   | Database                     |     X      |
-| PgAdmin4     | PostgreSQL management tool   |     X      |
-| Radicale     | CalDAV and CardDAV server    |     X      |
-| Samba        | File sharing                 |     X      |
-| SearXNG      | Metasearch engine            |     X      |
-| Vaultwarden  | Password manager             |     X      |
-| Wireguard    | VPN                          |            |
-
-### 🎀 Mizuki
-
-A very simple WSL configuration I use at work for Python and Typescript+Vue development
-
-### 🦉 Malfestio (WIP)
-
-Steam Deck
-
-## References, name sources and special thanks
-
-<!-- TODO -->
-
-### Special thanks
-
-- [Victor Borja](https://github.com/vic) for making [den](https://github.com/vic/den) and all of his Nix utilities
+Kadachi is licensed under the [GNU Lesser General Public License 3.0](./COPYING)
