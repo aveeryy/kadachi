@@ -31,10 +31,10 @@ Hosts are named either by what I think suits the machine's purpose more
 (like malfestio for my ~Monster Hunter device~ Steam Deck) or in reference
 to any media I was into when I made the host configuration (the rest of them lol)
 
-- 🐳 greatyamada: [May's overdrive](https://www.dustloop.com/w/GGST/May#Great_Yamada_Attack)
-- 🦉 malfestio: [Malfestio from MHGU](https://monsterhunterwiki.org/wiki/Malfestio)
+- 🐳 greatyamada: [May's overdrive (Guilty Gear Strive)](https://www.dustloop.com/w/GGST/May#Great_Yamada_Attack)
+- 🦉 malfestio: [Malfestio from Monster Hunter Generations](https://monsterhunterwiki.org/wiki/Malfestio)
 - 🎀 mizuki: [Akiyama Mizuki from Project Sekai](https://www.sekaipedia.org/wiki/Akiyama_Mizuki)
-- 🐬 totsugeki: [May's voiceline when using Mr. Dolphin](https://www.dustloop.com/w/GGST/May#Mr._Dolphin_Horizontal)
+- 🐬 totsugeki: [May's voiceline when using Mr. Dolphin (Guilty Gear Strive)](https://www.dustloop.com/w/GGST/May#Mr._Dolphin_Horizontal)
 
 ## Repository mirrors
 
