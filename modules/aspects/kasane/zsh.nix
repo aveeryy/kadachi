@@ -48,6 +48,8 @@
               "print-nix-store-gc-roots" =
                 ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"'';
               "rbd" = ''nixos-rebuild --flake "path:/etc/nixos#$(hostname)" --sudo'';
+              "rbd-remote" =
+                ''nixos-rebuild --flake "git+https://git.rcia.dev/Avery/kadachi#$(hostname) --sudo"'';
             };
             syntaxHighlighting.enable = true;
             dotDir = "${config.xdg.configHome}/zsh";
