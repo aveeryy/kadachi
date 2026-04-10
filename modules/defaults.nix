@@ -97,32 +97,36 @@ in
         ];
         hardware.enableRedistributableFirmware = true;
         home-manager.backupFileExtension = "bak";
-        nix = {
-          gc = {
-            automatic = true;
-            dates = "weekly";
-            options = "--delete-older-than 14d";
-          };
-          settings = {
-            auto-optimise-store = true;
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-            trusted-users = [
-              "root"
-              "@wheel"
-            ];
-          };
+        nix.settings = {
+          auto-optimise-store = true;
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+          trusted-users = [
+            "root"
+            "@wheel"
+          ];
         };
         networking.dhcpcd.wait = "background";
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [ self.overlays.default ];
         };
-        programs.ssh.extraConfig = ''
-          AddKeysToAgent yes
-        '';
+        programs = {
+          nh = {
+            enable = true;
+            clean = {
+              enable = true;
+              dates = "weekly";
+              extraArgs = "--keep-since 14d";
+            };
+            flake = "/etc/nixos";
+          };
+          ssh.extraConfig = ''
+            AddKeysToAgent yes
+          '';
+        };
         sops = {
           defaultSopsFile =
             if (builtins.pathExists "${inputs.secrets}/${config.networking.hostName}.yaml") then
