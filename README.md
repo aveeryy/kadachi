@@ -34,6 +34,7 @@ to any media I was into when I made the host configuration (the rest of them lol
 - 🐳 greatyamada: [May's overdrive (Guilty Gear Strive)](https://www.dustloop.com/w/GGST/May#Great_Yamada_Attack)
 - 🦉 malfestio: [Malfestio from Monster Hunter Generations](https://monsterhunterwiki.org/wiki/Malfestio)
 - 🎀 mizuki: [Akiyama Mizuki from Project Sekai](https://www.sekaipedia.org/wiki/Akiyama_Mizuki)
+- 🌙 nightcord: [Nightcord at 25:00 from Project Sekai](https://www.sekaipedia.org/wiki/25-ji,_Nightcord_de.)
 - 🐬 totsugeki: [May's voiceline when using Mr. Dolphin (Guilty Gear Strive)](https://www.dustloop.com/w/GGST/May#Mr._Dolphin_Horizontal)
 
 ## Repository mirrors
