@@ -3,12 +3,13 @@
   den.schema.host =
     { host, ... }:
     {
-      options.services = {
+      options.services = with lib.types; {
         baseHost = lib.mkOption {
-          type = lib.types.str;
+          type = str;
           default = "${host.hostName}.local";
         };
-        email = lib.mkOption { type = lib.types.str; };
+        defaultDatabase = lib.mkOption { type = enum [ "postgres" ]; };
+        email = lib.mkOption { type = str; };
       };
     };
 }

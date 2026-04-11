@@ -3,7 +3,8 @@
   den.hosts.x86_64-linux.greatyamada = {
     services = {
       baseHost = "rcia.dev";
-      email = "aveeryy@protonmail.com";
+      defaultDatabase = "postgres";
+      email = "infra-host-greatyamada";
       backups = {
         identifyingIcon = "whale";
         repositories = jobName: [

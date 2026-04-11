@@ -5,31 +5,56 @@
   kadachi-lib,
   ...
 }:
+let
+  inherit (kadachi-lib) mkOpt;
+in
 {
   flake-file.inputs.catppuccin = {
     url = "github:catppuccin/nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  den.schema.host =
+    { host, ... }:
+    {
+      options.services.forgejo = with lib.types; {
+        domain = mkOpt str "git.${host.services.baseHost}";
+        database = mkOpt str host.services.defaultDatabase;
+      };
+    };
+
   kasane.services._.forgejo = den.lib.take.exactly (
     { host }:
     {
       nixos =
         { pkgs, config, ... }:
+        let
+          cfg = config.services.forgejo;
+
+          databaseConfig = {
+            postgres = {
+              type = lib.mkDefault "postgres";
+              port = lib.mkDefault config.services.postgresql.settings.port;
+              passwordFile = lib.mkDefault config.sops.secrets."forgejo/database_password".path;
+            };
+          };
+        in
         {
           imports = [
             inputs.catppuccin.nixosModules.catppuccin
 
             (kadachi-lib.createBackupConfiguration "forgejo" host {
-              source_directories = [ config.services.forgejo.stateDir ];
+              source_directories = [ cfg.stateDir ];
               keep_daily = 7;
               keep_weekly = 4;
             })
           ];
+
           services = {
             forgejo = {
               enable = true;
               package = pkgs.forgejo;
+              database = databaseConfig.${host.services.forgejo.database};
               secrets = {
                 server.LFS_JWT_SECRET = lib.mkForce config.sops.secrets."forgejo/lfs_jwt_secret".path;
                 security = {
@@ -40,9 +65,9 @@
               };
               settings = {
                 server = {
-                  DOMAIN = "git.${host.services.baseHost}";
-                  ROOT_URL = "https://git.${host.services.baseHost}";
-                  HTTP_PORT = 3000;
+                  DOMAIN = host.services.forgejo.domain;
+                  ROOT_URL = "https://${host.services.forgejo.domain}";
+                  HTTP_PORT = lib.mkDefault 3000;
                   DISABLE_SSH = false;
                   START_SSH_SERVER = false;
                   LFS_START_SERVER = true;
@@ -53,21 +78,20 @@
                 };
                 security = {
                   INSTALL_LOCK = true;
+                  LOGIN_REMEMBER_DAYS = 90;
                 };
               };
             };
 
-            nginx.virtualHosts."git.${host.services.baseHost}" = {
+            nginx.virtualHosts.${host.services.forgejo.domain} = {
               locations."/" = {
-                proxyPass = "http://127.0.0.1:${toString config.services.forgejo.settings.server.HTTP_PORT}";
+                proxyPass = "http://127.0.0.1:${toString cfg.settings.server.HTTP_PORT}";
               };
               forceSSL = true;
               useACMEHost = host.services.baseHost;
             };
 
-            openssh.settings.AllowUsers = lib.lists.optional (
-              !config.services.forgejo.settings.server.DISABLE_SSH
-            ) "forgejo";
+            openssh.settings.AllowUsers = lib.lists.optional (!cfg.settings.server.DISABLE_SSH) "forgejo";
           };
 
           sops.secrets = {

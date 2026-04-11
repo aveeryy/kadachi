@@ -1,16 +1,39 @@
-{ den, ... }:
 {
+  den,
+  lib,
+  kadachi-lib,
+  ...
+}:
+let
+  inherit (kadachi-lib) mkOpt;
+in
+{
+  den.schema.host =
+    { host, ... }:
+    {
+      options.services.vaultwarden = with lib.types; {
+        domain = mkOpt str "vaultwarden.${host.services.baseHost}";
+        database = mkOpt str host.services.defaultDatabase;
+      };
+    };
+
   kasane.services._.vaultwarden = den.lib.take.exactly (
     { host }:
     {
       nixos =
         { config, ... }:
+        let
+          databaseConfig = {
+            postgres = "postgresql";
+          };
+        in
         {
           services = {
             vaultwarden = {
               enable = true;
+              dbBackend = databaseConfig.${host.services.vaultwarden.database};
               config = {
-                domain = "https://vaultwarden.${host.services.baseHost}";
+                domain = "https://${host.services.vaultwarden.domain}";
                 rocketAddress = "127.0.0.1";
                 rocketPort = 8222;
                 showPasswordHint = false;
@@ -18,7 +41,8 @@
               };
               environmentFile = config.sops.templates."vaultwarden.env".path;
             };
-            nginx.virtualHosts."vaultwarden.${host.services.baseHost}" = {
+
+            nginx.virtualHosts.${host.services.vaultwarden.domain} = {
               locations."/".proxyPass =
                 "http://localhost:${toString config.services.vaultwarden.config.rocketPort}";
               forceSSL = true;
@@ -26,6 +50,7 @@
               extraConfig = host.services.nginx.localServiceConfig;
             };
           };
+
           sops = {
             secrets."vaultwarden/database_url" = { };
             templates."vaultwarden.env" = {
