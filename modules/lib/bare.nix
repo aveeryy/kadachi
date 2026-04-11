@@ -1,14 +1,16 @@
 { self, lib, ... }:
 let
   inherit (lib) map filter;
-  inherit (lib.attrsets) hasAttr isAttrs;
+  inherit (lib.attrsets) hasAttr isAttrs optionalAttrs;
 
   createBackupConfiguration = backupName: host: borgmaticConfiguration: {
     services.borgmatic.configurations.${backupName} = (
       createBackupConfiguration' backupName host borgmaticConfiguration
     );
 
-    sops.secrets."backups/password/${backupName}".owner = "root";
+    sops.secrets = optionalAttrs ((getHostConfig host.hostName).services.borgmatic.enable) {
+      "backups/password/${backupName}".owner = "root";
+    };
   };
 
   createBackupConfiguration' =
@@ -19,7 +21,7 @@ let
         repositories = host.services.backups.repositories backupName;
         encryption_passphrase = "{credential file /run/secrets/backups/password/${backupName}}";
         ssh_command = "ssh -p 23 -i ${
-          self.nixosConfigurations.${host.hostName}.config.sops.templates."backups_ssh_private_key".path
+          (getHostConfig host.hostName).sops.templates."backups_ssh_private_key".path
         }";
 
         ntfy = {
@@ -57,6 +59,8 @@ let
       }
       borgmaticConfiguration
     ]);
+
+  getHostConfig = hostName: self.nixosConfigurations.${hostName}.config;
 
   isAttrSetEmpty = attrset: (lib.length (lib.attrsets.attrsToList attrset)) == 0;
 
@@ -104,8 +108,10 @@ in
       createBackupConfiguration'
       getAsset
       getFastestRefreshRate
+      getHostConfig
       includeToUsersFromChildren
       isAttrSetEmpty
+      recursiveMerge
       ;
   };
 }
