@@ -52,15 +52,22 @@ in
           };
 
           sops = {
-            secrets."vaultwarden/database_url" = { };
-            templates."vaultwarden.env" = {
-              content = ''
-                DATABASE_URL=${config.sops.placeholder."vaultwarden/database_url"}
+            secrets = {
+              "vaultwarden/database_url" = { };
+              "vaultwarden/database_password" = { };
+            };
+            templates = {
+              "vaultwarden.env" = {
+                content = ''
+                  DATABASE_URL=${config.sops.placeholder."vaultwarden/database_url"}
+                '';
+                owner = "vaultwarden";
+              };
+              "postgresql/passwords_script".content = ''
+                ALTER USER vaultwarden WITH PASSWORD '${config.sops.placeholder."vaultwarden/database_password"}';
               '';
-              owner = "vaultwarden";
             };
           };
-
         };
     }
   );

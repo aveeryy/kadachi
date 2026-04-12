@@ -104,7 +104,6 @@ in
             "flakes"
           ];
           trusted-users = [
-            "root"
             "@wheel"
           ];
         };

@@ -32,7 +32,6 @@
       <kasane/services/acme/desec>
       <kasane/services/adguardhome>
       <kasane/services/backups>
-      <kasane/services/database>
       <kasane/services/ddns/desec>
       <kasane/services/fail2ban>
       <kasane/services/forgejo>
@@ -42,6 +41,7 @@
       <kasane/services/nginx>
       <kasane/services/ntfy-sh>
       <kasane/services/pgadmin>
+      <kasane/services/postgresql>
       <kasane/services/radicale>
       <kasane/services/samba>
       <kasane/services/vaultwarden>

@@ -100,6 +100,12 @@ let
         );
     in
     f [ ] attrList;
+
+  mkOpt =
+    type: default:
+    lib.mkOption {
+      inherit type default;
+    };
 in
 {
   flake.lib = {
@@ -112,6 +118,7 @@ in
       includeToUsersFromChildren
       isAttrSetEmpty
       recursiveMerge
+      mkOpt
       ;
   };
 }

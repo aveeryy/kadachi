@@ -1,14 +1,10 @@
 {
   kadachi-lib,
   den,
-  lib,
   ...
 }:
-let
-  inherit (lib.attrsets) optionalAttrs;
-in
 {
-  kasane.services._.database = den.lib.take.exactly (
+  kasane.services._.postgresql = den.lib.take.exactly (
     { host }:
     {
       nixos =
@@ -42,15 +38,24 @@ in
             enableTCPIP = true;
             settings.port = 5432;
             authentication = pkgs.lib.mkOverride 10 ''
-              local all all trust
-              host all all 127.0.0.1/32 trust
-              host all all ::1/128 trust
-
-              # Allow OCI containers access to the database
-              host all all 10.89.0.0/16 trust
+              local sameuser all scram-sha-256 map=superuser_map
+              host sameuser all 10.89.0.0/16 scram-sha-256
+            '';
+            identMap = ''
+              superuser_map      root      postgres
+              superuser_map      postgres  postgres
+              superuser_map      /^(.*)$   \1
             '';
           };
-
+          sops = {
+            secrets."postgresql/admin_password".owner = "postgres";
+            templates."postgresql/passwords_script" = {
+              content = ''
+                ALTER USER postgres WITH PASSWORD '${config.sops.placeholder."postgresql/admin_password"}';
+              '';
+              owner = "postgres";
+            };
+          };
         };
     }
   );

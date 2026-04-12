@@ -17,9 +17,9 @@
       <megurine/requires/legacy-boot>
 
       # <kasane/services/acme/desec>
-      # <kasane/services/database>
       # <kasane/services/forgejo>
       # <kasane/services/nginx>
+      # <kasane/services/postgresql>
       # <kasane/services/vaultwarden>
     ];
 
