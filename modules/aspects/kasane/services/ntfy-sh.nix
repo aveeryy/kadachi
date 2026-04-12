@@ -25,7 +25,7 @@
                 proxyWebsockets = true;
               };
               forceSSL = true;
-              useACMEHost = "rcia.dev";
+              useACMEHost = host.services.baseHost;
             };
           };
 

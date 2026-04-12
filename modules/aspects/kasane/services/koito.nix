@@ -82,7 +82,7 @@ in
             nginx.virtualHosts.${host.services.koito.domain} = {
               locations."/".proxyPass = "http://localhost:${toString koitoPort}";
               forceSSL = true;
-              useACMEHost = "rcia.dev";
+              useACMEHost = host.services.baseHost;
             };
 
             postgresql = {
