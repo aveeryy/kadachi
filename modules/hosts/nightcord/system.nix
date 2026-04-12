@@ -16,11 +16,12 @@
       <megurine/is/server>
       <megurine/requires/legacy-boot>
 
-      # <kasane/services/acme/desec>
-      # <kasane/services/forgejo>
-      # <kasane/services/nginx>
-      # <kasane/services/postgresql>
-      # <kasane/services/vaultwarden>
+      <kasane/services/acme/desec>
+      <kasane/services/forgejo>
+      <kasane/services/nginx>
+      <kasane/services/ntfy-sh>
+      <kasane/services/postgresql>
+      <kasane/services/vaultwarden>
     ];
 
     nixos = {
