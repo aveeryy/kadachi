@@ -4,7 +4,7 @@
     services = {
       baseHost = "rcia.dev";
       defaultDatabase = "postgres";
-      email = "infra-host-greatyamada";
+      email = "infra-host-greatyamada@rcia.dev";
       backups = {
         identifyingIcon = "whale";
         repositories = jobName: [
