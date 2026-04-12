@@ -67,10 +67,22 @@
             };
           };
 
-          services.nginx.virtualHosts."koito.rcia.dev" = {
-            locations."/".proxyPass = "http://localhost:${toString koitoPort}";
-            forceSSL = true;
-            useACMEHost = "rcia.dev";
+          services = {
+            nginx.virtualHosts."koito.rcia.dev" = {
+              locations."/".proxyPass = "http://localhost:${toString koitoPort}";
+              forceSSL = true;
+              useACMEHost = "rcia.dev";
+            };
+
+            postgresql = {
+              ensureDatabases = [ "koito" ];
+              ensureUsers = [
+                {
+                  name = "koito";
+                  ensureDBOwnership = true;
+                }
+              ];
+            };
           };
 
           sops = {

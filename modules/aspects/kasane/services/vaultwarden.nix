@@ -23,6 +23,8 @@ in
       nixos =
         { config, ... }:
         let
+          cfg = config.services.vaultwarden;
+
           databaseConfig = {
             postgres = "postgresql";
           };
@@ -47,11 +49,18 @@ in
             };
 
             nginx.virtualHosts.${host.services.vaultwarden.domain} = {
-              locations."/".proxyPass =
-                "http://localhost:${toString config.services.vaultwarden.config.rocketPort}";
+              locations."/".proxyPass = "http://localhost:${toString cfg.config.rocketPort}";
               forceSSL = true;
               useACMEHost = host.services.baseHost;
               extraConfig = host.services.nginx.localServiceConfig;
+            };
+
+            postgresql = {
+              ensureDatabases = lib.optional (cfg.dbBackend == "postgresql") "vaultwarden";
+              ensureUsers = lib.optional (cfg.dbBackend == "postgresql") {
+                name = "vaultwarden";
+                ensureDBOwnership = true;
+              };
             };
           };
 
