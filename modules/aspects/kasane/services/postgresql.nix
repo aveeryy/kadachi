@@ -38,7 +38,10 @@
             enableTCPIP = true;
             settings.port = 5432;
             authentication = pkgs.lib.mkOverride 10 ''
-              local sameuser all scram-sha-256 map=superuser_map
+              local sameuser all peer map=superuser_map
+              # Ask password in pgadmin
+              host sameuser all 127.0.0.1/32 scram-sha-256
+              # Podman containers
               host sameuser all 10.89.0.0/16 scram-sha-256
             '';
             identMap = ''
@@ -46,10 +49,11 @@
               superuser_map      postgres  postgres
               superuser_map      /^(.*)$   \1
             '';
+            initialScript = config.sops.templates."postgresql/init_script".path;
           };
           sops = {
             secrets."postgresql/admin_password".owner = "postgres";
-            templates."postgresql/passwords_script" = {
+            templates."postgresql/init_script" = {
               content = ''
                 ALTER USER postgres WITH PASSWORD '${config.sops.placeholder."postgresql/admin_password"}';
               '';

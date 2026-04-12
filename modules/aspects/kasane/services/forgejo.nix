@@ -35,7 +35,7 @@ in
             postgres = {
               type = lib.mkDefault "postgres";
               port = lib.mkDefault config.services.postgresql.settings.port;
-              passwordFile = lib.mkDefault config.sops.secrets."forgejo/database_password".path;
+              socket = lib.mkDefault "/run/postgresql";
             };
           };
         in
@@ -94,18 +94,11 @@ in
             openssh.settings.AllowUsers = lib.lists.optional (!cfg.settings.server.DISABLE_SSH) "forgejo";
           };
 
-          sops = {
-            secrets = {
-              "forgejo/database_password".owner = "forgejo";
-              "forgejo/internal_token".owner = "forgejo";
-              "forgejo/lfs_jwt_secret".owner = "forgejo";
-              "forgejo/oauth2_jwt_secret".owner = "forgejo";
-              "forgejo/secret_key".owner = "forgejo";
-            };
-
-            templates."postgresql/passwords_script".content = ''
-              ALTER USER forgejo WITH PASSWORD '${config.sops.placeholder."forgejo/database_password"}';
-            '';
+          sops.secrets = {
+            "forgejo/internal_token".owner = "forgejo";
+            "forgejo/lfs_jwt_secret".owner = "forgejo";
+            "forgejo/oauth2_jwt_secret".owner = "forgejo";
+            "forgejo/secret_key".owner = "forgejo";
           };
 
           catppuccin.forgejo = {

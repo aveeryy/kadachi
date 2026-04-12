@@ -26,6 +26,10 @@ in
           databaseConfig = {
             postgres = "postgresql";
           };
+
+          databaseSocketHost = {
+            postgres = "/run/postgresql";
+          };
         in
         {
           services = {
@@ -52,21 +56,16 @@ in
           };
 
           sops = {
-            secrets = {
-              "vaultwarden/database_url" = { };
-              "vaultwarden/database_password" = { };
-            };
-            templates = {
-              "vaultwarden.env" = {
-                content = ''
-                  DATABASE_URL=${config.sops.placeholder."vaultwarden/database_url"}
-                '';
-                owner = "vaultwarden";
-              };
-              "postgresql/passwords_script".content = ''
-                ALTER USER vaultwarden WITH PASSWORD '${config.sops.placeholder."vaultwarden/database_password"}';
+            secrets."vaultwarden/database_url" = { };
+            templates."vaultwarden.env" = {
+              content = ''
+                DATABASE_URL=${config.sops.placeholder."vaultwarden/database_url"}?host=${
+                  databaseSocketHost.${host.services.vaultwarden.database}
+                }
               '';
+              owner = "vaultwarden";
             };
+
           };
         };
     }
