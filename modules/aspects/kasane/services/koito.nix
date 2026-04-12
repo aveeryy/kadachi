@@ -1,5 +1,21 @@
-{ den, ... }:
 {
+  den,
+  lib,
+  kadachi-lib,
+  ...
+}:
+let
+  inherit (kadachi-lib) mkOpt;
+in
+{
+  den.schema.host =
+    { host, ... }:
+    {
+      options.services.koito = with lib.types; {
+        domain = mkOpt str "koito.${host.services.baseHost}";
+      };
+    };
+
   kasane.services._.koito = den.lib.take.exactly (
     { host }:
     {
@@ -7,17 +23,12 @@
         let
           koitoPort = 4110;
         in
-        {
-          config,
-          lib,
-          pkgs,
-          ...
-        }:
+        { config, pkgs, ... }:
         {
           virtualisation.oci-containers.containers."koito" = {
             image = "gabehf/koito:v0.1.6";
             environment = {
-              "KOITO_ALLOWED_HOSTS" = "koito.${host.services.baseHost}";
+              "KOITO_ALLOWED_HOSTS" = host.services.koito.domain;
               "KOITO_ENABLE_LBZ_RELAY" = "true";
               "KOITO_LBZ_RELAY_URL" = "https://api.listenbrainz.org/1";
               "KOITO_DEFAULT_THEME" = "catppuccin";
@@ -68,7 +79,7 @@
           };
 
           services = {
-            nginx.virtualHosts."koito.rcia.dev" = {
+            nginx.virtualHosts.${host.services.koito.domain} = {
               locations."/".proxyPass = "http://localhost:${toString koitoPort}";
               forceSSL = true;
               useACMEHost = "rcia.dev";
