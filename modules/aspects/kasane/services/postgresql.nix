@@ -24,6 +24,7 @@
                   options = "--username postgres";
                   list_options = "--username postgres";
                   restore_options = "--username postgres";
+                  password = "{credential file ${config.sops.secrets."postgresql/admin_password".path}}";
                 }
               ];
               keep_hourly = 24;
@@ -39,8 +40,10 @@
             settings.port = 5432;
             authentication = pkgs.lib.mkOverride 10 ''
               local sameuser all peer map=superuser_map
+              local all postgres scram-sha-256
               # Ask password in pgadmin
               host sameuser all 127.0.0.1/32 scram-sha-256
+              host sameuser all ::1/128 scram-sha-256
               # Podman containers
               host sameuser all 10.89.0.0/16 scram-sha-256
             '';
