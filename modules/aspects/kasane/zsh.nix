@@ -47,9 +47,10 @@
               "nx" = "cd /etc/nixos && nvim";
               "print-nix-store-gc-roots" =
                 ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"'';
-              "rbd" = ''nixos-rebuild --flake "path:/etc/nixos#$(hostname)" --sudo'';
-              "rbd-remote" =
-                ''nixos-rebuild --flake "git+https://git.rcia.dev/Avery/kadachi#$(hostname) --sudo"'';
+              "rbd" = ''nh os switch "path:/etc/nixos#$(hostname)"'';
+              "rbdb" = ''nh os boot "path:/etc/nixos#$(hostname)"'';
+              "rbd-remote" = ''nx os switch "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
+              "rbdb-remote" = ''nx os boot "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
             };
             syntaxHighlighting.enable = true;
             dotDir = "${config.xdg.configHome}/zsh";
