@@ -5,7 +5,6 @@
       enable = true;
       keymaps.lspBuf = {
         "<leader>ca" = "code_action";
-        "<leader>rn" = "rename";
       };
     };
   };

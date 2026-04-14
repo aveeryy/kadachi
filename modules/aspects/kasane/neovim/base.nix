@@ -22,6 +22,7 @@ in
       <kasane/neovim/plugins/autopairs>
       <kasane/neovim/plugins/cmp>
       <kasane/neovim/plugins/fzf-lua>
+      <kasane/neovim/plugins/inc-rename>
       <kasane/neovim/plugins/lsp>
       <kasane/neovim/plugins/lualine>
       <kasane/neovim/plugins/neo-tree>
