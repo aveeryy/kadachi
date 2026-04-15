@@ -3,7 +3,7 @@
   kasane.neovim.neovim = {
     keymaps = [
       {
-        action = "<cmd>Oil<CR>";
+        action = "<cmd>Oil --float<CR>";
         key = "<leader>fe";
       }
     ];
