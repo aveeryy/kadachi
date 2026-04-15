@@ -82,6 +82,13 @@
                     hosts = true;
                   };
                   persistent = [
+                    # Personal devices
+                    {
+                      name = "Rhythm games tablet";
+                      ids = [ "10.0.0.4" ];
+                      tags = [ "device_tablet" ];
+                      use_global_settings = true;
+                    }
                     # Devices that require a specific DNS server
                     {
                       name = "Decodificador";
@@ -214,9 +221,6 @@
                 user_rules = [
                   "||www.googleadservices.com^$important"
                   "||rdvs.alljoyn.org^$important"
-                  "||safebrowsing.google.com^$client='10.0.0.28'"
-                  "||fm.nvc.heil.nuancemobility.net^$client='10.0.0.230'"
-                  "@@||npdl.cdn.nintendowifi.net^$important"
                   "||tse3.mm.bing.net^$important"
                   "@@||repo.webosbrew.org^$important"
                   "||es.lgeapi.com^$important"
@@ -238,26 +242,27 @@
                   "||www.ueiwsp.com^$important"
                   "||temu.com^$important"
                   "||www.temu.com^$important"
-                  "@@||unity3d.com^$client='10.0.0.7'"
-                  "@@||config.ads.vungle.com^$client='10.0.0.7'"
-                  "@@||rayjump.com^$client='10.0.0.7'"
-                  "@@||vungle.com^$client='10.0.0.7'"
-                  "@@||mtgglobals.com^$client='10.0.0.7'"
-                  "@@||fundingchoicesmessages.google.com^$client='10.0.0.7'"
-                  "@@||applovin.com^$client='10.0.0.7'"
-                  "@@||rovio.com^$client='10.0.0.7'"
-                  "@@||gov.aniview.com^$client='10.0.0.7'"
-                  "@@||unity3d.com^$client='10.10.0.3'"
-                  "@@||config.ads.vungle.com^$client='10.10.0.3'"
-                  "@@||rayjump.com^$client='10.10.0.3'"
-                  "@@||vungle.com^$client='10.10.0.3'"
-                  "@@||mtgglobals.com^$client='10.10.0.3'"
-                  "@@||fundingchoicesmessages.google.com^$client='10.10.0.3'"
-                  "@@||googleads.g.doubleclick.net^$client='10.10.0.3'"
-                  "@@||applovin.com^$client='10.10.0.3'"
-                  "@@||rovio.com^$client='10.10.0.3'"
-                  "@@||gov.aniview.com^$client='10.10.0.3'"
-                  "@@||cdn.liftoff-creatives.io^$client='10.0.0.7'"
+                  # Unblock ads for proseka
+                  "@@||unity3d.com^$client='Rhythm games tablet'"
+                  "@@||config.ads.vungle.com^$client='Rhythm games tablet'"
+                  "@@||rayjump.com^$client='Rhythm games tablet'"
+                  "@@||vungle.com^$client='Rhythm games tablet'"
+                  "@@||mtgglobals.com^$client='Rhythm games tablet'"
+                  "@@||fundingchoicesmessages.google.com^$client='Rhythm games tablet'"
+                  "@@||applovin.com^$client='Rhythm games tablet'"
+                  "@@||rovio.com^$client='Rhythm games tablet'"
+                  "@@||gov.aniview.com^$client='Rhythm games tablet'"
+                  "@@||cdn.liftoff-creatives.io^$client='Rhythm games tablet'"
+                  "@@||unity3d.com^$client='10.10.0.2'"
+                  "@@||config.ads.vungle.com^$client='10.10.0.2'"
+                  "@@||rayjump.com^$client='10.10.0.2'"
+                  "@@||vungle.com^$client='10.10.0.2'"
+                  "@@||mtgglobals.com^$client='10.10.0.2'"
+                  "@@||fundingchoicesmessages.google.com^$client='10.10.0.2'"
+                  "@@||googleads.g.doubleclick.net^$client='10.10.0.2'"
+                  "@@||applovin.com^$client='10.10.0.2'"
+                  "@@||rovio.com^$client='10.10.0.2'"
+                  "@@||gov.aniview.com^$client='10.10.0.2'"
                   "||googleads.g.doubleclick.net^$client='Tablet'"
                 ];
               };
