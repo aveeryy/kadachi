@@ -914,11 +914,11 @@
         "rev": "625d9cdde523a57e8d0afb946f88814aa75c07cf",
         "revCount": 30,
         "type": "git",
-        "url": "ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git"
+        "url": "ssh://forgejo@git.rcia.dev/Avery/kadachi-secrets.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git"
+        "url": "ssh://forgejo@git.rcia.dev/Avery/kadachi-secrets.git"
       }
     },
     "sops-nix": {

@@ -69,12 +69,12 @@
             ipv4.addresses = [
               {
                 address = "10.0.0.1";
-                prefixLength = 24;
+                prefixLength = 16;
               }
             ];
           };
           defaultGateway = {
-            address = "10.0.0.254";
+            address = "10.0.255.254";
             interface = "enp5s0";
           };
           nameservers = [
@@ -84,7 +84,6 @@
         };
 
         services = {
-          forgejo.settings.server.SSH_PORT = 2222;
           minecraft-servers.dataDir = "/mnt/ssd-01/minecraft";
           nginx.virtualHosts."rcia.dev".locations."/".return = "301 https://git.rcia.dev/Avery";
           postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";

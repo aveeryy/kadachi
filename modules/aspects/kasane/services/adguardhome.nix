@@ -56,10 +56,10 @@
                   interface_name = "enp5s0";
                   local_domain_name = "lan";
                   dhcpv4 = {
-                    gateway_ip = "10.0.0.254";
-                    subnet_mask = "255.255.255.0";
-                    range_start = "10.0.0.10";
-                    range_end = "10.0.0.199";
+                    gateway_ip = "10.0.255.254";
+                    subnet_mask = "255.255.0.0";
+                    range_start = "10.0.1.1";
+                    range_end = "10.0.1.255";
                     lease_duration = 86400;
                     icmp_timeout_msec = 1000;
                   };
@@ -72,16 +72,6 @@
                   protection_enabled = true;
                   cache_time = 30;
                   filters_update_interval = 24;
-                  rewrites = [
-                    {
-                      domain = host.services.baseHost;
-                      answer = "10.0.0.1";
-                    }
-                    {
-                      domain = "*.${host.services.baseHost}";
-                      answer = "10.0.0.1";
-                    }
-                  ];
                 };
                 clients = {
                   runtime_sources = {
@@ -92,23 +82,25 @@
                     hosts = true;
                   };
                   persistent = [
+                    # Devices that require a specific DNS server
                     {
                       name = "Decodificador";
-                      ids = [ "10.0.0.200" ];
+                      ids = [ "10.0.255.250" ];
                       tags = [ "device_tv" ];
-                      upstreams = [ "172.26.23.3" ];
+                      upstreams = [ "172.23.101.98" ];
                       use_global_settings = true;
                     }
+                    # Exclusions from ad-blocking
                     {
                       name = "Poco X3";
-                      ids = [ "10.0.0.202" ];
+                      ids = [ "10.0.200.1" ];
                       tags = [ "device_phone" ];
                       use_global_settings = false;
                       filtering_enabled = false;
                     }
                     {
                       name = "Tablet Samsung";
-                      ids = [ "10.0.0.201" ];
+                      ids = [ "10.0.200.2" ];
                       tags = [ "device_tablet" ];
                       use_global_settings = false;
                       filtering_enabled = false;

@@ -16,7 +16,7 @@ in
         wireguard = {
           enable = true;
           interfaces.wg0 = {
-            ips = [ "10.10.0.1/24" ];
+            ips = [ "10.10.0.1/16" ];
             listenPort = 51820;
             peers = [
               {
