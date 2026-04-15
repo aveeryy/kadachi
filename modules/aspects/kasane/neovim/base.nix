@@ -19,16 +19,6 @@ in
     includes = [
       <adachi/neovim>
       <adachi/neovim/languages/nix>
-      <kasane/neovim/plugins/autopairs>
-      <kasane/neovim/plugins/cmp>
-      <kasane/neovim/plugins/fzf-lua>
-      <kasane/neovim/plugins/inc-rename>
-      <kasane/neovim/plugins/lsp>
-      <kasane/neovim/plugins/lualine>
-      <kasane/neovim/plugins/none-ls>
-      <kasane/neovim/plugins/oil>
-      <kasane/neovim/plugins/spider>
-      <kasane/neovim/plugins/treesitter>
     ];
 
     homeManager.home.sessionVariables.EDITOR = "nvim";

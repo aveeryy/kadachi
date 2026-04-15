@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.fzf-lua = {
+  kasane.neovim = {
     neovim.plugins.fzf-lua = {
       enable = true;
       keymaps = {

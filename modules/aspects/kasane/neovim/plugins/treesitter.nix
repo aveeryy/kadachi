@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.treesitter.neovim.plugins.treesitter = {
+  kasane.neovim.neovim.plugins.treesitter = {
     enable = true;
     settings = {
       indent.enable = true;

@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.oil.neovim = {
+  kasane.neovim.neovim = {
     keymaps = [
       {
         action = "<cmd>Oil<CR>";

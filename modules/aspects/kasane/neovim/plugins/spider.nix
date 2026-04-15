@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.spider.neovim.plugins.spider = {
+  kasane.neovim.neovim.plugins.spider = {
     enable = true;
     settings = {
       subwordMovement = true;

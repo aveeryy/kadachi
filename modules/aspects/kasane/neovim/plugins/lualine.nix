@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.lualine.neovim.plugins.lualine = {
+  kasane.neovim.neovim.plugins.lualine = {
     enable = true;
     settings.options = {
       component_separators = {

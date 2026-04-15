@@ -1,4 +1,4 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.lsp.neovim.plugins.lsp.enable = true;
+  kasane.neovim.neovim.plugins.lsp.enable = true;
 }

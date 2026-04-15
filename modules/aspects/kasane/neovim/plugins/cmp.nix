@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.cmp.neovim = {
+  kasane.neovim.neovim = {
     opts.completeopt = "menuone,noselect,fuzzy,nosort";
     plugins = {
       cmp = {

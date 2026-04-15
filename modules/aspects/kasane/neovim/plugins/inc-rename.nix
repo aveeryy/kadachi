@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.inc-rename.neovim = {
+  kasane.neovim.neovim = {
     plugins.inc-rename.enable = true;
     keymaps = [
       {
