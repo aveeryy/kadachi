@@ -1,5 +1,24 @@
-{ den, kadachi-lib, ... }:
 {
+  den,
+  kadachi-lib,
+  lib,
+  ...
+}:
+let
+  inherit (lib.strings) optionalString;
+  inherit (kadachi-lib) mkOpt;
+in
+{
+  den.schema.host =
+    { host, ... }:
+    with lib.types;
+    {
+      options.services.karakeep = {
+        domain = mkOpt str "karakeep.${host.services.baseHost}";
+        localOnly = mkOpt bool false;
+      };
+    };
+
   kasane.services._.karakeep = den.lib.take.exactly (
     { host }:
     {
@@ -24,11 +43,11 @@
                 DISABLE_SIGNUPS = "true";
               };
             };
-            nginx.virtualHosts."karakeep.${host.services.baseHost}" = {
+            nginx.virtualHosts.${host.services.karakeep.domain} = {
               locations."/".proxyPass = "http://127.0.0.1:${config.services.karakeep.extraEnvironment.PORT}";
               forceSSL = true;
               useACMEHost = host.services.baseHost;
-              extraConfig = host.services.nginx.localServiceConfig;
+              extraConfig = optionalString (host.services.karakeep.localOnly) host.services.nginx.localServiceConfig;
             };
           };
         };
