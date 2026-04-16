@@ -29,6 +29,7 @@
             gui.nerdFontsVersion = "3";
             git = {
               autoFetch = false;
+              overrideGpg = true;
               pagers = [
                 { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
               ];
