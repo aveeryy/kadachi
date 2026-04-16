@@ -168,6 +168,7 @@
             "browser.tabs.groups.enabled" = false;
             "browser.tabs.groups.smart.enabled" = false;
             "browser.translations.enable" = false;
+            "clipboard.autocopy" = false;
             "extensions.formautofill.addresses.enabled" = false;
             "extensions.formautofill.creditCards.enabled" = false;
             "extensions.getAddons.cache.enabled" = false;
@@ -180,6 +181,7 @@
             "extensions.webservice.discoverURL" = "";
             "layout.spellcheckDefault" = 0;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+            "middlemouse.paste" = false;
             "signon.rememberSignons" = false;
             # HTTPS-only
             "dom.security.https_only_mode" = true;
