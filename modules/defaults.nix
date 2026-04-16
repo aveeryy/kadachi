@@ -48,7 +48,7 @@ in
 {
   flake-file.inputs = {
     secrets = {
-      url = "git+ssh://forgejo@git.rcia.dev/Avery/kadachi-secrets.git";
+      url = "git+ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git";
       flake = false;
     };
     sops-nix = {

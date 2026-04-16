@@ -84,6 +84,7 @@
         };
 
         services = {
+          forgejo.settings.server.SSH_PORT = 2222;
           minecraft-servers.dataDir = "/mnt/ssd-01/minecraft";
           nginx.virtualHosts."rcia.dev".locations."/".return = "301 https://git.rcia.dev/Avery";
           postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
