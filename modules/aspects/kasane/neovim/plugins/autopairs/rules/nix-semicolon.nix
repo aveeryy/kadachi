@@ -1,6 +1,6 @@
 { ... }:
 {
-  kasane.neovim._.plugins._.autopairs.neovim.plugins.nvim-autopairs.luaConfig.post = ''
+  kasane.neovim.neovim.plugins.nvim-autopairs.luaConfig.post = ''
     -- Note that when the cursor is at the end of a comment line,
     -- treesitter thinks we are in attrset_expression
     -- because the cursor is "after" the comment, even though it is on the same line.

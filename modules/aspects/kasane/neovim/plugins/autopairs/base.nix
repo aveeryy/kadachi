@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  kasane.neovim._.plugins._.autopairs.neovim.plugins.nvim-autopairs = {
+  kasane.neovim.neovim.plugins.nvim-autopairs = {
     enable = true;
     luaConfig.post = lib.mkBefore ''
       local Rule = require("nvim-autopairs.rule")
