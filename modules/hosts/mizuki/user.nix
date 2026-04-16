@@ -9,7 +9,6 @@
       <adachi/neovim/languages/rust>
       <adachi/neovim/languages/python>
       <adachi/neovim/languages/vue>
-      (<adachi/services/gpg-agent> true)
 
       <kasane/theme>
       <kasane/tools/lazydocker>

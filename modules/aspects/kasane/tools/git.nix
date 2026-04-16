@@ -8,13 +8,6 @@
         git = {
           enable = true;
           settings = {
-            credential = {
-              cacheOptions = "--timeout 7200";
-              credentialStore = "gpg";
-              helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
-              "https://codeberg.org".provider = "generic";
-              "https://git.rcia.dev".provider = "generic";
-            };
             init.defaultBranch = "main";
             merge.tool = "nvimdiff";
           };
@@ -36,7 +29,6 @@
             gui.nerdFontsVersion = "3";
             git = {
               autoFetch = false;
-              overrideGpg = true;
               pagers = [
                 { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
               ];

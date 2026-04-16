@@ -49,7 +49,10 @@
               name = lib.mkDefault (lib.strings.toSentenceCase username);
               email = lib.mkDefault "aveeryy@protonmail.com";
             };
-            signing.key = lib.mkDefault "B684FD451B692E04";
+            signing = {
+              format = lib.mkDefault "ssh";
+              key = lib.mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+            };
           };
           xdg.userDirs = {
             desktop = config.home.homeDirectory;
