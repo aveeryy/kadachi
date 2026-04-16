@@ -51,6 +51,7 @@
               "rbdb" = ''nh os boot "path:/etc/nixos#$(hostname)"'';
               "rbd-remote" = ''nx os switch "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
               "rbdb-remote" = ''nx os boot "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
+              "cdr" = "cd $(git rev-parse --show-toplevel)";
             };
             syntaxHighlighting.enable = true;
             dotDir = "${config.xdg.configHome}/zsh";
