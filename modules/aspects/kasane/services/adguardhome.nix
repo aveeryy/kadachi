@@ -100,14 +100,14 @@
                     # Exclusions from ad-blocking
                     {
                       name = "Poco X3";
-                      ids = [ "10.0.200.1" ];
+                      ids = [ "10.0.250.1" ];
                       tags = [ "device_phone" ];
                       use_global_settings = false;
                       filtering_enabled = false;
                     }
                     {
                       name = "Tablet Samsung";
-                      ids = [ "10.0.200.2" ];
+                      ids = [ "10.0.250.2" ];
                       tags = [ "device_tablet" ];
                       use_global_settings = false;
                       filtering_enabled = false;
