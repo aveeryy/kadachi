@@ -2,7 +2,7 @@
 {
   den.hosts.x86_64-linux.nightcord = {
     services = {
-      baseHost = "nightcord.rcia.dev";
+      baseDomain = "nightcord.rcia.dev";
       defaultDatabase = "postgres";
       email = "infra-host-nightcord@rcia.dev";
     };

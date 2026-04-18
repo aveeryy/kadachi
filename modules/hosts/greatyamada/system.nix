@@ -2,7 +2,7 @@
 {
   den.hosts.x86_64-linux.greatyamada = {
     services = {
-      baseHost = "rcia.dev";
+      baseDomain = "rcia.dev";
       defaultDatabase = "postgres";
       email = "infra-host-greatyamada@rcia.dev";
       backups = {
