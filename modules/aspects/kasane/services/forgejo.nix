@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (kadachi-lib) mkOpt;
+  inherit (lib)
+    mkDefault
+    mkForce
+    mkOption
+    optional
+    ;
 in
 {
   flake-file.inputs.catppuccin = {
@@ -18,8 +23,14 @@ in
     { host, ... }:
     {
       options.services.forgejo = with lib.types; {
-        domain = mkOpt str "git.${host.services.baseDomain}";
-        database = mkOpt str host.services.defaultDatabase;
+        domain = mkOption {
+          type = str;
+          default = "git.${host.services.baseDomain}";
+        };
+        database = mkOption {
+          type = str;
+          default = host.services.defaultDatabase;
+        };
       };
     };
 
@@ -33,9 +44,9 @@ in
 
           databaseConfig = {
             postgres = {
-              type = lib.mkDefault "postgres";
-              port = lib.mkDefault config.services.postgresql.settings.port;
-              socket = lib.mkDefault "/run/postgresql";
+              type = mkDefault "postgres";
+              port = mkDefault config.services.postgresql.settings.port;
+              socket = mkDefault "/run/postgresql";
             };
           };
         in
@@ -56,18 +67,18 @@ in
               package = pkgs.forgejo;
               database = databaseConfig.${host.services.forgejo.database};
               secrets = {
-                server.LFS_JWT_SECRET = lib.mkForce config.sops.secrets."forgejo/lfs_jwt_secret".path;
+                server.LFS_JWT_SECRET = mkForce config.sops.secrets."forgejo/lfs_jwt_secret".path;
                 security = {
-                  INTERNAL_TOKEN = lib.mkForce config.sops.secrets."forgejo/internal_token".path;
-                  SECRET_KEY = lib.mkForce config.sops.secrets."forgejo/secret_key".path;
+                  INTERNAL_TOKEN = mkForce config.sops.secrets."forgejo/internal_token".path;
+                  SECRET_KEY = mkForce config.sops.secrets."forgejo/secret_key".path;
                 };
-                oauth2.JWT_SECRET = lib.mkForce config.sops.secrets."forgejo/oauth2_jwt_secret".path;
+                oauth2.JWT_SECRET = mkForce config.sops.secrets."forgejo/oauth2_jwt_secret".path;
               };
               settings = {
                 server = {
                   DOMAIN = host.services.forgejo.domain;
                   ROOT_URL = "https://${host.services.forgejo.domain}";
-                  HTTP_PORT = lib.mkDefault 3000;
+                  HTTP_PORT = mkDefault 3000;
                   DISABLE_SSH = false;
                   START_SSH_SERVER = false;
                   LFS_START_SERVER = true;
@@ -91,7 +102,7 @@ in
               useACMEHost = host.services.baseDomain;
             };
 
-            openssh.settings.AllowUsers = lib.lists.optional (!cfg.settings.server.DISABLE_SSH) "forgejo";
+            openssh.settings.AllowUsers = optional (!cfg.settings.server.DISABLE_SSH) "forgejo";
           };
 
           sops.secrets = {

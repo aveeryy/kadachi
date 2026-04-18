@@ -1,18 +1,16 @@
-{
-  den,
-  lib,
-  kadachi-lib,
-  ...
-}:
+{ den, lib, ... }:
 let
-  inherit (kadachi-lib) mkOpt;
+  inherit (lib) mkOption;
 in
 {
   den.schema.host =
     { host, ... }:
     {
       options.services.koito = with lib.types; {
-        domain = mkOpt str "koito.${host.services.baseDomain}";
+        domain = mkOption {
+          type = str;
+          default = "koito.${host.services.baseDomain}";
+        };
       };
     };
 

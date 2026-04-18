@@ -5,8 +5,7 @@
   ...
 }:
 let
-  inherit (lib.strings) optionalString;
-  inherit (kadachi-lib) mkOpt;
+  inherit (lib) mkOption optionalString;
 in
 {
   den.schema.host =
@@ -14,8 +13,14 @@ in
     with lib.types;
     {
       options.services.karakeep = {
-        domain = mkOpt str "karakeep.${host.services.baseDomain}";
-        localOnly = mkOpt bool false;
+        domain = mkOption {
+          type = str;
+          default = "karakeep.${host.services.baseDomain}";
+        };
+        localOnly = mkOption {
+          type = bool;
+          default = false;
+        };
       };
     };
 

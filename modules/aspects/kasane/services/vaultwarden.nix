@@ -1,19 +1,20 @@
-{
-  den,
-  lib,
-  kadachi-lib,
-  ...
-}:
+{ den, lib, ... }:
 let
-  inherit (kadachi-lib) mkOpt;
+  inherit (lib) mkOption;
 in
 {
   den.schema.host =
     { host, ... }:
     {
       options.services.vaultwarden = with lib.types; {
-        domain = mkOpt str "vaultwarden.${host.services.baseDomain}";
-        database = mkOpt str host.services.defaultDatabase;
+        domain = mkOption {
+          type = str;
+          default = "vaultwarden.${host.services.baseDomain}";
+        };
+        database = mkOption {
+          type = str;
+          default = host.services.defaultDatabase;
+        };
       };
     };
 
