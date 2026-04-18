@@ -9,14 +9,14 @@
           services = {
             pgadmin = {
               enable = true;
-              initialEmail = "admin@${host.services.baseHost}";
+              initialEmail = "admin@${host.services.baseDomain}";
               initialPasswordFile = config.sops.secrets."pgadmin/initial_password".path;
               port = 5050;
             };
-            nginx.virtualHosts."pgadmin.${host.services.baseHost}" = {
+            nginx.virtualHosts."pgadmin.${host.services.baseDomain}" = {
               locations."/".proxyPass = "http://localhost:${toString config.services.pgadmin.port}";
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
+              useACMEHost = host.services.baseDomain;
               extraConfig = host.services.nginx.localServiceConfig;
             };
           };

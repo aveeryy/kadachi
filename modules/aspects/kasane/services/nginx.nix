@@ -7,7 +7,7 @@
         localServiceConfig = lib.mkOption {
           type = lib.types.str;
           default = ''
-            error_page 403 https://${host.services.baseHost};
+            error_page 403 https://${host.services.baseDomain};
             allow 10.0.0.0/16;
             allow 10.10.0.0/16;
             deny all;
@@ -28,10 +28,10 @@
           recommendedOptimisation = true;
           recommendedTlsSettings = true;
           virtualHosts = {
-            ${host.services.baseHost} = {
+            ${host.services.baseDomain} = {
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
-              serverAliases = [ "*.${host.services.baseHost}" ];
+              useACMEHost = host.services.baseDomain;
+              serverAliases = [ "*.${host.services.baseDomain}" ];
             };
           };
         };

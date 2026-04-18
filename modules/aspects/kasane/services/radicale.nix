@@ -30,10 +30,10 @@
                   storage.filesystem_folder = "/var/lib/radicale/collections";
                 };
               };
-              nginx.virtualHosts."radicale.${host.services.baseHost}" = {
+              nginx.virtualHosts."radicale.${host.services.baseDomain}" = {
                 locations."/".proxyPass = "http://127.0.0.1:${toString radicalePort}";
                 forceSSL = true;
-                useACMEHost = host.services.baseHost;
+                useACMEHost = host.services.baseDomain;
                 extraConfig = host.services.nginx.localServiceConfig;
               };
             };

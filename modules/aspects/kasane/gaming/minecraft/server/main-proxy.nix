@@ -49,7 +49,7 @@
               // mapAttrs (_: server: "127.0.0.1:${toString server.serverProperties.server-port}") servers;
 
               forced-hosts = mapAttrs' (
-                name: _: nameValuePair ("${name}.mc.${host.services.baseHost}") ([ name ])
+                name: _: nameValuePair ("${name}.mc.${host.services.baseDomain}") ([ name ])
               ) servers;
 
               advanced = {

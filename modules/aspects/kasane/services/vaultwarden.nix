@@ -12,7 +12,7 @@ in
     { host, ... }:
     {
       options.services.vaultwarden = with lib.types; {
-        domain = mkOpt str "vaultwarden.${host.services.baseHost}";
+        domain = mkOpt str "vaultwarden.${host.services.baseDomain}";
         database = mkOpt str host.services.defaultDatabase;
       };
     };
@@ -51,7 +51,7 @@ in
             nginx.virtualHosts.${host.services.vaultwarden.domain} = {
               locations."/".proxyPass = "http://localhost:${toString cfg.config.rocketPort}";
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
+              useACMEHost = host.services.baseDomain;
               extraConfig = host.services.nginx.localServiceConfig;
             };
 

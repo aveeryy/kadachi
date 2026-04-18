@@ -11,7 +11,7 @@
               enable = true;
               environmentFile = config.sops.templates."ntfy/users".path;
               settings = {
-                base-url = "https://ntfy.${host.services.baseHost}";
+                base-url = "https://ntfy.${host.services.baseDomain}";
                 listen-http = ":2586";
                 behind-proxy = true;
 
@@ -19,13 +19,13 @@
                 auth-default-access = "deny-all";
               };
             };
-            nginx.virtualHosts."ntfy.${host.services.baseHost}" = {
+            nginx.virtualHosts."ntfy.${host.services.baseDomain}" = {
               locations."/" = {
                 proxyPass = "http://127.0.0.1${config.services.ntfy-sh.settings.listen-http}";
                 proxyWebsockets = true;
               };
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
+              useACMEHost = host.services.baseDomain;
             };
           };
 

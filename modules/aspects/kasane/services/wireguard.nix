@@ -49,7 +49,7 @@ in
           type = nullOr str;
           default =
             if host.services.wireguard.isMainNode then
-              "${host.services.baseHost}:${toString host.services.wireguard.port}"
+              "${host.services.baseDomain}:${toString host.services.wireguard.port}"
             else
               null;
         };

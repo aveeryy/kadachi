@@ -14,7 +14,7 @@ in
     with lib.types;
     {
       options.services.karakeep = {
-        domain = mkOpt str "karakeep.${host.services.baseHost}";
+        domain = mkOpt str "karakeep.${host.services.baseDomain}";
         localOnly = mkOpt bool false;
       };
     };
@@ -46,7 +46,7 @@ in
             nginx.virtualHosts.${host.services.karakeep.domain} = {
               locations."/".proxyPass = "http://127.0.0.1:${config.services.karakeep.extraEnvironment.PORT}";
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
+              useACMEHost = host.services.baseDomain;
               extraConfig = optionalString (host.services.karakeep.localOnly) host.services.nginx.localServiceConfig;
             };
           };

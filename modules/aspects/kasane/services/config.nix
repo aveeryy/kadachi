@@ -4,7 +4,7 @@
     { host, ... }:
     {
       options.services = with lib.types; {
-        baseHost = lib.mkOption {
+        baseDomain = lib.mkOption {
           type = str;
           default = "${host.hostName}.local";
         };

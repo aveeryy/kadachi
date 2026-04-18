@@ -18,7 +18,7 @@ in
     { host, ... }:
     {
       options.services.forgejo = with lib.types; {
-        domain = mkOpt str "git.${host.services.baseHost}";
+        domain = mkOpt str "git.${host.services.baseDomain}";
         database = mkOpt str host.services.defaultDatabase;
       };
     };
@@ -88,7 +88,7 @@ in
                 proxyPass = "http://127.0.0.1:${toString cfg.settings.server.HTTP_PORT}";
               };
               forceSSL = true;
-              useACMEHost = host.services.baseHost;
+              useACMEHost = host.services.baseDomain;
             };
 
             openssh.settings.AllowUsers = lib.lists.optional (!cfg.settings.server.DISABLE_SSH) "forgejo";
