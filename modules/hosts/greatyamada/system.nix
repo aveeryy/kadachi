@@ -14,6 +14,14 @@
           }
         ];
       };
+      wireguard = {
+        nodeEnabled = true;
+        addresses = [ "10.10.0.1/16" ];
+        publicKey = "xhPfEY8deFqQCESimFRzKFqxJ3LJM5uwUgVK4MFkjiM=";
+        isMainNode = true;
+        allowInternetAccess = true;
+        internetInterface = "enp5s0";
+      };
     };
     users.avery = { };
   };
@@ -45,6 +53,7 @@
       <kasane/services/radicale>
       <kasane/services/samba>
       <kasane/services/vaultwarden>
+      <kasane/services/wireguard>
     ];
 
     nixos =
