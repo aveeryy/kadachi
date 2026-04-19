@@ -7,6 +7,9 @@
         profile = lib.mkDefault "shortlived";
         group = lib.mkDefault "nginx";
         webroot = lib.mkDefault null;
+        extraLegoFlags = lib.mkDefault [
+          "--dns.propagation-wait=300s"
+        ];
       };
     };
 
