@@ -9,6 +9,16 @@
 let
   stateVersion = "26.05";
 
+  overlays = [
+    self.overlays.default
+    # Workaround for nixpkgs bug #513245
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
+  ];
+
   jovianClass =
     { class, aspect-chain }:
     den._.forward {
@@ -96,7 +106,10 @@ in
           ncdu
         ];
         hardware.enableRedistributableFirmware = true;
-        home-manager.backupFileExtension = "bak";
+        home-manager = {
+          backupFileExtension = "bak";
+          useUserPackages = true;
+        };
         nix.settings = {
           auto-optimise-store = true;
           experimental-features = [
@@ -109,8 +122,8 @@ in
         };
         networking.dhcpcd.wait = "background";
         nixpkgs = {
+          inherit overlays;
           config.allowUnfree = true;
-          overlays = [ self.overlays.default ];
         };
         programs = {
           nh = {
@@ -158,10 +171,8 @@ in
     homeManager = {
       home.stateVersion = stateVersion;
       nixpkgs = {
-        config = {
-          allowUnfree = true;
-        };
-        overlays = [ self.overlays.default ];
+        inherit overlays;
+        config.allowUnfree = true;
       };
       services.ssh-agent.enable = true;
       xdg.mimeApps.enable = true;
