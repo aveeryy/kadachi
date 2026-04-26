@@ -42,6 +42,10 @@
               "uBlock0@raymondhill.net" = {
                 settings = {
                   advancedUserEnabled = true;
+                  importedLists = [
+                    "https://git.rcia.dev/Avery/ubo-block-list/raw/branch/main/list.txt"
+                  ];
+                  popupPanelSections = 63;
                   selectedFilterLists = [
                     "user-filters"
                     "ublock-filters"
@@ -71,6 +75,7 @@
                     "ublock-annoyances"
                     "spa-1"
                     "spa-0"
+                    "https://git.rcia.dev/Avery/ubo-block-list/raw/branch/main/list.txt"
                   ];
                 };
               };
