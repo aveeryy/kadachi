@@ -2,7 +2,7 @@
 {
   den.hosts.x86_64-linux.mizuki = {
     services.wireguard = {
-      nodeEnabled = true;
+      peerEnabled = true;
       addresses = [ "10.10.0.3/16" ];
       publicKey = "MbVmCHiEXd81GmmKl6lpy559o3Peho/4I0IbbOH8qU0=";
     };
