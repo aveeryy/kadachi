@@ -15,6 +15,22 @@
 
         programs.noctalia-shell = {
           enable = true;
+          plugins = {
+            sources = [
+              {
+                enabled = true;
+                name = "Official Noctalia Plugins";
+                url = "https://github.com/noctalia-dev/noctalia-plugins";
+              }
+            ];
+            states = {
+              kaomoji-provider = {
+                enabled = true;
+                sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+              };
+            };
+            version = 2;
+          };
           settings = {
             appLauncher = {
               density = "compact";
@@ -171,8 +187,8 @@
             bind = [
               "SUPER, Space, exec, ${ipc} launcher toggle"
               "SUPER, period, exec, ${ipc} launcher emoji"
+              "SUPER, comma, exec, ${ipc} plugin:kaomoji toggle"
               "CTRL ALT, Delete, exec, ${ipc} sessionMenu toggle"
-
             ];
             bindle = [
               ", XF86MonBrightnessUp, exec, ${ipc} brightness increase"
