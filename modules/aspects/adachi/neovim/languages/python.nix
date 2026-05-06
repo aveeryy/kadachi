@@ -18,18 +18,9 @@
     extraFiles."queries/python/injections.scm".text = /* query */ ''
       ; extends
 
-      (assignment
-        right: (string
+      (string
           (string_start) @_ss
-          (string_content) @injection.content)
-        (#match? @_ss "[^rR]?[rR][^rR]?[\"']")
-        (#set! injection.language "regex"))
-
-      (assignment
-        right: (parenthesized_expression
-        	(string
-            (string_start) @_ss
-            (string_content) @injection.content))
+          (string_content) @injection.content
         (#match? @_ss "[^rR]?[rR][^rR]?[\"']")
         (#set! injection.language "regex"))
     '';
