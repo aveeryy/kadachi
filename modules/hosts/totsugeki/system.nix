@@ -1,23 +1,4 @@
-{
-  __findFile,
-  kadachi-lib,
-  ...
-}:
-let
-  includes = [
-    <megurine/is/desktop>
-    <megurine/has/amd-cpu>
-    <megurine/has/amd-cpu/kvm>
-    <megurine/requires/secure-boot>
-
-    <adachi/desktop/hyprland>
-    <adachi/system/cachyos-kernel>
-
-    <kasane/services/backups>
-  ];
-
-  includedToUsersAspects = kadachi-lib.includeToUsersFromChildren includes;
-in
+{ __findFile, ... }:
 {
   den.hosts.x86_64-linux.totsugeki = {
     desktop = {
@@ -42,7 +23,18 @@ in
   den.aspects.totsugeki = {
     description = "Main computer";
 
-    inherit includes;
+    includes = [
+      <megurine/is/desktop>
+      <megurine/has/amd-cpu>
+      <megurine/has/amd-cpu/kvm>
+      <megurine/requires/secure-boot>
+
+      <adachi/desktop/hyprland>
+      <adachi/services/podman>
+      <adachi/system/cachyos-kernel>
+
+      <kasane/services/backups>
+    ];
 
     nixos =
       {
@@ -87,11 +79,7 @@ in
 
         systemd.services.NetworkManager-wait-online.enable = false;
 
-        virtualisation.docker.enable = true;
-
         time.timeZone = "Europe/Madrid";
       };
-
-    provides.to-users.includes = includedToUsersAspects;
   };
 }

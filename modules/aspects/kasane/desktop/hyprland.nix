@@ -29,6 +29,7 @@ in
         {
           wayland.windowManager.hyprland = {
             enable = true;
+            configType = "hyprlang";
             settings = {
               monitor = displaysToHyprlandConfig host.desktop.displays;
               input = {

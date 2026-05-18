@@ -1,5 +1,4 @@
 {
-  den,
   kadachi-lib,
   lib,
   ...
@@ -24,7 +23,7 @@ in
       };
     };
 
-  kasane.services._.karakeep = den.lib.take.exactly (
+  kasane.services._.karakeep =
     { host }:
     {
       nixos =
@@ -56,6 +55,5 @@ in
             };
           };
         };
-    }
-  );
+    };
 }

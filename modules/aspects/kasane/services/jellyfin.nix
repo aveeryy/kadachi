@@ -1,6 +1,6 @@
-{ den, ... }:
+{ ... }:
 {
-  kasane.services._.jellyfin = den.lib.take.exactly (
+  kasane.services._.jellyfin =
     { host }:
     {
       nixos = {
@@ -14,6 +14,5 @@
         };
         users.users.jellyfin.extraGroups = [ "media" ];
       };
-    }
-  );
+    };
 }

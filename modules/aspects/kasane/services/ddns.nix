@@ -1,16 +1,14 @@
-{ __findFile, den, ... }:
+{ __findFile, ... }:
 let
   makeAspect =
     serviceAspect:
-    den.lib.take.exactly (
-      { host }:
-      {
-        includes = [
-          <adachi/services/ddns>
-          (serviceAspect host.services.baseDomain)
-        ];
-      }
-    );
+    { host }:
+    {
+      includes = [
+        <adachi/services/ddns>
+        (serviceAspect host.services.baseDomain)
+      ];
+    };
 in
 {
   kasane.services._.ddns = {

@@ -59,19 +59,14 @@
           scripts = with pkgs.mpvScripts; [ mpris ];
         };
         wayland.windowManager.hyprland = {
-          settings.bindl = [ "MOD3, m, submap, Música" ];
-
-          extraConfig = ''
-            submap = Música
-
-            bindl = , p, exec, playerctl play-pause
-            bindl = , h, exec, playerctl previous
-            bindl = , l, exec, playerctl next
-            bindl = , escape, submap, reset
-            bindl = MOD3, m, submap, reset
-
-            submap = reset
-          '';
+          settings.bindl = [ "MOD3, m, submap, music" ];
+          submaps.music.settings.bindl = [
+            ", p, exec, playerctl play-pause"
+            ", h, exec, playerctl previous"
+            ", l, exec, playerctl next"
+            ", escape, submap, reset"
+            "MOD3, m, submap, reset"
+          ];
         };
       };
   };

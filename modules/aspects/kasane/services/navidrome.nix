@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib)
     mkDefault
@@ -17,7 +17,7 @@ in
       };
     };
 
-  kasane.services._.navidrome = den.lib.take.exactly (
+  kasane.services._.navidrome =
     { host }:
     {
       nixos =
@@ -51,6 +51,5 @@ in
             };
           };
         };
-    }
-  );
+    };
 }

@@ -1,7 +1,7 @@
-{ den, ... }:
+{ ... }:
 {
   # TODO: allow configuration of ips and other stuff
-  kasane.services._.adguardhome = den.lib.take.exactly (
+  kasane.services._.adguardhome =
     { host }:
     {
       nixos =
@@ -284,6 +284,5 @@
               };
           };
         };
-    }
-  );
+    };
 }

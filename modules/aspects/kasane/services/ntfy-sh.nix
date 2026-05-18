@@ -1,6 +1,6 @@
-{ den, ... }:
+{ ... }:
 {
-  kasane.services._.ntfy-sh = den.lib.take.exactly (
+  kasane.services._.ntfy-sh =
     { host }:
     {
       nixos =
@@ -39,6 +39,5 @@
             };
           };
         };
-    }
-  );
+    };
 }

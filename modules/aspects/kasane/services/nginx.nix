@@ -1,4 +1,4 @@
-{ lib, den, ... }:
+{ lib, ... }:
 {
   den.schema.host =
     { host, ... }:
@@ -16,7 +16,7 @@
       };
     };
 
-  kasane.services._.nginx = den.lib.take.exactly (
+  kasane.services._.nginx =
     { host }:
     {
       nixos = {
@@ -36,6 +36,5 @@
           };
         };
       };
-    }
-  );
+    };
 }

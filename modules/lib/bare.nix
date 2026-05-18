@@ -68,14 +68,6 @@ let
     builtins.elemAt (lib.lists.sort (a: b: a > b) (
       lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
     )) 0;
-
-  includeToUsersFromChildren =
-    includedAspects:
-    (map (aspect: aspect.provides.to-users) (
-      filter (
-        aspect: (isAttrs aspect) && (hasAttr "provides" aspect) && (hasAttr "to-users" aspect.provides)
-      ) includedAspects
-    ));
 in
 {
   flake.lib = {
@@ -85,7 +77,6 @@ in
       getAsset
       getFastestRefreshRate
       getHostConfig
-      includeToUsersFromChildren
       isAttrSetEmpty
       ;
   };

@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib) mkOption;
 in
@@ -18,7 +18,7 @@ in
       };
     };
 
-  kasane.services._.vaultwarden = den.lib.take.exactly (
+  kasane.services._.vaultwarden =
     { host }:
     {
       nixos =
@@ -78,6 +78,5 @@ in
 
           };
         };
-    }
-  );
+    };
 }

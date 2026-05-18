@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib) mkOption;
 in
@@ -14,7 +14,7 @@ in
       };
     };
 
-  kasane.services._.koito = den.lib.take.exactly (
+  kasane.services._.koito =
     { host }:
     {
       nixos =
@@ -105,6 +105,5 @@ in
             '';
           };
         };
-    }
-  );
+    };
 }

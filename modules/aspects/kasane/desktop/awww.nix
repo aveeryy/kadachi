@@ -15,18 +15,18 @@
           wayland.windowManager.hyprland = {
             settings = {
               exec-once = lib.mkOrder 20 [ "awww-daemon" ];
-              bindl = [ "MOD3, w, submap, Fondo de pantalla" ];
+              bind = [ "MOD3, w, submap, wallpaper" ];
             };
-            extraConfig = ''
-              submap = Fondo de pantalla
-
-              bind = , H, exec, wallpaperctl previous
-              bind = , L, exec, wallpaperctl next
-              bindl = , escape, submap, reset
-              bindl = MOD3, w, submap, reset
-
-              submap = reset
-            '';
+            submaps.wallpaper.settings = {
+              bind = [
+                ", H, exec, wallpaperctl previous"
+                ", L, exec, wallpaperctl next"
+              ];
+              bindl = [
+                ", escape, submap, reset"
+                "MOD3, w, submap, reset"
+              ];
+            };
           };
         };
     };
