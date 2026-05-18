@@ -1,6 +1,5 @@
 {
   inputs,
-  den,
   lib,
   kadachi-lib,
   ...
@@ -11,7 +10,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  kasane.gaming._.minecraft._.server = den.lib.take.exactly (
+  kasane.gaming._.minecraft._.server =
     { host }:
     {
       nixos =
@@ -114,6 +113,5 @@
             };
           };
         };
-    }
-  );
+    };
 }

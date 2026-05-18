@@ -1,7 +1,6 @@
 {
   lib,
   inputs,
-  den,
   kadachi-lib,
   ...
 }:
@@ -34,7 +33,7 @@ in
       };
     };
 
-  kasane.services._.forgejo = den.lib.take.exactly (
+  kasane.services._.forgejo =
     { host }:
     {
       nixos =
@@ -118,6 +117,5 @@ in
             accent = "mauve";
           };
         };
-    }
-  );
+    };
 }

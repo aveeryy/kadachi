@@ -1,6 +1,6 @@
-{ den, kadachi-lib, ... }:
+{ kadachi-lib, ... }:
 {
-  kasane.gaming._.minecraft._.server = den.lib.take.exactly (
+  kasane.gaming._.minecraft._.server =
     { host }:
     {
       nixos =
@@ -37,7 +37,5 @@
             };
           };
         };
-    }
-  );
-
+    };
 }

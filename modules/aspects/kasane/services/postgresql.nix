@@ -1,10 +1,6 @@
+{ kadachi-lib, ... }:
 {
-  kadachi-lib,
-  den,
-  ...
-}:
-{
-  kasane.services._.postgresql = den.lib.take.exactly (
+  kasane.services._.postgresql =
     { host }:
     {
       nixos =
@@ -64,6 +60,5 @@
             };
           };
         };
-    }
-  );
+    };
 }

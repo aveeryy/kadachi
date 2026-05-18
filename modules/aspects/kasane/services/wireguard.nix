@@ -60,7 +60,7 @@ in
       };
     };
 
-  kasane.services._.wireguard = den.lib.take.exactly (
+  kasane.services._.wireguard =
     { host }:
     {
       description = "Wireguard VPN configuration";
@@ -150,6 +150,5 @@ in
             "wireguard/${interfaceName}/preshared_keys/Pixel9a".owner = "root";
           };
         };
-    }
-  );
+    };
 }

@@ -1,9 +1,4 @@
-{
-  lib,
-  den,
-  inputs,
-  ...
-}:
+{ inputs, lib, ... }:
 let
   repositoryType =
     with lib.types;
@@ -222,7 +217,7 @@ in
         };
       };
     };
-  kasane.services._.backups = den.lib.take.exactly (
+  kasane.services._.backups =
     { host }:
     {
       nixos =
@@ -255,6 +250,5 @@ in
           };
           systemd.timers.borgmatic.timerConfig.RandomizedDelaySec = "0";
         };
-    }
-  );
+    };
 }

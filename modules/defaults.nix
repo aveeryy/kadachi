@@ -71,13 +71,14 @@ in
     { user, ... }:
     {
       classes = lib.mkDefault [ "homeManager" ];
-      aspect = lib.mkDefault "${user.userName}@${user.host.hostName}";
+      aspect = lib.mkDefault den.aspects."${user.userName}@${user.host.hostName}";
     };
 
   den.default = {
     includes = [
       <den/hostname>
       <den/define-user>
+      <den/host-aspects>
       <den/mutual-provider>
 
       jovianClass

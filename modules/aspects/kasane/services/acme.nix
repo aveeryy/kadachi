@@ -1,17 +1,15 @@
-{ __findFile, den, ... }:
+{ __findFile, ... }:
 let
   makeAspect =
     serviceAspect:
-    den.lib.take.exactly (
-      { host }:
-      {
-        includes = [
-          <adachi/services/acme>
-          (serviceAspect host.services.baseDomain)
-        ];
-        nixos.security.acme.defaults.email = host.services.email;
-      }
-    );
+    { host }:
+    {
+      includes = [
+        <adachi/services/acme>
+        (serviceAspect host.services.baseDomain)
+      ];
+      nixos.security.acme.defaults.email = host.services.email;
+    };
 in
 {
   kasane.services._.acme = {
