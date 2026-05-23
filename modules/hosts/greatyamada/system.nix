@@ -116,8 +116,6 @@
 
         # Run backups hourly
         systemd.timers.borgmatic.timerConfig.OnCalendar = "*-*-* *:00:00";
-
-        time.timeZone = "UTC";
       };
   };
 }
