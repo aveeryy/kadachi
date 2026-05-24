@@ -56,6 +56,10 @@ in
           sops.secrets = genAttrs' host.services.copyparty.accounts (
             user: nameValuePair "copyparty/users/${user}" { owner = config.services.copyparty.user; }
           );
+          users = {
+            groups.disk-write = { };
+            users.copyparty.extraGroups = [ "disk-write" ];
+          };
         };
     };
 }
