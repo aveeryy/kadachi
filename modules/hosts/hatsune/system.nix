@@ -5,6 +5,7 @@
       baseDomain = "hatsune.rcia.dev";
       defaultDatabase = "postgres";
       email = "infra-host-hatsune@rcia.dev";
+      copyparty.domain = "hatsune.rcia.dev";
     };
     users.avery = { };
   };
@@ -19,6 +20,7 @@
       <megurine/requires/secure-boot>
 
       <kasane/services/acme/desec>
+      <kasane/services/copyparty>
       <kasane/services/ddns/desec>
       <kasane/services/nginx>
     ];
@@ -39,6 +41,26 @@
             "sd_mod"
           ];
           kernelModules = [ "it87" ];
+        };
+
+        services.copyparty = {
+          settings = {
+            e2dsa = true;
+          };
+          volumes = {
+            "/disk0" = {
+              path = "/mnt/disk0";
+              access = {
+                rwmda = [ "avery" ];
+              };
+            };
+            "/disk1" = {
+              path = "/mnt/disk1";
+              access = {
+                rwmda = [ "avery" ];
+              };
+            };
+          };
         };
       };
   };

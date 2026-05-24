@@ -184,6 +184,28 @@
         "type": "github"
       }
     },
+    "copyparty": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777069326,
+        "narHash": "sha256-zE7MmYBycsgWS3jD9n9gpEsjvoxBqQM9UAMLu/coK74=",
+        "owner": "9001",
+        "repo": "copyparty",
+        "rev": "a09a0eadbb9b4e88eb584d347538790b9032407b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "9001",
+        "ref": "v1.20.14",
+        "repo": "copyparty",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1765145449,
@@ -365,6 +387,21 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1678901627,
+        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -861,6 +898,7 @@
       "inputs": {
         "autofirma-nix": "autofirma-nix",
         "catppuccin": "catppuccin",
+        "copyparty": "copyparty",
         "den": "den",
         "flake-file": "flake-file",
         "flake-parts": "flake-parts",

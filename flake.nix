@@ -16,6 +16,10 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    copyparty = {
+      url = "github:9001/copyparty/v1.20.14";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     den.url = "github:vic/den";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
