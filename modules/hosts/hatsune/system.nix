@@ -28,7 +28,7 @@
       {
         boot = {
           extraModprobeConfig = ''
-            options it87 force_id=0xa30 ignore_resource_conflict=1
+            options it87 force_id=0x8613 ignore_resource_conflict=1
           '';
           extraModulePackages = with config.boot.kernelPackages; [ it87 ];
           initrd.availableKernelModules = [
