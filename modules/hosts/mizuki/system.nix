@@ -19,6 +19,7 @@
     nixos =
       { pkgs, ... }:
       {
+        boot.kernel.sysctl."vm.overcommit_memory" = 1;
         time.timeZone = "Europe/Madrid";
       };
   };
