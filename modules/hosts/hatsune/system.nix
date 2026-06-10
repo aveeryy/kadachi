@@ -27,6 +27,8 @@
         <megurine/is/server>
         <megurine/requires/secure-boot>
 
+        <adachi/hardware/ugreen-led-controller>
+
         <kasane/services/acme/desec>
         <kasane/services/copyparty>
         <kasane/services/ddns/desec>
