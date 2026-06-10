@@ -213,7 +213,7 @@
             "network.cookie.cookieBehavior" = 1;
             "network.dns.disablePrefetch" = true;
             "network.dns.disablePrefetchFromHTTPS" = true;
-            "network.http.referer.trimmingPolicy" = 2;
+            "network.http.referer.trimmingPolicy" = 0;
             "network.http.speculative-parallel-limit" = 0;
             "network.predictor.enable-prefetch" = false;
             "network.predictor.enabled" = false;
