@@ -77,7 +77,7 @@
                 "/disk1" = {
                   path = "/mnt/disk1";
                   access = {
-                    rwmda = [ "avery" ];
+                    r = [ "avery" ];
                   };
                   flags = commonVolumeFlags;
                 };
