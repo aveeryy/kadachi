@@ -46,7 +46,6 @@
       <kasane/services/koito>
       <kasane/services/jellyfin>
       <kasane/services/karakeep>
-      <kasane/services/navidrome>
       <kasane/services/nginx>
       <kasane/services/ntfy-sh>
       <kasane/services/pgadmin>
