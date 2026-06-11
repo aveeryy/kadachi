@@ -32,6 +32,7 @@
         <kasane/services/acme/desec>
         <kasane/services/copyparty>
         <kasane/services/ddns/desec>
+        <kasane/services/navidrome>
         <kasane/services/nginx>
       ];
 
@@ -83,6 +84,8 @@
                 };
               };
             };
+
+            navidrome.settings.MusicFolder = "/mnt/disk0/music";
 
             nginx.virtualHosts."miku.${host.services.baseDomain}" = {
               locations."= /" = {
