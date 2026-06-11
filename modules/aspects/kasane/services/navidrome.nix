@@ -1,7 +1,6 @@
 { lib, ... }:
 let
   inherit (lib)
-    mkDefault
     mkOption
     ;
 in
@@ -34,8 +33,6 @@ in
                 DefaultLanguage = "es";
                 EnableInsightsCollector = false;
                 "ListenBrainz.BaseURL" = "https://koito.rcia.dev/apis/listenbrainz/1";
-                MusicFolder = mkDefault "/mnt/ssd-01/music";
-                PlaylistFolder = mkDefault "/mnt/ssd-01/music/+Playlists";
                 RecentlyAddedByModTime = true;
                 "Scanner.Schedule" = "@every 1h";
               };
@@ -44,7 +41,6 @@ in
             nginx.virtualHosts.${host.services.navidrome.domain} = {
               locations."/" = {
                 proxyPass = "http://127.0.0.1:${toString cfg.settings.Port}";
-
               };
               forceSSL = true;
               useACMEHost = host.services.baseDomain;
