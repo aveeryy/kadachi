@@ -23,7 +23,6 @@ Namespaces are named after [virtual singers](https://en.wikipedia.org/wiki/Virtu
 ([VOCALOID](https://en.wikipedia.org/wiki/Vocaloid), [UTAU](https://en.wikipedia.org/wiki/Utau)...)
 
 - ⚙️ adachi: [Adachi Rei](https://mechanicalgirl.jp/adachi-rei/)
-- 🍊 kagamine: [Kagamine Rin and Len](https://ec.crypton.co.jp/pages/prod/virtualsinger/rinlennt)
 - 🥖 kasane: [Kasane Teto](https://kasaneteto.jp/)
 - 🐟 megurine: [Megurine Luka](https://ec.crypton.co.jp/pages/prod/virtualsinger/lukav4x)
 
@@ -32,6 +31,7 @@ Hosts are named either by what I think suits the machine's purpose more
 to any media I was into when I made the host configuration (the rest of them lol)
 
 - 🐳 greatyamada: [May's overdrive (Guilty Gear Strive)](https://www.dustloop.com/w/GGST/May#Great_Yamada_Attack)
+- 🥬 hatsune: [Hatsune Miku](https://ec.crypton.co.jp/pages/prod/virtualsinger/mikuv6)
 - 🦉 malfestio: [Malfestio from Monster Hunter Generations](https://monsterhunterwiki.org/wiki/Malfestio)
 - 🎀 mizuki: [Akiyama Mizuki from Project Sekai](https://www.sekaipedia.org/wiki/Akiyama_Mizuki)
 - 🌙 nightcord: [Nightcord at 25:00 from Project Sekai](https://www.sekaipedia.org/wiki/25-ji,_Nightcord_de.)
