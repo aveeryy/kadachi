@@ -44,7 +44,6 @@
       <kasane/services/fail2ban>
       <kasane/services/forgejo>
       <kasane/services/koito>
-      <kasane/services/jellyfin>
       <kasane/services/karakeep>
       <kasane/services/nginx>
       <kasane/services/ntfy-sh>
