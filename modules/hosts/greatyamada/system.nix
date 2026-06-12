@@ -91,10 +91,24 @@
           ];
         };
 
+        security.acme.certs."rcia.dev".extraDomainNames = [
+          "*.rcia.dev"
+          "*.hatsune.rcia.dev"
+        ];
+
         services = {
           forgejo.settings.server.SSH_PORT = 2222;
           minecraft-servers.dataDir = "/mnt/ssd-01/minecraft";
-          nginx.virtualHosts."rcia.dev".locations."/".return = "301 https://git.rcia.dev/Avery";
+          nginx.virtualHosts = {
+            "rcia.dev".locations."/".return = "307 https://git.rcia.dev/Avery";
+            "hatsune.rcia.dev" = {
+              locations."/".return = "308 $scheme://$host:4430/";
+              locations."~* /([^\\n\\r]*)".return = "308 $scheme://$host:4430/$1";
+              forceSSL = true;
+              useACMEHost = "rcia.dev";
+              serverAliases = [ "*.hatsune.rcia.dev" ];
+            };
+          };
           postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
           samba.settings = {
             global = {
