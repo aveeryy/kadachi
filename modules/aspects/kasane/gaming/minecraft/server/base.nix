@@ -60,6 +60,7 @@
         {
           imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
 
+          # TODO: remove overlay
           nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
           services = {
@@ -79,6 +80,10 @@
               nameValuePair ("minecraft-${name}") (
                 createBackupConfiguration' "minecraft-${name}" host {
                   source_directories = paths;
+                  # Starting with Minecraft 26.1, the Nether and The End dimensions are now located
+                  # in a subdirectory in the main world's directory, this is more of a stop-gap
+                  # solution while I improve the getBackupPaths function
+                  source_directories_must_exist = false;
                   encryption_passphrase = "{credential file /run/secrets/backups/password/minecraft_common}";
                   keep_daily = 3;
                   keep_weekly = 1;
