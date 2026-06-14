@@ -1,16 +1,19 @@
-{ kadachi-lib, ... }:
+{
+  kadachi-lib,
+  ...
+}:
 {
   kasane.gaming._.minecraft._.server =
     { host }:
     {
       nixos =
-        { pkgs, ... }:
+        { pkgs, inputs', ... }:
         {
           services.minecraft-servers.servers.skyblock = {
             enable = true;
             autoStart = true;
             restart = "no";
-            package = pkgs.fabricServers.fabric-26_1_2.override ({
+            package = inputs'.nix-minecraft.legacyPackages.fabricServers.fabric-26_1_2.override ({
               jre_headless = pkgs.openjdk25_headless;
             });
             whitelist = {

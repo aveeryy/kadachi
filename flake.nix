@@ -58,11 +58,11 @@
       };
     };
     noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR";
+    rycee-nur = {
+      url = "gitlab:rycee/nur-expressions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {

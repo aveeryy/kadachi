@@ -41,6 +41,7 @@
         pkgs,
         lib,
         config,
+        inputs',
         ...
       }:
       {
@@ -53,7 +54,7 @@
             "usb_storage"
             "sd_mod"
           ];
-          kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+          kernelPackages = inputs'.nix-cachyos-kernel.legacyPackages.linuxPackages-cachyos-bore-lto;
         };
 
         i18n = {

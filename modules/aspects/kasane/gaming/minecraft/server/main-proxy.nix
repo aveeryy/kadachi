@@ -1,4 +1,7 @@
-{ kadachi-lib, ... }:
+{
+  kadachi-lib,
+  ...
+}:
 {
   kasane.gaming._.minecraft._.server =
     { host }:
@@ -8,6 +11,7 @@
           pkgs,
           config,
           lib,
+          inputs',
           ...
         }:
         let
@@ -23,7 +27,7 @@
             enable = true;
             autoStart = true;
             restart = "always";
-            package = pkgs.velocityServers.velocity;
+            package = inputs'.nix-minecraft.packages.velocity-server;
             openFirewall = true;
 
             symlinks."server-icon.png" = getAsset "minecraft-server-icons/proxy.png";

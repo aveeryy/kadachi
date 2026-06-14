@@ -1,12 +1,17 @@
-{ inputs, ... }:
+{ ... }:
 {
-  flake-file.inputs.nur = {
-    url = "github:nix-community/NUR";
+  flake-file.inputs.rycee-nur = {
+    url = "gitlab:rycee/nur-expressions";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
   kasane.web-browsers._.firefox.homeManager =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      inputs',
+      ...
+    }:
     let
       lepton = pkgs.fetchFromGitHub {
         owner = "black7375";
@@ -19,20 +24,19 @@
       home.file."${config.home.homeDirectory}/${config.programs.firefox.profilesPath}/Avery/chrome".source =
         lepton;
 
-      nixpkgs.overlays = [ inputs.nur.overlays.default ];
-
       programs.firefox = {
         enable = true;
         profiles.Avery = {
           isDefault = true;
           extensions = {
             force = true;
-            packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            packages = with inputs'.rycee-nur.legacyPackages.firefox-addons; [
               bitwarden
               catppuccin-mocha-mauve
               catppuccin-web-file-icons
               consent-o-matic
-              kagi-translate
+              # Gaslight Nix into thinking it's a free package
+              (kagi-translate.overrideAttrs { meta.license.free = true; })
               floccus
               karakeep
               stylus

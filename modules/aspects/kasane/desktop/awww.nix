@@ -4,11 +4,16 @@
     { host, user }:
     {
       homeManager =
-        { pkgs, lib, ... }:
+        {
+          pkgs,
+          lib,
+          self',
+          ...
+        }:
         {
           home.packages = with pkgs; [
             awww
-            (wallpaperctl.override {
+            (self'.packages.wallpaperctl.override {
               refreshRate = kadachi-lib.getFastestRefreshRate host;
             })
           ];

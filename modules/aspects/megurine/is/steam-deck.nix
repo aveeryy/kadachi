@@ -54,9 +54,9 @@
       cachyos-kernel = {
         includes = [ <adachi/system/cachyos-kernel> ];
         nixos =
-          { pkgs, ... }:
+          { pkgs, inputs', ... }:
           {
-            boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-deckify-lto;
+            boot.kernelPackages = inputs'.nix-cachyos-kernel.legacyPackages.linuxPackages-cachyos-deckify;
           };
       };
     };

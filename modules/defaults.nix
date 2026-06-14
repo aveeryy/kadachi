@@ -1,23 +1,12 @@
 {
   __findFile,
   inputs,
-  self,
   lib,
   den,
   ...
 }:
 let
   stateVersion = "26.05";
-
-  overlays = [
-    self.overlays.default
-    # Workaround for nixpkgs bug #513245
-    (_: prev: {
-      openldap = prev.openldap.overrideAttrs {
-        doCheck = !prev.stdenv.hostPlatform.isi686;
-      };
-    })
-  ];
 
   jovianClass =
     { class, aspect-chain }:
@@ -80,6 +69,8 @@ in
       <den/define-user>
       <den/host-aspects>
       <den/mutual-provider>
+      den.batteries.inputs'
+      den.batteries.self'
 
       jovianClass
       noctaliaShellClass
@@ -122,10 +113,7 @@ in
           ];
         };
         networking.dhcpcd.wait = "background";
-        nixpkgs = {
-          inherit overlays;
-          config.allowUnfree = true;
-        };
+        nixpkgs.config.allowUnfree = true;
         programs = {
           nh = {
             enable = true;
@@ -171,10 +159,7 @@ in
 
     homeManager = {
       home.stateVersion = stateVersion;
-      nixpkgs = {
-        inherit overlays;
-        config.allowUnfree = true;
-      };
+      nixpkgs.config.allowUnfree = true;
       services.ssh-agent.enable = true;
       xdg.mimeApps.enable = true;
     };
