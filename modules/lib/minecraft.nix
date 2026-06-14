@@ -1,7 +1,12 @@
 { kadachi-lib, lib, ... }:
 let
-  inherit (lib) optionals;
-  inherit (lib.attrsets) filterAttrs mapAttrs;
+  inherit (lib)
+    elemAt
+    filterAttrs
+    mapAttrs
+    optionals
+    splitString
+    ;
   inherit (kadachi-lib) isAttrSetEmpty;
 
   players = {
@@ -17,6 +22,11 @@ let
   getBackupPathsForServer =
     serverName: serverCfg:
     let
+      # Starting with Minecraft 26.1, the Nether and The End dimensions are now located
+      # in a subdirectory in the main world's directory
+      gameVersion = elemAt (splitString serverCfg.package.version "-") 0;
+      modernWorldFormat = gameVersion >= "26.1";
+
       worldName = serverCfg.serverProperties.level-name or "world";
       baseWorldPath = "${serverName}/${worldName}";
 
@@ -26,9 +36,11 @@ let
     in
     [
       baseWorldPath
+      "${serverName}/banned-ips.json"
+    ]
+    ++ optionals (!modernWorldFormat) [
       "${baseWorldPath}_nether"
       "${baseWorldPath}_the_end"
-      "${serverName}/banned-ips.json"
     ]
     ++ optionals (nonDeclarativeBannedPlayers) [
       "${serverName}/banned-players.json"
