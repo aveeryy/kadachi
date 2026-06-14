@@ -13,7 +13,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    den.url = lib.mkForce "github:vic/den";
+    den.url = lib.mkForce "github:denful/den/v0.17.0";
   };
 
   imports = [
