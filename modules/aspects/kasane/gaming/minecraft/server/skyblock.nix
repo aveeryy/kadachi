@@ -31,6 +31,8 @@
               difficulty = "hard";
               gamemode = "survival";
               online-mode = false;
+              spawn-protection = 0;
+              view-distance = 32;
             };
             symlinks = {
               "mods/Fabric-API.jar" = pkgs.fetchurl {
