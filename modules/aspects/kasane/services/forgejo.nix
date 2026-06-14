@@ -111,10 +111,14 @@ in
             "forgejo/secret_key".owner = "forgejo";
           };
 
-          catppuccin.forgejo = {
+          catppuccin = {
             enable = true;
-            flavor = "mocha";
-            accent = "mauve";
+            autoEnable = false;
+            forgejo = {
+              enable = true;
+              flavor = "mocha";
+              accent = "mauve";
+            };
           };
         };
     };
