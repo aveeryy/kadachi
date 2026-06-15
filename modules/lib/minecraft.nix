@@ -24,7 +24,7 @@ let
     let
       # Starting with Minecraft 26.1, the Nether and The End dimensions are now located
       # in a subdirectory in the main world's directory
-      gameVersion = elemAt (splitString serverCfg.package.version "-") 0;
+      gameVersion = elemAt (splitString "-" serverCfg.package.version) 0;
       modernWorldFormat = gameVersion >= "26.1";
 
       worldName = serverCfg.serverProperties.level-name or "world";
