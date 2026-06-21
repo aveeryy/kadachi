@@ -19,8 +19,6 @@
       includes = [
         <kasane/base-user>
 
-        <adachi/neovim/extras/format-on-save>
-
         media_group_member
         minecraft_group_member
       ];

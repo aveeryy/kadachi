@@ -46,6 +46,10 @@ let
 in
 {
   flake-file.inputs = {
+    kadachi-nvim = {
+      url = "git+https://git.rcia.dev/Avery/kadachi-nvim.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     secrets = {
       url = "git+ssh://forgejo@git.rcia.dev:2222/Avery/kadachi-secrets.git";
       flake = false;
@@ -82,6 +86,7 @@ in
         config,
         pkgs,
         lib,
+        inputs',
         ...
       }:
       {
@@ -93,9 +98,10 @@ in
         environment.systemPackages = with pkgs; [
           git
           htop
-          neovim
           sops
           ncdu
+
+          inputs'.kadachi-nvim.packages.kadachi-nvim
         ];
         hardware.enableRedistributableFirmware = true;
         home-manager = {

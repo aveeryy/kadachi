@@ -5,11 +5,6 @@
       <kasane/base-user>
 
       <adachi/hardware/i2c>
-      <adachi/neovim/extras/format-on-save>
-      <adachi/neovim/languages/markdown>
-      <adachi/neovim/languages/python>
-      <adachi/neovim/languages/rust>
-      <adachi/neovim/languages/vue>
       (<adachi/system/greetd-autologin> "uwsm start default")
       <adachi/tools/autofirma>
       (<adachi/tools/autofirma/firefox-integration> "Avery")

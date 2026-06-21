@@ -15,7 +15,6 @@
         <den/primary-user>
 
         <adachi/system/spanish-xdg-user-dirs>
-        <kasane/neovim>
         <kasane/tools/git>
         <kasane/zsh>
       ];
@@ -42,8 +41,13 @@
       homeManager =
         { pkgs, config, ... }:
         {
-          home.packages = with pkgs; [ python3 ];
+          home = {
+            packages = with pkgs; [ python3 ];
+            sessionVariables.EDITOR = "nvim";
+          };
+
           programs.fzf.enable = true;
+
           programs.git = {
             settings.user = {
               name = lib.mkDefault (lib.strings.toSentenceCase username);
@@ -54,6 +58,7 @@
               key = lib.mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
             };
           };
+
           xdg.userDirs = {
             desktop = config.home.homeDirectory;
             publicShare = config.home.homeDirectory;

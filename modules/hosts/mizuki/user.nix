@@ -4,13 +4,6 @@
     includes = [
       <kasane/base-user>
 
-      <adachi/neovim/extras/format-on-save>
-      <adachi/neovim/languages/markdown>
-      <adachi/neovim/languages/rust>
-      <adachi/neovim/languages/shell>
-      <adachi/neovim/languages/python>
-      <adachi/neovim/languages/vue>
-
       <kasane/theme>
       <kasane/tools/lazydocker>
       <kasane/tools/xh>
