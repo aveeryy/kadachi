@@ -278,6 +278,9 @@
             # Media autoplay
             "media.autoplay.default" = 0;
             "media.autoplay.enabled" = true;
+            # JPEG XL
+            "browser.download.viewableInternally.typeWasRegistered.jxl" = true;
+            "image.jxl.enabled" = true;
             # Browser UI customization
             "browser.compactmode.show" = true;
             "browser.display.use_document_fonts" = 0;
