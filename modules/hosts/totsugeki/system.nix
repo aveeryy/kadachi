@@ -67,7 +67,10 @@
           ];
         };
 
-        networking.firewall.allowedTCPPorts = [ 42595 ];
+        networking.firewall = {
+          allowedTCPPorts = [ 42595 ];
+          allowedUDPPorts = [ 34197 ];
+        };
 
         services.pipewire.wireplumber.extraConfig."no-node-suspension"."monitor.alsa.rules" = [
           {
