@@ -36,12 +36,12 @@ in
               keep_monthly = 3;
             })
           ];
+          nixpkgs.config.permittedInsecurePackages = [
+            "pnpm-9.15.9"
+          ];
           services = {
             karakeep = {
               enable = true;
-              package = pkgs.karakeep.override {
-                pnpm_9 = pkgs.pnpm_11;
-              };
               browser.enable = false;
               extraEnvironment = {
                 PORT = "3002";
