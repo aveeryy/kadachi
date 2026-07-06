@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake-file.inputs.autofirma-nix = {
-    url = "github:nix-community/autofirma-nix";
+    url = "github:nix-community/autofirma-nix/develop";
     inputs = {
       flake-parts.follows = "flake-parts";
       home-manager.follows = "home-manager";

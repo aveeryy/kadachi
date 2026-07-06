@@ -4,7 +4,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        (bottles.override { removeWarningPopup = true; })
+        bottles
         wineWow64Packages.stagingFull
       ];
     };

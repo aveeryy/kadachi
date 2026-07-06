@@ -27,7 +27,7 @@ in
     { host }:
     {
       nixos =
-        { config, ... }:
+        { config, pkgs, ... }:
         {
           imports = [
             (kadachi-lib.createBackupConfiguration "karakeep" host {
@@ -39,6 +39,9 @@ in
           services = {
             karakeep = {
               enable = true;
+              package = pkgs.karakeep.override {
+                pnpm_9 = pkgs.pnpm_11;
+              };
               browser.enable = false;
               extraEnvironment = {
                 PORT = "3002";
