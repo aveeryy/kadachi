@@ -8,6 +8,7 @@
         git = {
           enable = true;
           settings = {
+            fetch.prune = true;
             init.defaultBranch = "main";
             merge.tool = "nvimdiff";
           };
