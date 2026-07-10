@@ -12,6 +12,7 @@
           download = lib.mkDefault "${config.home.homeDirectory}/Descargas";
           music = lib.mkDefault "${config.home.homeDirectory}/Música";
           pictures = lib.mkDefault "${config.home.homeDirectory}/Imágenes";
+          projects = lib.mkDefault "${config.home.homeDirectory}/Proyectos";
           publicShare = lib.mkDefault "${config.home.homeDirectory}/Público";
           templates = lib.mkDefault "${config.home.homeDirectory}/Plantillas";
           videos = lib.mkDefault "${config.home.homeDirectory}/Vídeos";
