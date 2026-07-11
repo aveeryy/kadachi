@@ -2,7 +2,7 @@
 let
   inherit (lib)
     mkOption
-    recursiveUpdate
+    optional
     ;
 
   inherit (lib.types)
@@ -23,98 +23,100 @@ in
     };
   };
 
-  kasane.services._.qbittorrent = { host }: {
-    nixos =
-      { config, ... }:
-      let
-        cfgQui = config.services.qui;
-        cfgQbt = config.services.qbittorrent;
-
-        quiDatabaseConfig = {
-          postgres = {
-            services = {
-              postgresql = {
-                ensureDatabases = [ "qui" ];
-                ensureUsers = [
-                  {
-                    name = cfgQui.user;
-                    ensureDBOwnership = true;
-                  }
-                ];
-              };
-              qui.settings.databaseEngine = "postgres";
-            };
-
-            systemd.services.qui.serviceConfig = {
-              LoadCredential = [
-                "sessionSecret:${cfgQui.secretFile}"
-                "databaseDsn:${config.sops.secrets."qui/database_dsn".path}"
+  kasane.services._.qbittorrent =
+    { host }:
+    let
+      postgresConfiguration.nixos =
+        { config, ... }:
+        {
+          services = {
+            postgresql = {
+              ensureDatabases = [ "qui" ];
+              ensureUsers = [
+                {
+                  name = config.services.qui.user;
+                  ensureDBOwnership = true;
+                }
               ];
-              Environment = [ "QUI__DATABASE_DSN_FILE=%d/databaseDsn" ];
             };
-
-            sops.secrets."qui/database_dsn".owner = "qui";
+            qui.settings.databaseEngine = "postgres";
           };
+
+          systemd.services.qui.serviceConfig = {
+            LoadCredential = [
+              "sessionSecret:${config.services.qui.secretFile}"
+              "databaseDsn:${config.sops.secrets."qui/database_dsn".path}"
+            ];
+            Environment = [ "QUI__DATABASE_DSN_FILE=%d/databaseDsn" ];
+          };
+
+          sops.secrets."qui/database_dsn".owner = "qui";
         };
-      in
-      recursiveUpdate {
-        networking.firewall.allowedTCPPorts = [ cfgQbt.torrentingPort ];
+    in
+    {
+      description = "Headless qBitTorrent using qui as a WebUI";
 
-        services = {
-          qbittorrent = {
-            enable = true;
+      includes = optional (host.services.qui.database == "postgres") postgresConfiguration;
 
-            webuiPort = 25210;
-            torrentingPort = 25827;
+      nixos =
+        { config, ... }:
+        {
+          networking.firewall.allowedTCPPorts = [ config.services.qbittorrent.torrentingPort ];
 
-            serverConfig = {
-              BitTorrent = {
-                Session = {
-                  # Re-enable these when I get a better router
-                  DHTEnabled = false;
-                  LSDEnabled = false;
-                  PeXEnabled = false;
+          services = {
+            qbittorrent = {
+              enable = true;
 
-                  MaxConnections = 500;
+              webuiPort = 25210;
+              torrentingPort = 25827;
+
+              serverConfig = {
+                BitTorrent = {
+                  Session = {
+                    # Re-enable these when I get a better router
+                    DHTEnabled = false;
+                    LSDEnabled = false;
+                    PeXEnabled = false;
+
+                    MaxConnections = 500;
+                  };
+                };
+
+                LegalNotice.Accepted = true;
+
+                Network.PortForwardingEnabled = false;
+
+                Preferences = {
+                  WebUI = {
+                    Address = "127.0.0.1";
+                    Enabled = true;
+                    LocalHostAuth = false;
+                    UseUPnP = false;
+                  };
                 };
               };
+            };
 
-              LegalNotice.Accepted = true;
-
-              Network.PortForwardingEnabled = false;
-
-              Preferences = {
-                WebUI = {
-                  Address = "127.0.0.1";
-                  Enabled = true;
-                  LocalHostAuth = false;
-                  UseUPnP = false;
-                };
+            qui = {
+              enable = true;
+              secretFile = config.sops.secrets."qui/secret".path;
+              settings = {
+                host = "127.0.0.1";
+                port = 25430;
               };
             };
-          };
 
-          qui = {
-            enable = true;
-            secretFile = config.sops.secrets."qui/secret".path;
-            settings = {
-              host = "127.0.0.1";
-              port = 25430;
+            nginx.virtualHosts.${host.services.qui.domain} = {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:${toString config.services.qui.settings.port}";
+              };
+              forceSSL = true;
+              useACMEHost = host.services.baseDomain;
+              extraConfig = host.services.nginx.localServiceConfig;
             };
           };
 
-          nginx.virtualHosts.${host.services.qui.domain} = {
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:${toString cfgQui.settings.port}";
-            };
-            forceSSL = true;
-            useACMEHost = host.services.baseDomain;
-            extraConfig = host.services.nginx.localServiceConfig;
-          };
+          sops.secrets."qui/secret".owner = "qui";
         };
-
-        sops.secrets."qui/secret".owner = "qui";
-
-      } (quiDatabaseConfig.${host.services.qui.database} or { });
-  };
+    };
 }
