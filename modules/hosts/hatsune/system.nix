@@ -35,6 +35,8 @@
         <kasane/services/jellyfin>
         <kasane/services/navidrome>
         <kasane/services/nginx>
+        <kasane/services/qbittorrent>
+        <kasane/services/postgresql>
       ];
 
       nixos =
@@ -96,7 +98,13 @@
               forceSSL = true;
               useACMEHost = host.services.baseDomain;
             };
+
+            qbittorrent.serverConfig.BitTorrent.Session.DefaultSavePath = "/mnt/disk0/torrents/";
           };
+
+          users.users.qbittorrent.extraGroups = [
+            "disk-write"
+          ];
         };
     };
 }
