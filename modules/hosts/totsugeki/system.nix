@@ -68,7 +68,10 @@
         };
 
         networking.firewall = {
-          allowedTCPPorts = [ 42595 ];
+          allowedTCPPorts = [
+            42595
+            25210 # qBitTorrent WebUI
+          ];
           allowedUDPPorts = [ 34197 ];
         };
 
