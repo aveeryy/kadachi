@@ -18,7 +18,7 @@
       environment.systemPackages = with pkgs; [ sops ];
 
       sops = {
-        defaultSopsFile = "${inputs.secrets}/${config.networking.hostname}.yaml";
+        defaultSopsFile = "${inputs.secrets}/${config.networking.hostName}.yaml";
         validateSopsFiles = false;
       };
     };
