@@ -12,7 +12,7 @@
           systemPackages = with inputs'.kadachi-nvim.packages; [
             kadachi-nvim
           ];
-          variables.EDITOR = lib.mkDefault "nvim";
+          variables.EDITOR = lib.mkForce "nvim";
         };
       };
   };
