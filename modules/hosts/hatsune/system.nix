@@ -3,9 +3,12 @@
   den.hosts.x86_64-linux.hatsune = {
     services = {
       baseDomain = "hatsune.rcia.dev";
-      defaultDatabase = "postgres";
       email = "infra-host-hatsune@rcia.dev";
+
+      database.default = "postgres";
+
       copyparty.domain = "hatsune.rcia.dev";
+
       nginx.localServiceConfig = ''
         error_page 403 https://miku.hatsune.rcia.dev;
         allow 10.0.0.0/16;
@@ -13,6 +16,7 @@
         deny all;
       '';
     };
+
     users.avery = { };
   };
 
