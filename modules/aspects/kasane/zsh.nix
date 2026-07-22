@@ -12,7 +12,7 @@
         users.defaultUserShell = pkgs.zsh;
       };
     homeManager =
-      { config, ... }:
+      { config, shellAliases, ... }:
       {
         programs = {
           zsh = {
@@ -42,17 +42,7 @@
               zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
             '';
             history.path = "${config.xdg.dataHome}/zhistory";
-            shellAliases = {
-              "nv" = "nvim";
-              "nx" = "cd /etc/nixos && nvim";
-              "print-nix-store-gc-roots" =
-                ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"'';
-              "rbd" = ''nh os switch "path:/etc/nixos#$(hostname)"'';
-              "rbdb" = ''nh os boot "path:/etc/nixos#$(hostname)"'';
-              "rbd-remote" = ''nx os switch "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
-              "rbdb-remote" = ''nx os boot "git+https://git.rcia.dev/Avery/kadachi#$(hostname)"'';
-              "cdr" = "cd $(git rev-parse --show-toplevel)";
-            };
+            shellAliases = lib.mergeAttrsList shellAliases;
             syntaxHighlighting.enable = true;
             dotDir = "${config.xdg.configHome}/zsh";
           };

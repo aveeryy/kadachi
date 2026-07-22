@@ -1,44 +1,49 @@
 { lib, ... }:
 {
-  kasane.tools._.git.homeManager =
-    { config, pkgs, ... }:
-    {
-      home.packages = with pkgs; [ git-credential-manager ];
-      programs = {
-        git = {
-          enable = true;
-          settings = {
-            fetch.prune = true;
-            init.defaultBranch = "main";
-            merge.tool = "nvimdiff";
-          };
-          signing.signByDefault = config.programs.git.signing.key != null;
-        };
-
-        difftastic = {
-          enable = true;
+  kasane.tools._.git = {
+    homeManager =
+      { config, pkgs, ... }:
+      {
+        home.packages = with pkgs; [ git-credential-manager ];
+        programs = {
           git = {
             enable = true;
-            mode = "both";
+            settings = {
+              fetch.prune = true;
+              init.defaultBranch = "main";
+              merge.tool = "nvimdiff";
+            };
+            signing.signByDefault = config.programs.git.signing.key != null;
           };
-        };
 
-        lazygit = {
-          enable = true;
-          enableZshIntegration = false;
-          settings = {
-            gui.nerdFontsVersion = "3";
+          difftastic = {
+            enable = true;
             git = {
-              autoFetch = false;
-              overrideGpg = true;
-              pagers = [
-                { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
-              ];
+              enable = true;
+              mode = "both";
+            };
+          };
+
+          lazygit = {
+            enable = true;
+            enableZshIntegration = false;
+            settings = {
+              gui.nerdFontsVersion = "3";
+              git = {
+                autoFetch = false;
+                overrideGpg = true;
+                pagers = [
+                  { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
+                ];
+              };
             };
           };
         };
-
-        zsh.shellAliases."lg" = "lazygit";
       };
+
+    shellAliases = {
+      "cdr" = "cd $(git rev-parse --show-toplevel)";
+      "lg" = "lazygit";
     };
+  };
 }
