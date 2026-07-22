@@ -5,7 +5,6 @@
       <kasane/base-user>
 
       <kasane/theme>
-      <kasane/tools/lazydocker>
       <kasane/tools/xh>
     ];
 
