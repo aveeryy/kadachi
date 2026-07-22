@@ -20,7 +20,7 @@
       url = "github:9001/copyparty/v1.20.14";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    den.url = "github:denful/den/v0.17.0";
+    den.url = "github:denful/den/v0.18.0";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
