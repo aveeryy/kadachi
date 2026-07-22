@@ -28,7 +28,7 @@ in
         };
         database = mkOption {
           type = str;
-          default = host.services.defaultDatabase;
+          default = host.services.database.default;
         };
       };
     };

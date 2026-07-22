@@ -1,15 +1,33 @@
 { lib, ... }:
+let
+  inherit (lib) mkOption;
+  inherit (lib.types)
+    str
+    enum
+    ;
+in
 {
   den.schema.host =
     { host, ... }:
     {
-      options.services = with lib.types; {
-        baseDomain = lib.mkOption {
+      options.services = {
+        baseDomain = mkOption {
           type = str;
           default = "${host.hostName}.local";
+          description = "Base domain for services";
         };
-        defaultDatabase = lib.mkOption { type = enum [ "postgres" ]; };
-        email = lib.mkOption { type = str; };
+        email = mkOption {
+          type = str;
+          description = "Email used for ACME";
+        };
+
+        # Generic options for databases
+        database = {
+          default = mkOption {
+            type = enum [ "postgres" ];
+            description = "Default database to use for services";
+          };
+        };
       };
     };
 }

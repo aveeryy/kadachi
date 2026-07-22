@@ -3,8 +3,10 @@
   den.hosts.x86_64-linux.greatyamada = {
     services = {
       baseDomain = "rcia.dev";
-      defaultDatabase = "postgres";
       email = "infra-host-greatyamada@rcia.dev";
+
+      database.default = "postgres";
+
       backups = {
         identifyingIcon = "whale";
         repositories = jobName: [
@@ -14,6 +16,7 @@
           }
         ];
       };
+
       wireguard = {
         peerEnabled = true;
         addresses = [ "10.10.0.1/16" ];
@@ -23,6 +26,7 @@
         internetInterface = "enp5s0";
       };
     };
+
     users.avery = { };
   };
 
