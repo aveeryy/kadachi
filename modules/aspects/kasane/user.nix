@@ -67,5 +67,10 @@
         };
 
       jovian.steam.user = username;
+
+      shellAliases = {
+        "nv" = "nvim";
+        "nx" = "cd /etc/nixos && nvim";
+      };
     };
 }
