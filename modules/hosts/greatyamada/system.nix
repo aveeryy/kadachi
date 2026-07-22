@@ -101,9 +101,10 @@
           minecraft-servers.dataDir = "/mnt/ssd-01/minecraft";
           nginx.virtualHosts = {
             "rcia.dev".locations."/".return = "307 https://git.rcia.dev/Avery";
+
             "hatsune.rcia.dev" = {
-              locations."/".return = "308 $scheme://$host:4430/";
-              locations."~* /([^\\n\\r]*)".return = "308 $scheme://$host:4430/$1";
+              # TODO: maybe use Wireguard?
+              locations."~* /([^\\n\\r]*)".proxyPass = "https://10.0.0.2/$1$is_args$args";
               forceSSL = true;
               useACMEHost = "rcia.dev";
               serverAliases = [ "*.hatsune.rcia.dev" ];
