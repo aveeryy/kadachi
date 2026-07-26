@@ -25,7 +25,7 @@
       ];
     };
     "/mnt/Juegos" = {
-      device = "/dev/disk/by-uuid/2a474d7c-0a0f-423a-b892-98be45903073";
+      device = "/dev/disk/by-label/Juegos";
       fsType = "btrfs";
       options = [
         "nofail"
