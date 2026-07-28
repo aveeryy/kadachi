@@ -26,7 +26,7 @@
     };
     "/mnt/Juegos" = {
       device = "/dev/disk/by-label/Juegos";
-      fsType = "btrfs";
+      fsType = "ext4";
       options = [
         "nofail"
         "x-gvfs-show"
