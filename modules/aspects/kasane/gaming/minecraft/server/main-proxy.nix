@@ -27,7 +27,9 @@
             enable = true;
             autoStart = true;
             restart = "always";
-            package = inputs'.nix-minecraft.packages.velocity-server;
+            package = inputs'.nix-minecraft.packages.velocity-server.override ({
+              jre_headless = pkgs.openjdk25_headless;
+            });
             openFirewall = true;
 
             symlinks."server-icon.png" = getAsset "minecraft-server-icons/proxy.png";
