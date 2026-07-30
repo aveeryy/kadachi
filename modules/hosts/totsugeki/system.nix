@@ -17,7 +17,9 @@
         }
       ];
     };
-    users.avery = { };
+    users.avery = {
+      services.syncthing.deviceId = "BCKPJKO-XN7F5XW-B6NYXHH-RBAYJQ2-RMG24JK-DFTGQ2R-T7TLOQZ-PKUOUAV";
+    };
   };
 
   den.aspects.totsugeki = {

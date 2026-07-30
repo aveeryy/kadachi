@@ -24,6 +24,7 @@
       <kasane/gaming/steam>
       <kasane/services/mullvad-vpn>
       <kasane/services/printing>
+      <kasane/services/syncthing>
       <kasane/theme>
       <kasane/tools/android>
       <kasane/tools/compressed-file-tools>
@@ -33,6 +34,7 @@
       <kasane/tools/kitty>
       <kasane/tools/libreoffice>
       <kasane/tools/multimedia>
+      <kasane/tools/obsidian>
       <kasane/tools/pcmanfm-qt>
       <kasane/tools/qbittorrent>
       <kasane/web-browsers/firefox>

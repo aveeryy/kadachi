@@ -1,7 +1,20 @@
 { self, lib, ... }:
 let
-  inherit (lib) map filter recursiveUpdate;
-  inherit (lib.attrsets) hasAttr isAttrs optionalAttrs;
+  inherit (lib)
+    all
+    attrValues
+    concatLists
+    head
+    isAttrs
+    isList
+    last
+    mergeAttrsList
+    optionalAttrs
+    recursiveUpdate
+    tail
+    unique
+    zipAttrsWith
+    ;
 
   createBackupConfiguration = backupName: host: borgmaticConfiguration: {
     services.borgmatic.configurations.${backupName} = (
@@ -68,6 +81,29 @@ let
     builtins.elemAt (lib.lists.sort (a: b: a > b) (
       lib.mapAttrsToList (_: display: display.refreshRate) host.desktop.displays
     )) 0;
+
+  getAllHosts = hosts: attrValues (mergeAttrsList (attrValues hosts));
+
+  # Slighly modified version of https://stackoverflow.com/a/54505212
+  # Under the CC BY-SA 4.0 license: https://creativecommons.org/licenses/by-sa/4.0/
+  recursiveMerge =
+    attrList:
+    let
+      inner =
+        attrPath:
+        zipAttrsWith (
+          key: values:
+          if tail values == [ ] then
+            head values
+          else if all isList values then
+            unique (concatLists values)
+          else if all isAttrs values then
+            inner (attrPath ++ [ key ]) values
+          else
+            last values
+        );
+    in
+    inner [ ] attrList;
 in
 {
   flake.lib = {
@@ -75,9 +111,11 @@ in
       createBackupConfiguration
       createBackupConfiguration'
       getAsset
+      getAllHosts
       getFastestRefreshRate
       getHostConfig
       isAttrSetEmpty
+      recursiveMerge
       ;
   };
 }
