@@ -1,4 +1,4 @@
-{ kadachi-lib, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib)
     elemAt
@@ -7,7 +7,6 @@ let
     optionals
     splitString
     ;
-  inherit (kadachi-lib) isAttrSetEmpty;
 
   players = {
     gbrii = "b65a1bc3-c6a0-4e8c-99b8-3538cfec0cfc";
@@ -30,9 +29,9 @@ let
       worldName = serverCfg.serverProperties.level-name or "world";
       baseWorldPath = "${serverName}/${worldName}";
 
-      nonDeclarativeBannedPlayers = isAttrSetEmpty serverCfg.bannedPlayers;
-      nonDeclarativeOperators = isAttrSetEmpty serverCfg.operators;
-      nonDeclarativeWhitelist = isAttrSetEmpty serverCfg.whitelist;
+      nonDeclarativeBannedPlayers = serverCfg.bannedPlayers == { };
+      nonDeclarativeOperators = serverCfg.operators == { };
+      nonDeclarativeWhitelist = serverCfg.whitelist == { };
     in
     [
       baseWorldPath
@@ -61,12 +60,10 @@ let
 
 in
 {
-  flake.lib.minecraft = {
-    inherit
-      getActiveServers
-      getBackupPaths
-      getBackupPathsForServer
-      players
-      ;
-  };
+  inherit
+    getActiveServers
+    getBackupPaths
+    getBackupPathsForServer
+    players
+    ;
 }

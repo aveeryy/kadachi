@@ -1,10 +1,13 @@
 {
   inputs,
-  self,
   lib,
   den,
+  self,
   ...
 }:
+let
+  kadachi-lib = import ./lib { inherit lib self; };
+in
 {
   flake-file.inputs = {
     nixpkgs.url = lib.mkForce "github:nixos/nixpkgs/nixos-unstable";
@@ -27,9 +30,17 @@
     (inputs.den.namespace "megurine" true)
   ];
 
+  flake-file.outputs = /* nix */ ''
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      inputs.import-tree.matchNot ".*/lib/.*" ./modules
+    )
+  '';
+
   _module.args.__findFile = den.lib.__findFile;
 
-  _module.args.kadachi-lib = self.lib;
+  flake.lib = kadachi-lib;
+  _module.args.kadachi-lib = kadachi-lib;
 
   systems = [ "x86_64-linux" ];
 }

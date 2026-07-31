@@ -106,16 +106,16 @@ let
     inner [ ] attrList;
 in
 {
-  flake.lib = {
-    inherit
-      createBackupConfiguration
-      createBackupConfiguration'
-      getAsset
-      getAllHosts
-      getFastestRefreshRate
-      getHostConfig
-      isAttrSetEmpty
-      recursiveMerge
-      ;
-  };
+  inherit
+    createBackupConfiguration
+    createBackupConfiguration'
+    getAsset
+    getAllHosts
+    getFastestRefreshRate
+    getHostConfig
+    isAttrSetEmpty
+    recursiveMerge
+    ;
+
+  minecraft = import ./minecraft.nix { inherit lib; };
 }
