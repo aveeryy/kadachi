@@ -56,7 +56,7 @@ in
         name: vault:
         nameValuePair "Obsidian [${name}]" ({
           devices = singleton host.hostName;
-          path = "${config.home.homeDirectory}/${vault.target}";
+          path.${host.hostName} = "${config.home.homeDirectory}/${vault.target}";
         })
       ) (config.programs.obsidian.vaults);
   };

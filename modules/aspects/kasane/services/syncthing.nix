@@ -13,6 +13,7 @@ let
     listToAttrs
     filter
     hasAttr
+    mapAttrs
     ;
 
   inherit (lib)
@@ -137,6 +138,10 @@ in
           isFolderValid = _: folder: hasAttr "path" folder && elem host.hostName folder.devices;
 
           filterOutInvalidFolders = folders: filterAttrs isFolderValid folders;
+
+          setHostPath = _: folder: folder // { path = folder.path.${host.hostName}; };
+
+          processModuleFolders = array: singleton (mapAttrs setHostPath (recursiveMerge array));
         in
         {
           home.activation.ensureSyncthingDirectories = lib.hm.dag.entryAfter [ "writeBoundary" ] (
@@ -159,7 +164,7 @@ in
                     };
                   }
                   # Folders from other modules
-                  ++ syncthingFolders
+                  ++ (processModuleFolders syncthingFolders)
                   # Per-user overrides
                   ++ singleton (userFolderOverrides.${user.userName} or (_: { }) devices)
                   # Per-user-and-host overrides
