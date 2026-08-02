@@ -57,6 +57,27 @@ in
 
         programs.obsidian = {
           enable = true;
+          defaultSettings = {
+            app = {
+              spellcheck = false;
+              useTab = false;
+              vimMode = true;
+            };
+            appearance.theme = "obsidian";
+            corePlugins = [
+              { name = "bookmarks"; }
+              { name = "command-palette"; }
+              {
+                name = "daily-notes";
+                settings = {
+                  folder = "Diarias";
+                  format = "YYYY/MM/YYYY-MM-DD";
+                };
+              }
+              { name = "file-explorer"; }
+              { name = "global-search"; }
+            ];
+          };
           vaults = {
             Personal = {
               target = mkOverride 500 (removeHomeDirectory "${config.xdg.userDirs.documents}/Notas/Personal");
