@@ -65,6 +65,11 @@ in
             Trabajo = {
               target = mkOverride 500 (removeHomeDirectory "${config.xdg.userDirs.documents}/Notas/Trabajo");
             };
+            "Kadachi Documentation" = {
+              target = mkOverride 500 (
+                removeHomeDirectory "${config.xdg.userDirs.projects}/Kadachi Documentation"
+              );
+            };
           };
         };
       };
