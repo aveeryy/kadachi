@@ -15,11 +15,17 @@ let
   windowRounding = 12;
 in
 {
-  flake-file.inputs.stylix = {
-    url = "github:nix-community/stylix";
-    inputs = {
-      nixpkgs.follows = "nixpkgs";
-      flake-parts.follows = "flake-parts";
+  flake-file.inputs = {
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
   };
 
@@ -92,6 +98,16 @@ in
         ...
       }:
       {
+        imports = [ inputs.catppuccin.homeModules.catppuccin ];
+
+        catppuccin = {
+          enable = true;
+          autoEnable = false;
+          flavor = "mocha";
+
+          obsidian.enable = config.programs.obsidian.enable;
+        };
+
         programs = {
           kitty.themeFile = "Catppuccin-Mocha";
 
