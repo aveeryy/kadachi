@@ -44,7 +44,7 @@ let
     avery = allDevices: {
       "Obsidian [Personal]".devices = [ "pixel9a" ];
       "Obsidian [Trabajo]".devices = [ "pixel9a" ];
-      "Kadachi Documentation".devices = [ "pixel9a" ];
+      "Obsidian [Kadachi Documentation]".devices = [ "pixel9a" ];
       Pixel9aBackup = {
         devices = filter (device: device != "mizuki") (attrNames allDevices);
         path = "~/Backups/Pixel9a";
