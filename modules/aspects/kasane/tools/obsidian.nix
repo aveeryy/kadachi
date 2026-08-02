@@ -43,17 +43,16 @@ in
           replaceSymlinkWithFile = lib.hm.dag.entryAfter [ "linkGeneration" ] (
             concatLines (
               map (path: /* bash */ ''
-                for file in $(find "$HOME/${path}" -type l); do
+                find "$HOME/${path}" -type l | while read file; do
                   run cp -r $(readlink -e "$file") "''${file}.tmp" && rm -rf "$file" && mv "''${file}.tmp" "$file"
                 done
                 # Clean backup files
-                for file in $(find "$HOME/${path}" -name '*.bak'); do
+                find "$HOME/${path}" -name '*.bak' | while read file; do
                   run chmod -R 777 "$file" && rm -rf "$file" 
                 done
               '') vaultPaths
             )
           );
-
         };
 
         programs.obsidian = {
