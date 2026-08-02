@@ -18,7 +18,6 @@
       };
 
       wireguard = {
-        peerEnabled = true;
         addresses = [ "10.10.0.1/16" ];
         publicKey = "xhPfEY8deFqQCESimFRzKFqxJ3LJM5uwUgVK4MFkjiM=";
         isServerPeer = true;

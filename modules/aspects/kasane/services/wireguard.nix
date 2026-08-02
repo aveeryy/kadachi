@@ -1,7 +1,11 @@
-{ den, lib, ... }:
+{
+  den,
+  kadachi-lib,
+  lib,
+  ...
+}:
 let
   inherit (lib)
-    attrValues
     concatStringsSep
     elemAt
     filter
@@ -16,6 +20,10 @@ let
     splitString
     take
     ;
+
+  inherit (kadachi-lib)
+    getAllHosts
+    ;
 in
 {
   den.schema.host =
@@ -23,19 +31,17 @@ in
     with lib.types;
     {
       options.services.wireguard = {
-        peerEnabled = mkOption {
-          type = bool;
-          default = false;
-        };
         addresses = mkOption {
           type = listOf str;
+          default = [ ];
         };
         port = mkOption {
           type = int;
           default = 51820;
         };
         publicKey = mkOption {
-          type = str;
+          type = nullOr str;
+          default = null;
         };
         isServerPeer = mkOption {
           type = bool;
@@ -82,11 +88,12 @@ in
 
           mustIncludePeer =
             peer:
-            peer.services.wireguard.peerEnabled
+            peer.services.wireguard.addresses != [ ]
+            && peer.services.wireguard.publicKey != null
             && peer.name != host.name
             && (cfg.isServerPeer || peer.services.wireguard.isServerPeer);
 
-          availablePeers = filter mustIncludePeer (attrValues (mergeAttrsList (attrValues den.hosts)));
+          availablePeers = filter mustIncludePeer (getAllHosts den.hosts);
 
           kadachiPeers = map (peer: {
             inherit (peer) name;
