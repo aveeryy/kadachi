@@ -34,6 +34,7 @@ in
               map (path: /* bash */ ''
                 run mkdir -p "$HOME/${path}"
                 run mkdir -p "$HOME/${path}/Diarias"
+                run echo ".obsidian/workspace*.json" > "$HOME/${path}/.stignore"
               '') vaultPaths
             )
           );
