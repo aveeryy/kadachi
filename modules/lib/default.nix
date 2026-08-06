@@ -74,7 +74,7 @@ let
 
   isAttrSetEmpty = attrset: (lib.length (lib.attrsets.attrsToList attrset)) == 0;
 
-  getAsset = assetName: "${self}/modules/assets/${assetName}";
+  getAsset = assetName: ../assets/${assetName};
 
   getFastestRefreshRate =
     host:
