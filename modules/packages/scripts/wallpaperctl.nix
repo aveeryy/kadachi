@@ -5,6 +5,7 @@
     {
       packages.wallpaperctl = pkgs.callPackage (
         {
+          awww ? pkgs.awww,
           refreshRate ? 60,
         }:
         pkgs.writeShellApplication {

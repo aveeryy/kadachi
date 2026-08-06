@@ -1,4 +1,15 @@
-{ kadachi-lib, ... }:
+{ kadachi-lib, lib, ... }:
+let
+  inherit (kadachi-lib)
+    getAsset
+    getFastestRefreshRate
+    ;
+
+  inherit (lib)
+    mkOrder
+    singleton
+    ;
+in
 {
   kasane.desktop._.awww =
     { host, user }:
@@ -6,20 +17,29 @@
       homeManager =
         {
           pkgs,
-          lib,
           self',
           ...
         }:
+        let
+          awww_jxl = (
+            pkgs.awww.overrideAttrs {
+              patches = singleton (getAsset "patches/awww-disable-decode-limits.patch");
+
+              cargoBuildFlags = [ "--features=jxl" ];
+            }
+          );
+        in
         {
-          home.packages = with pkgs; [
-            awww
+          home.packages = [
+            awww_jxl
             (self'.packages.wallpaperctl.override {
-              refreshRate = kadachi-lib.getFastestRefreshRate host;
+              awww = awww_jxl;
+              refreshRate = getFastestRefreshRate host;
             })
           ];
           wayland.windowManager.hyprland = {
             settings = {
-              exec-once = lib.mkOrder 20 [ "awww-daemon" ];
+              exec-once = mkOrder 20 [ "awww-daemon" ];
               bind = [ "MOD3, w, submap, wallpaper" ];
             };
             submaps.wallpaper.settings = {
