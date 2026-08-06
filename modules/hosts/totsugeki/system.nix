@@ -8,15 +8,24 @@
       };
       lockSessionAtStart = true;
     };
-    services.backups = {
-      identifyingIcon = "dolphin";
-      repositories = jobName: [
-        {
-          path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/${jobName}/";
-          label = "${jobName}@hetzner-de";
-        }
-      ];
+
+    services = {
+      backups = {
+        identifyingIcon = "dolphin";
+        repositories = jobName: [
+          {
+            path = "ssh://u541128@u541128.your-storagebox.de:23//home/borgmatic/${jobName}/";
+            label = "${jobName}@hetzner-de";
+          }
+        ];
+      };
+
+      wireguard = {
+        addresses = [ "10.10.1.1/16" ];
+        publicKey = "7tijdqEKHVTDcbpSwEYzHidUzXUcH7sTJfleozNnaUU=";
+      };
     };
+
     users.avery = {
       services.syncthing.deviceId = "BCKPJKO-XN7F5XW-B6NYXHH-RBAYJQ2-RMG24JK-DFTGQ2R-T7TLOQZ-PKUOUAV";
     };
@@ -36,6 +45,7 @@
       <adachi/system/cachyos-kernel>
 
       <kasane/services/backups>
+      <kasane/services/wireguard>
     ];
 
     nixos =
