@@ -12,6 +12,14 @@
         hasWiFi = true;
       };
     };
+
+    services = {
+      wireguard = {
+        addresses = [ "10.10.1.2/16" ];
+        publicKey = "FZPqCskUJa5J5cbSmLBQPY+sVqnXsusdxJfX0YxkLGM=";
+      };
+    };
+
     users.avery = { };
   };
 
@@ -22,6 +30,8 @@
 
       <adachi/desktop>
       <adachi/desktop/hyprland>
+
+      <kasane/services/wireguard>
     ];
 
     nixos = {
