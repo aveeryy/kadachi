@@ -1,17 +1,29 @@
 { ... }:
 {
   kasane.gaming._.steam = {
-    nixos.programs.steam = {
-      enable = true;
-      localNetworkGameTransfers.openFirewall = true;
-      remotePlay.openFirewall = true;
-      protontricks.enable = true;
+    nixos = { pkgs, ... }: {
+      programs.steam = {
+        enable = true;
+        package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = "1";
+            MANGOHUD_CONFIG = "read_cfg,no_display";
+          };
+        };
+        localNetworkGameTransfers.openFirewall = true;
+        remotePlay.openFirewall = true;
+        protontricks.enable = true;
+      };
     };
-    homeManager.services.ludusavi.settings.roots = [
-      {
-        path = "~/.local/share/Steam";
-        store = "steam";
-      }
-    ];
+
+    homeManager = {
+      programs.mangohud.enable = true;
+      services.ludusavi.settings.roots = [
+        {
+          path = "~/.local/share/Steam";
+          store = "steam";
+        }
+      ];
+    };
   };
 }

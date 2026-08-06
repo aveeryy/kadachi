@@ -19,10 +19,8 @@
       <kasane/gaming/discord>
       <kasane/gaming/heroic>
       <kasane/gaming/ludusavi>
-      <kasane/gaming/mangohud>
       <kasane/gaming/minecraft/launcher>
       <kasane/gaming/steam>
-      <kasane/services/mullvad-vpn>
       <kasane/services/printing>
       <kasane/services/syncthing>
       <kasane/theme>
