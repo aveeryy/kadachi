@@ -36,9 +36,6 @@ in
               keep_monthly = 3;
             })
           ];
-          nixpkgs.config.permittedInsecurePackages = [
-            "pnpm-9.15.9"
-          ];
           services = {
             karakeep = {
               enable = true;
