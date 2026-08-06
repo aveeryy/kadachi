@@ -25,10 +25,11 @@ in
     { host, user }:
     {
       homeManager =
-        { pkgs, ... }:
+        { inputs', pkgs, ... }:
         {
           wayland.windowManager.hyprland = {
             enable = true;
+            package = inputs'.nixpkgs-master.legacyPackages.hyprland;
             configType = "hyprlang";
             settings = {
               monitor = displaysToHyprlandConfig host.desktop.displays;
