@@ -135,7 +135,7 @@ in
                   kadachiPeers
                   ++ (optionals (cfg.isServerPeer) [
                     {
-                      allowedIPs = [ "10.10.1.1/32" ];
+                      allowedIPs = [ "10.10.2.1/32" ];
                       name = "Pixel9a";
                       publicKey = "Y5A5iv0ukg1TQMcIdtXd+bmDxtrqHCuoEhYRmBqwkFY=";
                       presharedKeyFile = config.sops.secrets."wireguard/${interfaceName}/preshared_keys/Pixel9a".path;
