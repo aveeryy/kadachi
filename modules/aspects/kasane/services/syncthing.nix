@@ -172,7 +172,10 @@ in
                   ++ singleton user.services.syncthing.folderOverrides
                 )
               );
-              options.urAccepted = -1;
+              options = {
+                relaysEnabled = false;
+                urAccepted = -1;
+              };
             };
           };
         };
