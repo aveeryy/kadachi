@@ -78,14 +78,6 @@ in
           "sd_mod"
         ];
 
-        networking = {
-          useDHCP = lib.mkForce false;
-          nameservers = [
-            "9.9.9.9"
-            "1.1.1.1"
-          ];
-        };
-
         security.acme.certs."rcia.dev".extraDomainNames = [
           "*.rcia.dev"
           "*.hatsune.rcia.dev"
