@@ -94,6 +94,16 @@ in
           mustIncludePeer =
             peer: peer.name != host.name && (cfg.isServerPeer || peer ? endpoint && peer.endpoint != null);
 
+          getPeerInternalDomains =
+            peer:
+            let
+              address = removeSuffix "/32" (elemAt peer.allowedIPs 0);
+            in
+            [
+              (toLower "/${peer.name}.wg.rcia.dev/${address}")
+              (toLower "/.${peer.name}.wg.rcia.dev/${address}")
+            ];
+
           hostsWithConfiguredWireguard = filter hasWireguardConfigured (getAllHosts den.hosts);
 
           kadachiPeers = map (
@@ -165,18 +175,7 @@ in
             dnsmasq = {
               enable = true;
               settings = {
-                address = flatten (
-                  map (
-                    peer:
-                    let
-                      address = removeSuffix "/32" (elemAt peer.allowedIPs 0);
-                    in
-                    [
-                      (toLower "/${peer.name}.wg.rcia.dev/${address}")
-                      (toLower "/.${peer.name}.wg.rcia.dev/${address}")
-                    ]
-                  ) absolutelyAllPeers
-                );
+                address = flatten (map getPeerInternalDomains absolutelyAllPeers);
                 bind-interfaces = true;
                 listen-address = "127.0.0.1";
                 server =
