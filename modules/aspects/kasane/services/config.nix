@@ -13,7 +13,7 @@ in
       options.services = {
         baseDomain = mkOption {
           type = str;
-          default = "${host.hostName}.local";
+          default = "${host.name}.local";
           description = "Base domain for services";
         };
         email = mkOption {

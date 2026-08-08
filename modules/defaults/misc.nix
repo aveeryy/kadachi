@@ -12,7 +12,7 @@ in
     { user, ... }:
     {
       classes = lib.mkDefault [ "homeManager" ];
-      aspect = lib.mkDefault den.aspects."${user.userName}@${user.host.hostName}";
+      aspect = lib.mkDefault den.aspects."${user.userName}@${user.host.name}";
     };
 
   den.default = {

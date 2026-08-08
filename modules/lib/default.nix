@@ -21,7 +21,7 @@ let
       createBackupConfiguration' backupName host borgmaticConfiguration
     );
 
-    sops.secrets = optionalAttrs ((getHostConfig host.hostName).services.borgmatic.enable) {
+    sops.secrets = optionalAttrs ((getHostConfig host.name).services.borgmatic.enable) {
       "backups/password/${backupName}".owner = "root";
     };
   };
@@ -33,7 +33,7 @@ let
       repositories = host.services.backups.repositories backupName;
       encryption_passphrase = "{credential file /run/secrets/backups/password/${backupName}}";
       ssh_command = "ssh -p 23 -i ${
-        (getHostConfig host.hostName).sops.templates."backups_ssh_private_key".path
+        (getHostConfig host.name).sops.templates."backups_ssh_private_key".path
       }";
 
       ntfy = {
@@ -43,7 +43,7 @@ let
 
         finish = {
           title = "Backup job finished";
-          message = "Backup job ${host.hostName}/${backupName} finished";
+          message = "Backup job ${host.name}/${backupName} finished";
           priority = "low";
           tags =
             if host.services.backups.identifyingIcon != "" then
@@ -54,7 +54,7 @@ let
 
         fail = {
           title = "Backup job failed";
-          message = "Backup job ${host.hostName}/${backupName} failed";
+          message = "Backup job ${host.name}/${backupName} failed";
           priority = "max";
           tags =
             if host.services.backups.identifyingIcon != "" then

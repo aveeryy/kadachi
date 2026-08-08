@@ -100,8 +100,8 @@ in
       mapAttrs' (
         name: vault:
         nameValuePair "Obsidian [${name}]" ({
-          devices = singleton host.hostName;
-          path.${host.hostName} = "${config.home.homeDirectory}/${vault.target}";
+          devices = singleton host.name;
+          path.${host.name} = "${config.home.homeDirectory}/${vault.target}";
         })
       ) (config.programs.obsidian.vaults);
   };

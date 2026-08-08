@@ -86,7 +86,7 @@ in
     { host, user }:
     let
       intoSyncthingDevice = otherHost: ({
-        name = otherHost.hostName;
+        inherit (otherHost) name;
         value.id = otherHost.users.${user.userName}.services.syncthing.deviceId;
       });
 
@@ -109,12 +109,12 @@ in
       nixos = {
         sops.secrets = {
           "syncthing/${user.userName}/cert" = {
-            sopsFile = "${inputs.secrets}/${host.hostName}/syncthing/${user.userName}/cert.pem";
+            sopsFile = "${inputs.secrets}/${host.name}/syncthing/${user.userName}/cert.pem";
             format = "binary";
             owner = user.userName;
           };
           "syncthing/${user.userName}/key" = {
-            sopsFile = "${inputs.secrets}/${host.hostName}/syncthing/${user.userName}/key.pem";
+            sopsFile = "${inputs.secrets}/${host.name}/syncthing/${user.userName}/key.pem";
             format = "binary";
             owner = user.userName;
           };
@@ -136,11 +136,11 @@ in
             )
           );
 
-          isFolderValid = _: folder: hasAttr "path" folder && elem host.hostName folder.devices;
+          isFolderValid = _: folder: hasAttr "path" folder && elem host.name folder.devices;
 
           filterOutInvalidFolders = folders: filterAttrs isFolderValid folders;
 
-          setHostPath = _: folder: folder // { path = folder.path.${host.hostName}; };
+          setHostPath = _: folder: folder // { path = folder.path.${host.name}; };
 
           processModuleFolders = array: singleton (mapAttrs setHostPath (recursiveMerge array));
         in
