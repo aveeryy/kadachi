@@ -80,18 +80,6 @@ in
 
         networking = {
           useDHCP = lib.mkForce false;
-          interfaces.enp5s0 = {
-            ipv4.addresses = [
-              {
-                address = "10.0.0.1";
-                prefixLength = 16;
-              }
-            ];
-          };
-          defaultGateway = {
-            address = "10.0.255.254";
-            interface = "enp5s0";
-          };
           nameservers = [
             "9.9.9.9"
             "1.1.1.1"
@@ -137,7 +125,7 @@ in
         systemd = {
           network.networks."10-wan" = {
             matchConfig.name = "enp5s0";
-            address = singleton "10.0.0.1";
+            address = singleton "10.0.0.1/16";
             routes = singleton { Gateway = "10.0.255.254"; };
             linkConfig.RequiredForOnline = "routable";
           };
