@@ -114,11 +114,13 @@ in
             firewall.allowedUDPPorts =
               singleton
                 config.networking.wireguard.interfaces.${interfaceName}.listenPort;
+
             nat = optionalAttrs (cfg.isServerPeer && cfg.allowInternetAccess) {
               enable = true;
               externalInterface = cfg.internetInterface;
               internalInterfaces = singleton interfaceName;
             };
+
             wireguard = {
               enable = true;
               interfaces.${interfaceName} = {
@@ -156,6 +158,8 @@ in
           // optionalAttrs (cfg.isServerPeer) {
             "wireguard/${interfaceName}/preshared_keys/Pixel9a".owner = "root";
           };
+
+          systemd.network.wait-online.ignoredInterfaces = singleton "kadachi-wg";
         };
     };
 }

@@ -38,6 +38,15 @@
           "ext4"
         ];
       };
+
+      systemd.network.networks."10-wan" = {
+        matchConfig.name = "enp1s0";
+        networkConfig = {
+          DHCP = "ipv4";
+          IPv6AcceptRA = true;
+        };
+        linkConfig.RequiredForOnline = "routable";
+      };
     };
   };
 }

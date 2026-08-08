@@ -1,4 +1,9 @@
-{ __findFile, ... }:
+{ __findFile, lib, ... }:
+let
+  inherit (lib)
+    singleton
+    ;
+in
 {
   den.hosts.x86_64-linux.greatyamada = {
     services = {
@@ -60,9 +65,8 @@
 
     nixos =
       {
-        pkgs,
-        lib,
         config,
+        pkgs,
         ...
       }:
       {
@@ -130,8 +134,17 @@
           };
         };
 
-        # Run backups hourly
-        systemd.timers.borgmatic.timerConfig.OnCalendar = "*-*-* *:00:00";
+        systemd = {
+          network.networks."10-wan" = {
+            matchConfig.name = "enp5s0";
+            address = singleton "10.0.0.1";
+            routes = singleton "10.0.255.254";
+            linkConfig.RequiredForOnline = "routable";
+          };
+
+          # Run backups hourly
+          timers.borgmatic.timerConfig.OnCalendar = "*-*-* *:00:00";
+        };
       };
   };
 }

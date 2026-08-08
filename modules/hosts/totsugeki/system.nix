@@ -96,7 +96,11 @@
           }
         ];
 
-        systemd.services.NetworkManager-wait-online.enable = false;
+        systemd.network.networks."10-wan" = {
+          matchConfig.name = "enp5s0";
+          networkConfig.DHCP = "ipv4";
+          linkConfig.RequiredForOnline = "routable";
+        };
 
         time.timeZone = "Europe/Madrid";
       };

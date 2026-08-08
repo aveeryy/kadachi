@@ -109,6 +109,19 @@
           users.users.qbittorrent.extraGroups = [
             "disk-write"
           ];
+
+          systemd.network.networks = {
+            "10-primary-wan" = {
+              matchConfig.name = "enp1s0";
+              networkConfig.DHCP = "ipv4";
+              linkConfig.RequiredForOnline = "routable";
+            };
+            "20-secondary-wan" = {
+              matchConfig.name = "enp4s0";
+              networkConfig.DHCP = "ipv4";
+              linkConfig.RequiredForOnline = "no";
+            };
+          };
         };
     };
 }

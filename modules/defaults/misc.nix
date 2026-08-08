@@ -46,7 +46,10 @@ in
           useUserPackages = true;
         };
 
-        networking.dhcpcd.wait = "background";
+        networking = {
+          dhcpcd.enable = false;
+          useNetworkd = true;
+        };
 
         security = {
           sudo.enable = false;
@@ -58,6 +61,8 @@ in
         };
 
         system.stateVersion = stateVersion;
+
+        systemd.network.enable = true;
       };
 
     homeManager = {
