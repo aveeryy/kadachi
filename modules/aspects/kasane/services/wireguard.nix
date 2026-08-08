@@ -177,6 +177,8 @@ in
                     ]
                   ) absolutelyAllPeers
                 );
+                bind-interfaces = true;
+                listen-address = "127.0.0.1";
                 server = singleton "10.10.0.1";
               };
             };
