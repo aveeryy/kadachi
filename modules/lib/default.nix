@@ -72,8 +72,6 @@ let
 
   getHostConfig = hostName: self.nixosConfigurations.${hostName}.config;
 
-  isAttrSetEmpty = attrset: (lib.length (lib.attrsets.attrsToList attrset)) == 0;
-
   copyPathToStore = builtins.filterSource (p: t: true);
 
   getAsset = assetName: copyPathToStore ../assets/${assetName};
@@ -116,7 +114,6 @@ in
     getAllHosts
     getFastestRefreshRate
     getHostConfig
-    isAttrSetEmpty
     recursiveMerge
     ;
 
