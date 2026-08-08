@@ -189,7 +189,7 @@ in
                     ];
               };
             };
-            resolved.settings.Resolve.Cache = false;
+            resolved.settings.Resolve.CacheFromLocalhost = true;
           };
 
           sops.secrets = {
