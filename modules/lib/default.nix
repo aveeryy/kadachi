@@ -74,7 +74,9 @@ let
 
   isAttrSetEmpty = attrset: (lib.length (lib.attrsets.attrsToList attrset)) == 0;
 
-  getAsset = assetName: ../assets/${assetName};
+  copyPathToStore = builtins.filterSource (p: t: true);
+
+  getAsset = assetName: copyPathToStore ../assets/${assetName};
 
   getFastestRefreshRate =
     host:
@@ -107,6 +109,7 @@ let
 in
 {
   inherit
+    copyPathToStore
     createBackupConfiguration
     createBackupConfiguration'
     getAsset
