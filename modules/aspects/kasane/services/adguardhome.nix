@@ -28,7 +28,10 @@
                   session_ttl = "720h";
                 };
                 dns = {
-                  bind_hosts = [ "10.0.0.1" ];
+                  bind_hosts = [
+                    "10.0.0.1"
+                    "10.10.0.1"
+                  ];
                   port = 53;
                   anonymize_client_ip = false;
                   ratelimit = 0;
