@@ -123,6 +123,7 @@ in
 
             wireguard = {
               enable = true;
+              useNetworkd = false;
               interfaces.${interfaceName} = {
                 ips = cfg.addresses;
                 listenPort = cfg.port;
