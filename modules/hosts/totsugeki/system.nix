@@ -79,12 +79,14 @@
           ];
         };
 
-        networking.firewall = {
-          allowedTCPPorts = [
-            42595
-            25210 # qBitTorrent WebUI
-          ];
-          allowedUDPPorts = [ 34197 ];
+        networking = {
+          firewall = {
+            allowedTCPPorts = [
+              42595
+              25210 # qBitTorrent WebUI
+            ];
+            allowedUDPPorts = [ 34197 ];
+          };
         };
 
         services.pipewire.wireplumber.extraConfig."no-node-suspension"."monitor.alsa.rules" = [
@@ -100,6 +102,9 @@
           matchConfig.name = "enp5s0";
           networkConfig.DHCP = "ipv4";
           linkConfig.RequiredForOnline = "routable";
+          # DNS is managed by dnsmasq
+          dhcpV4Config.UseDNS = false;
+          dhcpV6Config.UseDNS = false;
         };
 
         time.timeZone = "Europe/Madrid";

@@ -60,6 +60,8 @@ in
           };
         };
 
+        services.resolved.settings.Resolve.DNSStubListener = false;
+
         system.stateVersion = stateVersion;
 
         systemd.network = {

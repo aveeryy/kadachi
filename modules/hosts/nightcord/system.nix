@@ -46,6 +46,9 @@
           IPv6AcceptRA = true;
         };
         linkConfig.RequiredForOnline = "routable";
+        # DNS is managed by dnsmasq
+        dhcpV4Config.UseDNS = false;
+        dhcpV6Config.UseDNS = false;
       };
     };
   };

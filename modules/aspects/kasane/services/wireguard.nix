@@ -9,16 +9,18 @@ let
     concatStringsSep
     elemAt
     filter
+    flatten
     getExe
     map
     mergeAttrsList
     mkOption
-    optionals
     optionalAttrs
     optionalString
+    removeSuffix
     singleton
     splitString
     take
+    toLower
     ;
 
   inherit (kadachi-lib)
@@ -86,28 +88,48 @@ in
           to16NetworkAddress =
             address: concatStringsSep "." (take 2 (splitString "." address) ++ [ "0.0/16" ]);
 
+          hasWireguardConfigured =
+            host: host.services.wireguard.addresses != [ ] && host.services.wireguard.publicKey != null;
+
           mustIncludePeer =
-            peer:
-            peer.services.wireguard.addresses != [ ]
-            && peer.services.wireguard.publicKey != null
-            && peer.name != host.name
-            && (cfg.isServerPeer || peer.services.wireguard.isServerPeer);
+            peer: peer.name != host.name && (cfg.isServerPeer || peer ? endpoint && peer.endpoint != null);
 
-          availablePeers = filter mustIncludePeer (getAllHosts den.hosts);
+          hostsWithConfiguredWireguard = filter hasWireguardConfigured (getAllHosts den.hosts);
 
-          kadachiPeers = map (peer: {
-            inherit (peer) name;
-            inherit (peer.services.wireguard) publicKey endpoint;
-            allowedIPs =
-              if cfg.isServerPeer then
-                map toSingleHostAddress peer.services.wireguard.addresses
-              else if cfg.allowInternetAccess && peer.services.wireguard.allowInternetAccess then
-                singleton "0.0.0.0/0"
-              else
-                map to16NetworkAddress peer.services.wireguard.addresses;
-            presharedKeyFile =
-              config.sops.secrets."wireguard/${interfaceName}/preshared_keys/${peer.name}".path;
-          }) availablePeers;
+          kadachiPeers = map (
+            host:
+            let
+              peerCfg = host.services.wireguard;
+              hostAddresses = map toSingleHostAddress host.services.wireguard.addresses;
+            in
+            {
+              inherit (host) name;
+              inherit (peerCfg) publicKey endpoint;
+              allowedIPs =
+                if cfg.isServerPeer || !cfg.isServerPeer && !peerCfg.isServerPeer then
+                  hostAddresses
+                else if cfg.allowInternetAccess && peerCfg.allowInternetAccess then
+                  hostAddresses ++ [ "0.0.0.0/0" ]
+                else
+                  hostAddresses ++ (map to16NetworkAddress peerCfg.addresses);
+              presharedKeyFile =
+                config.sops.secrets."wireguard/${interfaceName}/preshared_keys/${host.name}".path;
+            }
+          ) hostsWithConfiguredWireguard;
+
+          nonKadachiPeers = [
+            {
+              allowedIPs = [ "10.10.2.1/32" ];
+              name = "Pixel9a";
+              publicKey = "Y5A5iv0ukg1TQMcIdtXd+bmDxtrqHCuoEhYRmBqwkFY=";
+              presharedKeyFile = config.sops.secrets."wireguard/${interfaceName}/preshared_keys/Pixel9a".path;
+            }
+          ];
+
+          # All peers in network
+          absolutelyAllPeers = kadachiPeers ++ nonKadachiPeers;
+          # Peers that will be included in the configuration file
+          peers = filter mustIncludePeer (kadachiPeers ++ nonKadachiPeers);
         in
         {
           networking = {
@@ -125,6 +147,7 @@ in
               enable = true;
               useNetworkd = false;
               interfaces.${interfaceName} = {
+                inherit peers;
                 ips = cfg.addresses;
                 listenPort = cfg.port;
                 privateKeyFile = config.sops.secrets."wireguard/${interfaceName}/private_key".path;
@@ -134,18 +157,30 @@ in
                 postShutdown = optionalString (cfg.isServerPeer && cfg.allowInternetAccess) ''
                   ${getExe pkgs.iptables} -t nat -D POSTROUTING -s ${mainSubnetAddress} -o ${cfg.internetInterface} -j MASQUERADE
                 '';
-                peers =
-                  kadachiPeers
-                  ++ (optionals (cfg.isServerPeer) [
-                    {
-                      allowedIPs = [ "10.10.2.1/32" ];
-                      name = "Pixel9a";
-                      publicKey = "Y5A5iv0ukg1TQMcIdtXd+bmDxtrqHCuoEhYRmBqwkFY=";
-                      presharedKeyFile = config.sops.secrets."wireguard/${interfaceName}/preshared_keys/Pixel9a".path;
-                    }
-                  ]);
               };
             };
+          };
+
+          services = {
+            dnsmasq = {
+              enable = true;
+              settings = {
+                address = flatten (
+                  map (
+                    peer:
+                    let
+                      address = removeSuffix "/32" (elemAt peer.allowedIPs 0);
+                    in
+                    [
+                      (toLower "/${peer.name}.wg.rcia.dev/${address}")
+                      (toLower "/.${peer.name}.wg.rcia.dev/${address}")
+                    ]
+                  ) absolutelyAllPeers
+                );
+                server = singleton "10.10.0.1";
+              };
+            };
+            resolved.settings.Resolve.Cache = false;
           };
 
           sops.secrets = {
@@ -154,7 +189,7 @@ in
           // mergeAttrsList (
             map (peer: {
               "wireguard/${interfaceName}/preshared_keys/${peer.name}".owner = "root";
-            }) availablePeers
+            }) peers
           )
           // optionalAttrs (cfg.isServerPeer) {
             "wireguard/${interfaceName}/preshared_keys/Pixel9a".owner = "root";
