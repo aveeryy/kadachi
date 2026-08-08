@@ -49,6 +49,8 @@
         networking.networkmanager.enable = true;
 
         services.displayManager.sddm.wayland.enable = true;
+
+        systemd.network.wait-online.enable = false;
       };
     provides = {
       cachyos-kernel = {

@@ -62,7 +62,13 @@ in
 
         system.stateVersion = stateVersion;
 
-        systemd.network.enable = true;
+        systemd.network = {
+          enable = true;
+          wait-online = {
+            enable = lib.mkDefault true;
+            anyInterface = lib.mkDefault true;
+          };
+        };
       };
 
     homeManager = {

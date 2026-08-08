@@ -10,6 +10,8 @@
 
     fonts.fontconfig.enable = lib.mkDefault false;
 
+    networking.useDHCP = lib.mkDefault false;
+
     time.timeZone = lib.mkDefault "UTC";
 
     users.mutableUsers = false;
