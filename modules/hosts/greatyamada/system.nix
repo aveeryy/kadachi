@@ -124,7 +124,7 @@ in
 
         systemd = {
           network.networks."10-wan" = {
-            matchConfig.name = "enp5s0";
+            matchConfig.Name = "enp5s0";
             address = singleton "10.0.0.1/16";
             routes = singleton { Gateway = "10.0.255.254"; };
             linkConfig.RequiredForOnline = "routable";

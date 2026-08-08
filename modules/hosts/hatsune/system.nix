@@ -112,7 +112,7 @@
 
           systemd.network.networks = {
             "10-wan" = {
-              matchConfig.name = "enp1s0";
+              matchConfig.Name = "enp1s0";
               networkConfig.DHCP = "ipv4";
               linkConfig.RequiredForOnline = "routable";
               # DNS is managed by dnsmasq
@@ -120,7 +120,7 @@
               dhcpV6Config.UseDNS = false;
             };
             "20-secondary-wan" = {
-              matchConfig.name = "enp4s0";
+              matchConfig.Name = "enp4s0";
               networkConfig.DHCP = "ipv4";
               linkConfig.RequiredForOnline = "no";
               # DNS is managed by dnsmasq
