@@ -180,7 +180,10 @@ in
                 listen-address = "127.0.0.1";
                 server =
                   if host.name != "greatyamada" then
-                    (singleton "10.10.0.1")
+                    [
+                      "10.10.0.1"
+                      "10.0.0.1"
+                    ]
                   else
                     [
                       "9.9.9.9"
