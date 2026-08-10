@@ -70,6 +70,17 @@
               };
             };
           };
+
+          wayland.windowManager.niri.settings = {
+            binds."ISO_Level5_Shift+L" = {
+              _props.repeat = false;
+              spawn = "hyprlock";
+            };
+            _children = lib.optionals host.desktop.lockSessionAtStart (
+              lib.mkOrder 0 [ { spawn-at-startup = "hyprlock"; } ]
+            );
+          };
+
           wayland.windowManager.hyprland.settings = {
             exec-once = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 0 [ "hyprlock" ];
             bind = [

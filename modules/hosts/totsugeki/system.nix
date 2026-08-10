@@ -4,7 +4,8 @@
     desktop = {
       displays."DP-1" = {
         resolution = "2560x1440";
-        refreshRate = 165;
+        refreshRate = 164.802;
+        primary = true;
       };
       lockSessionAtStart = true;
     };
@@ -40,7 +41,6 @@
       <megurine/has/amd-cpu/kvm>
       <megurine/requires/secure-boot>
 
-      <adachi/desktop/hyprland>
       <adachi/services/podman>
       <adachi/system/cachyos-kernel>
 

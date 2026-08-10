@@ -1,4 +1,14 @@
-{ inputs, kadachi-lib, ... }:
+{
+  inputs,
+  lib,
+  kadachi-lib,
+  ...
+}:
+let
+  inherit (lib)
+    singleton
+    ;
+in
 {
   flake-file.inputs.noctalia-shell = {
     url = "github:noctalia-dev/noctalia-shell/v4.7.7";
@@ -178,6 +188,43 @@
             wallpaper.enabled = false;
           };
         };
+
+        wayland.windowManager.niri.settings =
+          let
+            ipc = subcommand: action: [
+              "noctalia-shell"
+              "ipc"
+              "call"
+              subcommand
+              action
+            ];
+          in
+          {
+            binds = {
+              "Mod+Space" = {
+                _props.repeat = false;
+                spawn = ipc "launcher" "toggle";
+              };
+              "Mod+Period" = {
+                _props.repeat = false;
+                spawn = ipc "launcher" "emoji";
+              };
+              "Mod+Comma" = {
+                _props.repeat = false;
+                spawn = ipc "plugin:kaomoji" "toggle";
+              };
+              "Ctrl+Alt+Delete" = {
+                _props.repeat = false;
+                spawn = ipc "sessionMenu" "toggle";
+              };
+              "XF86MonBrightnessUp".spawn = ipc "brightness" "increase";
+              "XF86MonBrightnessDown".spawn = ipc "brightness" "decrease";
+            };
+
+            _children = singleton {
+              spawn-at-startup = "noctalia-shell";
+            };
+          };
 
         wayland.windowManager.hyprland.settings =
           let

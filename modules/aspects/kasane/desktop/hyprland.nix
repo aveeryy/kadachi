@@ -5,10 +5,10 @@ let
     "90"
     "180"
     "270"
-    "0-flipped"
-    "90-flipped"
-    "180-flipped"
-    "270-flipped"
+    "flipped-0"
+    "flipped-90"
+    "flipped-180"
+    "flipped-270"
   ];
 
   getDisplayRotation = rotation: toString (lib.lists.findFirstIndex (x: x == rotation) 0 rotations);

@@ -32,5 +32,9 @@
         };
       };
       wayland.windowManager.hyprland.settings.bind = [ "CTRL ALT, T, exec, kitty" ];
+      wayland.windowManager.niri.settings.binds."Ctrl+Alt+T" = {
+        _props.repeat = false;
+        spawn = "kitty";
+      };
     };
 }

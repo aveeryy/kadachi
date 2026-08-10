@@ -153,6 +153,15 @@ in
           };
         };
 
+        wayland.windowManager.niri.settings = {
+          layout = {
+            border.off = { };
+            gaps = windowGaps.outer;
+            shadow.off = { };
+          };
+
+        };
+
         wayland.windowManager.hyprland.settings = {
           exec-once = lib.mkOrder 20 [
             "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"

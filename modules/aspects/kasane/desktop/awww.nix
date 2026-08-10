@@ -37,6 +37,13 @@ in
               refreshRate = getFastestRefreshRate host;
             })
           ];
+
+          wayland.windowManager.niri.settings = {
+            _children = singleton {
+              spawn-at-startup = "awww-daemon";
+            };
+          };
+
           wayland.windowManager.hyprland = {
             settings = {
               exec-once = mkOrder 20 [ "awww-daemon" ];

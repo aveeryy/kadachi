@@ -5,14 +5,15 @@
       <kasane/base-user>
 
       <adachi/hardware/i2c>
-      (<adachi/system/greetd-autologin> "uwsm start default")
+      (<adachi/system/greetd-autologin> "niri")
       <adachi/tools/autofirma>
       (<adachi/tools/autofirma/firefox-integration> "Avery")
       <adachi/tools/virtualisation>
 
       <kasane/desktop/awww>
-      <kasane/desktop/hyprland>
+      # <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
+      <kasane/desktop/niri>
       <kasane/desktop/noctalia-shell>
       <kasane/desktop/screenshot>
       <kasane/gaming/bottles>
