@@ -45,3 +45,6 @@ to any media I was into when I made the host configuration (the rest of them lol
 ## License
 
 Kadachi is licensed under the [GNU Lesser General Public License 3.0](./COPYING)
+
+The [default wallpaper](modules/assets/blossoms.jxl) ([A tree with pink flowers by Andrea Music](https://unsplash.com/photos/a-tree-with-pink-flowers-JxLnhjrkUuU))
+is licensed under the [Unsplash License](https://unsplash.com/license)

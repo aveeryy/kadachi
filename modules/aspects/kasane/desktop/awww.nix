@@ -16,6 +16,8 @@ in
     {
       homeManager =
         {
+          config,
+          lib,
           pkgs,
           self',
           ...
@@ -30,16 +32,25 @@ in
           );
         in
         {
-          home.packages = [
-            awww_jxl
-            (self'.packages.wallpaperctl.override {
-              awww = awww_jxl;
-              refreshRate = getFastestRefreshRate host;
-            })
-          ];
+          home = {
+            activation.ensureWallpaper = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              ln -sf ${getAsset "blossoms.jxl"} "${config.xdg.userDirs.pictures}/Fondos/blossoms.jxl"
+            '';
+            packages = [
+              awww_jxl
+              (self'.packages.wallpaperctl.override {
+                awww = awww_jxl;
+                refreshRate = getFastestRefreshRate host;
+              })
+            ];
+          };
+
           wayland.windowManager.hyprland = {
             settings = {
-              exec-once = mkOrder 20 [ "awww-daemon" ];
+              exec-once = mkOrder 0 [
+                "awww-daemon"
+                "wallpaperctl ensure"
+              ];
               bind = [ "MOD3, w, submap, wallpaper" ];
             };
             submaps.wallpaper.settings = {

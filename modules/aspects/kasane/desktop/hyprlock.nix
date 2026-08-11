@@ -71,7 +71,7 @@
             };
           };
           wayland.windowManager.hyprland.settings = {
-            exec-once = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 0 [ "hyprlock" ];
+            exec-once = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 1 [ "hyprlock" ];
             bind = [
               ", code:191, exec, hyprlock"
               "MOD3, L, exec, hyprlock"

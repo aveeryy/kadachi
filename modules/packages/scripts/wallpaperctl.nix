@@ -5,14 +5,14 @@
     {
       packages.wallpaperctl = pkgs.callPackage (
         {
-          awww ? pkgs.awww,
+          awww,
           refreshRate ? 60,
         }:
         pkgs.writeShellApplication {
           name = "wallpaperctl";
           runtimeInputs = with pkgs; [
-            imagemagick
             awww
+            imagemagick
             xdg-user-dirs
           ];
           bashOptions = [
@@ -44,6 +44,10 @@
                 current_index=0
             fi
 
+            TRANSITION_TYPE="wipe"
+            TRANSITION_STEP="90"
+            TRANSITION_DURATION="1"
+
             if [ "$1" = "previous" ]; then
                 WALLPAPER="''${WALLPAPERS[$current_index - 1]}"
                 TRANSITION_ANGLE=300
@@ -54,13 +58,17 @@
                 fi
                 WALLPAPER=''${WALLPAPERS[$next_index]}
                 TRANSITION_ANGLE=120
+            elif [ "$1" = "ensure" ]; then
+                WALLPAPER="$CURRENT_WALLPAPER"
+                TRANSITION_TYPE="none"
+                TRANSITION_ANGLE=0
             else
                 echo "Unknown first argument: $1"
                 exit 1
             fi
 
             if [ -z "$WALLPAPER" ]; then
-                exit 1
+                exit 2
             fi
 
             echo "Setting wallpaper to $WALLPAPER"
@@ -68,10 +76,10 @@
             ln -sf "$WALLPAPER" "$WALLPAPER_PATH/.current_image"
 
             awww img\
-                --transition-type wipe\
-                --transition-angle $TRANSITION_ANGLE\
-                --transition-step 90\
-                --transition-duration 1\
+                --transition-type "$TRANSITION_TYPE"\
+                --transition-angle "$TRANSITION_ANGLE"\
+                --transition-step "$TRANSITION_STEP"\
+                --transition-duration "$TRANSITION_DURATION"\
                 --transition-fps ${toString refreshRate}\
                 "$WALLPAPER" &
 
