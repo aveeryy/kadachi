@@ -156,12 +156,6 @@
                   }
                   {
                     enabled = true;
-                    url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_12.txt";
-                    name = "Dandelion Sprout's Anti-Malware List";
-                    id = 1687062397;
-                  }
-                  {
-                    enabled = true;
                     url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_10.txt";
                     name = "Scam Blocklist by DurableNapkin";
                     id = 1687062398;
@@ -210,12 +204,6 @@
                   }
                   {
                     enabled = true;
-                    url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_44.txt";
-                    name = "HaGeZi's Threat Intelligence Feeds";
-                    id = 1694924470;
-                  }
-                  {
-                    enabled = true;
                     url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt";
                     name = "NoCoin Filter List";
                     id = 1694924471;
@@ -225,7 +213,6 @@
                   "||www.googleadservices.com^$important"
                   "||rdvs.alljoyn.org^$important"
                   "||tse3.mm.bing.net^$important"
-                  "@@||repo.webosbrew.org^$important"
                   "||es.lgeapi.com^$important"
                   "||discovery.meethue.com^$important"
                   "||eic.lgtviot.com^$important"
@@ -245,6 +232,8 @@
                   "||www.ueiwsp.com^$important"
                   "||temu.com^$important"
                   "||www.temu.com^$important"
+                  # Unblock WebOS homebrew repository
+                  "@@||repo.webosbrew.org^$important"
                   # Unblock ads for proseka
                   "@@||unity3d.com^$client='Rhythm games tablet'"
                   "@@||config.ads.vungle.com^$client='Rhythm games tablet'"
@@ -256,17 +245,7 @@
                   "@@||rovio.com^$client='Rhythm games tablet'"
                   "@@||gov.aniview.com^$client='Rhythm games tablet'"
                   "@@||cdn.liftoff-creatives.io^$client='Rhythm games tablet'"
-                  "@@||unity3d.com^$client='10.10.0.2'"
-                  "@@||config.ads.vungle.com^$client='10.10.0.2'"
-                  "@@||rayjump.com^$client='10.10.0.2'"
-                  "@@||vungle.com^$client='10.10.0.2'"
-                  "@@||mtgglobals.com^$client='10.10.0.2'"
-                  "@@||fundingchoicesmessages.google.com^$client='10.10.0.2'"
-                  "@@||googleads.g.doubleclick.net^$client='10.10.0.2'"
-                  "@@||applovin.com^$client='10.10.0.2'"
-                  "@@||rovio.com^$client='10.10.0.2'"
-                  "@@||gov.aniview.com^$client='10.10.0.2'"
-                  "||googleads.g.doubleclick.net^$client='Tablet'"
+                  "@@||googleads.g.doubleclick.net^$client='Rhythm games tablet'"
                 ];
               };
             };
