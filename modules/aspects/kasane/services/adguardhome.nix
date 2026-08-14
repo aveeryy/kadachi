@@ -246,6 +246,11 @@
                   "@@||gov.aniview.com^$client='Rhythm games tablet'"
                   "@@||cdn.liftoff-creatives.io^$client='Rhythm games tablet'"
                   "@@||googleads.g.doubleclick.net^$client='Rhythm games tablet'"
+                  "@@||sdk-events.inner-active.mobi^$client='Rhythm games tablet'"
+                  "@@||telemetry.sdk.inmobi.com^$client='Rhythm games tablet'"
+                  "@@||pagead2.googlesyndication.com^$client='Rhythm games tablet'"
+                  "@@||analytics-tcp.mintegral.net^$client='Rhythm games tablet'"
+                  "@@||config.inmobi.com^$client='Rhythm games tablet'"
                 ];
               };
             };
