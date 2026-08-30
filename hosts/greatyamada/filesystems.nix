@@ -1,6 +1,6 @@
 { ... }:
 {
-  den.aspects.greatyamada.nixos = {
+  hosts.greatyamada.nixos = {
     fileSystems = {
       "/" = {
         device = "/dev/disk/by-label/NIXROOT";

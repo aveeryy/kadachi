@@ -1,6 +1,6 @@
 { __findFile, ... }:
 {
-  den.aspects."avery@nightcord" = {
+  hosts.nightcord.users.avery = {
     includes = [
       <kasane/base-user>
     ];

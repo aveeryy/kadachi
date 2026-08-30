@@ -1,5 +1,5 @@
 { ... }: {
-  den.aspects.totsugeki.nixos = {
+  hosts.totsugeki.nixos = {
     hardware.amdgpu.overdrive.enable = true;
     services.lact = {
       enable = true;

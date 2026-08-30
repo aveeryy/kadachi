@@ -1,6 +1,6 @@
 { __findFile, ... }:
 {
-  den.aspects."avery@totsugeki" = {
+  hosts.totsugeki.users.avery = {
     includes = [
       <kasane/base-user>
 

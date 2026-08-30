@@ -1,6 +1,6 @@
 { ... }:
 {
-  den.aspects.malfestio.nixos = {
+  hosts.malfestio.nixos = {
     fileSystems = {
       "/" = {
         device = "/dev/disk/by-label/NIXROOT";

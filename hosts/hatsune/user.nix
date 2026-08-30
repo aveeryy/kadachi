@@ -1,6 +1,6 @@
 { __findFile, ... }:
 {
-  den.aspects."avery@hatsune" =
+  hosts.hatsune.users.avery =
     { host, user }:
     {
 

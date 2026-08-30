@@ -34,7 +34,7 @@ in
     users.avery = { };
   };
 
-  den.aspects.greatyamada = {
+  hosts.greatyamada = {
     description = "Home server";
 
     includes = [

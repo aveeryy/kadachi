@@ -28,6 +28,7 @@ in
     (inputs.den.namespace "adachi" true)
     (inputs.den.namespace "kasane" false)
     (inputs.den.namespace "megurine" true)
+    (inputs.den.namespace "hosts" false)
   ];
 
   flake-file.outputs = /* nix */ ''

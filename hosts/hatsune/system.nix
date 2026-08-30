@@ -20,7 +20,7 @@
     users.avery = { };
   };
 
-  den.aspects.hatsune =
+  hosts.hatsune =
     { host }:
     {
       description = "UGREEN NAS (DXP4800 Pro) system configuration";

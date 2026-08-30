@@ -31,7 +31,7 @@
     };
   };
 
-  den.aspects.totsugeki = {
+  hosts.totsugeki = {
     description = "Main computer";
 
     includes = [

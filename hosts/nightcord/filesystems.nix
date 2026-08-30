@@ -1,6 +1,6 @@
 { ... }:
 {
-  den.aspects.nightcord.nixos = {
+  hosts.nightcord.nixos = {
     fileSystems = {
       "/" = {
         device = "/dev/disk/by-label/nixos";

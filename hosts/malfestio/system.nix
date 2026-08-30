@@ -22,7 +22,7 @@
     users.avery = { };
   };
 
-  den.aspects.malfestio = {
+  hosts.malfestio = {
     includes = [
       <megurine/is/steam-deck>
       <megurine/is/steam-deck/cachyos-kernel>

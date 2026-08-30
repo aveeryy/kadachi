@@ -2,18 +2,22 @@
   __findFile,
   den,
   lib,
+  hosts,
   ...
 }:
 let
   stateVersion = "26.05";
 in
 {
-  den.schema.user =
-    { user, ... }:
-    {
-      classes = lib.mkDefault [ "homeManager" ];
-      aspect = lib.mkDefault den.aspects."${user.userName}@${user.host.name}";
+  den.schema = {
+    host = { host, ... }: {
+      aspect = lib.mkDefault hosts.${host.name};
     };
+    user = { user, ... }: {
+      classes = lib.mkDefault [ "homeManager" ];
+      aspect = lib.mkDefault hosts.${user.host.name}.users.${user.userName};
+    };
+  };
 
   den.default = {
     includes = [

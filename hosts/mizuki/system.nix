@@ -20,7 +20,7 @@
     };
   };
 
-  den.aspects.mizuki = {
+  hosts.mizuki = {
     description = "Work computer";
 
     includes = [

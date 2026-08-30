@@ -1,6 +1,6 @@
 { __findFile, ... }:
 {
-  den.aspects."avery@greatyamada" =
+  hosts.greatyamada.users.avery =
     let
       media_group_member =
         { user, ... }:

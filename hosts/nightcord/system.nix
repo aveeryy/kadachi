@@ -10,7 +10,7 @@
     users.avery = { };
   };
 
-  den.aspects.nightcord = {
+  hosts.nightcord = {
     description = "VPS that hosts a mirror of Vaultwarden and Forgejo along some monitoring tools";
 
     includes = [

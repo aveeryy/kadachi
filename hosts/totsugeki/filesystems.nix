@@ -1,6 +1,6 @@
 { ... }:
 {
-  den.aspects.totsugeki.nixos.fileSystems = {
+  hosts.totsugeki.nixos.fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/144857c7-877b-46c7-94d9-30a6d6d27cf0";
       fsType = "btrfs";

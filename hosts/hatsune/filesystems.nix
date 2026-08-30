@@ -1,6 +1,6 @@
 { ... }:
 {
-  den.aspects.hatsune.nixos = {
+  hosts.hatsune.nixos = {
     fileSystems = {
       "/" = {
         device = "/dev/disk/by-label/nixos";
