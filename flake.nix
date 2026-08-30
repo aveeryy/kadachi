@@ -4,7 +4,7 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-      inputs.import-tree.matchNot ".*/lib/.*" ./modules
+      inputs.import-tree.matchNot ".*/lib/.*|.*/flake.nix" ./.
     );
 
   inputs = {
