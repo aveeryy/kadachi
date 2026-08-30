@@ -25,6 +25,7 @@
 
     includes = [
       <megurine/is/desktop>
+      <megurine/has/bluetooth>
       <megurine/has/intel-cpu>
       <megurine/has/intel-cpu/kvm>
       <megurine/requires/secure-boot>
