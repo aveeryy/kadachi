@@ -1,7 +1,7 @@
 { __findFile, ... }:
 {
   den.hosts.x86_64-linux.mizuki = {
-    hostName = "AIR???";
+    hostName = "AIR108";
     desktop = {
       displays."HDMI-1" = {
         resolution = "3840x2160";
