@@ -8,7 +8,6 @@
       };
       system = {
         hasBattery = true;
-        hasBluetooth = true;
         hasWiFi = true;
       };
     };

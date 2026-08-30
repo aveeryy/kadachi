@@ -1,14 +1,25 @@
-{ inputs, kadachi-lib, ... }:
+{
+  inputs,
+  kadachi-lib,
+  lib,
+  ...
+}:
+let
+  inherit (lib)
+    optional
+    ;
+in
 {
   flake-file.inputs.noctalia-shell = {
     url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+
   kasane.desktop._.noctalia-shell =
     { host, user }:
     {
 
-      homeManager = {
+      homeManager = { osConfig, ... }: {
         imports = [
           inputs.noctalia-shell.homeModules.default
         ];
@@ -76,6 +87,12 @@
                     id = "Tray";
                     drawerEnabled = true;
                   }
+                ]
+                ++ (optional osConfig.hardware.bluetooth.enable {
+                  id = "Bluetooth";
+                  displayMode = "onhover";
+                })
+                ++ [
                   {
                     id = "Microphone";
                     displayMode = "onhover";

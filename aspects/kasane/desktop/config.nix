@@ -54,10 +54,6 @@ in
               type = lib.types.bool;
               default = false;
             };
-            hasBluetooth = lib.mkOption {
-              type = lib.types.bool;
-              default = false;
-            };
             hasWiFi = lib.mkOption {
               type = lib.types.bool;
               default = false;
