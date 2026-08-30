@@ -29,7 +29,7 @@ let
   createBackupConfiguration' =
     backupName: host: borgmaticConfiguration:
     recursiveUpdate {
-      archive_name_format = "{hostname}-${backupName}-{now:%Y-%m-%dT%H:%M:%S.%f}";
+      archive_name_format = "${host.name}-${backupName}-{now:%Y-%m-%dT%H:%M:%S.%f}";
       repositories = host.services.backups.repositories backupName;
       encryption_passphrase = "{credential file /run/secrets/backups/password/${backupName}}";
       ssh_command = "ssh -p 23 -i ${
@@ -70,7 +70,7 @@ let
       };
     } borgmaticConfiguration;
 
-  getHostConfig = hostName: self.nixosConfigurations.${hostName}.config;
+  getHostConfig = configurationName: self.nixosConfigurations.${configurationName}.config;
 
   copyPathToStore = builtins.filterSource (p: t: true);
 

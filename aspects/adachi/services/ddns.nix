@@ -11,23 +11,23 @@
       };
 
     provides = {
-      cloudflare = hostName: {
+      cloudflare = domain: {
         nixos =
           { config, ... }:
           {
             services.inadyn.settings.provider."cloudflare.com" = {
               hostname = [
-                hostName
-                "*.${hostName}"
+                domain
+                "*.${domain}"
               ];
-              username = hostName;
-              include = config.sops.templates."ddns-cloudflare-${hostName}.conf".path;
+              username = domain;
+              include = config.sops.templates."ddns-cloudflare-${domain}.conf".path;
             };
             sops = {
-              secrets."ddns/cloudflare/${hostName}" = { };
-              templates."ddns-cloudflare-${hostName}.conf" = {
+              secrets."ddns/cloudflare/${domain}" = { };
+              templates."ddns-cloudflare-${domain}.conf" = {
                 content = ''
-                  password = ${config.sops.placeholder."ddns/cloudflare/${hostName}"}
+                  password = ${config.sops.placeholder."ddns/cloudflare/${domain}"}
                 '';
                 owner = "inadyn";
               };
@@ -35,23 +35,23 @@
 
           };
       };
-      desec = hostName: {
+      desec = domain: {
         nixos =
           { config, ... }:
           {
             services.inadyn.settings.provider."desec.io" = {
               hostname = [
-                hostName
-                "*.${hostName}"
+                domain
+                "*.${domain}"
               ];
-              username = hostName;
-              include = config.sops.templates."ddns-desec-${hostName}.conf".path;
+              username = domain;
+              include = config.sops.templates."ddns-desec-${domain}.conf".path;
             };
             sops = {
-              secrets."ddns/desec/${hostName}" = { };
-              templates."ddns-desec-${hostName}.conf" = {
+              secrets."ddns/desec/${domain}" = { };
+              templates."ddns-desec-${domain}.conf" = {
                 content = ''
-                  password = ${config.sops.placeholder."ddns/desec/${hostName}"}
+                  password = ${config.sops.placeholder."ddns/desec/${domain}"}
                 '';
                 owner = "inadyn";
               };

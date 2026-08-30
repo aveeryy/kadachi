@@ -14,44 +14,44 @@
     };
 
     provides = {
-      cloudflare = hostName: {
+      cloudflare = domain: {
         nixos =
           { config, ... }:
           {
-            security.acme.certs."${hostName}" = {
+            security.acme.certs."${domain}" = {
               credentialFiles.CLOUDFLARE_DNS_API_TOKEN_FILE =
                 lib.mkDefault
-                  config.sops.secrets."acme/cloudflare/${hostName}".path;
-              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
+                  config.sops.secrets."acme/cloudflare/${domain}".path;
+              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
               dnsProvider = "cloudflare";
             };
-            sops.secrets."acme/cloudflare/${hostName}".owner = "acme";
+            sops.secrets."acme/cloudflare/${domain}".owner = "acme";
           };
       };
-      hetzner = hostName: {
+      hetzner = domain: {
         nixos =
           { config, ... }:
           {
-            security.acme.certs."${hostName}" = {
+            security.acme.certs."${domain}" = {
               credentialFiles.HETZNER_API_TOKEN_FILE =
                 lib.mkDefault
-                  config.sops.secrets."acme/hetzner/${hostName}".path;
-              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
+                  config.sops.secrets."acme/hetzner/${domain}".path;
+              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
               dnsProvider = "hetzner";
             };
-            sops.secrets."acme/hetzner/${hostName}".owner = "acme";
+            sops.secrets."acme/hetzner/${domain}".owner = "acme";
           };
       };
-      desec = hostName: {
+      desec = domain: {
         nixos =
           { config, ... }:
           {
-            security.acme.certs."${hostName}" = {
-              credentialFiles.DESEC_TOKEN_FILE = lib.mkDefault config.sops.secrets."acme/desec/${hostName}".path;
-              extraDomainNames = lib.mkDefault [ "*.${hostName}" ];
+            security.acme.certs."${domain}" = {
+              credentialFiles.DESEC_TOKEN_FILE = lib.mkDefault config.sops.secrets."acme/desec/${domain}".path;
+              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
               dnsProvider = "desec";
             };
-            sops.secrets."acme/desec/${hostName}".owner = "acme";
+            sops.secrets."acme/desec/${domain}".owner = "acme";
           };
       };
     };
