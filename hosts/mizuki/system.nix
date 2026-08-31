@@ -5,7 +5,7 @@
     desktop = {
       displays."HDMI-1" = {
         resolution = "3840x2160";
-        scaling = 1.5;
+        scaling = "1.5";
       };
       lockSessionAtStart = true;
     };
