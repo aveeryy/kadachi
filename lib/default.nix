@@ -117,5 +117,7 @@ in
     recursiveMerge
     ;
 
+  constants = import ./constants.nix { };
+  http = import ./http.nix { inherit lib; };
   minecraft = import ./minecraft.nix { inherit lib; };
 }

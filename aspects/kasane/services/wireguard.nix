@@ -25,6 +25,7 @@ let
     ;
 
   inherit (kadachi-lib)
+    constants
     getAllHosts
     ;
 in
@@ -101,8 +102,8 @@ in
               address = removeSuffix "/32" (elemAt peer.allowedIPs 0);
             in
             [
-              (toLower "/${peer.name}.wg.rcia.dev/${address}")
-              (toLower "/.${peer.name}.wg.rcia.dev/${address}")
+              (toLower "/${peer.name}.${constants.wireguardBaseDomain}/${address}")
+              (toLower "/.${peer.name}.${constants.wireguardBaseDomain}/${address}")
             ];
 
           hostsWithConfiguredWireguard = filter hasWireguardConfigured (getAllHosts den.hosts);
@@ -170,6 +171,11 @@ in
                 '';
               };
             };
+          };
+
+          security.acme.certs = optionalAttrs (host.services.internetDomain != null) {
+            ${host.services.internetDomain}.extraDomainNames =
+              singleton "${host.name}.${constants.wireguardBaseDomain}";
           };
 
           services = {

@@ -23,6 +23,12 @@ in
           description = "Email used for ACME";
         };
 
+        fallbackUrl = mkOption {
+          type = str;
+          default = host.services.internetDomain;
+          description = "Fallback URL for private services";
+        };
+
         # Generic options for databases
         database = {
           default = mkOption {
