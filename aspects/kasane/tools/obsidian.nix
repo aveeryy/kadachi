@@ -71,7 +71,12 @@ in
               useTab = false;
               vimMode = true;
             };
-            appearance.theme = "obsidian";
+            appearance = {
+              theme = "obsidian";
+              interfaceFontFamily = config.stylix.fonts.sansSerif.name;
+              textFontFamily = config.stylix.fonts.sansSerif.name;
+              monospaceFontFamily = config.stylix.fonts.monospace.name;
+            };
             corePlugins = [
               { name = "bookmarks"; }
               { name = "command-palette"; }
