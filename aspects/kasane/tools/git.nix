@@ -32,8 +32,11 @@
               git = {
                 autoFetch = false;
                 overrideGpg = true;
-                pagers = [
-                  { externalDiffCommand = "${lib.getExe config.programs.difftastic.package} --color=always"; }
+                diffRenderers = [
+                  {
+                    type = "extDiff";
+                    command = "${lib.getExe config.programs.difftastic.package} --color=always";
+                  }
                 ];
               };
             };
