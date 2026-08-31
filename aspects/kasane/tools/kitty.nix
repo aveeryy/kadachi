@@ -17,6 +17,8 @@
           "ctrl+alt+9" = "goto_tab 9";
         };
         settings = {
+          "cursor_trail" = 3;
+          "cursor_trail_decay" = "0.1 0.4";
           "dynamic_background_opacity" = true;
           "force_ltr" = "yes";
           "disable_ligatures" = "never";
