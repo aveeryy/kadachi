@@ -61,6 +61,7 @@ in
             };
           };
         };
+
         stylix = {
           enable = true;
           base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
@@ -112,6 +113,8 @@ in
 
           obsidian.enable = config.programs.obsidian.enable;
         };
+
+        home.pointerCursor.enable = true;
 
         programs = {
           kitty.themeFile = "Catppuccin-Mocha";
