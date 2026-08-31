@@ -174,8 +174,10 @@ in
           };
 
           security.acme.certs = optionalAttrs (host.services.internetDomain != null) {
-            ${host.services.internetDomain}.extraDomainNames =
-              singleton "${host.name}.${constants.wireguardBaseDomain}";
+            ${host.services.internetDomain}.extraDomainNames = [
+              "${host.name}.${constants.wireguardBaseDomain}"
+              "*.${host.name}.${constants.wireguardBaseDomain}"
+            ];
           };
 
           services = {
