@@ -45,11 +45,18 @@ in
             concatLines (
               map (path: /* bash */ ''
                 find "$HOME/${path}" -type l | while read file; do
-                  run cp -r $(readlink -e "$file") "''${file}.tmp" && rm -rf "$file" && mv "''${file}.tmp" "$file"
+                  run cp -r $(readlink -e "$file") "''${file}.tmp" && rm -rf "$file" && mv "''${file}.tmp" "$file" && chmod 644 "$file"
                 done
                 # Clean backup files
                 find "$HOME/${path}" -name '*.bak' | while read file; do
                   run chmod -R 777 "$file" && rm -rf "$file" 
+                done
+                # Set correct permissions
+                find "$HOME/${path}" -type d | while read file; do
+                  run chmod 755 "$file"
+                done
+                find "$HOME/${path}" -type f | while read file; do
+                  run chmod 644 "$file"
                 done
               '') vaultPaths
             )
