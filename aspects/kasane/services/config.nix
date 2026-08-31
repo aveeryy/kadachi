@@ -25,7 +25,7 @@ in
 
         fallbackUrl = mkOption {
           type = str;
-          default = host.services.internetDomain;
+          default = "https://${host.services.internetDomain}";
           description = "Fallback URL for private services";
         };
 
