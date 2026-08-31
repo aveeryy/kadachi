@@ -2,8 +2,10 @@
 {
   den.hosts.x86_64-linux.hatsune = {
     services = {
-      baseDomain = "hatsune.rcia.dev";
+      internetDomain = "hatsune.rcia.dev";
       email = "infra-host-hatsune@rcia.dev";
+
+      fallbackUrl = "https://miku.hatsune.rcia.dev";
 
       database.default = "postgres";
 
@@ -94,13 +96,13 @@
 
             navidrome.settings.MusicFolder = "/mnt/disk0/music";
 
-            nginx.virtualHosts."miku.${host.services.baseDomain}" = {
+            nginx.virtualHosts."miku.${host.services.internetDomain}" = {
               locations."= /" = {
                 root = "${self}/modules/assets";
                 tryFiles = "/migu.webp =404";
               };
               forceSSL = true;
-              useACMEHost = host.services.baseDomain;
+              useACMEHost = host.services.internetDomain;
             };
 
             qbittorrent.serverConfig.BitTorrent.Session.DefaultSavePath = "/mnt/disk0/torrents/";

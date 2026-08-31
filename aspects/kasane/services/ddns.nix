@@ -6,7 +6,7 @@ let
     {
       includes = [
         <adachi/services/ddns>
-        (serviceAspect host.services.baseDomain)
+        (serviceAspect host.services.internetDomain)
       ];
     };
 in

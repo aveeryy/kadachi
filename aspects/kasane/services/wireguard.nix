@@ -62,7 +62,7 @@ in
           type = nullOr str;
           default =
             if host.services.wireguard.isServerPeer then
-              "${host.services.baseDomain}:${toString host.services.wireguard.port}"
+              "${host.services.internetDomain}:${toString host.services.wireguard.port}"
             else
               null;
         };

@@ -6,7 +6,7 @@ let
     {
       includes = [
         <adachi/services/acme>
-        (serviceAspect host.services.baseDomain)
+        (serviceAspect host.services.internetDomain)
       ];
       nixos.security.acme.defaults.email = host.services.email;
     };

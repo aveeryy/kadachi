@@ -2,8 +2,9 @@
 let
   inherit (lib) mkOption;
   inherit (lib.types)
-    str
     enum
+    str
+    nullOr
     ;
 in
 {
@@ -11,11 +12,12 @@ in
     { host, ... }:
     {
       options.services = {
-        baseDomain = mkOption {
-          type = str;
-          default = "${host.name}.local";
-          description = "Base domain for services";
+        internetDomain = mkOption {
+          type = nullOr str;
+          default = null;
+          description = "Base internet-accessible domain for services";
         };
+
         email = mkOption {
           type = str;
           description = "Email used for ACME";

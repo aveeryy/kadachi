@@ -14,7 +14,7 @@ in
     options.services.qui = {
       domain = mkOption {
         type = str;
-        default = "torrent.${host.services.baseDomain}";
+        default = "torrent.${host.services.internetDomain}";
       };
       database = mkOption {
         type = str;
@@ -111,7 +111,7 @@ in
                 proxyPass = "http://127.0.0.1:${toString config.services.qui.settings.port}";
               };
               forceSSL = true;
-              useACMEHost = host.services.baseDomain;
+              useACMEHost = host.services.internetDomain;
               extraConfig = host.services.nginx.localServiceConfig;
             };
           };

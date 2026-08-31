@@ -19,7 +19,7 @@ in
       options.services.copyparty = with lib.types; {
         domain = mkOption {
           type = str;
-          default = "copyparty.${host.services.baseDomain}";
+          default = "copyparty.${host.services.internetDomain}";
         };
         accounts = mkOption {
           type = listOf str;
@@ -65,7 +65,7 @@ in
                 };
               };
               forceSSL = true;
-              useACMEHost = host.services.baseDomain;
+              useACMEHost = host.services.internetDomain;
             };
           };
 

@@ -6,10 +6,10 @@
       nixos = {
         services = {
           jellyfin.enable = true;
-          nginx.virtualHosts."jellyfin.${host.services.baseDomain}" = {
+          nginx.virtualHosts."jellyfin.${host.services.internetDomain}" = {
             locations."/".proxyPass = "http://127.0.0.1:8096";
             forceSSL = true;
-            useACMEHost = host.services.baseDomain;
+            useACMEHost = host.services.internetDomain;
           };
         };
         users.users.jellyfin.extraGroups = [

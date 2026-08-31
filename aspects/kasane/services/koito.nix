@@ -9,7 +9,7 @@ in
       options.services.koito = with lib.types; {
         domain = mkOption {
           type = str;
-          default = "koito.${host.services.baseDomain}";
+          default = "koito.${host.services.internetDomain}";
         };
       };
     };
@@ -80,7 +80,7 @@ in
             nginx.virtualHosts.${host.services.koito.domain} = {
               locations."/".proxyPass = "http://localhost:${toString koitoPort}";
               forceSSL = true;
-              useACMEHost = host.services.baseDomain;
+              useACMEHost = host.services.internetDomain;
             };
 
             postgresql = {

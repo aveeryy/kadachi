@@ -7,7 +7,7 @@ in
 {
   den.hosts.x86_64-linux.greatyamada = {
     services = {
-      baseDomain = "rcia.dev";
+      internetDomain = "rcia.dev";
       email = "infra-host-greatyamada@rcia.dev";
 
       database.default = "postgres";

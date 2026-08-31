@@ -47,12 +47,12 @@
                 };
                 tls = {
                   enabled = false;
-                  server_name = "dns.${host.services.baseDomain}";
+                  server_name = "dns.${host.services.internetDomain}";
                   port_https = 4430;
                   port_dns_over_tls = 853;
                   port_dns_over_quic = 853;
-                  certificate_path = "/var/lib/acme/${host.services.baseDomain}/fullchain.pem";
-                  private_key_path = "/var/lib/acme/${host.services.baseDomain}/key.pem";
+                  certificate_path = "/var/lib/acme/${host.services.internetDomain}/fullchain.pem";
+                  private_key_path = "/var/lib/acme/${host.services.internetDomain}/key.pem";
                 };
                 dhcp = {
                   enabled = true;
@@ -254,7 +254,7 @@
                 ];
               };
             };
-            nginx.virtualHosts."dns.${host.services.baseDomain}" =
+            nginx.virtualHosts."dns.${host.services.internetDomain}" =
               let
                 scheme = if config.services.adguardhome.settings.tls.enabled then "https" else "http";
                 port =
@@ -267,7 +267,7 @@
                 forceSSL = true;
                 locations."/".proxyPass = "${scheme}://127.0.0.1:${toString port}";
                 extraConfig = host.services.nginx.localServiceConfig;
-                useACMEHost = host.services.baseDomain;
+                useACMEHost = host.services.internetDomain;
               };
           };
         };

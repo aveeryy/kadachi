@@ -11,7 +11,7 @@ in
       options.services.navidrome = with lib.types; {
         domain = mkOption {
           type = str;
-          default = "music.${host.services.baseDomain}";
+          default = "music.${host.services.internetDomain}";
         };
       };
     };
@@ -43,7 +43,7 @@ in
                 proxyPass = "http://127.0.0.1:${toString cfg.settings.Port}";
               };
               forceSSL = true;
-              useACMEHost = host.services.baseDomain;
+              useACMEHost = host.services.internetDomain;
             };
           };
         };
