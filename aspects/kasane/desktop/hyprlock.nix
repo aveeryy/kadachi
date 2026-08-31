@@ -21,13 +21,13 @@
                     color = "rgba(255, 255, 255, 1.0)";
                     font_size = 96;
                     position = "0, -90";
-                    font_family = "Inter Medium";
+                    font_family = "${config.stylix.fonts.sansSerif.name} Medium";
                     halign = "center";
                     valign = "top";
                   }
                   {
                     text = ''cmd[update:1000] date "+%A, %-e de %B del %Y"'';
-                    font_family = "Inter";
+                    font_family = config.stylix.fonts.sansSerif.name;
                     font_size = 20;
                     position = "0, -235";
                     halign = "center";
@@ -35,9 +35,9 @@
                   }
                   {
                     text = "$DESC";
-                    font_family = "Inter";
-                    position = "0, -35";
-                    font_size = 18;
+                    font_family = "${config.stylix.fonts.sansSerif.name} Medium";
+                    position = "0, -40";
+                    font_size = 20;
                     halign = "center";
                     valign = "center";
                   }

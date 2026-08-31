@@ -33,7 +33,12 @@ in
     description = "System-wide theme configuration, this only configures common properties, not everything that is customizable";
 
     nixos =
-      { pkgs, config, ... }:
+      {
+        config,
+        pkgs,
+        self',
+        ...
+      }:
       {
         imports = [ inputs.stylix.nixosModules.stylix ];
         fonts = {
@@ -74,8 +79,8 @@ in
           fonts = {
             serif = config.stylix.fonts.sansSerif;
             sansSerif = {
-              name = "Inter";
-              package = pkgs.inter;
+              name = "Radio Canada Big";
+              package = self'.packages.radio-canada-big;
             };
             monospace = {
               name = "Iosevka Nerd Font";
