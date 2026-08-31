@@ -1,7 +1,16 @@
-{ __findFile, lib, ... }:
+{
+  __findFile,
+  kadachi-lib,
+  lib,
+  ...
+}:
 let
   inherit (lib)
     singleton
+    ;
+
+  inherit (kadachi-lib)
+    constants
     ;
 in
 {
@@ -21,6 +30,11 @@ in
           }
         ];
       };
+
+      vaultwarden.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
 
       wireguard = {
         addresses = [ "10.10.0.1/16" ];
