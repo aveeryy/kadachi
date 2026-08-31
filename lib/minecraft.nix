@@ -4,6 +4,7 @@ let
     elemAt
     filterAttrs
     mapAttrs
+    optional
     optionals
     splitString
     ;
@@ -24,32 +25,26 @@ let
       # Starting with Minecraft 26.1, the Nether and The End dimensions are now located
       # in a subdirectory in the main world's directory
       gameVersion = elemAt (splitString "-" serverCfg.package.version) 0;
-      modernWorldFormat = gameVersion >= "26.1";
+      oldWorldFormat = gameVersion < "26.1";
 
       worldName = serverCfg.serverProperties.level-name or "world";
       baseWorldPath = "${serverName}/${worldName}";
 
-      nonDeclarativeBannedPlayers = serverCfg.bannedPlayers == { };
-      nonDeclarativeOperators = serverCfg.operators == { };
-      nonDeclarativeWhitelist = serverCfg.whitelist == { };
+      imperativeBannedPlayers = serverCfg.bannedPlayers == { };
+      imperativeOperators = serverCfg.operators == { };
+      imperativeWhitelist = serverCfg.whitelist == { };
     in
     [
       baseWorldPath
       "${serverName}/banned-ips.json"
     ]
-    ++ optionals (!modernWorldFormat) [
+    ++ optionals oldWorldFormat [
       "${baseWorldPath}_nether"
       "${baseWorldPath}_the_end"
     ]
-    ++ optionals (nonDeclarativeBannedPlayers) [
-      "${serverName}/banned-players.json"
-    ]
-    ++ optionals (nonDeclarativeOperators) [
-      "${serverName}/ops.json"
-    ]
-    ++ optionals (nonDeclarativeWhitelist) [
-      "${serverName}/whitelist.json"
-    ];
+    ++ optional imperativeBannedPlayers "${serverName}/banned-players.json"
+    ++ optional imperativeOperators "${serverName}/ops.json"
+    ++ optional imperativeWhitelist "${serverName}/whitelist.json";
 
   getBackupPaths =
     minecraftCfg:
