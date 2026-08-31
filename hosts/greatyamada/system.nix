@@ -84,6 +84,10 @@ in
         ];
 
         services = {
+          dnsmasq.settings.server = [
+            "9.9.9.9"
+            "1.1.1.1"
+          ];
           forgejo.settings.server.SSH_PORT = 2222;
           minecraft-servers.dataDir = "/mnt/ssd-01/minecraft";
           nginx.virtualHosts = {

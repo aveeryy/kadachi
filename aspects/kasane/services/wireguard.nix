@@ -13,6 +13,7 @@ let
     getExe
     map
     mergeAttrsList
+    mkDefault
     mkOption
     optionalAttrs
     optionalString
@@ -178,17 +179,10 @@ in
                 address = flatten (map getPeerInternalDomains absolutelyAllPeers);
                 bind-interfaces = true;
                 listen-address = "127.0.0.1";
-                server =
-                  if host.name != "greatyamada" then
-                    [
-                      "10.10.0.1"
-                      "10.0.0.1"
-                    ]
-                  else
-                    [
-                      "9.9.9.9"
-                      "1.1.1.1"
-                    ];
+                server = mkDefault [
+                  "10.10.0.1"
+                  "9.9.9.9"
+                ];
               };
             };
             resolved.settings.Resolve.CacheFromLocalhost = true;
