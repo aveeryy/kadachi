@@ -192,6 +192,10 @@
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
             "middlemouse.paste" = false;
             "signon.rememberSignons" = false;
+            # Extensions
+            "extensions.autoDisableScopes" = 0;
+            "extensions.update.autoUpdateDefault" = false;
+            "extensions.update.enabled" = false;
             # HTTPS-only
             "dom.security.https_only_mode" = true;
             "dom.security.https_only_mode_ever_enabled" = true;
