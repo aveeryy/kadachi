@@ -1,5 +1,9 @@
 { __findFile, lib, ... }:
 let
+  inherit (lib)
+    mkDefault
+    ;
+
   rotations = [
     "0"
     "90"
@@ -38,7 +42,7 @@ in
                 kb_variant = "dvorak";
                 kb_options = "lv5:caps_switch";
                 # Mouse
-                sensitivity = -0.4;
+                sensitivity = mkDefault 0.4;
                 accel_profile = "flat";
               };
 

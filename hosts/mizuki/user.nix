@@ -24,5 +24,9 @@
       <kasane/tools/xh>
       <kasane/web-browsers/firefox>
     ];
+
+    homeManager = {
+      wayland.windowManager.hyprland.settings.input.sensitivity = -0.1;
+    };
   };
 }
