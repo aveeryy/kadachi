@@ -33,8 +33,9 @@ in
         in
         {
           home = {
-            activation.ensureWallpaper = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              ln -sf ${getAsset "blossoms.jxl"} "${config.xdg.userDirs.pictures}/Fondos/blossoms.jxl"
+            activation.ensureWallpaper = lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
+              run mkdir -p "${config.xdg.userDirs.pictures}/Fondos"
+              run ln -sf ${getAsset "blossoms.jxl"} "${config.xdg.userDirs.pictures}/Fondos/blossoms.jxl"
             '';
             packages = [
               awww_jxl
