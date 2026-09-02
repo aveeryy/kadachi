@@ -3,7 +3,7 @@
   den.hosts.x86_64-linux.mizuki = {
     hostName = "AIR108";
     desktop = {
-      displays."HDMI-1" = {
+      displays."HDMI-A-2" = {
         resolution = "3840x2160";
         scaling = "1.5";
       };
