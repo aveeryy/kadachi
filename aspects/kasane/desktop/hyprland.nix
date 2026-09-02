@@ -42,7 +42,7 @@ in
                 kb_variant = "dvorak";
                 kb_options = "lv5:caps_switch";
                 # Mouse
-                sensitivity = mkDefault 0.4;
+                sensitivity = mkDefault (-0.4);
                 accel_profile = "flat";
               };
 
