@@ -278,7 +278,7 @@
             "browser.compactmode.show" = true;
             "browser.display.use_document_fonts" = 0;
             "browser.uiCustomization.state" = builtins.toJSON {
-              currentVersion = 23;
+              currentVersion = 25;
               newElementCount = 67;
               placements = {
                 PersonalToolbar = [ "personal-bookmarks" ];
@@ -308,6 +308,12 @@
             "extensions.activeThemeID" = "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}"; # Catppuccin Mocha Mauve
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "svg.context-properties.content.enabled" = true;
+            # Vertical tabs
+            "sidebar.revamp" = true;
+            "sidebar.verticalTabs" = true;
+            "browser.uiCustomization.horizontalTabstrip" = builtins.toJSON [
+              "tabbrowser-tabs"
+            ];
           };
         };
       };
