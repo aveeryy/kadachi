@@ -39,7 +39,19 @@
     nixos =
       { pkgs, ... }:
       {
-        boot.kernel.sysctl."vm.overcommit_memory" = 1;
+        boot = {
+          initrd.availableKernelModules = [
+            "xhci_pci"
+            "thunderbolt"
+            "ahci"
+            "nvme"
+            "usbhid"
+            "usb_storage"
+            "sd_mod"
+            "rtsx_pci_sdmmc"
+          ];
+          kernel.sysctl."vm.overcommit_memory" = 1;
+        };
 
         i18n = {
           defaultLocale = "es_ES.UTF-8";
@@ -51,7 +63,7 @@
         };
 
         systemd.network.networks."10-wan" = {
-          matchConfig.Name = ""; # TODO: set real interface name
+          matchConfig.Name = "enp89s0";
           networkConfig.DHCP = "ipv4";
           linkConfig.RequiredForOnline = "routable";
           # DNS is managed by dnsmasq
