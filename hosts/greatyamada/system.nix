@@ -109,10 +109,13 @@ in
 
             "hatsune.rcia.dev" = {
               # TODO: maybe use Wireguard?
-              locations."~* /([^\\n\\r]*)".proxyPass = "https://10.0.0.2/$1$is_args$args";
+              locations."/".proxyPass = "https://10.0.0.2$request_uri";
               forceSSL = true;
               useACMEHost = "rcia.dev";
               serverAliases = [ "*.hatsune.rcia.dev" ];
+              extraConfig = ''
+                client_max_body_size 1G;
+              '';
             };
           };
           postgresql.dataDir = "/mnt/ssd-01/postgresql/${config.services.postgresql.package.psqlSchema}";
