@@ -27,6 +27,10 @@ in
       <den/mutual-provider>
       den.batteries.inputs'
       den.batteries.self'
+
+      ({ host }: {
+        nixos.environment.etc.kadachi_host.source = builtins.toFile "kadachi_host" host.name;
+      })
     ];
 
     nixos =
