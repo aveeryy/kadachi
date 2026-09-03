@@ -184,17 +184,15 @@ in
         };
       };
 
-    noctaliaShell =
+    noctalia =
       { osConfig, ... }:
       {
         settings = {
-          bar = {
-            marginHorizontal = windowGaps.outer;
-            marginVertical = windowGaps.outer;
+          bar.default = {
+            margin_edge = windowGaps.outer;
+            margin_ends = windowGaps.outer;
           };
-          colorSchemes.predefinedScheme = "Catppuccin";
-          general.enableShadows = false;
-          ui.panelBackgroundOpacity = osConfig.stylix.opacity.terminal;
+          theme.builtin = "Catppuccin";
         };
       };
   };

@@ -19,22 +19,18 @@
         };
       };
 
-    homeManager =
-      { pkgs, ... }:
-      {
-        home.packages = with pkgs; [ lxqt.lxqt-policykit ];
-        wayland.windowManager.hyprland = {
-          enable = true;
-          settings = {
-            env = [
-              "XDG_CURRENT_DESKTOP,Hyprland"
-              "XDG_SESSION_TYPE,wayland"
-              "XDG_SESSION_DESKTOP,Hyprland"
-            ];
-            exec-once = [ "lxqt-policykit-agent" ];
-          };
-          systemd.enable = false;
+    homeManager = {
+      wayland.windowManager.hyprland = {
+        enable = true;
+        settings = {
+          env = [
+            "XDG_CURRENT_DESKTOP,Hyprland"
+            "XDG_SESSION_TYPE,wayland"
+            "XDG_SESSION_DESKTOP,Hyprland"
+          ];
         };
+        systemd.enable = false;
       };
+    };
   };
 }

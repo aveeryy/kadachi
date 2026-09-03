@@ -10,7 +10,7 @@
       <kasane/desktop/awww>
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
-      <kasane/desktop/noctalia-shell>
+      <kasane/desktop/noctalia>
       <kasane/desktop/screenshot>
       <kasane/services/syncthing>
       <kasane/theme>

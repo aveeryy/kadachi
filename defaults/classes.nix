@@ -11,18 +11,18 @@ let
       guard = { options, ... }: options ? jovian;
     };
 
-  noctaliaShellClass =
+  noctaliaClass =
     { class, aspect-chain }:
     den._.forward {
       each = lib.singleton class;
-      fromClass = _: "noctaliaShell";
+      fromClass = _: "noctalia";
       intoClass = _: "homeManager";
       intoPath = _: [
         "programs"
-        "noctalia-shell"
+        "noctalia"
       ];
       fromAspect = _: lib.last aspect-chain;
-      guard = { options, ... }: options ? programs.noctalia-shell;
+      guard = { options, ... }: options ? programs.noctalia;
     };
 
   wslClass =
@@ -39,7 +39,7 @@ in
 {
   den.default.includes = [
     jovianClass
-    noctaliaShellClass
+    noctaliaClass
     wslClass
   ];
 }

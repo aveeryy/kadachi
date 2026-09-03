@@ -58,8 +58,8 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/v5.0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rycee-nur = {
