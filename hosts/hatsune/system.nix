@@ -10,13 +10,6 @@
       database.default = "postgres";
 
       copyparty.domain = "hatsune.rcia.dev";
-
-      nginx.localServiceConfig = ''
-        error_page 403 https://miku.hatsune.rcia.dev;
-        allow 10.0.0.0/16;
-        allow 10.10.0.0/16;
-        deny all;
-      '';
     };
 
     users.avery = { };
