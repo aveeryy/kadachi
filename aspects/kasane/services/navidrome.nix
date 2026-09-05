@@ -1,20 +1,15 @@
-{ lib, ... }:
+{ kadachi-lib, ... }:
 let
-  inherit (lib)
-    mkOption
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
     ;
 in
 {
-  den.schema.host =
-    { host, ... }:
-    {
-      options.services.navidrome = with lib.types; {
-        domain = mkOption {
-          type = str;
-          default = "music.${host.services.internetDomain}";
-        };
-      };
-    };
+  den.schema.host = mkHttpServiceOptions {
+    name = "navidrome";
+    subdomain = "music";
+  };
 
   kasane.services._.navidrome =
     { host }:
@@ -29,7 +24,7 @@ in
             navidrome = {
               enable = true;
               settings = {
-                BaseUrl = "https://${host.services.navidrome.domain}";
+                BaseUrl = "https://${host.services.navidrome.domains.internet}";
                 DefaultLanguage = "es";
                 EnableInsightsCollector = false;
                 "ListenBrainz.BaseURL" = "https://koito.rcia.dev/apis/listenbrainz/1";
@@ -38,12 +33,8 @@ in
               };
             };
 
-            nginx.virtualHosts.${host.services.navidrome.domain} = {
-              locations."/" = {
-                proxyPass = "http://127.0.0.1:${toString cfg.settings.Port}";
-              };
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
+            nginx = mkNginxConfiguration host host.services.navidrome {
+              locations."/".proxyPass = "http://127.0.0.1:${toString cfg.settings.Port}";
             };
           };
         };

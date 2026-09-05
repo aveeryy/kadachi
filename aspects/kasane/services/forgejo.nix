@@ -11,6 +11,15 @@ let
     mkOption
     optional
     ;
+
+  inherit (lib.types)
+    str
+    ;
+
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
 in
 {
   flake-file.inputs.catppuccin = {
@@ -18,20 +27,15 @@ in
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.schema.host =
-    { host, ... }:
-    {
-      options.services.forgejo = with lib.types; {
-        domain = mkOption {
-          type = str;
-          default = "git.${host.services.internetDomain}";
-        };
-        database = mkOption {
-          type = str;
-          default = host.services.database.default;
-        };
+  den.schema.host = mkHttpServiceOptions {
+    name = "forgejo";
+    options = { host, ... }: {
+      database = mkOption {
+        type = str;
+        default = host.services.database.default;
       };
     };
+  };
 
   kasane.services._.forgejo =
     { host }:
@@ -76,7 +80,7 @@ in
               settings = {
                 server = {
                   DOMAIN = host.services.forgejo.domain;
-                  ROOT_URL = "https://${host.services.forgejo.domain}";
+                  ROOT_URL = "https://${host.services.forgejo.domains.internet}";
                   HTTP_PORT = mkDefault 3000;
                   DISABLE_SSH = false;
                   START_SSH_SERVER = false;
@@ -93,12 +97,8 @@ in
               };
             };
 
-            nginx.virtualHosts.${host.services.forgejo.domain} = {
-              locations."/" = {
-                proxyPass = "http://127.0.0.1:${toString cfg.settings.server.HTTP_PORT}";
-              };
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
+            nginx = mkNginxConfiguration host host.services.forgejo {
+              locations."/".proxyPass = "http://127.0.0.1:${toString cfg.settings.server.HTTP_PORT}";
             };
 
             openssh.settings.AllowUsers = optional (!cfg.settings.server.DISABLE_SSH) "forgejo";

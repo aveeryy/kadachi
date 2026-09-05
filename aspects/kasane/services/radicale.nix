@@ -1,5 +1,19 @@
-{ kadachi-lib, ... }:
+{ kadachi-lib, lib, ... }:
+let
+  inherit (lib)
+    singleton
+    ;
+
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
+in
 {
+  den.schema.host = mkHttpServiceOptions {
+    name = "radicale";
+  };
+
   kasane.services._.radicale =
     let
       radicalePort = 5232;
@@ -20,7 +34,7 @@
             radicale = {
               enable = true;
               settings = {
-                server.hosts = [ "127.0.0.1:${toString radicalePort}" ];
+                server.hosts = singleton "127.0.0.1:${toString radicalePort}";
                 auth = {
                   type = "htpasswd";
                   htpasswd_filename = config.sops.secrets."radicale/users".path;
@@ -29,11 +43,9 @@
                 storage.filesystem_folder = "/var/lib/radicale/collections";
               };
             };
-            nginx.virtualHosts."radicale.${host.services.internetDomain}" = {
+
+            nginx = mkNginxConfiguration host host.services.radicale {
               locations."/".proxyPass = "http://127.0.0.1:${toString radicalePort}";
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
-              extraConfig = host.services.nginx.localServiceConfig;
             };
           };
           sops.secrets."radicale/users" = {

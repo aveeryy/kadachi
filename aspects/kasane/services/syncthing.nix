@@ -102,9 +102,7 @@ in
       devices = kadachiDevices // (extraDevices.${user.userName} or { });
     in
     {
-      includes = [
-        den.policies.syncthing-expose
-      ];
+      includes = singleton den.policies.syncthing-expose;
 
       nixos = {
         sops.secrets = {

@@ -4,24 +4,19 @@
   ...
 }:
 let
-  inherit (lib) mkOption optionalString;
+  inherit (lib)
+    singleton
+    ;
+
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
 in
 {
-  den.schema.host =
-    { host, ... }:
-    with lib.types;
-    {
-      options.services.karakeep = {
-        domain = mkOption {
-          type = str;
-          default = "karakeep.${host.services.internetDomain}";
-        };
-        localOnly = mkOption {
-          type = bool;
-          default = false;
-        };
-      };
-    };
+  den.schema.host = mkHttpServiceOptions {
+    name = "karakeep";
+  };
 
   kasane.services._.karakeep =
     { host }:
@@ -31,7 +26,7 @@ in
         {
           imports = [
             (kadachi-lib.createBackupConfiguration "karakeep" host {
-              source_directories = [ config.services.karakeep.extraEnvironment.DATA_DIR ];
+              source_directories = singleton config.services.karakeep.extraEnvironment.DATA_DIR;
               keep_daily = 14;
               keep_monthly = 3;
             })
@@ -47,11 +42,8 @@ in
                 DISABLE_SIGNUPS = "true";
               };
             };
-            nginx.virtualHosts.${host.services.karakeep.domain} = {
+            nginx = mkNginxConfiguration host host.services.karakeep {
               locations."/".proxyPass = "http://127.0.0.1:${config.services.karakeep.extraEnvironment.PORT}";
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
-              extraConfig = optionalString (host.services.karakeep.localOnly) host.services.nginx.localServiceConfig;
             };
           };
         };

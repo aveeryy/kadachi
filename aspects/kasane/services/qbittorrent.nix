@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ kadachi-lib, lib, ... }:
 let
   inherit (lib)
     mkOption
@@ -8,14 +8,16 @@ let
   inherit (lib.types)
     str
     ;
+
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
 in
 {
-  den.schema.host = { host, ... }: {
-    options.services.qui = {
-      domain = mkOption {
-        type = str;
-        default = "torrent.${host.services.internetDomain}";
-      };
+  den.schema.host = mkHttpServiceOptions {
+    name = "qui";
+    options = { host, ... }: {
       database = mkOption {
         type = str;
         default = host.services.database.default;
@@ -106,13 +108,8 @@ in
               };
             };
 
-            nginx.virtualHosts.${host.services.qui.domain} = {
-              locations."/" = {
-                proxyPass = "http://127.0.0.1:${toString config.services.qui.settings.port}";
-              };
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
-              extraConfig = host.services.nginx.localServiceConfig;
+            nginx = mkNginxConfiguration host host.services.qui {
+              locations."/".proxyPass = "http://127.0.0.1:${toString config.services.qui.settings.port}";
             };
           };
 

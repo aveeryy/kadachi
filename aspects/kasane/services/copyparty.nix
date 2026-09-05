@@ -1,10 +1,26 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  kadachi-lib,
+  lib,
+  ...
+}:
 let
   inherit (lib)
     genAttrs
     genAttrs'
     mkOption
     nameValuePair
+    singleton
+    ;
+
+  inherit (lib.types)
+    listOf
+    str
+    ;
+
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
     ;
 in
 {
@@ -13,20 +29,15 @@ in
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  den.schema.host =
-    { host, ... }:
-    {
-      options.services.copyparty = with lib.types; {
-        domain = mkOption {
-          type = str;
-          default = "copyparty.${host.services.internetDomain}";
-        };
-        accounts = mkOption {
-          type = listOf str;
-          default = [ "avery" ];
-        };
+  den.schema.host = mkHttpServiceOptions {
+    name = "copyparty";
+    options = { host, ... }: {
+      accounts = mkOption {
+        type = listOf str;
+        default = singleton "avery";
       };
     };
+  };
 
   kasane.services._.copyparty =
     { host }:
@@ -34,9 +45,9 @@ in
       nixos =
         { config, ... }:
         {
-          imports = [ inputs.copyparty.nixosModules.default ];
+          imports = singleton inputs.copyparty.nixosModules.default;
 
-          nixpkgs.overlays = [ inputs.copyparty.overlays.default ];
+          nixpkgs.overlays = singleton inputs.copyparty.overlays.default;
 
           services = {
             copyparty = {
@@ -51,13 +62,13 @@ in
                 passwordFile = config.sops.secrets."copyparty/users/${name}".path;
               });
             };
-            nginx.virtualHosts."${host.services.copyparty.domain}" = {
+            nginx = mkNginxConfiguration host host.services.copyparty {
+              # TODO: allow restricting non-shared paths by address
               locations = {
                 "/" = {
                   proxyPass = "http://localhost:3923";
                   extraConfig = "client_max_body_size 1G;";
                 };
-                # TODO: make these configurable depending on share configuration
                 "/.cpr".proxyPass = "http://localhost:3923";
                 "/share" = {
                   proxyPass = "http://localhost:3923";
@@ -75,7 +86,7 @@ in
 
           users = {
             groups.disk-write.gid = 900;
-            users.copyparty.extraGroups = [ "disk-write" ];
+            users.copyparty.extraGroups = singleton "disk-write";
           };
         };
     };

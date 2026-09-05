@@ -1,18 +1,14 @@
-{ lib, ... }:
+{ kadachi-lib, lib, ... }:
 let
-  inherit (lib) mkOption;
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
 in
 {
-  den.schema.host =
-    { host, ... }:
-    {
-      options.services.koito = with lib.types; {
-        domain = mkOption {
-          type = str;
-          default = "koito.${host.services.internetDomain}";
-        };
-      };
-    };
+  den.schema.host = mkHttpServiceOptions {
+    name = "koito";
+  };
 
   kasane.services._.koito =
     { host }:
@@ -26,7 +22,7 @@ in
           virtualisation.oci-containers.containers."koito" = {
             image = "gabehf/koito:v0.1.6";
             environment = {
-              "KOITO_ALLOWED_HOSTS" = host.services.koito.domain;
+              "KOITO_ALLOWED_HOSTS" = host.services.koito.domains.internet;
               "KOITO_ENABLE_LBZ_RELAY" = "true";
               "KOITO_LBZ_RELAY_URL" = "https://api.listenbrainz.org/1";
               "KOITO_DEFAULT_THEME" = "catppuccin";
@@ -77,10 +73,8 @@ in
           };
 
           services = {
-            nginx.virtualHosts.${host.services.koito.domain} = {
+            nginx = mkNginxConfiguration host host.services.koito {
               locations."/".proxyPass = "http://localhost:${toString koitoPort}";
-              forceSSL = true;
-              useACMEHost = host.services.internetDomain;
             };
 
             postgresql = {

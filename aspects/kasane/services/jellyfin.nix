@@ -1,15 +1,23 @@
-{ ... }:
+{ kadachi-lib, ... }:
+let
+  inherit (kadachi-lib.http)
+    mkHttpServiceOptions
+    mkNginxConfiguration
+    ;
+in
 {
+  den.schema.host = mkHttpServiceOptions {
+    name = "jellyfin";
+  };
+
   kasane.services._.jellyfin =
     { host }:
     {
       nixos = {
         services = {
           jellyfin.enable = true;
-          nginx.virtualHosts."jellyfin.${host.services.internetDomain}" = {
+          nginx = mkNginxConfiguration host host.services.jellyfin {
             locations."/".proxyPass = "http://127.0.0.1:8096";
-            forceSSL = true;
-            useACMEHost = host.services.internetDomain;
           };
         };
         users.users.jellyfin.extraGroups = [

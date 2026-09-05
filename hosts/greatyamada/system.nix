@@ -31,6 +31,26 @@ in
         ];
       };
 
+      adguardhome.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
+
+      pgadmin.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
+
+      qui.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
+
+      radicale.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
+
       vaultwarden.allowedInternetAddresses = with constants.networks; [
         local
         kadachi-wg
