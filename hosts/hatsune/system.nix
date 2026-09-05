@@ -9,7 +9,10 @@
 
       database.default = "postgres";
 
-      copyparty.domain = "hatsune.rcia.dev";
+      copyparty.domains = {
+        internet = "hatsune.rcia.dev";
+        kadachi-wg = "hatsune.wg.rcia.dev";
+      };
     };
 
     users.avery = { };
