@@ -79,7 +79,7 @@ in
               };
               settings = {
                 server = {
-                  DOMAIN = host.services.forgejo.domain;
+                  DOMAIN = host.services.forgejo.domains.internet;
                   ROOT_URL = "https://${host.services.forgejo.domains.internet}";
                   HTTP_PORT = mkDefault 3000;
                   DISABLE_SSH = false;
