@@ -512,11 +512,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788416314,
-        "narHash": "sha256-iR+uydSRd4BcGyZX8LrxFGseChzKTf5cSDV8WWCEeSc=",
+        "lastModified": 1788523658,
+        "narHash": "sha256-X1zKYaJTg2h0Fl7F9iFaaUKUjrTd9o/taQxCKtBHdII=",
         "ref": "refs/heads/main",
-        "rev": "610e9b886aa06c0d7fa4a6b68943af70908f0f60",
-        "revCount": 65,
+        "rev": "10397b5d562ae8f2379ee7aad8e62a13ea2160ff",
+        "revCount": 68,
         "type": "git",
         "url": "https://git.rcia.dev/Avery/kadachi-nvim.git"
       },
