@@ -29,6 +29,7 @@ in
 
   den.schema.host = mkHttpServiceOptions {
     name = "forgejo";
+    subdomain = "git";
     options = { host, ... }: {
       database = mkOption {
         type = str;
