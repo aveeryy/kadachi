@@ -31,13 +31,13 @@
       <megurine/requires/secure-boot>
 
       <adachi/desktop/hyprland>
-
       <adachi/services/podman>
       <kasane/services/wireguard>
+      <adachi/system/cachyos-kernel>
     ];
 
     nixos =
-      { pkgs, ... }:
+      { inputs', pkgs, ... }:
       {
         boot = {
           initrd.availableKernelModules = [
@@ -51,6 +51,7 @@
             "rtsx_pci_sdmmc"
           ];
           kernel.sysctl."vm.overcommit_memory" = 1;
+          kernelPackages = inputs'.nix-cachyos-kernel.legacyPackages.linuxPackages-cachyos-bore-lto;
         };
 
         i18n = {
