@@ -19,7 +19,10 @@
             ];
           };
         };
+
+        services.thermald.enable = true;
       };
+
     provides = {
       kvm.nixos.boot.kernelModules = [ "kvm-intel" ];
     };
