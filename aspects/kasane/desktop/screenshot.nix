@@ -1,9 +1,20 @@
 { ... }:
 {
   kasane.desktop._.screenshot.homeManager =
-    { pkgs, self', ... }:
     {
-      home.packages = with self'.packages; [ screenshot ];
+      config,
+      lib,
+      pkgs,
+      self',
+      ...
+    }:
+    {
+      home = {
+        activation.ensureScreenshotDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] /* bash */ ''
+          run mkdir -p "${config.xdg.userDirs.pictures}/Capturas"
+        '';
+        packages = lib.singleton self'.packages.screenshot;
+      };
       wayland.windowManager.hyprland.settings.bind = [
         ", Print, exec, screenshot full"
         "SHIFT, Print, exec, screenshot section"
