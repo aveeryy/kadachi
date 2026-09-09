@@ -114,6 +114,7 @@ in
         nameValuePair "Obsidian [${name}]" ({
           devices = singleton host.name;
           path.${host.name} = "${config.home.homeDirectory}/${vault.target}";
+          maxConflicts = 0;
         })
       ) (config.programs.obsidian.vaults);
   };
