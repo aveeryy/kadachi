@@ -4,6 +4,7 @@
     includes = [
       <kasane/base-user>
 
+      (<adachi/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
       <adachi/hardware/i2c>
       (<adachi/system/greetd-autologin> "uwsm start default")
 
