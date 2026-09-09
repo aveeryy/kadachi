@@ -37,7 +37,10 @@ let
     ;
 
   extraDevices = {
-    avery.pixel9a.id = "FADOVR6-65UKNE3-CNTQ5UY-ZY6GXW7-G3SRCAD-UO2VLEO-D6O5EWE-XIEYUAC";
+    avery.pixel9a = {
+      id = "FADOVR6-65UKNE3-CNTQ5UY-ZY6GXW7-G3SRCAD-UO2VLEO-D6O5EWE-XIEYUAC";
+      addresses = singleton "tcp://pixel9a.wg.rcia.dev:22000";
+    };
   };
 
   userFolderOverrides = {
@@ -87,7 +90,10 @@ in
     let
       intoSyncthingDevice = otherHost: ({
         inherit (otherHost) name;
-        value.id = otherHost.users.${user.userName}.services.syncthing.deviceId;
+        value = {
+          id = otherHost.users.${user.userName}.services.syncthing.deviceId;
+          addresses = singleton "tcp://${otherHost.name}.wg.rcia.dev:22000";
+        };
       });
 
       hasSyncthingConfigured =
