@@ -42,8 +42,8 @@ in
               anonymize_client_ip = false;
               ratelimit = 0;
               upstream_dns = [
-                "tls://1.1.1.1"
-                "https://dns10.quad9.net/dns-query"
+                "https://lite.xdp.es/dns-query"
+                "tls://lite.xdp.es"
               ];
               bootstrap_dns = [
                 "9.9.9.10"
