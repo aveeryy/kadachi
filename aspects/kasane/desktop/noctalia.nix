@@ -1,8 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}:
+{ lib, ... }:
 let
   inherit (lib)
     optional
@@ -10,18 +6,15 @@ let
     ;
 in
 {
-  flake-file.inputs.noctalia = {
-    url = "github:noctalia-dev/noctalia/v5.0.1";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
   kasane.desktop.noctalia =
     { host, user }:
     {
 
-      homeManager = { config, osConfig, ... }: {
-        imports = singleton inputs.noctalia.homeModules.default;
+      nixos = {
+        programs.noctalia.enable = true;
+      };
 
+      homeManager = { config, osConfig, ... }: {
         programs.noctalia = {
           enable = true;
           settings = {
