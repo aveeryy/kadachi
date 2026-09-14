@@ -2,6 +2,11 @@
 {
   megurine.is._.desktop = {
     nixos = {
+      nix = {
+        daemonCPUSchedPolicy = lib.mkDefault "idle";
+        daemonIOSchedClass = lib.mkDefault "idle";
+        daemonIOSchedPriority = lib.mkDefault 7;
+      };
       security.polkit.enable = lib.mkDefault true;
       services = {
         devmon.enable = lib.mkDefault true;
