@@ -8,6 +8,7 @@
       <adachi/hardware/i2c>
       (<adachi/system/greetd-autologin> "uwsm start default")
 
+      <adachi/tools/autofirma>
       <kasane/desktop/awww>
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
