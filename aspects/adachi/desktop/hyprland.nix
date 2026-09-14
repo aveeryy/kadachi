@@ -2,13 +2,12 @@
 {
   adachi.desktop._.hyprland = {
     nixos =
-      { inputs', pkgs, ... }:
+      { pkgs, ... }:
       {
         programs = {
           uwsm.enable = true;
           hyprland = {
             enable = true;
-            package = inputs'.nixpkgs-master.legacyPackages.hyprland;
             withUWSM = true;
           };
         };
