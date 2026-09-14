@@ -63,6 +63,8 @@
           ];
         };
 
+        powerManagement.cpuFreqGovernor = "performance";
+
         systemd.network.networks."10-wan" = {
           matchConfig.Name = "enp89s0";
           networkConfig.DHCP = "ipv4";
