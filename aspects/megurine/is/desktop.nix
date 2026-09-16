@@ -7,7 +7,10 @@
         daemonIOSchedClass = lib.mkDefault "idle";
         daemonIOSchedPriority = lib.mkDefault 7;
       };
-      security.polkit.enable = lib.mkDefault true;
+      security.polkit = {
+        enable = lib.mkDefault true;
+        enablePkexecWrapper = lib.mkDefault true;
+      };
       services = {
         devmon.enable = lib.mkDefault true;
         gvfs.enable = lib.mkDefault true;
