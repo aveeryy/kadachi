@@ -5,7 +5,7 @@
       { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [
-          gparted
+          kdePackages.partitionmanager
           qdiskinfo
         ];
       };
