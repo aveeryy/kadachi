@@ -14,6 +14,8 @@ let
     dankoszz = "87b47db0-4dd3-469c-8dfd-c21095dadd93";
     Santos_H = "6bbfc884-43e0-48b6-81d3-bb52654db44d";
     PableteOmg12 = "34c4db29-0112-4ae1-b3ee-48fb59b3311c";
+    MAGRADER = "b747a57b-ccf6-4492-9ab4-1c6f4c89b95e";
+    Jeepic10 = "afc0e5a0-8abd-470d-946e-cc755b79d021";
   };
 
   getActiveServers =
