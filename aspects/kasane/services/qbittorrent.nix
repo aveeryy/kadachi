@@ -17,6 +17,7 @@ in
 {
   den.schema.host = mkHttpServiceOptions {
     name = "qui";
+    subdomain = "torrent";
     options = { host, ... }: {
       database = mkOption {
         type = str;
