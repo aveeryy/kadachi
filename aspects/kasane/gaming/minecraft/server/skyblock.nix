@@ -16,6 +16,7 @@
             package = inputs'.nix-minecraft.legacyPackages.fabricServers.fabric-26_1_2.override ({
               jre_headless = pkgs.openjdk25_headless;
             });
+            jvmOpts = "-Xmx2G -Xms2G -XX:+UseZGC -XX:+UseCompactObjectHeaders";
             whitelist = {
               inherit (kadachi-lib.minecraft.players)
                 gbrii
