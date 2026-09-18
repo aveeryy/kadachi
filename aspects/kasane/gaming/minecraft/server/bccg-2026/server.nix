@@ -31,6 +31,7 @@
           difficulty = "hard";
           gamemode = "survival";
           online-mode = false;
+          pause-when-empty-seconds = 60;
           spawn-protection = 0;
           view-distance = 8;
         };
