@@ -16,6 +16,7 @@ let
     PableteOmg12 = "34c4db29-0112-4ae1-b3ee-48fb59b3311c";
     MAGRADER = "b747a57b-ccf6-4492-9ab4-1c6f4c89b95e";
     Jeepic10 = "afc0e5a0-8abd-470d-946e-cc755b79d021";
+    Perichi2005 = "868a9f90-5f8f-47f4-aa13-3500161cb938";
   };
 
   getActiveServers =

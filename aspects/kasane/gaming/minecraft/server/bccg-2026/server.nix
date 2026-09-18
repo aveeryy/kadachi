@@ -16,6 +16,7 @@
             PableteOmg12
             MAGRADER
             Jeepic10
+            Perichi2005
             ;
         };
         operators = {
