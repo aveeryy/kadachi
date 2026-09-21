@@ -4,10 +4,12 @@
     nixos = { pkgs, inputs', ... }: {
       services.minecraft-servers.servers.vc-test = {
         enable = true;
-        autoStart = true;
+        autoStart = false;
         restart = "no";
+
         package = inputs'.nix-minecraft.legacyPackages.paperServers.paper-26_2;
         jvmOpts = "-Xmx512M -Xms512M -XX:+UseZGC -XX:+UseCompactObjectHeaders";
+
         whitelist = {
           inherit (kadachi-lib.minecraft.players)
             gbrii
@@ -24,6 +26,7 @@
             gbrii
             ;
         };
+
         serverProperties = {
           server-port = 55003;
           motd = "voice chat test server";
@@ -51,9 +54,10 @@
               secret = "@MINECRAFT_PROXY_FORWARDING_SECRET@";
             };
           };
-          "plugins/voicechat/voicechat-server.properties" = builtins.toFile "voicechat-server.properties" ''
-            port=56003
-          '';
+
+          "plugins/voicechat/voicechat-server.properties".value = {
+            port = 56003;
+          };
         };
       };
     };
