@@ -80,6 +80,7 @@ in
       <adachi/services/podman>
       <kasane/gaming/minecraft/server>
       <kasane/gaming/minecraft/server/bccg-2026>
+      <kasane/gaming/minecraft/server/vc-test>
       <kasane/services/acme/desec>
       <kasane/services/adguardhome>
       <kasane/services/backups>
