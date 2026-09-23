@@ -8,7 +8,7 @@
         group = lib.mkDefault "nginx";
         webroot = lib.mkDefault null;
         extraLegoFlags = lib.mkDefault [
-          "--dns.propagation-wait=300s"
+          "--dns.propagation.wait=300s"
         ];
       };
     };
