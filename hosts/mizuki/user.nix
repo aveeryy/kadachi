@@ -24,6 +24,7 @@
       <kasane/tools/pcmanfm-qt>
       <kasane/tools/obsidian>
       <kasane/tools/xh>
+      <kasane/tools/yaak>
       <kasane/web-browsers/firefox>
     ];
 
