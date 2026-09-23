@@ -9,22 +9,22 @@ in
     {
       packages.yaak = rustPlatform.buildRustPackage (finalAttrs: {
         pname = "yaak";
-        version = "2026.7.1";
+        version = "2026.8.0";
 
         src = fetchFromGitHub {
           owner = "mountain-loop";
           repo = "yaak";
           tag = "v${finalAttrs.version}";
-          hash = "sha256-SGyfIyYRf47ai3iu2GZOf+sindKRERv7sGbPDtL0/fc=";
+          hash = "sha256-d7Xmy0AHY1lZNaHmrgolD0d1tze1oX0OvE5mD1t3gEQ=";
         };
 
         npmDeps = fetchNpmDeps {
           inherit (finalAttrs) src patches;
-          hash = "sha256-wU+kmNBHgRfCAl31Bw3ztCCekHKM6h42+CQh6kcsuRQ=";
+          hash = "sha256-90qikEM4spYEfRC2aE00rSH0roYb4O58862VtlN7gzY=";
           fetcherVersion = 2;
         };
 
-        cargoHash = "sha256-CBrbdNbCTiW19Nj7oToJ8luYZK03YTGxjIyPN45UKpo=";
+        cargoHash = "sha256-IWoO1jjPN6rUIj2duGhcfPvzhnzso6NKKXZO+W5bN9s=";
 
         cargoRoot = ".";
         buildAndTestSubdir = "crates-tauri/yaak-app-client";
