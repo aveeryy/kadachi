@@ -29,7 +29,6 @@
       <kasane/tools/compressed-file-tools>
       <kasane/tools/disk-management>
       <kasane/tools/fastfetch>
-      <kasane/tools/filen-desktop>
       <kasane/tools/kitty>
       <kasane/tools/libreoffice>
       <kasane/tools/multimedia>
