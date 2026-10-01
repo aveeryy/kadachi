@@ -18,6 +18,7 @@ let
     Jeepic10 = "afc0e5a0-8abd-470d-946e-cc755b79d021";
     Perichi2005 = "868a9f90-5f8f-47f4-aa13-3500161cb938";
     DemocleTH = "9557e8ee-61b0-42e2-b33f-f89806628ea2";
+    AngelMT9 = "4722649c-e86f-4487-bf9b-c61f91ab179d";
   };
 
   getActiveServers =
