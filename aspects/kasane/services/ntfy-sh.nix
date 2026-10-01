@@ -40,12 +40,9 @@ in
 
           sops = {
             secrets."ntfy/users" = { };
-            templates."ntfy/users" = {
-              content = ''
-                NTFY_AUTH_USERS="${config.sops.placeholder."ntfy/users"}"
-              '';
-              owner = config.services.ntfy-sh.user;
-            };
+            templates."ntfy/users".content = ''
+              NTFY_AUTH_USERS="${config.sops.placeholder."ntfy/users"}"
+            '';
           };
         };
     };
