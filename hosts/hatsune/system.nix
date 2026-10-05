@@ -109,7 +109,7 @@ in
 
             nginx.virtualHosts."miku.${host.services.internetDomain}" = {
               locations."= /" = {
-                root = "${self}/modules/assets";
+                root = "${self}/assets";
                 tryFiles = "/migu.webp =404";
               };
               forceSSL = true;
