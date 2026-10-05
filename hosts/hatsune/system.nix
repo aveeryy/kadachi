@@ -1,4 +1,14 @@
-{ __findFile, self, ... }:
+{
+  __findFile,
+  kadachi-lib,
+  self,
+  ...
+}:
+let
+  inherit (kadachi-lib)
+    constants
+    ;
+in
 {
   den.hosts.x86_64-linux.hatsune = {
     services = {
@@ -13,6 +23,11 @@
         internet = "hatsune.rcia.dev";
         kadachi-wg = "hatsune.wg.rcia.dev";
       };
+
+      qui.allowedInternetAddresses = with constants.networks; [
+        local
+        kadachi-wg
+      ];
     };
 
     users.avery = { };

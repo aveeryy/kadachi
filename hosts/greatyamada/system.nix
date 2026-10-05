@@ -41,11 +41,6 @@ in
         kadachi-wg
       ];
 
-      qui.allowedInternetAddresses = with constants.networks; [
-        local
-        kadachi-wg
-      ];
-
       radicale.allowedInternetAddresses = with constants.networks; [
         local
         kadachi-wg
