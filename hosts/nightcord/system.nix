@@ -17,7 +17,7 @@
       <megurine/is/server>
       <megurine/requires/legacy-boot>
 
-      <kasane/services/acme/desec>
+      <adachi/services/acme/host/desec>
       <kasane/services/forgejo>
       <kasane/services/nginx>
       <kasane/services/ntfy-sh>

@@ -1,59 +1,45 @@
-{ lib, ... }:
+{
+  __findFile,
+  kadachi-lib,
+  lib,
+  ...
+}:
+let
+  inherit (lib)
+    mkDefault
+    singleton
+    ;
+
+  inherit (kadachi-lib)
+    recursiveMerge
+    ;
+
+  mkAspect =
+    name: envName:
+    let
+      nixosConfig = domain: { config, ... }: {
+        security.acme.certs.${domain} = {
+          credentialFiles.${envName} = config.sops.secrets."acme/${name}/${domain}".path;
+          extraDomainNames = mkDefault (singleton "*.${domain}");
+          dnsProvider = name;
+        };
+
+        sops.secrets."acme/${name}/${domain}".owner = "acme";
+      };
+    in
+    {
+      ${name} = domain: { nixos = nixosConfig domain; };
+      host._.${name} = { host }: { nixos = nixosConfig host.services.internetDomain; };
+    };
+in
 {
   adachi.services._.acme = {
-    nixos.security.acme = {
-      acceptTerms = true;
-      defaults = {
-        profile = lib.mkDefault "shortlived";
-        group = lib.mkDefault "nginx";
-        webroot = lib.mkDefault null;
-        extraLegoFlags = lib.mkDefault [
-          "--dns.propagation.wait=300s"
-        ];
-      };
-    };
+    description = "Automatic TLS certificate renewal using ACME and Let's Encrypt. This is a dummy aspect, use the children aspects.";
 
-    provides = {
-      cloudflare = domain: {
-        nixos =
-          { config, ... }:
-          {
-            security.acme.certs."${domain}" = {
-              credentialFiles.CLOUDFLARE_DNS_API_TOKEN_FILE =
-                lib.mkDefault
-                  config.sops.secrets."acme/cloudflare/${domain}".path;
-              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
-              dnsProvider = "cloudflare";
-            };
-            sops.secrets."acme/cloudflare/${domain}".owner = "acme";
-          };
-      };
-      hetzner = domain: {
-        nixos =
-          { config, ... }:
-          {
-            security.acme.certs."${domain}" = {
-              credentialFiles.HETZNER_API_TOKEN_FILE =
-                lib.mkDefault
-                  config.sops.secrets."acme/hetzner/${domain}".path;
-              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
-              dnsProvider = "hetzner";
-            };
-            sops.secrets."acme/hetzner/${domain}".owner = "acme";
-          };
-      };
-      desec = domain: {
-        nixos =
-          { config, ... }:
-          {
-            security.acme.certs."${domain}" = {
-              credentialFiles.DESEC_TOKEN_FILE = lib.mkDefault config.sops.secrets."acme/desec/${domain}".path;
-              extraDomainNames = lib.mkDefault [ "*.${domain}" ];
-              dnsProvider = "desec";
-            };
-            sops.secrets."acme/desec/${domain}".owner = "acme";
-          };
-      };
-    };
+    provides = recursiveMerge [
+      (mkAspect "cloudflare" "CLOUDFLARE_DNS_API_TOKEN_FILE")
+      (mkAspect "desec" "DESEC_TOKEN_FILE")
+      (mkAspect "hetzner" "HETZNER_API_TOKEN_FILE")
+    ];
   };
 }

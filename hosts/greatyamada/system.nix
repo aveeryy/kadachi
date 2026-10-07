@@ -72,11 +72,12 @@ in
       <megurine/is/server>
       <megurine/requires/secure-boot>
 
+      <adachi/services/acme/host/desec>
       <adachi/services/podman>
+
       <kasane/gaming/minecraft/server>
       <kasane/gaming/minecraft/server/bccg-2026>
       <kasane/gaming/minecraft/server/vc-test>
-      <kasane/services/acme/desec>
       <kasane/services/adguardhome>
       <kasane/services/backups>
       <kasane/services/ddns/desec>

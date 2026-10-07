@@ -1,27 +1,44 @@
 { lib, ... }:
+let
+  inherit (lib)
+    mkDefault
+    ;
+in
 {
   megurine.is._.server.nixos = {
     boot.loader = {
-      grub.configurationLimit = lib.mkDefault 5;
-      systemd-boot.configurationLimit = lib.mkDefault 5;
+      grub.configurationLimit = mkDefault 5;
+      systemd-boot.configurationLimit = mkDefault 5;
     };
 
     environment.variables.BROWSER = "echo";
 
-    fonts.fontconfig.enable = lib.mkDefault false;
+    fonts.fontconfig.enable = mkDefault false;
 
-    networking.useDHCP = lib.mkDefault false;
+    networking.useDHCP = mkDefault false;
 
-    time.timeZone = lib.mkDefault "UTC";
+    security.acme = {
+      acceptTerms = true;
+      defaults = {
+        profile = mkDefault "shortlived";
+        group = mkDefault "nginx";
+        webroot = mkDefault null;
+        extraLegoFlags = mkDefault [
+          "--dns.propagation.wait=300s"
+        ];
+      };
+    };
+
+    time.timeZone = mkDefault "UTC";
 
     users.mutableUsers = false;
 
     xdg = {
-      autostart.enable = lib.mkDefault false;
-      icons.enable = lib.mkDefault false;
-      menus.enable = lib.mkDefault false;
-      mime.enable = lib.mkDefault false;
-      sounds.enable = lib.mkDefault false;
+      autostart.enable = mkDefault false;
+      icons.enable = mkDefault false;
+      menus.enable = mkDefault false;
+      mime.enable = mkDefault false;
+      sounds.enable = mkDefault false;
     };
   };
 }
