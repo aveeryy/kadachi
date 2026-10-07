@@ -29,7 +29,7 @@
     ];
 
     homeManager = {
-      wayland.windowManager.hyprland.settings.input.sensitivity = -0.1;
+      wayland.windowManager.hyprland.settings.input.sensitivity = -0.3;
     };
   };
 }
