@@ -25,6 +25,7 @@
           "cursor_shape" = "beam";
           "scrollback_lines" = 8000;
           "enable_audio_bell" = "no";
+          "remember_window_size" = "no";
           "window_padding_width" = 8;
           "tab_bar_min_tabs" = 2;
           "tab_bar_edge" = "bottom";
