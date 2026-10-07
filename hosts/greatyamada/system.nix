@@ -73,6 +73,7 @@ in
       <megurine/requires/secure-boot>
 
       <adachi/services/acme/host/desec>
+      <adachi/services/ddns/host/desec>
       <adachi/services/podman>
 
       <kasane/gaming/minecraft/server>
@@ -80,7 +81,6 @@ in
       <kasane/gaming/minecraft/server/vc-test>
       <kasane/services/adguardhome>
       <kasane/services/backups>
-      <kasane/services/ddns/desec>
       <kasane/services/fail2ban>
       <kasane/services/forgejo>
       <kasane/services/koito>

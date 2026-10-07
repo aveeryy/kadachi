@@ -5,7 +5,7 @@ let
     ;
 in
 {
-  megurine.is._.server.nixos = {
+  megurine.is._.server.nixos = { config, ... }: {
     boot.loader = {
       grub.configurationLimit = mkDefault 5;
       systemd-boot.configurationLimit = mkDefault 5;
@@ -27,6 +27,11 @@ in
           "--dns.propagation.wait=300s"
         ];
       };
+    };
+
+    services.inadyn = {
+      enable = config.services.inadyn.settings.provider != { };
+      settings.allow-ipv6 = config.networking.enableIPv6;
     };
 
     time.timeZone = mkDefault "UTC";

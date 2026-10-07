@@ -45,10 +45,10 @@ in
         <megurine/requires/secure-boot>
 
         <adachi/services/acme/host/desec>
+        <adachi/services/ddns/host/desec>
         <adachi/hardware/ugreen-led-controller>
 
         <kasane/services/copyparty>
-        <kasane/services/ddns/desec>
         <kasane/services/jellyfin>
         <kasane/services/navidrome>
         <kasane/services/nginx>
