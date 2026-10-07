@@ -30,7 +30,6 @@
       <megurine/has/intel-cpu/kvm>
       <megurine/requires/secure-boot>
 
-      <adachi/desktop/hyprland>
       <adachi/services/podman>
       <kasane/services/wireguard>
       <adachi/system/cachyos-kernel>

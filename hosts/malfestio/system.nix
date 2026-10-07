@@ -28,7 +28,6 @@
       <megurine/is/steam-deck/cachyos-kernel>
 
       <adachi/desktop>
-      <adachi/desktop/hyprland>
 
       <kasane/services/wireguard>
     ];

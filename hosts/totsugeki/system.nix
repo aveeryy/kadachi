@@ -40,7 +40,6 @@
       <megurine/has/amd-cpu/kvm>
       <megurine/requires/secure-boot>
 
-      <adachi/desktop/hyprland>
       <adachi/services/podman>
       <adachi/system/cachyos-kernel>
 
