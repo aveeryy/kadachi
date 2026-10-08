@@ -73,26 +73,25 @@ in
       <megurine/requires/secure-boot>
 
       <adachi/services/acme/host/desec>
+      <adachi/services/adguardhome>
+      <adachi/services/backups>
       <adachi/services/ddns/host/desec>
+      <adachi/services/fail2ban>
+      <adachi/services/forgejo>
+      <adachi/services/koito>
+      <adachi/services/karakeep>
+      <adachi/services/minecraft-server>
+      <adachi/services/minecraft-server/bccg-2026>
+      <adachi/services/minecraft-server/vc-test>
+      <adachi/services/nginx>
+      <adachi/services/ntfy-sh>
+      <adachi/services/pgadmin>
       <adachi/services/podman>
-
-      <kasane/gaming/minecraft/server>
-      <kasane/gaming/minecraft/server/bccg-2026>
-      <kasane/gaming/minecraft/server/vc-test>
-      <kasane/services/adguardhome>
-      <kasane/services/backups>
-      <kasane/services/fail2ban>
-      <kasane/services/forgejo>
-      <kasane/services/koito>
-      <kasane/services/karakeep>
-      <kasane/services/nginx>
-      <kasane/services/ntfy-sh>
-      <kasane/services/pgadmin>
-      <kasane/services/postgresql>
-      <kasane/services/radicale>
-      <kasane/services/samba>
-      <kasane/services/vaultwarden>
-      <kasane/services/wireguard>
+      <adachi/services/postgresql>
+      <adachi/services/radicale>
+      <adachi/services/samba>
+      <adachi/services/vaultwarden>
+      <adachi/services/wireguard>
     ];
 
     nixos =
@@ -111,7 +110,6 @@ in
         ];
 
         security.acme.certs."rcia.dev".extraDomainNames = [
-          "*.rcia.dev"
           "*.hatsune.rcia.dev"
         ];
 

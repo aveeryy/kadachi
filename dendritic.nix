@@ -25,9 +25,9 @@ in
     (inputs.home-manager.flakeModules.home-manager)
 
     # Namespaces
-    (inputs.den.namespace "adachi" true)
+    (inputs.den.namespace "adachi" false)
     (inputs.den.namespace "kasane" false)
-    (inputs.den.namespace "megurine" true)
+    (inputs.den.namespace "megurine" false)
     (inputs.den.namespace "hosts" false)
   ];
 

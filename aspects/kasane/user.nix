@@ -14,8 +14,8 @@
       includes = [
         <den/primary-user>
 
-        <adachi/system/spanish-xdg-user-dirs>
-        <kasane/tools/git>
+        <kasane/misc/spanish-xdg-user-dirs>
+        <kasane/programs/git>
         <kasane/zsh>
       ];
 

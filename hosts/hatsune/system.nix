@@ -44,16 +44,15 @@ in
         <megurine/is/server>
         <megurine/requires/secure-boot>
 
+        <adachi/hardware/ugreen-led-controller>
         <adachi/services/acme/host/desec>
         <adachi/services/ddns/host/desec>
-        <adachi/hardware/ugreen-led-controller>
-
-        <kasane/services/copyparty>
-        <kasane/services/jellyfin>
-        <kasane/services/navidrome>
-        <kasane/services/nginx>
-        <kasane/services/qbittorrent>
-        <kasane/services/postgresql>
+        <adachi/services/copyparty>
+        <adachi/services/jellyfin>
+        <adachi/services/navidrome>
+        <adachi/services/nginx>
+        <adachi/services/qbittorrent>
+        <adachi/services/postgresql>
       ];
 
       nixos =

@@ -27,9 +27,7 @@
       <megurine/is/steam-deck>
       <megurine/is/steam-deck/cachyos-kernel>
 
-      <adachi/desktop>
-
-      <kasane/services/wireguard>
+      <adachi/services/wireguard>
     ];
 
     nixos = {

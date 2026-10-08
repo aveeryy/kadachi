@@ -4,27 +4,26 @@
     includes = [
       <kasane/base-user>
 
-      (<adachi/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
-      <adachi/hardware/i2c>
       (<adachi/system/greetd-autologin> "uwsm start default")
 
-      <adachi/tools/autofirma>
+      (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
+      <kasane/programs/autofirma>
       <kasane/desktop/awww>
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
       <kasane/desktop/noctalia>
       <kasane/desktop/screenshot>
       <kasane/services/syncthing>
+      <kasane/programs/compressed-file-tools>
+      <kasane/programs/disk-management>
+      <kasane/programs/kitty>
+      <kasane/programs/libreoffice>
+      <kasane/programs/multimedia>
+      <kasane/programs/pcmanfm-qt>
+      <kasane/programs/obsidian>
+      <kasane/programs/xh>
+      <kasane/programs/yaak>
       <kasane/theme>
-      <kasane/tools/compressed-file-tools>
-      <kasane/tools/disk-management>
-      <kasane/tools/kitty>
-      <kasane/tools/libreoffice>
-      <kasane/tools/multimedia>
-      <kasane/tools/pcmanfm-qt>
-      <kasane/tools/obsidian>
-      <kasane/tools/xh>
-      <kasane/tools/yaak>
       <kasane/web-browsers/firefox>
     ];
 

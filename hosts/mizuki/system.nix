@@ -30,8 +30,9 @@
       <megurine/has/intel-cpu/kvm>
       <megurine/requires/secure-boot>
 
+      <adachi/hardware/i2c>
       <adachi/services/podman>
-      <kasane/services/wireguard>
+      <adachi/services/wireguard>
       <adachi/system/cachyos-kernel>
     ];
 

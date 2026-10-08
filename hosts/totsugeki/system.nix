@@ -40,11 +40,12 @@
       <megurine/has/amd-cpu/kvm>
       <megurine/requires/secure-boot>
 
+      <adachi/hardware/i2c>
+      <adachi/services/backups>
       <adachi/services/podman>
+      <adachi/services/wireguard>
       <adachi/system/cachyos-kernel>
 
-      <kasane/services/backups>
-      <kasane/services/wireguard>
     ];
 
     nixos =

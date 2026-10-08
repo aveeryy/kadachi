@@ -4,14 +4,12 @@
     includes = [
       <kasane/base-user>
 
-      (<adachi/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
-      <adachi/hardware/i2c>
+      <adachi/programs/virtualisation>
+      <adachi/services/printing>
       (<adachi/system/greetd-autologin> "uwsm start default")
-      <adachi/tools/autofirma>
-      (<adachi/tools/autofirma/firefox-integration> "Avery")
-      <adachi/tools/virtualisation>
 
       <kasane/desktop/awww>
+      (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
       <kasane/desktop/noctalia>
@@ -20,21 +18,22 @@
       <kasane/gaming/discord>
       <kasane/gaming/heroic>
       <kasane/gaming/ludusavi>
-      <kasane/gaming/minecraft/launcher>
+      <kasane/gaming/minecraft>
       <kasane/gaming/steam>
-      <kasane/services/printing>
       <kasane/services/syncthing>
+      <kasane/programs/android>
+      <kasane/programs/autofirma>
+      (<kasane/programs/autofirma/firefox-integration> "Avery")
+      <kasane/programs/compressed-file-tools>
+      <kasane/programs/disk-management>
+      <kasane/programs/fastfetch>
+      <kasane/programs/kitty>
+      <kasane/programs/libreoffice>
+      <kasane/programs/multimedia>
+      <kasane/programs/obsidian>
+      <kasane/programs/pcmanfm-qt>
+      <kasane/programs/qbittorrent>
       <kasane/theme>
-      <kasane/tools/android>
-      <kasane/tools/compressed-file-tools>
-      <kasane/tools/disk-management>
-      <kasane/tools/fastfetch>
-      <kasane/tools/kitty>
-      <kasane/tools/libreoffice>
-      <kasane/tools/multimedia>
-      <kasane/tools/obsidian>
-      <kasane/tools/pcmanfm-qt>
-      <kasane/tools/qbittorrent>
       <kasane/web-browsers/firefox>
     ];
 

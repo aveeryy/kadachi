@@ -8,9 +8,9 @@
       <kasane/desktop/hyprland>
       <kasane/gaming/discord>
       <kasane/theme>
-      <kasane/tools/compressed-file-tools>
-      <kasane/tools/kitty>
-      <kasane/tools/pcmanfm-qt>
+      <kasane/programs/compressed-file-tools>
+      <kasane/programs/kitty>
+      <kasane/programs/pcmanfm-qt>
       <kasane/web-browsers/firefox>
     ];
 
