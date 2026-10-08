@@ -42,6 +42,8 @@ in
               ];
             };
 
+            control_center.calendar.show_events_card = false;
+
             notification.layer = "overlay";
 
             osd = {
