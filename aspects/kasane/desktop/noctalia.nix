@@ -147,7 +147,7 @@ in
           {
             bind = [
               "SUPER, Space, exec, ${ipc} panel-toggle launcher"
-              # "SUPER, period, exec, ${ipc} launcher emoji"
+              "SUPER, period, exec, ${ipc} panel-toggle launcher /emo "
               # "SUPER, comma, exec, ${ipc} plugin:kaomoji toggle"
               "CTRL ALT, Delete, exec, ${ipc} panel-toggle session"
             ];
