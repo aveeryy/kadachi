@@ -58,6 +58,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-pgadmin-fix.url = "github:gador/nixpkgs/pgadmin-9.18";
     rycee-nur = {
       url = "gitlab:rycee/nur-expressions";
       inputs.nixpkgs.follows = "nixpkgs";
