@@ -20,6 +20,7 @@ in
           settings = {
             audio = {
               enable_overdrive = true;
+              enable_sounds = false;
             };
 
             bar.default = {
