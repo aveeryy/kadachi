@@ -7,18 +7,12 @@
         autoStart = false;
         restart = "no";
 
-        package = inputs'.nix-minecraft.legacyPackages.paperServers.paper-26_2;
+        package = inputs'.nix-minecraft.legacyPackages.paperServers.paper-26_3;
         jvmOpts = "-Xmx512M -Xms512M -XX:+UseZGC -XX:+UseCompactObjectHeaders";
 
         whitelist = {
           inherit (kadachi-lib.minecraft.players)
             gbrii
-            dankoszz
-            Santos_H
-            PableteOmg12
-            MAGRADER
-            Jeepic10
-            Perichi2005
             ;
         };
         operators = {
@@ -42,8 +36,8 @@
 
         symlinks = {
           "plugins/voice-chat.jar" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/IhqyykOv/voicechat-bukkit-2.6.23.jar";
-            sha512 = "3f01340bb29e03c0ba3ebb250b461bea6503a76544c9468fb228738a04fe9c21bfee83b5606e9b403c2b0587da9ad8d08687f6442e0dee392bf6010697641d96";
+            url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/EJth3OAr/voicechat-bukkit-2.6.24.jar";
+            sha512 = "7f1d5765e79cd42616f14f40322d1171a8505e1116dfff71c7bd0e59af9d255c06f70a68a5b622015c0407d40c80e70298c172992007ff339cedcef0116fec42";
           };
         };
 
