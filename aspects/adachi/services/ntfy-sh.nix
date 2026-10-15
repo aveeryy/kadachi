@@ -28,6 +28,7 @@ in
 
                 auth-file = "/var/lib/ntfy-sh/user.db";
                 auth-default-access = "deny-all";
+                auth-access = [ "*:up*:write-only" ];
               };
             };
             nginx = mkNginxConfiguration host host.services.ntfy-sh {
