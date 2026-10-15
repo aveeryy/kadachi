@@ -30,7 +30,7 @@ in
           port = 3001;
           settings = {
             http = {
-              address = "127.0.0.1:${toString config.services.adguardhome.port}";
+              address = lib.mkForce "127.0.0.1:${toString config.services.adguardhome.port}";
               session_ttl = "720h";
             };
             dns = {
