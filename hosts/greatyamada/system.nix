@@ -91,6 +91,7 @@ in
       <adachi/services/postgresql>
       <adachi/services/radicale>
       <adachi/services/samba>
+      <adachi/services/tranquil-pds>
       <adachi/services/vaultwarden>
       <adachi/services/wireguard>
     ];
@@ -152,6 +153,7 @@ in
               comment = "PS2 game share";
             };
           };
+          tranquil-pds.dataDir = "/mnt/ssd-01/tranquil-pds";
         };
 
         systemd = {
