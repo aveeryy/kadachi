@@ -121,6 +121,13 @@ in
                   use_global_settings = false;
                   filtering_enabled = false;
                 }
+                {
+                  name = "Tablet Xiaomi";
+                  ids = [ "10.0.250.3" ];
+                  tags = [ "device_tablet" ];
+                  use_global_settings = false;
+                  filtering_enabled = false;
+                }
               ];
             };
             filters = [
