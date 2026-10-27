@@ -36,8 +36,9 @@
             settings.port = 5432;
             authentication = pkgs.lib.mkOverride 10 ''
               local sameuser all peer map=superuser_map
-              local all postgres scram-sha-256
+              local all postgres trust
               # Ask password in pgadmin
+              host all postgres 127.0.0.1/32 scram-sha-256
               host sameuser all 127.0.0.1/32 scram-sha-256
               host sameuser all ::1/128 scram-sha-256
               # Podman containers
