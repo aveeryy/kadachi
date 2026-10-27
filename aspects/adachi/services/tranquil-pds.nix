@@ -35,8 +35,23 @@ in
         };
 
         nginx = mkNginxConfiguration host host.services.tranquil-pds {
-          locations."/".proxyPass =
-            "http://127.0.0.1:${toString config.services.tranquil-pds.settings.server.port}";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.tranquil-pds.settings.server.port}";
+            extraConfig = ''
+              proxy_read_timeout 300;
+              proxy_send_timeout 300;
+            '';
+          };
+          locations."/xrpc" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.tranquil-pds.settings.server.port}";
+            proxyWebsockets = true;
+            extraConfig = ''
+              proxy_read_timeout 86400;
+              proxy_send_timeout 86400;
+              proxy_buffering off;
+              proxy_request_buffering off;
+            '';
+          };
         };
       };
 
