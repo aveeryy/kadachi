@@ -83,6 +83,7 @@ in
       <adachi/services/minecraft-server>
       <adachi/services/minecraft-server/bccg-2026>
       <adachi/services/minecraft-server/vc-test>
+      <adachi/services/miniflux>
       <adachi/services/nginx>
       <adachi/services/ntfy-sh>
       <adachi/services/pgadmin>
