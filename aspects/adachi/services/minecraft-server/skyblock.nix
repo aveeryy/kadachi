@@ -4,7 +4,7 @@
     nixos = { pkgs, inputs', ... }: {
       services.minecraft-servers.servers.skyblock = {
         enable = true;
-        autoStart = true;
+        autoStart = false;
         restart = "no";
 
         package = inputs'.nix-minecraft.legacyPackages.fabricServers.fabric-26_3.override ({

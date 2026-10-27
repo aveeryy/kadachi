@@ -4,7 +4,7 @@
     nixos = { pkgs, inputs', ... }: {
       services.minecraft-servers.servers.bccg-2026 = {
         enable = true;
-        autoStart = true;
+        autoStart = false;
         restart = "no";
 
         package = inputs'.nix-minecraft.legacyPackages.paperServers.paper-26_3;
