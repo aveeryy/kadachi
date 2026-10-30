@@ -1,9 +1,5 @@
-{ kadachi-lib, lib, ... }:
+{ kadachi-lib, ... }:
 let
-  inherit (lib)
-    mkForce
-    ;
-
   inherit (kadachi-lib.http)
     mkHttpServiceOptions
     mkNginxConfiguration
@@ -23,6 +19,7 @@ in
           adminCredentialsFile = config.sops.templates."miniflux_admin".path;
           config = {
             LISTEN_ADDR = "localhost:12500";
+            POLLING_SCHEDULER = "entry_frequency";
           };
         };
 
