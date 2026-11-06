@@ -28,6 +28,7 @@
       <megurine/has/bluetooth>
       <megurine/has/intel-cpu>
       <megurine/has/intel-cpu/kvm>
+      <megurine/has/wifi>
       <megurine/requires/secure-boot>
 
       <adachi/hardware/i2c>
@@ -62,6 +63,8 @@
             "es_ES.UTF-8/UTF-8"
           ];
         };
+
+        networking.networkmanager.unmanaged = [ "enp89s0" ];
 
         powerManagement.cpuFreqGovernor = "performance";
 

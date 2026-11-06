@@ -14,6 +14,7 @@ let
     map
     mergeAttrsList
     mkDefault
+    mkForce
     mkOption
     optionalAttrs
     optionalString
@@ -154,6 +155,8 @@ in
               externalInterface = cfg.internetInterface;
               internalInterfaces = singleton interfaceName;
             };
+
+            networkmanager.dns = mkForce "dnsmasq";
 
             wireguard = {
               enable = true;
