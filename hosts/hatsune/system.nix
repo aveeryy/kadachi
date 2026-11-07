@@ -11,6 +11,20 @@ let
 in
 {
   den.hosts.x86_64-linux.hatsune = {
+    networking = {
+      interfaces = {
+        enp1s0 = {
+          type = "wired";
+          dhcp = "ipv4";
+          requiredForOnline = true;
+        };
+        enp4s0 = {
+          type = "wired";
+          dhcp = "ipv4";
+        };
+      };
+    };
+
     services = {
       internetDomain = "hatsune.rcia.dev";
       email = "infra-host-hatsune@rcia.dev";
@@ -121,25 +135,6 @@ in
           users.users.qbittorrent.extraGroups = [
             "disk-write"
           ];
-
-          systemd.network.networks = {
-            "10-wan" = {
-              matchConfig.Name = "enp1s0";
-              networkConfig.DHCP = "ipv4";
-              linkConfig.RequiredForOnline = "routable";
-              # DNS is managed by dnsmasq
-              dhcpV4Config.UseDNS = false;
-              dhcpV6Config.UseDNS = false;
-            };
-            "20-secondary-wan" = {
-              matchConfig.Name = "enp4s0";
-              networkConfig.DHCP = "ipv4";
-              linkConfig.RequiredForOnline = "no";
-              # DNS is managed by dnsmasq
-              dhcpV4Config.UseDNS = false;
-              dhcpV6Config.UseDNS = false;
-            };
-          };
         };
     };
 }

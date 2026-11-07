@@ -12,6 +12,8 @@
       };
     };
 
+    # TODO: add network interfaces, can't be arsed to charge the steam deck rn
+
     services = {
       wireguard = {
         addresses = [ "10.10.1.2/16" ];

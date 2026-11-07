@@ -15,6 +15,15 @@ let
 in
 {
   den.hosts.x86_64-linux.greatyamada = {
+    networking = {
+      interfaces.enp5s0 = {
+        type = "wired";
+        addresses = singleton "10.0.0.1/16";
+        routes = singleton { gateway = "10.0.255.254/16"; };
+        requiredForOnline = true;
+      };
+    };
+
     services = {
       internetDomain = "rcia.dev";
       email = "infra-host-greatyamada@rcia.dev";
@@ -157,13 +166,6 @@ in
         };
 
         systemd = {
-          network.networks."10-wan" = {
-            matchConfig.Name = "enp5s0";
-            address = singleton "10.0.0.1/16";
-            routes = singleton { Gateway = "10.0.255.254"; };
-            linkConfig.RequiredForOnline = "routable";
-          };
-
           # Run backups hourly
           timers.borgmatic.timerConfig.OnCalendar = "*-*-* *:00:00";
         };

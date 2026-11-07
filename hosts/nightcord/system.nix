@@ -1,6 +1,14 @@
 { __findFile, ... }:
 {
   den.hosts.x86_64-linux.nightcord = {
+    networking = {
+      interfaces.enp1s0 = {
+        type = "wired";
+        dhcp = "yes";
+        requiredForOnline = true;
+      };
+    };
+
     services = {
       internetDomain = "nightcord.rcia.dev";
       email = "infra-host-nightcord@rcia.dev";
@@ -37,18 +45,6 @@
           "sr_mod"
           "ext4"
         ];
-      };
-
-      systemd.network.networks."10-wan" = {
-        matchConfig.Name = "enp1s0";
-        networkConfig = {
-          DHCP = "ipv4";
-          IPv6AcceptRA = true;
-        };
-        linkConfig.RequiredForOnline = "routable";
-        # DNS is managed by dnsmasq
-        dhcpV4Config.UseDNS = false;
-        dhcpV6Config.UseDNS = false;
       };
     };
   };

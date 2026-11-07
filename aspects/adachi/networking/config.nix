@@ -1,0 +1,75 @@
+{ lib, ... }:
+let
+  inherit (lib)
+    mkOption
+    ;
+
+  inherit (lib.types)
+    attrsOf
+    bool
+    enum
+    listOf
+    nullOr
+    str
+    submodule
+    ;
+
+  routeType = submodule {
+    options = {
+      gateway = mkOption {
+        type = str;
+      };
+    };
+  };
+
+  interfaceType = submodule (
+    { name, ... }: {
+      options = {
+        name = mkOption {
+          type = str;
+          default = name;
+        };
+
+        type = mkOption {
+          type = enum [
+            "wireless"
+            "wired"
+          ];
+        };
+
+        addresses = mkOption {
+          type = nullOr listOf str;
+          default = null;
+        };
+
+        routes = mkOption {
+          type = nullOr listOf routeType;
+          default = null;
+        };
+
+        dhcp = mkOption {
+          type = enum [
+            "yes"
+            "no"
+            "ipv4"
+            "ipv6"
+          ];
+          default = "no";
+        };
+
+        requiredForOnline = mkOption {
+          type = bool;
+          default = false;
+        };
+      };
+    }
+  );
+in
+{
+  den.schema.host = { host, ... }: {
+    options.networking.interfaces = mkOption {
+      type = attrsOf interfaceType;
+      default = { };
+    };
+  };
+}

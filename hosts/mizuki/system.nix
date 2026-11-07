@@ -10,6 +10,20 @@
       lockSessionAtStart = true;
     };
 
+    networking = {
+      interfaces = {
+        enp89s0 = {
+          type = "wired";
+          dhcp = "ipv4";
+          requiredForOnline = true;
+        };
+        wlo1 = {
+          type = "wireless";
+          dhcp = "ipv4";
+        };
+      };
+    };
+
     services.wireguard = {
       addresses = [ "10.10.1.3/16" ];
       publicKey = "MbVmCHiEXd81GmmKl6lpy559o3Peho/4I0IbbOH8qU0=";
@@ -67,15 +81,6 @@
         networking.networkmanager.unmanaged = [ "enp89s0" ];
 
         powerManagement.cpuFreqGovernor = "performance";
-
-        systemd.network.networks."10-wan" = {
-          matchConfig.Name = "enp89s0";
-          networkConfig.DHCP = "ipv4";
-          linkConfig.RequiredForOnline = "routable";
-          # DNS is managed by dnsmasq
-          dhcpV4Config.UseDNS = false;
-          dhcpV6Config.UseDNS = false;
-        };
 
         time.timeZone = "Europe/Madrid";
       };

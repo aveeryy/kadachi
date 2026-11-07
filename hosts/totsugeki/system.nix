@@ -9,6 +9,14 @@
       lockSessionAtStart = true;
     };
 
+    networking = {
+      interfaces.enp5s0 = {
+        type = "wired";
+        dhcp = "ipv4";
+        requiredForOnline = true;
+      };
+    };
+
     services = {
       backups = {
         identifyingIcon = "dolphin";
@@ -97,15 +105,6 @@
             actions.update-props."session.suspend-timeout-seconds" = 0;
           }
         ];
-
-        systemd.network.networks."10-wan" = {
-          matchConfig.Name = "enp5s0";
-          networkConfig.DHCP = "ipv4";
-          linkConfig.RequiredForOnline = "routable";
-          # DNS is managed by dnsmasq
-          dhcpV4Config.UseDNS = false;
-          dhcpV6Config.UseDNS = false;
-        };
 
         time.timeZone = "Europe/Madrid";
       };
