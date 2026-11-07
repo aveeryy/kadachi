@@ -42,9 +42,7 @@ to any media I was into when I made the host configuration (the rest of them lol
 - [My personal Forgejo instance](https://git.rcia.dev/Avery/kadachi)
 - [GitHub [MIRROR]](https://github.com/aveeryy/kadachi)
 
-## License
-
-Kadachi is licensed under the [GNU Lesser General Public License 3.0](./COPYING)
+## Additional licenses
 
 The [default wallpaper](modules/assets/blossoms.jxl) ([A tree with pink flowers by Andrea Music](https://unsplash.com/photos/a-tree-with-pink-flowers-JxLnhjrkUuU))
 is licensed under the [Unsplash License](https://unsplash.com/license)
