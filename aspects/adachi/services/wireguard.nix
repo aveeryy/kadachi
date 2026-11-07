@@ -12,10 +12,12 @@ let
     flatten
     getExe
     map
+    mapAttrs'
     mergeAttrsList
     mkDefault
     mkForce
     mkOption
+    nameValuePair
     optionalAttrs
     optionalString
     removeSuffix
@@ -211,7 +213,17 @@ in
             "wireguard/${interfaceName}/preshared_keys/Pixel9a".owner = "root";
           };
 
-          systemd.network.wait-online.ignoredInterfaces = singleton "kadachi-wg";
+          systemd.network = {
+            networks = mapAttrs' (
+              name: config:
+              nameValuePair ("0-interface-${name}") ({
+                dhcpV4Config.UseDNS = false;
+                dhcpV6Config.UseDNS = false;
+              })
+            ) host.networking.interfaces;
+
+            wait-online.ignoredInterfaces = singleton "kadachi-wg";
+          };
         };
     };
 }
