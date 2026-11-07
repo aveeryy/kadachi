@@ -15,6 +15,11 @@
         dhcp = "ipv4";
         requiredForOnline = true;
       };
+
+      kadachi-wg = {
+        addresses = [ "10.10.1.1/16" ];
+        publicKey = "7tijdqEKHVTDcbpSwEYzHidUzXUcH7sTJfleozNnaUU=";
+      };
     };
 
     services = {
@@ -26,11 +31,6 @@
             label = "${jobName}@hetzner-de";
           }
         ];
-      };
-
-      wireguard = {
-        addresses = [ "10.10.1.1/16" ];
-        publicKey = "7tijdqEKHVTDcbpSwEYzHidUzXUcH7sTJfleozNnaUU=";
       };
     };
 
@@ -49,9 +49,9 @@
       <megurine/requires/secure-boot>
 
       <adachi/hardware/i2c>
+      <adachi/networking/kadachi-wg>
       <adachi/services/backups>
       <adachi/services/podman>
-      <adachi/services/wireguard>
       <adachi/system/cachyos-kernel>
 
     ];

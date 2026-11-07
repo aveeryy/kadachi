@@ -37,7 +37,7 @@ in
     { host, ... }:
     with lib.types;
     {
-      options.services.wireguard = {
+      options.networking.kadachi-wg = {
         addresses = mkOption {
           type = listOf str;
           default = [ ];
@@ -65,15 +65,15 @@ in
         endpoint = mkOption {
           type = nullOr str;
           default =
-            if host.services.wireguard.isServerPeer then
-              "${host.services.internetDomain}:${toString host.services.wireguard.port}"
+            if host.networking.kadachi-wg.isServerPeer then
+              "${host.services.internetDomain}:${toString host.networking.kadachi-wg.port}"
             else
               null;
         };
       };
     };
 
-  adachi.services._.wireguard =
+  adachi.networking._.kadachi-wg =
     { host }:
     {
       description = "Wireguard VPN configuration";
@@ -81,7 +81,7 @@ in
       nixos =
         { config, pkgs, ... }:
         let
-          cfg = host.services.wireguard;
+          cfg = host.networking.kadachi-wg;
           interfaceName = "kadachi-wg";
           mainSubnetAddress = "10.10.0.0/16";
 
@@ -94,7 +94,7 @@ in
             address: concatStringsSep "." (take 2 (splitString "." address) ++ [ "0.0/16" ]);
 
           hasWireguardConfigured =
-            host: host.services.wireguard.addresses != [ ] && host.services.wireguard.publicKey != null;
+            host: host.networking.kadachi-wg.addresses != [ ] && host.networking.kadachi-wg.publicKey != null;
 
           mustIncludePeer =
             peer: peer.name != host.name && (cfg.isServerPeer || peer ? endpoint && peer.endpoint != null);
@@ -114,8 +114,8 @@ in
           kadachiPeers = map (
             host:
             let
-              peerCfg = host.services.wireguard;
-              hostAddresses = map toSingleHostAddress host.services.wireguard.addresses;
+              peerCfg = host.networking.kadachi-wg;
+              hostAddresses = map toSingleHostAddress host.networking.kadachi-wg.addresses;
             in
             {
               inherit (host) name;
@@ -150,7 +150,7 @@ in
           networking = {
             firewall.allowedUDPPorts =
               singleton
-                config.networking.wireguard.interfaces.${interfaceName}.listenPort;
+                config.networking.kadachi-wg.interfaces.${interfaceName}.listenPort;
 
             nat = optionalAttrs (cfg.isServerPeer && cfg.allowInternetAccess) {
               enable = true;

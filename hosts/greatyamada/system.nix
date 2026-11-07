@@ -22,6 +22,14 @@ in
         routes = singleton { gateway = "10.0.255.254/16"; };
         requiredForOnline = true;
       };
+
+      kadachi-wg = {
+        addresses = [ "10.10.0.1/16" ];
+        publicKey = "xhPfEY8deFqQCESimFRzKFqxJ3LJM5uwUgVK4MFkjiM=";
+        isServerPeer = true;
+        allowInternetAccess = true;
+        internetInterface = "enp5s0";
+      };
     };
 
     services = {
@@ -59,14 +67,6 @@ in
         local
         kadachi-wg
       ];
-
-      wireguard = {
-        addresses = [ "10.10.0.1/16" ];
-        publicKey = "xhPfEY8deFqQCESimFRzKFqxJ3LJM5uwUgVK4MFkjiM=";
-        isServerPeer = true;
-        allowInternetAccess = true;
-        internetInterface = "enp5s0";
-      };
     };
 
     users.avery = { };
@@ -81,6 +81,7 @@ in
       <megurine/is/server>
       <megurine/requires/secure-boot>
 
+      <adachi/networking/kadachi-wg>
       <adachi/services/acme/host/desec>
       <adachi/services/adguardhome>
       <adachi/services/backups>
@@ -102,7 +103,6 @@ in
       <adachi/services/samba>
       <adachi/services/tranquil-pds>
       <adachi/services/vaultwarden>
-      <adachi/services/wireguard>
     ];
 
     nixos =

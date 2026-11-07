@@ -22,11 +22,11 @@
           dhcp = "ipv4";
         };
       };
-    };
 
-    services.wireguard = {
-      addresses = [ "10.10.1.3/16" ];
-      publicKey = "MbVmCHiEXd81GmmKl6lpy559o3Peho/4I0IbbOH8qU0=";
+      kadachi-wg = {
+        addresses = [ "10.10.1.3/16" ];
+        publicKey = "MbVmCHiEXd81GmmKl6lpy559o3Peho/4I0IbbOH8qU0=";
+      };
     };
 
     users.avery = {
@@ -46,8 +46,8 @@
       <megurine/requires/secure-boot>
 
       <adachi/hardware/i2c>
+      <adachi/networking/kadachi-wg>
       <adachi/services/podman>
-      <adachi/services/wireguard>
       <adachi/system/cachyos-kernel>
     ];
 

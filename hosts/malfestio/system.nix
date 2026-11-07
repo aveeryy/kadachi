@@ -14,8 +14,8 @@
 
     # TODO: add network interfaces, can't be arsed to charge the steam deck rn
 
-    services = {
-      wireguard = {
+    networking = {
+      kadachi-wg = {
         addresses = [ "10.10.1.2/16" ];
         publicKey = "FZPqCskUJa5J5cbSmLBQPY+sVqnXsusdxJfX0YxkLGM=";
       };
@@ -29,7 +29,7 @@
       <megurine/is/steam-deck>
       <megurine/is/steam-deck/cachyos-kernel>
 
-      <adachi/services/wireguard>
+      <adachi/networking/kadachi-wg>
     ];
 
     nixos = {
