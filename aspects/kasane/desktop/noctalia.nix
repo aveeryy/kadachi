@@ -1,6 +1,7 @@
 { lib, ... }:
 let
   inherit (lib)
+    filterAttrs
     optional
     singleton
     ;
@@ -8,8 +9,11 @@ in
 {
   kasane.desktop.noctalia =
     { host, user }:
+    let
+      hasWirelessInterface =
+        (filterAttrs (_: network: network.type == "wireless") host.networking.interface) != { };
+    in
     {
-
       nixos = {
         programs.noctalia.enable = true;
       };
@@ -35,6 +39,7 @@ in
               end = [
                 "tray"
               ]
+              ++ (optional hasWirelessInterface "network")
               ++ (optional osConfig.hardware.bluetooth.enable "bluetooth")
               ++ [
                 "volume"
