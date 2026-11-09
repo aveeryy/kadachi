@@ -11,7 +11,7 @@ in
     { host, user }:
     let
       hasWirelessInterface =
-        (filterAttrs (_: network: network.type == "wireless") host.networking.interface) != { };
+        (filterAttrs (_: network: network.type == "wireless") host.networking.interfaces) != { };
     in
     {
       nixos = {
