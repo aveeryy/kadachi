@@ -47,6 +47,8 @@ in
               ];
             };
 
+            brightness.enable_ddcutil = true;
+
             control_center.calendar.show_events_card = false;
 
             notification.layer = "overlay";
