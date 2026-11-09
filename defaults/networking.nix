@@ -2,6 +2,7 @@
 let
   inherit (lib)
     mapAttrs'
+    mkDefault
     nameValuePair
     singleton
     ;
@@ -23,4 +24,19 @@ in
       };
     }
   );
+
+  nixos = {
+    networking = {
+      dhcpcd.enable = false;
+      useNetworkd = true;
+    };
+
+    systemd.network = {
+      enable = true;
+      wait-online = {
+        enable = mkDefault true;
+        anyInterface = mkDefault true;
+      };
+    };
+  };
 }

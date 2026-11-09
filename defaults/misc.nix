@@ -54,11 +54,6 @@ in
           useUserPackages = true;
         };
 
-        networking = {
-          dhcpcd.enable = false;
-          useNetworkd = true;
-        };
-
         security = {
           pki.caCertificateBlacklist = [
             # CVE-2026-111943
@@ -76,20 +71,9 @@ in
             extraConfig = "Defaults !pwfeedback";
             wheelNeedsPassword = true;
           };
-
         };
-
-        services.resolved.settings.Resolve.DNSStubListener = false;
 
         system.stateVersion = stateVersion;
-
-        systemd.network = {
-          enable = true;
-          wait-online = {
-            enable = lib.mkDefault true;
-            anyInterface = lib.mkDefault true;
-          };
-        };
       };
 
     homeManager = {
