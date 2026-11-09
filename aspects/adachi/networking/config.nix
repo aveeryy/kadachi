@@ -9,7 +9,6 @@ let
     bool
     enum
     listOf
-    nullOr
     str
     submodule
     ;
@@ -38,13 +37,13 @@ let
         };
 
         addresses = mkOption {
-          type = nullOr listOf str;
-          default = null;
+          type = listOf str;
+          default = [ ];
         };
 
         routes = mkOption {
-          type = nullOr listOf routeType;
-          default = null;
+          type = listOf routeType;
+          default = [ ];
         };
 
         dhcp = mkOption {
