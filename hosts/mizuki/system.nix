@@ -78,8 +78,6 @@
           ];
         };
 
-        networking.networkmanager.unmanaged = [ "enp89s0" ];
-
         powerManagement.cpuFreqGovernor = "performance";
 
         time.timeZone = "Europe/Madrid";
