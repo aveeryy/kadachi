@@ -60,9 +60,9 @@
           };
 
           xdg.userDirs = {
-            desktop = config.home.homeDirectory;
-            publicShare = config.home.homeDirectory;
-            templates = config.home.homeDirectory;
+            desktop = "/tmp/${username}-useless-directory-1";
+            publicShare = "/tmp/${username}-useless-directory-2";
+            templates = "/tmp/${username}-useless-directory-3";
           };
         };
 
