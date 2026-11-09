@@ -161,7 +161,10 @@ in
             internalInterfaces = singleton "kadachi-wg";
           };
 
-          networkmanager.dns = mkForce "dnsmasq";
+          networkmanager = {
+            dns = mkForce "dnsmasq";
+            unmanaged = singleton "kadachi-wg";
+          };
 
           wireguard = {
             enable = true;
