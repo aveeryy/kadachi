@@ -38,7 +38,7 @@ in
       { pkgs, ... }:
       {
         console = {
-          keyMap = lib.mkForce "dvorak-es";
+          earlySetup = true;
           useXkbConfig = true;
         };
 
@@ -62,6 +62,11 @@ in
             extraConfig = "Defaults !pwfeedback";
             wheelNeedsPassword = true;
           };
+        };
+
+        services.xserver.xkb = {
+          layout = "es";
+          variant = "dvorak";
         };
 
         system.stateVersion = stateVersion;

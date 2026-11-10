@@ -73,7 +73,7 @@
         };
 
       umbriel.settings = {
-        general.autostart = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 1 [ "hyprlock" ];
+        general.autostart = lib.optionals (host.desktop.lockSessionAtStart) (lib.mkOrder 1 [ "hyprlock" ]);
         keybinds."F13" = {
           action = "spawn hyprlock";
           repeat = false;
