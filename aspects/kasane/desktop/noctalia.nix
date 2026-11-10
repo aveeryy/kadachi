@@ -36,20 +36,28 @@ in
                 "workspaces"
               ];
               center = [ ];
-              end = [
-                "tray"
-              ]
-              ++ (optional hasWirelessInterface "network")
-              ++ (optional osConfig.hardware.bluetooth.enable "bluetooth")
-              ++ [
-                "volume"
-                "clock"
-              ];
+              end =
+                singleton "tray"
+                ++ (optional hasWirelessInterface "network")
+                ++ (optional osConfig.hardware.bluetooth.enable "bluetooth")
+                ++ [
+                  "volume"
+                  "clock"
+                ];
             };
 
             brightness.enable_ddcutil = true;
 
-            control_center.calendar.show_events_card = false;
+            control_center = {
+              hidden_tabs =
+                singleton "weather"
+                ++ (optional (!hasWirelessInterface) "network")
+                ++ (optional (!osConfig.hardware.bluetooth.enable) "bluetooth");
+
+              shortcuts = [ ];
+
+              calendar.show_events_card = false;
+            };
 
             notification.layer = "overlay";
 
@@ -69,6 +77,7 @@ in
 
             shell = {
               avatar_path = "${config.home.homeDirectory}/.face";
+              card_borders = false;
               polkit_agent = true;
               popup_borders = false;
               popup_shadows = false;
@@ -85,6 +94,7 @@ in
                 open_near_click_control_center = true;
                 open_near_click_launcher = true;
                 shadow = false;
+                transparency_mode = "glass";
               };
 
               session = {
