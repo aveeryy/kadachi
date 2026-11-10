@@ -129,14 +129,20 @@ in
             wallpaper.enabled = false;
 
             widget = {
+              bluetooth.scale = 1.15;
               clock = {
                 font_family = osConfig.stylix.fonts.monospace.name;
+                font_scale = 1.05;
                 font_weight = 700;
                 format = "{:%H:%M:%S}";
               };
               launcher = {
                 icon_color = "primary";
                 scale = 1.55;
+              };
+              network = {
+                scale = 1.1;
+                show_label = false;
               };
               tray.drawer = true;
               volume.show_label = false;
@@ -146,6 +152,8 @@ in
                 scroll_repeat = "steps";
                 show_labels = false;
               };
+              tray.scale = 1.05;
+              volume.scale = 1.05;
             };
           };
         };
