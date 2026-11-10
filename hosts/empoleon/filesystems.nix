@@ -1,0 +1,5 @@
+{ ... }: {
+  hosts.empoleon.nixos = {
+    fileSystems = { };
+  };
+}
