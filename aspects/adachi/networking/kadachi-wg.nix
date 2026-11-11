@@ -162,7 +162,7 @@ in
           };
 
           networkmanager = {
-            dns = mkForce "dnsmasq";
+            dns = mkForce "none";
             unmanaged = singleton "kadachi-wg";
           };
 
