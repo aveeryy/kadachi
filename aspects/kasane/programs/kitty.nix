@@ -16,6 +16,10 @@
           "ctrl+alt+8" = "goto_tab 8";
           "ctrl+alt+9" = "goto_tab 9";
         };
+        mouseBindings = {
+          "left click" = "ungrabbed no-op";
+          "ctrl+left click" = "ungrabbed mouse_handle_click selection link prompt";
+        };
         settings = {
           "cursor_trail" = 3;
           "cursor_trail_decay" = "0.1 0.4";
