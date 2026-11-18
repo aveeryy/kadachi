@@ -95,6 +95,7 @@ let
       httpsConfig = {
         forceSSL = true;
         useACMEHost = host.services.internetDomain;
+        http2 = false;
       };
 
     in

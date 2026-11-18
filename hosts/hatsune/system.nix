@@ -126,6 +126,7 @@ in
                 tryFiles = "/migu.webp =404";
               };
               forceSSL = true;
+              http2 = false;
               useACMEHost = host.services.internetDomain;
             };
 
