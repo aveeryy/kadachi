@@ -9,28 +9,27 @@ in
     {
       packages.yaak = rustPlatform.buildRustPackage (finalAttrs: {
         pname = "yaak";
-        version = "2026.8.0";
+        version = "2026.9.0";
 
         src = fetchFromGitHub {
           owner = "mountain-loop";
           repo = "yaak";
           tag = "v${finalAttrs.version}";
-          hash = "sha256-d7Xmy0AHY1lZNaHmrgolD0d1tze1oX0OvE5mD1t3gEQ=";
+          hash = "sha256-RU9tEqUKzltC3ilHO09/0+2B/SvAyCsvFOro+CfFLx4=";
         };
 
         npmDeps = fetchNpmDeps {
           inherit (finalAttrs) src patches;
-          hash = "sha256-90qikEM4spYEfRC2aE00rSH0roYb4O58862VtlN7gzY=";
+          hash = "sha256-iosKkjM2jhSqbWtHPpdPAcyFcQu5A/Q8RuRJIJ3/zi8=";
           fetcherVersion = 2;
         };
 
-        cargoHash = "sha256-IWoO1jjPN6rUIj2duGhcfPvzhnzso6NKKXZO+W5bN9s=";
+        cargoHash = "sha256-nJD6mj6UhkNNXpBEqYvIGeAbtJfYWGaDmw99rBqIYps=";
 
         cargoRoot = ".";
         buildAndTestSubdir = "crates-tauri/yaak-app-client";
 
         patches = [
-          (getAsset "patches/yaak-package-lock.patch")
           (getAsset "patches/yaak-disable-license.patch")
         ];
 
@@ -56,6 +55,8 @@ in
           glib
           gtk3
           openssl
+          libgit2
+          sqlite
           pango
           cairo
           pixman
@@ -84,6 +85,9 @@ in
           substituteInPlace package.json \
             --replace-fail '"vendor:vendor-node": "node scripts/vendor-node.cjs",' "" \
             --replace-fail '"vendor:vendor-protoc": "node scripts/vendor-protoc.cjs",' ""
+
+          substituteInPlace crates/yaak-templates/build-wasm.cjs crates/yaak-wasm/build-wasm.cjs \
+            --replace-fail 'execSync("wasm-pack build' 'execSync("CARGO_BUILD_TARGET=wasm32-unknown-unknown wasm-pack build'
         '';
 
         preBuild =
