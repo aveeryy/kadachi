@@ -21,6 +21,7 @@
           "ctrl+left click" = "ungrabbed mouse_handle_click selection link prompt";
         };
         settings = {
+          "background_blur" = 1;
           "cursor_trail" = 3;
           "cursor_trail_decay" = "0.1 0.4";
           "dynamic_background_opacity" = true;
@@ -38,6 +39,20 @@
           "tab_title_template" = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
         };
       };
-      wayland.windowManager.hyprland.settings.bind = [ "CTRL ALT, T, exec, kitty" ];
+
+      programs.umbriel.settings = {
+
+        keybinds."Ctrl+Alt+T" = {
+          action = "spawn kitty";
+          repeat = false;
+        };
+
+        window_rule = [
+          {
+            match.app_id = "^kitty$";
+            blur = true;
+          }
+        ];
+      };
     };
 }

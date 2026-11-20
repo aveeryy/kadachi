@@ -6,6 +6,7 @@
       displays."HDMI-A-2" = {
         resolution = "3840x2160";
         scaling = "1.5";
+        primary = true;
       };
       lockSessionAtStart = true;
     };

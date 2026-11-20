@@ -177,30 +177,21 @@ in
             };
           };
 
-          wayland.windowManager.hyprland.settings =
-            let
-              ipc = "noctalia msg";
-            in
-            {
-              bind = [
-                "SUPER, Space, exec, ${ipc} panel-toggle launcher"
-                "SUPER, period, exec, ${ipc} panel-toggle launcher /emo "
-                # "SUPER, comma, exec, ${ipc} plugin:kaomoji toggle"
-                "CTRL ALT, Delete, exec, ${ipc} panel-toggle session"
-              ];
-              bindle = [
-                ", XF86MonBrightnessUp, exec, ${ipc} brightness-up"
-                ", XF86MonBrightnessDown, exec, ${ipc} brightness-down"
-              ];
-              exec-once = singleton "noctalia";
-              layerrule = singleton {
-                name = "noctalia";
-                "match:namespace" = "noctalia-background-.*$";
-                ignore_alpha = 0.5;
-                blur = true;
-                blur_popups = true;
+          programs.umbriel.settings = {
+            general.autostart = singleton "noctalia";
+            keybinds = {
+              "Mod+Space" = {
+                action = "spawn noctalia msg panel-toggle launcher";
+                repeat = false;
               };
+              "Ctrl+Alt+Delete" = {
+                action = "spawn noctalia msg panel-toggle session";
+                repeat = false;
+              };
+              "XF86MonBrightnessDown" = "spawn noctalia msg brightness-down";
+              "XF86MonBrightnessUp" = "spawn noctalia msg brightness-up";
             };
+          };
         };
     };
 }

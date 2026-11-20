@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 let
   blur = {
     size = 2;
@@ -69,7 +69,7 @@ in
           cursor = {
             package = pkgs.phinger-cursors;
             name = "phinger-cursors-dark";
-            size = 32;
+            size = lib.mkDefault 32;
           };
           icons = {
             enable = true;
@@ -161,25 +161,22 @@ in
           };
         };
 
-        wayland.windowManager.hyprland.settings = {
-          exec-once = lib.mkOrder 20 [
-            "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
-          ];
-
-          general = {
-            gaps_in = windowGaps.inner;
-            gaps_out = windowGaps.outer;
-          };
-
-          decoration = {
+        programs.umbriel.settings = {
+          appearance = {
             blur = {
               enabled = blur.size > 0;
-              inherit (blur) size passes;
+              optimized = true;
+              passes = blur.passes;
+              radius = blur.size;
             };
-            dim_inactive = inactiveWindowDim > 0;
-            dim_strength = inactiveWindowDim;
-            rounding = windowRounding;
+
             shadow.enabled = false;
+          };
+
+          input.cursor = {
+            theme = config.home.pointerCursor.name;
+            size = config.home.pointerCursor.size;
+            follows_focus = true;
           };
         };
       };

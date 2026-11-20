@@ -58,21 +58,12 @@
           };
           scripts = with pkgs.mpvScripts; [ mpris ];
         };
-        wayland.windowManager.hyprland = {
-          settings.bindl = [
-            ", XF86AudioPlay, exec, playerctl play-pause"
-            ", XF86AudioPause, exec, playerctl play-pause"
-            ", XF86AudioPrev, exec, playerctl previous"
-            ", XF86AudioNext, exec, playerctl next"
-            "MOD3, m, submap, music"
-          ];
-          submaps.music.settings.bindl = [
-            ", p, exec, playerctl play-pause"
-            ", h, exec, playerctl previous"
-            ", l, exec, playerctl next"
-            ", escape, submap, reset"
-            "MOD3, m, submap, reset"
-          ];
+
+        programs.umbriel.settings.keybinds = {
+          "XF86AudioPlay" = "spawn playerctl play-pause";
+          "XF86AudioPause" = "spawn playerctl play-pause";
+          "XF86AudioPrev" = "spawn playerctl previous";
+          "XF86AudioNext" = "spawn playerctl next";
         };
       };
   };

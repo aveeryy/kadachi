@@ -86,6 +86,7 @@ in
         };
         packages = singleton pkgs.pcmanfm-qt;
       };
-      wayland.windowManager.hyprland.settings.bind = singleton "SUPER, E, exec, pcmanfm-qt";
+
+      programs.umbriel.settings.keybinds."Mod+E" = "spawn pcmanfm-qt";
     };
 }

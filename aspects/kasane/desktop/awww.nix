@@ -46,24 +46,11 @@ in
             ];
           };
 
-          wayland.windowManager.hyprland = {
-            settings = {
-              exec-once = mkOrder 0 [
-                "awww-daemon"
-                "wallpaperctl ensure"
-              ];
-              bind = [ "MOD3, w, submap, wallpaper" ];
-            };
-            submaps.wallpaper.settings = {
-              bind = [
-                ", H, exec, wallpaperctl previous"
-                ", L, exec, wallpaperctl next"
-              ];
-              bindl = [
-                ", escape, submap, reset"
-                "MOD3, w, submap, reset"
-              ];
-            };
+          programs.umbriel.settings = {
+            general.autostart = [
+              "awww-daemon"
+              "wallpaperctl ensure"
+            ];
           };
         };
     };

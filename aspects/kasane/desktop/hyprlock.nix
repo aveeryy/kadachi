@@ -70,12 +70,13 @@
               };
             };
           };
-          wayland.windowManager.hyprland.settings = {
-            exec-once = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 1 [ "hyprlock" ];
-            bind = [
-              ", code:191, exec, hyprlock"
-              "MOD3, L, exec, hyprlock"
-            ];
+
+          programs.umbriel.settings = {
+            general.autostart = lib.optionals (host.desktop.lockSessionAtStart) lib.mkOrder 1 [ "hyprlock" ];
+            keybinds."F13" = {
+              action = "spawn hyprlock";
+              repeat = false;
+            };
           };
         };
     };

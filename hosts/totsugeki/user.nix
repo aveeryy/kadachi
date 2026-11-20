@@ -10,9 +10,10 @@
 
       <kasane/desktop/awww>
       (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
-      <kasane/desktop/hyprland>
-      <kasane/desktop/hyprlock>
       <kasane/desktop/noctalia>
+      (<adachi/system/greetd-autologin> "umbriel")
+      <kasane/desktop/hyprlock>
+      <kasane/desktop/umbriel>
       <kasane/desktop/screenshot>
       <kasane/gaming/bottles>
       <kasane/gaming/discord>

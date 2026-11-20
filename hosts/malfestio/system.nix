@@ -47,7 +47,7 @@
         ];
       };
 
-      jovian.steam.desktopSession = "hyprland-uwsm";
+      # jovian.steam.desktopSession = "hyprland-uwsm";
 
       systemd.services.NetworkManager-wait-online.enable = false;
 

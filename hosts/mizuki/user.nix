@@ -4,15 +4,15 @@
     includes = [
       <kasane/base-user>
 
-      (<adachi/system/greetd-autologin> "uwsm start default")
+      (<adachi/system/greetd-autologin> "umbriel")
 
       (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
       <kasane/desktop/awww>
-      <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
       <kasane/desktop/noctalia>
       <kasane/desktop/screenshot>
       <kasane/services/syncthing>
+      <kasane/desktop/umbriel>
       <kasane/programs/compressed-file-tools>
       <kasane/programs/disk-management>
       <kasane/programs/kitty>
@@ -25,9 +25,5 @@
       <kasane/theme>
       <kasane/web-browsers/firefox>
     ];
-
-    homeManager = {
-      wayland.windowManager.hyprland.settings.input.sensitivity = -0.3;
-    };
   };
 }

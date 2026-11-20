@@ -3,15 +3,16 @@
   kasane.programs._.qbittorrent.homeManager =
     { config, pkgs, ... }:
     {
-      home.packages = with pkgs; [ qbittorrent ];
-      wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
-        (
-          if config.programs.mullvad-vpn.enable then
-            "[workspace 10 silent] sleep 20s && mullvad-exclude qbittorrent"
-          else
-            "[workspace 10 silent] qbittorrent"
-        )
-      ];
+      home.packages = lib.singleton pkgs.qbittorrent;
 
+      programs.umbriel.settings = {
+        autostart = lib.singleton "qbittorrent";
+        window_rule = [
+          {
+            match.app_id = "^qbittorrent$";
+            default_workspace = 10;
+          }
+        ];
+      };
     };
 }

@@ -8,14 +8,6 @@
     );
 
   inputs = {
-    autofirma-nix = {
-      url = "github:nix-community/autofirma-nix/develop";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,5 +69,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    umbriel.url = "github:noctalia-dev/umbriel";
   };
 }

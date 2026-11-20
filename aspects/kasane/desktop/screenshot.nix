@@ -15,11 +15,24 @@
         '';
         packages = lib.singleton self'.packages.screenshot;
       };
-      wayland.windowManager.hyprland.settings.bind = [
-        ", Print, exec, screenshot full"
-        "SHIFT, Print, exec, screenshot section"
-        "SUPER, S, exec, screenshot full"
-        "SUPER + SHIFT, S, exec, screenshot section"
-      ];
+
+      programs.umbriel.settings.keybinds = {
+        "Print" = {
+          action = "spawn screenshot full";
+          repeat = false;
+        };
+        "Shift+Print" = {
+          action = "spawn screenshot section";
+          repeat = false;
+        };
+        "Mod+S" = {
+          action = "spawn screenshot full";
+          repeat = false;
+        };
+        "Mod+Shift+S" = {
+          action = "spawn screenshot section";
+          repeat = false;
+        };
+      };
     };
 }

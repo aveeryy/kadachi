@@ -10,7 +10,7 @@ let
         };
         resolution = lib.mkOption { type = lib.types.str; };
         refreshRate = lib.mkOption {
-          type = lib.types.ints.unsigned;
+          # type = lib.types.ints.unsigned;
           default = 60;
         };
         position = lib.mkOption {
@@ -27,12 +27,24 @@ let
             "90"
             "180"
             "270"
-            "0-flipped"
-            "90-flipped"
-            "180-flipped"
-            "270-flipped"
+            "flipped-0"
+            "flipped-90"
+            "flipped-180"
+            "flipped-270"
           ];
           default = "0";
+        };
+        primary = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+        };
+        vrr = lib.mkOption {
+          type = lib.types.enum [
+            "disabled"
+            "enabled"
+            "on-demand"
+          ];
+          default = "disabled";
         };
       };
     }
