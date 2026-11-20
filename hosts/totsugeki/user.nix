@@ -22,8 +22,6 @@
       <kasane/gaming/steam>
       <kasane/services/syncthing>
       <kasane/programs/android>
-      <kasane/programs/autofirma>
-      (<kasane/programs/autofirma/firefox-integration> "Avery")
       <kasane/programs/compressed-file-tools>
       <kasane/programs/disk-management>
       <kasane/programs/fastfetch>

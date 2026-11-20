@@ -7,7 +7,6 @@
       (<adachi/system/greetd-autologin> "uwsm start default")
 
       (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
-      <kasane/programs/autofirma>
       <kasane/desktop/awww>
       <kasane/desktop/hyprland>
       <kasane/desktop/hyprlock>
