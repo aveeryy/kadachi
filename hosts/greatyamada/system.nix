@@ -124,7 +124,14 @@ in
           # This one is needed, since the ACME aspect sets `extraDomainNames` as mkDefault
           "*.rcia.dev"
           "*.hatsune.rcia.dev"
+          # Temporary (probably)
+          "*.pds.rcia.dev"
         ];
+
+        #Temporary (probably)
+        services.inadyn.settings.provider."desec.io" = {
+          hostname = [ "*.pds.rcia.dev" ];
+        };
 
         services = {
           dnsmasq.settings.server = [
