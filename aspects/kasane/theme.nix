@@ -161,24 +161,6 @@ in
           };
         };
 
-        programs.umbriel.settings = {
-          appearance = {
-            blur = {
-              enabled = blur.size > 0;
-              optimized = true;
-              passes = blur.passes;
-              radius = blur.size;
-            };
-
-            shadow.enabled = false;
-          };
-
-          input.cursor = {
-            theme = config.home.pointerCursor.name;
-            size = config.home.pointerCursor.size;
-            follows_focus = true;
-          };
-        };
       };
 
     noctalia =
@@ -192,5 +174,26 @@ in
           theme.builtin = "Catppuccin";
         };
       };
+
+    umbriel = { config, ... }: {
+      settings = {
+        appearance = {
+          blur = {
+            enabled = blur.size > 0;
+            optimized = true;
+            passes = blur.passes;
+            radius = blur.size;
+          };
+
+          shadow.enabled = false;
+        };
+
+        input.cursor = {
+          theme = config.home.pointerCursor.name;
+          size = config.home.pointerCursor.size;
+          follows_focus = true;
+        };
+      };
+    };
   };
 }

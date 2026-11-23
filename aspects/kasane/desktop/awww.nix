@@ -45,13 +45,13 @@ in
               })
             ];
           };
-
-          programs.umbriel.settings = {
-            general.autostart = [
-              "awww-daemon"
-              "wallpaperctl ensure"
-            ];
-          };
         };
+
+      umbriel.settings = {
+        general.autostart = [
+          "awww-daemon"
+          "wallpaperctl ensure"
+        ];
+      };
     };
 }

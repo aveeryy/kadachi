@@ -58,13 +58,13 @@
           };
           scripts = with pkgs.mpvScripts; [ mpris ];
         };
-
-        programs.umbriel.settings.keybinds = {
-          "XF86AudioPlay" = "spawn playerctl play-pause";
-          "XF86AudioPause" = "spawn playerctl play-pause";
-          "XF86AudioPrev" = "spawn playerctl previous";
-          "XF86AudioNext" = "spawn playerctl next";
-        };
       };
+
+    umbriel.settings.keybinds = {
+      "XF86AudioPlay" = "spawn playerctl play-pause";
+      "XF86AudioPause" = "spawn playerctl play-pause";
+      "XF86AudioPrev" = "spawn playerctl previous";
+      "XF86AudioNext" = "spawn playerctl next";
+    };
   };
 }

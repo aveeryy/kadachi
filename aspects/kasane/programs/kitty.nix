@@ -1,8 +1,7 @@
 { ... }:
 {
-  kasane.programs._.kitty.homeManager =
-    { pkgs, ... }:
-    {
+  kasane.programs._.kitty = {
+    homeManager = { pkgs, ... }: {
       programs.kitty = {
         enable = true;
         keybindings = {
@@ -39,20 +38,20 @@
           "tab_title_template" = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
         };
       };
-
-      programs.umbriel.settings = {
-
-        keybinds."Ctrl+Alt+T" = {
-          action = "spawn kitty";
-          repeat = false;
-        };
-
-        window_rule = [
-          {
-            match.app_id = "^kitty$";
-            blur = true;
-          }
-        ];
-      };
     };
+
+    umbriel.settings = {
+      keybinds."Ctrl+Alt+T" = {
+        action = "spawn kitty";
+        repeat = false;
+      };
+
+      window_rule = [
+        {
+          match.app_id = "^kitty$";
+          blur = true;
+        }
+      ];
+    };
+  };
 }

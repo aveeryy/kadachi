@@ -176,22 +176,22 @@ in
               };
             };
           };
-
-          programs.umbriel.settings = {
-            general.autostart = singleton "noctalia";
-            keybinds = {
-              "Mod+Space" = {
-                action = "spawn noctalia msg panel-toggle launcher";
-                repeat = false;
-              };
-              "Ctrl+Alt+Delete" = {
-                action = "spawn noctalia msg panel-toggle session";
-                repeat = false;
-              };
-              "XF86MonBrightnessDown" = "spawn noctalia msg brightness-down";
-              "XF86MonBrightnessUp" = "spawn noctalia msg brightness-up";
-            };
-          };
         };
+
+      umbriel.settings = {
+        general.autostart = singleton "noctalia";
+        keybinds = {
+          "Mod+Space" = {
+            action = "spawn noctalia msg panel-toggle launcher";
+            repeat = false;
+          };
+          "Ctrl+Alt+Delete" = {
+            action = "spawn noctalia msg panel-toggle session";
+            repeat = false;
+          };
+          "XF86MonBrightnessDown" = "spawn noctalia msg brightness-down";
+          "XF86MonBrightnessUp" = "spawn noctalia msg brightness-up";
+        };
+      };
     };
 }

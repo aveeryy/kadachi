@@ -7,9 +7,8 @@ let
     ;
 in
 {
-  kasane.programs._.pcmanfm-qt.homeManager =
-    { config, pkgs, ... }:
-    {
+  kasane.programs._.pcmanfm-qt = {
+    homeManager = { config, pkgs, ... }: {
       home = {
         file.".config/pcmanfm-qt/default/settings.conf".text = generators.toINI { } {
           Behavior = {
@@ -86,7 +85,8 @@ in
         };
         packages = singleton pkgs.pcmanfm-qt;
       };
-
-      programs.umbriel.settings.keybinds."Mod+E" = "spawn pcmanfm-qt";
     };
+
+    umbriel.settings.keybinds."Mod+E" = "spawn pcmanfm-qt";
+  };
 }
