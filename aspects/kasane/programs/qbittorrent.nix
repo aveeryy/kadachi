@@ -6,10 +6,10 @@
     };
 
     umbriel.settings = {
-      autostart = lib.singleton "qbittorrent";
+      general.autostart = lib.singleton "qbittorrent";
       window_rule = [
         {
-          match.app_id = "^qbittorrent$";
+          match.app_id = "^org.qbittorrent.qBittorrent$";
           default_workspace = 10;
         }
       ];

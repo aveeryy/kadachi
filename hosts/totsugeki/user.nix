@@ -6,12 +6,11 @@
 
       <adachi/programs/virtualisation>
       <adachi/services/printing>
-      (<adachi/system/greetd-autologin> "uwsm start default")
+      (<adachi/system/greetd-autologin> "umbriel")
 
       <kasane/desktop/awww>
       (<kasane/desktop/default-applications/file-manager> "pcmanfm-qt.desktop")
       <kasane/desktop/noctalia>
-      (<adachi/system/greetd-autologin> "umbriel")
       <kasane/desktop/hyprlock>
       <kasane/desktop/umbriel>
       <kasane/desktop/screenshot>

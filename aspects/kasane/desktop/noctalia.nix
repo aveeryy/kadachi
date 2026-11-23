@@ -192,6 +192,12 @@ in
           "XF86MonBrightnessDown" = "spawn noctalia msg brightness-down";
           "XF86MonBrightnessUp" = "spawn noctalia msg brightness-up";
         };
+
+        layer_rule = singleton {
+          match.namespace = "^noctalia-(bar-.+|attached-panel)$";
+          blur = true;
+          blur_ignore_alpha = 0.01;
+        };
       };
     };
 }

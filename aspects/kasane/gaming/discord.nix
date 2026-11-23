@@ -8,7 +8,7 @@
       };
 
     umbriel.settings = {
-      autostart = lib.singleton "discord";
+      general.autostart = lib.singleton "discord";
       window_rule = [
         {
           match.app_id = "^discord$";
