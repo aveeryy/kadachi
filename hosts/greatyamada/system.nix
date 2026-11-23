@@ -86,7 +86,7 @@ in
       <adachi/networking/kadachi-wg>
       <adachi/services/adguardhome>
       <adachi/services/backups>
-      <adachi/services/ddns/host/desec>
+      <adachi/services/ddns/desec>
       <adachi/services/fail2ban>
       <adachi/services/forgejo>
       <adachi/services/koito>
@@ -126,14 +126,6 @@ in
           "*.rcia.dev"
           "*.hatsune.rcia.dev"
         ];
-
-        #Temporary (probably)
-        services.inadyn.settings.provider."desec.io" = {
-          hostname = [
-            "pds.rcia.dev"
-            "*.pds.rcia.dev"
-          ];
-        };
 
         services = {
           dnsmasq.settings.server = [

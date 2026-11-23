@@ -61,8 +61,8 @@ in
         <megurine/requires/secure-boot>
 
         <adachi/hardware/ugreen-led-controller>
-        <adachi/services/ddns/host/desec>
         <adachi/services/copyparty>
+        <adachi/services/ddns/desec>
         <adachi/services/jellyfin>
         <adachi/services/navidrome>
         <adachi/services/nginx>

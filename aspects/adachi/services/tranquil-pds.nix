@@ -86,5 +86,10 @@ in
         '';
       };
     };
+
+    ddnsDomains = [
+      host.services.tranquil-pds.domains.internet
+      "*.${host.services.tranquil-pds.domains.internet}"
+    ];
   };
 }

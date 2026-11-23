@@ -1,42 +1,33 @@
-{ kadachi-lib, lib, ... }:
+{ kadachi-lib, ... }:
 let
-  inherit (lib)
-    mkDefault
-    singleton
-    ;
-
   inherit (kadachi-lib)
     recursiveMerge
     ;
 
-  mkAspect =
-    name: providerDomain:
-    let
-      nixosConfig = domain: { config, ... }: {
+  mkAspect = name: providerDomain: {
+    ${name} = { host }: {
+      nixos = { config, ddnsDomains, ... }: {
         services.inadyn.settings.provider.${providerDomain} = {
           hostname = [
-            domain
-            "*.${domain}"
-          ];
-          username = domain;
-          include = config.sops.templates."ddns-${name}-${domain}.conf".path;
+            host.services.internetDomain
+            "*.${host.services.internetDomain}"
+          ]
+          ++ ddnsDomains;
+          username = host.services.internetDomain;
+          include = config.sops.templates."ddns-${name}.conf".path;
         };
         sops = {
-          secrets."ddns/${name}/${domain}" = { };
-          templates."ddns-${name}-${domain}.conf" = {
+          secrets."ddns/${name}" = { };
+          templates."ddns-${name}.conf" = {
             content = ''
-              password = ${config.sops.placeholder."ddns/${name}/${domain}"}
+              password = ${config.sops.placeholder."ddns/${name}"}
             '';
             owner = "inadyn";
           };
         };
       };
-
-    in
-    {
-      ${name} = domain: { nixos = nixosConfig domain; };
-      host._.${name} = { host }: { nixos = nixosConfig host.services.internetDomain; };
     };
+  };
 in
 {
   adachi.services._.ddns = {
