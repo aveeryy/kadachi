@@ -6,7 +6,6 @@
 }:
 let
   inherit (lib)
-    last
     mapAttrs'
     nameValuePair
     singleton
@@ -23,25 +22,29 @@ let
         workspaces = 10;
       })
     ) displays;
-
-  umbrielClass =
-    { class, aspect-chain }:
-    den._.forward {
-      each = singleton class;
-      fromClass = _: "umbriel";
-      intoClass = _: "homeManager";
-      intoPath = _: [
-        "programs"
-        "umbriel"
-      ];
-      fromAspect = _: last aspect-chain;
-      guard = { options, ... }: options ? programs.umbriel;
-    };
 in
 {
   flake-file.inputs.umbriel.url = "github:noctalia-dev/umbriel";
 
-  den.default.includes = singleton umbrielClass;
+  den = {
+    classes.umbriel = { };
+
+    policies.umbriel-to-home-manager =
+      _:
+      singleton (
+        den.lib.policy.route {
+          fromClass = "umbriel";
+          intoClass = "homeManager";
+          path = [
+            "programs"
+            "umbriel"
+          ];
+          guard = { options, ... }: options ? programs.umbriel;
+        }
+      );
+
+    schema.user.includes = singleton den.policies.umbriel-to-home-manager;
+  };
 
   kasane.desktop._.umbriel = { host, ... }: {
     nixos = {
