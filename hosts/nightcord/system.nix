@@ -13,6 +13,8 @@
       internetDomain = "nightcord.rcia.dev";
       email = "infra-host-nightcord@rcia.dev";
 
+      acme.aspect = <adachi/services/acme/desec>;
+
       database.default = "postgres";
     };
     users.avery = { };
@@ -25,7 +27,6 @@
       <megurine/is/server>
       <megurine/requires/legacy-boot>
 
-      <adachi/services/acme/host/desec>
       <adachi/services/forgejo>
       <adachi/services/nginx>
       <adachi/services/ntfy-sh>

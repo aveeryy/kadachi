@@ -11,6 +11,7 @@ let
     ;
 
   inherit (lib.types)
+    bool
     listOf
     nullOr
     str
@@ -22,6 +23,8 @@ let
     {
       name,
       subdomain ? name,
+      enableWireguardByDefault ? true,
+      useMainSSLCertificateByDefault ? true,
       options ? { ... }: { },
     }:
     { host, ... }@ctx:
@@ -29,12 +32,20 @@ let
       options.services.${name} = {
         domains = {
           internet = mkOption {
-            type = str;
-            default = "${subdomain}.${host.services.internetDomain}";
+            type = nullOr str;
+            default =
+              if host.services.internetDomain != null then
+                "${subdomain}.${host.services.internetDomain}"
+              else
+                null;
           };
           kadachi-wg = mkOption {
-            type = str;
-            default = "${subdomain}.${host.name}.${constants.wireguardBaseDomain}";
+            type = nullOr str;
+            default =
+              if enableWireguardByDefault then
+                "${subdomain}.${host.name}.${constants.wireguardBaseDomain}"
+              else
+                null;
           };
         };
         allowedInternetAddresses = mkOption {
@@ -45,7 +56,12 @@ let
         allowedWireguardAddresses = mkOption {
           type = listOf str;
           default = singleton constants.networks.kadachi-wg;
-          description = "Allowed addresses when accessing through the internet domain";
+          description = "Allowed addresses when accessing through the Wireguard domain";
+        };
+        useMainSSLCertificate = mkOption {
+          type = bool;
+          default = useMainSSLCertificateByDefault;
+          description = "Whether this service should use the main certificate or it's own";
         };
       }
       // (options ctx);
@@ -54,7 +70,8 @@ let
   mkNginxConfiguration =
     host: service: vHostConfig:
     let
-      hasInternetDomain = host.services.internetDomain != null;
+      hasInternetDomain = service.domains.internet != null;
+      hasWireguardDomain = service.domains.kadachi-wg != null;
 
       domainFilterConfig =
         allowedAddresses:
@@ -82,7 +99,7 @@ let
             ];
             update = prev: (getPrevString prev) + "\n" + domainFilterConfig service.allowedInternetAddresses;
           }
-          ++ singleton {
+          ++ optional hasWireguardDomain {
             path = [
               "virtualHosts"
               service.domains.kadachi-wg
@@ -94,7 +111,8 @@ let
 
       httpsConfig = {
         forceSSL = true;
-        useACMEHost = host.services.internetDomain;
+        useACMEHost =
+          if service.useMainSSLCertificate then host.services.internetDomain else service.domains.internet;
       };
 
     in
@@ -103,7 +121,7 @@ let
         optionalAttrs hasInternetDomain {
           ${service.domains.internet} = httpsConfig // vHostConfig;
         }
-        // {
+        // optionalAttrs hasWireguardDomain {
           ${service.domains.kadachi-wg} = httpsConfig // vHostConfig;
         };
 

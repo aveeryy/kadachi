@@ -29,6 +29,8 @@ in
       internetDomain = "hatsune.rcia.dev";
       email = "infra-host-hatsune@rcia.dev";
 
+      acme.aspect = <adachi/services/acme/desec>;
+
       fallbackUrl = "https://miku.hatsune.rcia.dev";
 
       database.default = "postgres";
@@ -59,7 +61,6 @@ in
         <megurine/requires/secure-boot>
 
         <adachi/hardware/ugreen-led-controller>
-        <adachi/services/acme/host/desec>
         <adachi/services/ddns/host/desec>
         <adachi/services/copyparty>
         <adachi/services/jellyfin>

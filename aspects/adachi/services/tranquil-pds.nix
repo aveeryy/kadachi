@@ -18,9 +18,13 @@ in
   den.schema.host = mkHttpServiceOptions {
     name = "tranquil-pds";
     subdomain = "pds";
+    enableWireguardByDefault = false;
+    useMainSSLCertificateByDefault = false;
   };
 
   adachi.services._.tranquil-pds = { host }: {
+    includes = singleton (host.services.acme.aspect host.services.tranquil-pds.domains.internet);
+
     nixos = { config, ... }: {
       services = {
         tranquil-pds = {

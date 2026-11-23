@@ -2,11 +2,14 @@
   __findFile,
   kadachi-lib,
   lib,
+  den,
   ...
 }:
 let
   inherit (lib)
     mkDefault
+    mkOption
+    optional
     singleton
     ;
 
@@ -14,10 +17,9 @@ let
     recursiveMerge
     ;
 
-  mkAspect =
-    name: envName:
-    let
-      nixosConfig = domain: { config, ... }: {
+  mkAspect = name: envName: {
+    ${name} = domain: {
+      nixos = { config, ... }: {
         security.acme.certs.${domain} = {
           credentialFiles.${envName} = config.sops.secrets."acme/${name}/${domain}".path;
           extraDomainNames = mkDefault (singleton "*.${domain}");
@@ -26,13 +28,26 @@ let
 
         sops.secrets."acme/${name}/${domain}".owner = "acme";
       };
-    in
-    {
-      ${name} = domain: { nixos = nixosConfig domain; };
-      host._.${name} = { host }: { nixos = nixosConfig host.services.internetDomain; };
     };
+  };
+
+  defaultHostAspect = { host }: {
+    includes = optional (host.services.internetDomain != null && host.services.acme.aspect != null) (
+      host.services.acme.aspect host.services.internetDomain
+    );
+  };
 in
 {
+  den.schema.host = { host, ... }: {
+    options.services.acme = {
+      aspect = mkOption {
+        default = null;
+      };
+    };
+  };
+
+  den.default.includes = singleton defaultHostAspect;
+
   adachi.services._.acme = {
     description = "Automatic TLS certificate renewal using ACME and Let's Encrypt. This is a dummy aspect, use the children aspects.";
 
