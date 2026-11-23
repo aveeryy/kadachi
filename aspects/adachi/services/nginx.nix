@@ -18,7 +18,6 @@
                 forceSSL = true;
                 useACMEHost = host.services.internetDomain;
                 serverAliases = [ "*.${host.services.internetDomain}" ];
-                http2 = false;
               };
             };
           };

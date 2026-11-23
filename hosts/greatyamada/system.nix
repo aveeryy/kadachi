@@ -148,7 +148,6 @@ in
               locations."/".proxyPass = "https://10.0.0.2$request_uri";
               forceSSL = true;
               useACMEHost = "rcia.dev";
-              http2 = false;
               serverAliases = [ "*.hatsune.rcia.dev" ];
               extraConfig = ''
                 client_max_body_size 1G;
