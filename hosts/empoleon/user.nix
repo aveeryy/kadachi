@@ -11,6 +11,7 @@
       <kasane/desktop/hyprlock>
       <kasane/desktop/noctalia>
       <kasane/desktop/screenshot>
+      <kasane/gaming/steam>
       <kasane/programs/compressed-file-tools>
       <kasane/programs/disk-management>
       <kasane/programs/kitty>
