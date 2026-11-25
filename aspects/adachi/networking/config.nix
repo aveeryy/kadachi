@@ -15,7 +15,7 @@ let
 
   routeType = submodule {
     options = {
-      gateway = mkOption {
+      Gateway = mkOption {
         type = str;
       };
     };

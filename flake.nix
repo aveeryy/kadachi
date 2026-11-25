@@ -69,6 +69,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    tangled.url = "git+https://tangled.org/did:plc:j5hmlfdrwkvtxm7cjmu7j2is";
     umbriel.url = "github:noctalia-dev/umbriel";
   };
 }

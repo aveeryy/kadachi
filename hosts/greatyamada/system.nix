@@ -19,7 +19,7 @@ in
       interfaces.enp5s0 = {
         type = "wired";
         addresses = singleton "10.0.0.1/16";
-        routes = singleton { gateway = "10.0.255.254/16"; };
+        routes = singleton { Gateway = "10.0.255.254"; };
         requiredForOnline = true;
       };
 
@@ -102,6 +102,7 @@ in
       <adachi/services/postgresql>
       <adachi/services/radicale>
       <adachi/services/samba>
+      <adachi/services/tangled/knot>
       <adachi/services/tranquil-pds>
       <adachi/services/vaultwarden>
     ];
