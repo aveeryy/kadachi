@@ -180,7 +180,7 @@ in
         appearance = {
           blur = {
             enabled = blur.size > 0;
-            optimized = true;
+            optimized = false;
             passes = blur.passes;
             radius = blur.size;
           };
