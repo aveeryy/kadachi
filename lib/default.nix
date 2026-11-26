@@ -2,12 +2,16 @@
 let
   inherit (lib)
     all
+    attrNames
     attrValues
     concatLists
+    filterAttrs
+    groupBy
     head
     isAttrs
     isList
     last
+    length
     mergeAttrsList
     optionalAttrs
     recursiveUpdate
@@ -104,12 +108,15 @@ let
         );
     in
     inner [ ] attrList;
+
+  findDuplicates = list: attrNames (filterAttrs (_: v: length v > 1) (groupBy (x: x) list));
 in
 {
   inherit
     copyPathToStore
     createBackupConfiguration
     createBackupConfiguration'
+    findDuplicates
     getAsset
     getAllHosts
     getFastestRefreshRate

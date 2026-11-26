@@ -11,6 +11,8 @@ let
     filter
     flatten
     getExe
+    hasSuffix
+    length
     map
     mapAttrs'
     mergeAttrsList
@@ -37,6 +39,7 @@ let
 
   inherit (kadachi-lib)
     constants
+    findDuplicates
     getAllHosts
     ;
 
@@ -150,6 +153,9 @@ in
         allPeers = kadachiPeers ++ nonKadachiPeers;
         # Peers that will be included in the configuration file
         peers = filter mustIncludePeer (kadachiPeers ++ nonKadachiPeers);
+
+        allHostAddresses = filter (hasSuffix "/32") (flatten (map (peer: peer.allowedIPs) allPeers));
+        duplicateAddresses = findDuplicates allHostAddresses;
       in
       {
         networking = {
@@ -233,6 +239,11 @@ in
           ) host.networking.interfaces;
 
           wait-online.ignoredInterfaces = singleton "kadachi-wg";
+        };
+
+        assertions = singleton {
+          assertion = length duplicateAddresses == 0;
+          message = "kadachi-wg configuration contains duplicate addresses: ${concatStringsSep ", " duplicateAddresses}";
         };
       };
   };
