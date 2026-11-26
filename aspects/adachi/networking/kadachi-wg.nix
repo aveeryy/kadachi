@@ -133,7 +133,10 @@ in
               if cfg.isServerPeer || !cfg.isServerPeer && !peer.isServerPeer then
                 hostAddresses
               else if cfg.allowInternetAccess && peer.allowInternetAccess then
-                hostAddresses ++ singleton "0.0.0.0/0"
+                [
+                  "0.0.0.0/0"
+                  "::/0"
+                ]
               else
                 hostAddresses ++ map to16NetworkAddress peer.addresses;
             presharedKeyFile = config.sops.secrets."wireguard/kadachi-wg/preshared_keys/${host.name}".path;
@@ -174,7 +177,7 @@ in
 
           wireguard = {
             enable = true;
-            useNetworkd = false;
+            useNetworkd = !cfg.isServerPeer;
             interfaces.kadachi-wg = {
               inherit peers;
               ips = cfg.addresses;
