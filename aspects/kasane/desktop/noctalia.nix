@@ -194,7 +194,8 @@ in
         };
 
         layer_rule = singleton {
-          match.namespace = "^noctalia-(bar-.+|attached-panel)$";
+          match.namespace = "^noctalia-(bar-.+|(attached-)?panel|osd)$";
+
           blur = true;
           blur_ignore_alpha = 0.01;
         };
