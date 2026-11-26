@@ -68,6 +68,8 @@ in
             };
 
             mouse.sensitivity = -0.8;
+
+            touchpad.natural_scroll = true;
           };
 
           general.show_cheatsheet = false;
