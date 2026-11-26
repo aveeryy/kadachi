@@ -1,4 +1,10 @@
-{ __findFile, ... }: {
+{ __findFile, lib, ... }:
+let
+  inherit (lib)
+    singleton
+    ;
+in
+{
   den.hosts.x86_64-linux.empoleon = {
     desktop = {
       displays."eDP-1" = {
@@ -13,6 +19,10 @@
       interfaces.wlp0s20f3 = {
         type = "wireless";
         dhcp = "yes";
+      };
+      kadachi-wg = {
+        addresses = singleton "10.10.1.4/16";
+        publicKey = "piplUp4pl8ug1uZ1NMw0uRRQ++bIezjxmXZWv5713nc=";
       };
     };
 
@@ -30,6 +40,7 @@
       <megurine/has/wifi>
       <megurine/requires/secure-boot>
 
+      <adachi/networking/kadachi-wg>
       # <adachi/system/cachyos-kernel>
     ];
 
