@@ -2,6 +2,7 @@
 let
   inherit (lib)
     mkOption
+    singleton
     ;
 
   inherit (lib.types)
@@ -81,5 +82,10 @@ in
 
           };
         };
+
+      monitoredServices = singleton ({
+        name = "Vaultwarden";
+        config = host.services.vaultwarden;
+      });
     };
 }

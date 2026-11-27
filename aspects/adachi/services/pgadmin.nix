@@ -1,5 +1,9 @@
-{ kadachi-lib, ... }:
+{ kadachi-lib, lib, ... }:
 let
+  inherit (lib)
+    singleton
+    ;
+
   inherit (kadachi-lib.http)
     mkHttpServiceOptions
     mkNginxConfiguration
@@ -25,5 +29,10 @@ in
       };
       sops.secrets."pgadmin/initial_password".owner = "pgadmin";
     };
+
+    monitoredServices = singleton ({
+      name = "pgAdmin";
+      config = host.services.pgadmin;
+    });
   };
 }

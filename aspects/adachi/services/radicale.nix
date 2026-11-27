@@ -53,5 +53,10 @@ in
             owner = "radicale";
           };
         };
+
+      monitoredServices = singleton ({
+        name = "Radicale";
+        config = host.services.radicale;
+      });
     };
 }

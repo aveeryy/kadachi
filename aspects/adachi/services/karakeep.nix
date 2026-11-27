@@ -47,5 +47,10 @@ in
             };
           };
         };
+
+      monitoredServices = singleton ({
+        name = "Karakeep";
+        config = host.services.karakeep;
+      });
     };
 }

@@ -10,6 +10,7 @@ let
     mkForce
     mkOption
     optional
+    singleton
     ;
 
   inherit (lib.types)
@@ -122,5 +123,10 @@ in
             };
           };
         };
+
+      monitoredServices = singleton ({
+        name = "Forgejo";
+        config = host.services.forgejo;
+      });
     };
 }

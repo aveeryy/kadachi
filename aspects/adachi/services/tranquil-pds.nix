@@ -91,5 +91,10 @@ in
       host.services.tranquil-pds.domains.internet
       "*.${host.services.tranquil-pds.domains.internet}"
     ];
+
+    monitoredServices = singleton ({
+      name = "Tranquil PDS";
+      config = host.services.tranquil-pds;
+    });
   };
 }

@@ -1,5 +1,9 @@
 { kadachi-lib, lib, ... }:
 let
+  inherit (lib)
+    singleton
+    ;
+
   inherit (kadachi-lib.http)
     mkHttpServiceOptions
     mkNginxConfiguration
@@ -281,5 +285,10 @@ in
           };
       };
     };
+
+    monitoredServices = singleton ({
+      name = "AdGuard Home";
+      config = host.services.adguardhome;
+    });
   };
 }

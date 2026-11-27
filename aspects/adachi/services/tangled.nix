@@ -84,6 +84,11 @@ in
             };
           };
         };
+
+        monitoredServices = singleton ({
+          name = "Tangled Knot";
+          config = host.services.tangled-knot;
+        });
       };
 
       spindle = { host }: {
@@ -130,6 +135,11 @@ in
             "L+ /var/lib/spindle/images/nixos - - - - ${inputs'.tangled.packages.spindle-nixos-image}"
           ];
         };
+
+        monitoredServices = singleton ({
+          name = "Tangled Spindle";
+          config = host.services.tangled-spindle;
+        });
       };
     };
   };

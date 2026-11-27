@@ -1,5 +1,9 @@
 { kadachi-lib, lib, ... }:
 let
+  inherit (lib)
+    singleton
+    ;
+
   inherit (kadachi-lib.http)
     mkHttpServiceOptions
     mkNginxConfiguration
@@ -99,5 +103,11 @@ in
             '';
           };
         };
+
+      # TODO: enable after updating
+      # monitoredServices = singleton ({
+      #   name = "Koito";
+      #   config = host.services.koito;
+      # });
     };
 }
