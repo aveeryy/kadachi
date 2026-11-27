@@ -6,6 +6,9 @@
 
       includes = [
         <kasane/base-user>
+        # For note syncing
+        <kasane/programs/obsidian>
+        <kasane/programs/syncthing>
       ];
 
       nixos = {

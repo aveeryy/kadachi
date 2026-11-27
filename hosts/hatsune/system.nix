@@ -46,7 +46,9 @@ in
       ];
     };
 
-    users.avery = { };
+    users.avery = {
+      services.syncthing.deviceId = "HAT5UNE-XX4STE5-3YHJJ3G-IDQ55N4-MQX2QJU-QPUAO3B-WZDAEQ7-PJB2UAE";
+    };
   };
 
   hosts.hatsune =

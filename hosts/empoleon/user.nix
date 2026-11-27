@@ -19,6 +19,7 @@
       <kasane/programs/multimedia>
       <kasane/programs/pcmanfm-qt>
       <kasane/programs/obsidian>
+      <kasane/programs/syncthing>
       <kasane/programs/xh>
       <kasane/theme>
       <kasane/web-browsers/firefox>
