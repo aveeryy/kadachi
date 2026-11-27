@@ -111,6 +111,8 @@ in
       includes = singleton den.policies.syncthing-expose;
 
       nixos = {
+        networking.firewall.interfaces.kadachi-wg.allowedTCPPorts = singleton 22222;
+
         sops.secrets = {
           "syncthing/${user.userName}/cert" = {
             sopsFile = "${inputs.secrets}/${host.name}/syncthing/${user.userName}/cert.pem";
