@@ -1,4 +1,9 @@
-{ __findFile, ... }:
+{ __findFile, lib, ... }:
+let
+  inherit (lib)
+    singleton
+    ;
+in
 {
   den.hosts.x86_64-linux.nightcord = {
     networking = {
@@ -6,6 +11,13 @@
         type = "wired";
         dhcp = "yes";
         requiredForOnline = true;
+      };
+
+      kadachi-wg = {
+        addresses = singleton "10.10.0.3/16";
+        publicKey = "N25ds+kKBhgwMAS6HuS1AFKYNWZZ6Sj7CsV05+3o/Tw=";
+        # TODO
+        # isServerPeer = true;
       };
     };
 
@@ -27,6 +39,7 @@
       <megurine/is/server>
       <megurine/requires/legacy-boot>
 
+      <adachi/networking/kadachi-wg>
       <adachi/services/forgejo>
       <adachi/services/nginx>
       <adachi/services/ntfy-sh>
