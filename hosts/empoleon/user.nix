@@ -24,5 +24,9 @@
       <kasane/theme>
       <kasane/web-browsers/firefox>
     ];
+
+    homeManager = { ... }: {
+      programs.umbriel.settings.output."eDP-1".vrr = "always";
+    };
   };
 }
