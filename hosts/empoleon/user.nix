@@ -20,6 +20,7 @@
       <kasane/programs/pcmanfm-qt>
       <kasane/programs/obsidian>
       <kasane/programs/xh>
+      <kasane/services/syncthing>
       <kasane/theme>
       <kasane/web-browsers/firefox>
     ];

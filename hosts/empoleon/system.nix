@@ -26,7 +26,9 @@ in
       };
     };
 
-    users.avery = { };
+    users.avery = {
+      services.syncthing.deviceId = "PIPLUP3-JXELVUU-EXFCHAV-BSTG5XV-TL67FYK-XXICEGU-ASVRYQT-5MPT7QQ";
+    };
   };
 
   hosts.empoleon = {
