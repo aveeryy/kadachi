@@ -2,12 +2,10 @@
   __findFile,
   kadachi-lib,
   lib,
-  den,
   ...
 }:
 let
   inherit (lib)
-    mkDefault
     mkOption
     optional
     singleton
@@ -22,7 +20,7 @@ let
       nixos = { config, ... }: {
         security.acme.certs.${domain} = {
           credentialFiles.${envName} = config.sops.secrets."acme/${name}/${domain}".path;
-          extraDomainNames = mkDefault (singleton "*.${domain}");
+          extraDomainNames = singleton "*.${domain}";
           dnsProvider = name;
         };
 

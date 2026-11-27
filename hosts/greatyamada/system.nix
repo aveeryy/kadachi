@@ -124,8 +124,6 @@ in
         ];
 
         security.acme.certs."rcia.dev".extraDomainNames = [
-          # This one is needed, since the ACME aspect sets `extraDomainNames` as mkDefault
-          "*.rcia.dev"
           "*.hatsune.rcia.dev"
         ];
 
