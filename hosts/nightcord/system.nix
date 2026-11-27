@@ -28,6 +28,8 @@ in
       acme.aspect = <adachi/services/acme/desec>;
 
       database.default = "postgres";
+
+      gatus.domains.internet = "status.rcia.dev";
     };
     users.avery = { };
   };
@@ -61,6 +63,10 @@ in
           "ext4"
         ];
       };
+
+      security.acme.certs."nightcord.rcia.dev".extraDomainNames = [
+        "status.rcia.dev"
+      ];
     };
   };
 }
