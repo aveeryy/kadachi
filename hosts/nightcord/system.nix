@@ -41,6 +41,7 @@ in
 
       <adachi/networking/kadachi-wg>
       <adachi/services/forgejo>
+      <adachi/services/gatus>
       <adachi/services/nginx>
       <adachi/services/ntfy-sh>
       <adachi/services/postgresql>
