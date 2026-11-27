@@ -13,7 +13,12 @@
         let
           inherit (den.lib.policy) pipe;
         in
-        [ (pipe.from "monitoredServices" [ (pipe.collectAll ({ host, ... }: true)) ]) ];
+        [
+          (pipe.from "monitoredServices" [
+            (pipe.collectAll ({ host, ... }: true))
+            pipe.withProvenance
+          ])
+        ];
     };
   };
 }

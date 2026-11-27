@@ -30,10 +30,15 @@ in
       { config, monitoredServices, ... }:
       let
         serviceToEndpoint =
-          service:
+          collected:
+          let
+            service = collected.value;
+            inherit (collected) source;
+          in
           {
             inherit (service) name;
             url = "https://${defaultTo service.config.domains.internet service.config.domains.kadachi-wg}${service.path or ""}";
+            group = source.host.name;
             interval = "5m";
             conditions = singleton "[STATUS] == 200";
           }
