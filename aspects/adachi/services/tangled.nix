@@ -10,6 +10,10 @@ let
     singleton
     ;
 
+  inherit (kadachi-lib)
+    recursiveMerge
+    ;
+
   inherit (kadachi-lib.http)
     mkHttpServiceOptions
     mkNginxConfiguration
@@ -23,13 +27,22 @@ in
 {
   flake-file.inputs.tangled.url = "git+https://tangled.org/did:plc:j5hmlfdrwkvtxm7cjmu7j2is";
 
-  den.schema.host = mkHttpServiceOptions {
-    name = "tangled-knot";
-    subdomain = "knot";
-  };
+  den.schema.host =
+    { host, ... }@ctx:
+    recursiveMerge [
+      (mkHttpServiceOptions {
+        name = "tangled-knot";
+        subdomain = "knot";
+      } ctx)
+      (mkHttpServiceOptions {
+        name = "tangled-spindle";
+        subdomain = "spindle";
+      } ctx)
+    ];
 
   adachi.services._.tangled = {
     provides = {
+
       knot = { host }: {
         nixos = { config, ... }: {
           imports = singleton inputs.tangled.nixosModules.knot-rs;
@@ -70,6 +83,45 @@ in
               owner = config.services.tangled.knot-rs.user;
             };
           };
+        };
+      };
+
+      spindle = { host }: {
+        nixos = { config, inputs', ... }: {
+          imports = singleton inputs.tangled.nixosModules.spindle;
+
+          services = {
+            tangled.spindle = {
+              enable = true;
+              server = {
+                hostname = host.services.tangled-spindle.domains.internet;
+                owner = atproto.did;
+                listenAddr = "127.0.0.1:6555";
+              };
+              keyPath = config.sops.secrets."tangled/spindle/key".path;
+              contact.email = host.services.email;
+            };
+
+            nginx = mkNginxConfiguration host host.services.tangled-spindle {
+              locations."/" = {
+                proxyPass = "http://${config.services.tangled.spindle.server.listenAddr}";
+                proxyWebsockets = true;
+                extraConfig = ''
+                  proxy_buffering off;
+                  proxy_read_timeout 1h;
+                '';
+              };
+            };
+          };
+
+          sops.secrets."tangled/spindle/key" = {
+            sopsFile = "${inputs.secrets}/${host.name}/tangled/spindle-key.pem";
+            format = "binary";
+          };
+
+          systemd.tmpfiles.rules = [
+            "L+ /var/lib/spindle/images/nixos - - - - ${inputs'.tangled.packages.spindle-nixos-image}"
+          ];
         };
       };
     };

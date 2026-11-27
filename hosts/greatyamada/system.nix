@@ -103,6 +103,7 @@ in
       <adachi/services/radicale>
       <adachi/services/samba>
       <adachi/services/tangled/knot>
+      <adachi/services/tangled/spindle>
       <adachi/services/tranquil-pds>
       <adachi/services/vaultwarden>
     ];

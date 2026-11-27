@@ -18,7 +18,6 @@
         podman = {
           enable = true;
           autoPrune.enable = true;
-          dockerSocket.enable = true;
           defaultNetwork.settings.dns_enabled = true;
         };
       };
