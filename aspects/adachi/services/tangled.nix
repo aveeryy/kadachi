@@ -63,6 +63,13 @@ in
                 };
                 contact.email = host.services.email;
                 git.object_format = "sha1";
+                xrpc = {
+                  trustedProxyHeader = "x-forwarded-for";
+                  trustedProxies = [
+                    "127.0.0.1"
+                    "::1"
+                  ];
+                };
               };
             };
 
@@ -105,13 +112,6 @@ in
               };
               keyPath = config.sops.secrets."tangled/spindle/key".path;
               contact.email = host.services.email;
-              xrpc = {
-                trustedProxyHeader = "x-forwarded-for";
-                trustedProxies = [
-                  "127.0.0.1"
-                  "::1"
-                ];
-              };
             };
 
             nginx = mkNginxConfiguration host host.services.tangled-spindle {
